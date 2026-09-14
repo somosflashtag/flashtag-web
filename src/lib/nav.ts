@@ -9,7 +9,7 @@ import { site } from "./site";
  * Al crear una página nueva, agregarla acá y recién ahí aparece en el menú.
  *
  * Pendientes de construir (no listar hasta que existan):
- *   /blog, /recursos, /para/[rubro]
+ *   /recursos, /para/[rubro], /privacidad, /terminos
  */
 
 export type NavItem = { label: string; href: string; externo?: boolean };
@@ -35,7 +35,10 @@ export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
   },
   {
     titulo: "Recursos",
-    links: [{ label: "Cursos", href: "/cursos" }],
+    links: [
+      { label: "Cursos", href: "/cursos" },
+      { label: "Blog", href: "/blog" },
+    ],
   },
   {
     titulo: "Empresa",
@@ -61,5 +64,6 @@ export const rutas = [
   "/nosotros",
   "/prensa",
   "/contacto",
+  "/blog",
   ...features.map((f) => `/producto/${f.slug}`),
 ];

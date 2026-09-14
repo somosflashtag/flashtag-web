@@ -53,4 +53,40 @@ export const faqs: FaqItem[] = [
       "Sí, subís o bajás de plan cuando quieras desde tu cuenta. El cambio se prorratea sobre el período en curso.",
     mostrarEn: ["precios"],
   },
+  {
+    pregunta: "¿Qué pasa con mis QR si cancelo el plan pago?",
+    respuesta:
+      "Tus QR siguen funcionando en el plan Free. Si tenías más QR o Link Pages que los que incluye Free, los excedentes quedan pausados — no se borran. Si volvés a un plan pago, se reactivan.",
+    mostrarEn: ["precios"],
+  },
+  {
+    pregunta: "¿Cómo se calcula el precio en pesos?",
+    respuesta:
+      "Usamos el dólar MEP del día de la facturación. El valor equivalente en pesos lo mostramos en la web y en el checkout antes de cobrarte.",
+    mostrarEn: ["precios"],
+  },
+  {
+    pregunta: "¿Puedo probar antes de pagar?",
+    respuesta:
+      "Sí. El plan Free es gratis para siempre e incluye lo básico para que uses la app y decidas después si querés pasar a uno pago. No pedimos tarjeta.",
+    mostrarEn: ["precios"],
+  },
+  {
+    pregunta: "¿Qué incluye el plan Free para siempre?",
+    respuesta:
+      "Productos asociados ilimitados, 3 QR dinámicos, 1 Link Page y métricas básicas. No requiere tarjeta de crédito.",
+    mostrarEn: ["precios"],
+  },
+  {
+    pregunta: "¿Cómo conecto mi Google Business Profile?",
+    respuesta:
+      "Desde la app, en la sección Reseñas, hacés clic en \u201cConectar Google\u201d. Te lleva al login de Google con los permisos necesarios. En un par de minutos ves todas las reseñas de tus fichas en el dashboard.",
+    mostrarEn: ["home", "precios"],
+  },
+  {
+    pregunta: "¿Cómo funciona el programa de fidelidad?",
+    respuesta:
+      "Todavía no está disponible: es lo próximo que estamos construyendo. La idea es que tus clientes acumulen puntos por compra o visita y los canjeen por beneficios que configurás vos, todo vía QR desde el celular y sin apps extras.",
+    mostrarEn: ["precios"],
+  },
 ];
