@@ -13,7 +13,8 @@ export const site = {
 
   urls: {
     app: "https://my.flashtag.tech",
-    signup: "https://my.flashtag.tech/registro",
+    /** Portal de la app. Es el destino de TODO CTA de "probar / empezar". */
+    login: "https://my.flashtag.tech/login",
     shop: "https://shop.flashtag.tech",
     whatsapp: "https://wa.me/54911XXXXXXXX", // PENDIENTE: número real
   },
@@ -38,7 +39,7 @@ export const site = {
 
 /** CTAs: el mismo nombre para la misma acción en todo el sitio. */
 export const cta = {
-  primary: { label: "Probá la app gratis", href: site.urls.signup },
+  primary: { label: "Probá la app gratis", href: site.urls.login },
   secondary: { label: "Comprá tu cartel", href: site.urls.shop },
   demo: { label: "Reservá una demo", href: "/contacto?motivo=demo" },
 } as const;

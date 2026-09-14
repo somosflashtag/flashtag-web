@@ -28,7 +28,7 @@ export const planes: Plan[] = [
     precioAnualPorMes: 0,
     totalAnual: 0,
     destacado: false,
-    cta: { label: "Empezá gratis", href: "https://my.flashtag.tech/registro" },
+    cta: { label: "Empezá gratis", href: "https://my.flashtag.tech/login" },
     features: [
       { label: "Productos asociados ilimitados", incluido: true },
       { label: "Hasta 3 QR dinámicos", incluido: true },
@@ -49,7 +49,7 @@ export const planes: Plan[] = [
     precioAnualPorMes: 25,
     totalAnual: 295,
     destacado: true,
-    cta: { label: "Empezar con Starter", href: "https://my.flashtag.tech/registro?plan=starter" },
+    cta: { label: "Empezar con Starter", href: "https://my.flashtag.tech/login" },
     features: [
       { label: "Productos asociados ilimitados", incluido: true },
       { label: "Hasta 20 QR dinámicos", incluido: true },
@@ -70,7 +70,7 @@ export const planes: Plan[] = [
     precioAnualPorMes: 84,
     totalAnual: 1009,
     destacado: false,
-    cta: { label: "Empezar con Full", href: "https://my.flashtag.tech/registro?plan=full" },
+    cta: { label: "Empezar con Full", href: "https://my.flashtag.tech/login" },
     features: [
       { label: "Productos asociados ilimitados", incluido: true },
       { label: "Hasta 500 QR dinámicos", incluido: true },

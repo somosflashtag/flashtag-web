@@ -1,0 +1,67 @@
+# FlashTag — sitio público
+
+Next.js 16 (App Router, Turbopack) + Tailwind v4. Español rioplatense (`es-AR`),
+voseo. Deploy en Vercel: cada push a `main` publica.
+
+```bash
+npm run dev     # localhost:3000
+npm run build   # obligatorio antes de pushear
+```
+
+## Reglas innegociables
+
+**1. El logo no se toca.** Ni los colores, ni el espaciado, ni la tipografía,
+ni las proporciones. No se le agregan contornos, sombras, degradados ni
+rotaciones (prohibiciones explícitas del Manual de Marca, p. 9). Si hace falta
+una variante que no existe, se pide — no se improvisa.
+El único archivo que lo define es `src/components/ui/Logo.tsx`; todo el sitio
+lo consume desde ahí.
+
+**2. Los colores salen del manual, no de la intuición.** Se cambian en
+`src/app/globals.css`, en el bloque `@theme`, y en ningún otro lugar. Un hex
+hardcodeado en un `.tsx` es un bug.
+
+| Token | Hex | Uso |
+|---|---|---|
+| `--color-ink` | `#2d014b` | Titulares, superficies oscuras |
+| `--color-brand` | `#613ec4` | CTAs, links, foco |
+| `--color-surface` | `#efe7d6` | Fondos de sección (arena) |
+| `--color-coral` | `#db4f45` | Acento. Nunca texto chico: no llega a 4.5:1 |
+| `--color-gold` | `#ffc64a` | Acento (estrellas, destacados) |
+| `--color-teal` | `#0094a5` | Acento (datos, métricas) |
+
+Tipografías: **Poppins** (títulos) + **Roboto** (cuerpo).
+*La Rose Display* aparece en el manual para títulos creativos pero no está en
+Google Fonts — hay que licenciarla antes de usarla.
+
+**3. Un dato, una fuente.** Precios y features salen de `src/content/planes.ts`.
+Dominios, CTAs y prueba social, de `src/lib/site.ts`. Si un número aparece
+escrito a mano en un componente, es un bug esperando a desincronizarse.
+
+**4. Nada de prueba social inventada.** `site.proof.locales` es `null` hasta
+tener el número real, y mientras sea `null` ningún componente lo muestra.
+Preferimos no mostrar nada antes que mostrar un número que no podemos sostener.
+
+**5. Marcas de terceros solo con autorización.** No se listan logos ni nombres
+de empresas (clientes, integraciones, medios) sin permiso escrito y sin que la
+integración exista de verdad en producción.
+
+## Accesibilidad — piso, no aspiración
+
+- Contraste AA (4.5:1 texto normal, 3:1 texto grande). Verificar al cambiar color.
+- Un solo `<h1>` por página.
+- Tap targets de 44px mínimo en phone.
+- `:focus-visible` siempre visible.
+- Respetar `prefers-reduced-motion`.
+- Cero scroll horizontal a 390px de ancho.
+
+## Pendientes
+
+- [ ] SVG del isologotipo original (hoy `Logo.tsx` es una reconstrucción
+      tipográfica en Poppins, marcada como provisoria en el propio archivo)
+- [ ] Favicon oficial (hoy `src/app/icon.svg` usa el marcador QR del sistema)
+- [ ] `site.proof.locales` — número real de comercios
+- [ ] `site.urls.whatsapp` — número real
+- [ ] Redes en `site.social`
+- [ ] Páginas del nav que todavía no existen: `/como-funciona`, `/casos`, `/blog`
+- [ ] Sanity Studio (las deps se quitaron hasta montarlo)
