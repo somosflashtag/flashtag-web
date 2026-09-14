@@ -2,15 +2,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { QRMark } from "@/components/ui/QRMark";
+import { navPrincipal } from "@/lib/nav";
 import { cta } from "@/lib/site";
 
-const destacados = [
-  { label: "Cómo funciona", href: "/como-funciona" },
-  { label: "Precios", href: "/precios" },
-  { label: "Casos de éxito", href: "/casos" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contacto", href: "/contacto" },
-];
 
 export default function NotFound() {
   return (
@@ -29,7 +23,7 @@ export default function NotFound() {
         </p>
 
         <ul className="mt-10 flex flex-wrap justify-center gap-2.5">
-          {destacados.map((d) => (
+          {navPrincipal.map((d) => (
             <li key={d.href}>
               <Link
                 href={d.href}

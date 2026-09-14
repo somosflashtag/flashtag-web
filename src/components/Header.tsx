@@ -7,14 +7,7 @@ import { Container } from "./ui/Container";
 import { cta } from "@/lib/site";
 import { cn } from "@/lib/cn";
 import { Logo } from "./ui/Logo";
-
-const nav = [
-  { label: "Producto", href: "/#producto" },
-  { label: "Cómo funciona", href: "/como-funciona" },
-  { label: "Precios", href: "/precios" },
-  { label: "Casos", href: "/casos" },
-  { label: "Blog", href: "/blog" },
-];
+import { navPrincipal } from "@/lib/nav";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,7 +41,7 @@ export function Header() {
           <Logo className="text-[1.375rem]" onClick={() => setOpen(false)} />
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
-            {nav.map((item) => (
+            {navPrincipal.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -96,7 +89,7 @@ export function Header() {
         >
           <Container>
             <nav className="flex flex-col py-4" aria-label="Principal móvil">
-              {nav.map((item) => (
+              {navPrincipal.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}

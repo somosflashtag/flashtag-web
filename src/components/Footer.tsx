@@ -3,44 +3,8 @@ import { Container } from "./ui/Container";
 import { Logo } from "./ui/Logo";
 import { QRMark } from "./ui/QRMark";
 import { site } from "@/lib/site";
-import { features } from "@/content/features";
+import { columnasFooter } from "@/lib/nav";
 
-const columnas = [
-  {
-    titulo: "Producto",
-    links: features.map((f) => ({
-      label: f.nombre,
-      href: `/producto/${f.slug}`,
-    })),
-  },
-  {
-    titulo: "Para tu rubro",
-    links: [
-      { label: "Gastronomía", href: "/para/gastronomia" },
-      { label: "Retail", href: "/para/retail" },
-      { label: "Servicios", href: "/para/servicios" },
-      { label: "Agencias", href: "/para/agencias" },
-    ],
-  },
-  {
-    titulo: "Recursos",
-    links: [
-      { label: "Cómo funciona", href: "/como-funciona" },
-      { label: "Casos de éxito", href: "/casos" },
-      { label: "Blog", href: "/blog" },
-      { label: "Guías gratis", href: "/recursos" },
-    ],
-  },
-  {
-    titulo: "FlashTag",
-    links: [
-      { label: "Nosotros", href: "/nosotros" },
-      { label: "Contacto", href: "/contacto" },
-      { label: "Prensa", href: "/prensa" },
-      { label: "Tienda", href: site.urls.shop },
-    ],
-  },
-];
 
 export function Footer() {
   return (
@@ -54,7 +18,7 @@ export function Footer() {
             </p>
           </div>
 
-          {columnas.map((col) => (
+          {columnasFooter.map((col) => (
             <div key={col.titulo}>
               <h2 className="flex items-center gap-2 text-sm font-semibold">
                 <QRMark size={10} />
@@ -63,12 +27,21 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted transition-colors duration-[120ms] hover:text-ink"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.externo ? (
+                      <a
+                        href={link.href}
+                        className="text-sm text-muted transition-colors duration-[120ms] hover:text-ink"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-muted transition-colors duration-[120ms] hover:text-ink"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -80,14 +53,8 @@ export function Footer() {
           <p className="text-sm text-muted">
             © {new Date().getFullYear()} FlashTag. Todos los derechos reservados.
           </p>
-          <div className="flex gap-6">
-            <Link href="/privacidad" className="text-sm text-muted transition-colors hover:text-ink">
-              Privacidad
-            </Link>
-            <Link href="/terminos" className="text-sm text-muted transition-colors hover:text-ink">
-              Términos
-            </Link>
-          </div>
+          {/* TODO legal: /privacidad y /terminos son obligatorias antes de
+              cobrar online. Se linkean cuando existan, no antes. */}
         </div>
       </Container>
       {/* Espacio para que la barra CTA fija no tape el footer en phone */}
