@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Cartel } from "@/components/ui/Cartel";
+import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { casosConDetalle, rubros } from "@/content/casos";
 import { pageMeta } from "@/lib/seo";
@@ -89,7 +89,18 @@ export default async function CasoPage({
                 ))}
               </ul>
             </div>
-            <Cartel canal="google" className="mx-auto w-[190px] lg:w-[230px]" />
+            <Image
+              src={c.foto?.src ?? "/productos/cartel-google.webp"}
+              alt={
+                c.foto?.alt ??
+                `Cartel de FlashTag con QR y NFC en ${c.negocio}`
+              }
+              width={700}
+              height={700}
+              sizes="(min-width: 1024px) 35vw, 100vw"
+              priority
+              className="w-full rounded-[var(--radius-surface)] object-cover shadow-[var(--shadow-float)]"
+            />
           </div>
         </Container>
       </div>

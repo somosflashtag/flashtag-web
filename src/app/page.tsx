@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/JsonLd";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -9,6 +10,7 @@ import { Faq } from "@/components/Faq";
 import { Pricing } from "@/components/Pricing";
 import { Tienda } from "@/components/Tienda";
 import { CasosDestacados } from "@/components/CasosDestacados";
+import { Clientes } from "@/components/Clientes";
 import { features, pasos } from "@/content/features";
 import { faqs } from "@/content/faq";
 import { planes } from "@/content/planes";
@@ -63,8 +65,10 @@ export default function Home() {
             </h1>
 
             <p className="t-lead measure mt-6 text-muted">
-              QR dinámicos, Link Pages, reseñas respondidas con IA y métricas que
-              te dicen qué hacer la semana que viene. Con cartel o sin cartel.
+              Un cartel con QR <strong className="font-semibold text-ink">y NFC</strong>:
+              tu cliente lo escanea o apoya el teléfono y ya está en tu ficha de
+              Google. Sumá Link Pages, reseñas respondidas con IA y métricas que
+              te dicen qué hacer la semana que viene.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -88,21 +92,8 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* ── BANDA DE CONFIANZA ───────────────────────────────── */}
-      <div className="border-y border-line bg-surface py-8">
-        <Container>
-          <div className="flex flex-col items-center gap-5 sm:flex-row sm:justify-center sm:gap-10">
-            <p className="text-sm font-medium text-muted">Funciona con</p>
-            <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-              {["Google Business", "Mercado Pago", "Stripe", "Shopify"].map((n) => (
-                <li key={n} className="text-[0.9375rem] font-semibold tracking-tight text-muted">
-                  {n}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Container>
-      </div>
+      {/* ── PRUEBA SOCIAL: marcas reales, no integraciones sin confirmar ── */}
+      <Clientes />
 
       {/* ── EL PROBLEMA ──────────────────────────────────────── */}
       <Section>
@@ -176,13 +167,18 @@ export default function Home() {
 
                   {/* Placeholder gráfico del sistema visual — nunca "imagen pendiente" */}
                   <div
-                    className={`aspect-[4/3] w-full rounded-[var(--radius-surface)] border border-line bg-surface ${i % 2 === 1 ? "lg:order-1" : ""}`}
-                    role="img"
-                    aria-label={`Vista del producto: ${f.nombre}`}
+                    className={`aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-surface)] border border-line bg-surface ${i % 2 === 1 ? "lg:order-1" : ""}`}
                   >
-                    <div className="flex h-full items-center justify-center">
-                      <QRMark size={48} tone="muted" />
-                    </div>
+                    {f.foto && (
+                      <Image
+                        src={f.foto.src}
+                        alt={f.foto.alt}
+                        width={760}
+                        height={570}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="size-full object-cover"
+                      />
+                    )}
                   </div>
                 </article>
               ))}

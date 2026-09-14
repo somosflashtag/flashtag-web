@@ -5,11 +5,17 @@ export type Feature = {
   bajada: string;
   analogia?: string;
   casos: string[];
+  /** Foto del producto ilustrando la feature. */
+  foto?: { src: string; alt: string };
 };
 
 export const features: Feature[] = [
   {
     slug: "qr-dinamicos",
+    foto: {
+      src: "/productos/cartel-google-2.webp",
+      alt: "Cartel acrílico de Google de FlashTag con QR y NFC sobre una mesa",
+    },
     nombre: "QR dinámicos",
     titular: "Un cartel que podés reescribir desde el celular",
     bajada:
@@ -24,6 +30,10 @@ export const features: Feature[] = [
   },
   {
     slug: "link-pages",
+    foto: {
+      src: "/productos/pack.webp",
+      alt: "Carteles, stickers y tarjetas de FlashTag con sus soportes",
+    },
     nombre: "Link Pages",
     titular: "Tu minisitio, conectado al cartel de tu local",
     bajada:
@@ -36,6 +46,10 @@ export const features: Feature[] = [
   },
   {
     slug: "metricas",
+    foto: {
+      src: "/productos/cartel-tripadvisor.webp",
+      alt: "Cartel de Tripadvisor de FlashTag en un local",
+    },
     nombre: "Métricas",
     titular: "Qué hacer la semana que viene, no un gráfico más",
     bajada:
@@ -48,6 +62,10 @@ export const features: Feature[] = [
   },
   {
     slug: "resenas-ia",
+    foto: {
+      src: "/productos/cartel-facebook.webp",
+      alt: "Cartel de Facebook de FlashTag apoyado en un mostrador",
+    },
     nombre: "Reseñas con IA",
     titular: "Respondé todas tus reseñas en 30 segundos",
     bajada:

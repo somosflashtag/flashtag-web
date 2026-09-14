@@ -2,10 +2,13 @@
  * TIENDA — los productos físicos que se venden en shop.flashtag.tech.
  *
  * Es lo más tangible que tiene la marca: un objeto que llega al local, con
- * precio en pesos. Por eso viven en la home y no escondidos en la tienda.
+ * precio en pesos y foto en una mesa real. Por eso vive en la home.
  *
- * ⚠️ Los precios son de la captura del sitio viejo. Si cambian en Shopify,
- * cambian acá — o mejor, se leen de la Storefront API cuando exista el token.
+ * Cada pieza trae QR **y NFC**: se escanea con la cámara o se apoya el
+ * teléfono. El gesto de apoyar es el diferencial — no hay que abrir nada.
+ *
+ * ⚠️ Los precios son los del sitio viejo. Si cambian en Shopify, cambian acá
+ * — o mejor, se leen de la Storefront API cuando exista el token.
  */
 
 export type Producto = {
@@ -14,10 +17,11 @@ export type Producto = {
   /** Para qué sirve, en una línea. */
   bajada: string;
   precioARS: number;
-  /** "Más vendido", "Ahorrá más". Opcional. */
+  /** "Más vendido", "Ahorrás más". Opcional. */
   etiqueta?: string;
-  /** Canal que resuelve el producto. Define la ilustración. */
-  canal: "google" | "instagram" | "combo";
+  /** Foto del producto en un local real. */
+  foto: string;
+  alt: string;
   href: string;
 };
 
@@ -28,37 +32,61 @@ export const productos: Producto[] = [
     slug: "cartel-google",
     nombre: "Cartel de Google",
     bajada:
-      "El clásico para pedir reseñas. Va en el mostrador o en la mesa y lleva directo a tu ficha de Google.",
+      "El que más se vende. Va en la mesa o el mostrador y lleva directo a tu ficha de Google para que te dejen la reseña.",
     precioARS: 39999,
     etiqueta: "Más vendido",
-    canal: "google",
+    foto: "/productos/cartel-google.webp",
+    alt: "Cartel acrílico de Google de FlashTag sobre la mesa de madera de un café",
     href: `${SHOP}/products/cartel-google`,
   },
   {
     slug: "cartel-instagram",
     nombre: "Cartel de Instagram",
     bajada:
-      "Convierte a quien ya está en tu local en seguidor. Escanea, te sigue, se va.",
+      "Convierte a quien ya está en tu local en seguidor. Apoya el teléfono, te sigue, vuelve a lo suyo.",
     precioARS: 39999,
-    canal: "instagram",
+    foto: "/productos/cartel-instagram.webp",
+    alt: "Cartel acrílico de Instagram de FlashTag apoyado en un local",
     href: `${SHOP}/products/cartel-instagram`,
   },
   {
-    slug: "combo-completo",
-    nombre: "Combo Google + Instagram + WhatsApp",
+    slug: "cartel-whatsapp",
+    nombre: "Cartel de WhatsApp",
     bajada:
-      "Los tres canales cubiertos. Reseñas, seguidores y contacto directo, en un solo pedido.",
-    precioARS: 104999,
-    etiqueta: "Ahorrás más",
-    canal: "combo",
-    href: `${SHOP}/products/combo`,
+      "Para que te escriban sin cargar el número. Pedidos, reservas y consultas directo a tu chat.",
+    precioARS: 39999,
+    foto: "/productos/cartel-whatsapp.webp",
+    alt: "Cartel acrílico de WhatsApp de FlashTag en un mostrador",
+    href: `${SHOP}/products/cartel-whatsapp`,
+  },
+];
+
+/** Los tres formatos en que viene cualquier canal. */
+export const formatos = [
+  {
+    nombre: "Cartel acrílico",
+    medida: "14 × 14 cm",
+    texto: "Con base propia. Va en la mesa, el mostrador o la caja.",
+    foto: "/productos/carteles.webp",
+  },
+  {
+    nombre: "Sticker para vidriera",
+    medida: "15 × 15 cm",
+    texto: "Se pega en el vidrio o la pared. Ideal para la entrada.",
+    foto: "/productos/stickers.webp",
+  },
+  {
+    nombre: "Tarjeta de plástico",
+    medida: "8,6 × 5,4 cm",
+    texto: "Del tamaño de una tarjeta. Con lanyard para llevarla encima.",
+    foto: "/productos/tarjetas.webp",
   },
 ];
 
 export const tienda = {
   titular: "Elegí el cartel que va en tu local",
   bajada:
-    "Llega impreso, con el QR ya activado. Lo ponés en la mesa y empieza a funcionar.",
+    "Llega impreso, con el QR y el chip NFC ya activados. Lo ponés en la mesa y empieza a funcionar.",
   href: SHOP,
 };
 

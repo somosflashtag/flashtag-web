@@ -1,11 +1,11 @@
-import { Cartel } from "./ui/Cartel";
+import Image from "next/image";
 import { QRMark } from "./ui/QRMark";
 import { Section } from "./ui/Section";
-import { precioARS, productos, tienda } from "@/content/productos";
+import { formatos, precioARS, productos, tienda } from "@/content/productos";
 
 /**
- * Bloque de tienda. Lo más tangible del sitio: un objeto con precio.
- * Cada tarjeta sale a Shopify — acá no se vende, se muestra.
+ * Bloque de tienda. Lo más tangible del sitio: el objeto, fotografiado en un
+ * local real, con su precio. Acá no se vende — cada tarjeta sale a Shopify.
  */
 export function Tienda() {
   return (
@@ -27,21 +27,27 @@ export function Tienda() {
       </div>
 
       <ul className="mt-10 grid gap-5 md:grid-cols-3">
-        {productos.map((p) => (
+        {productos.map((p, i) => (
           <li key={p.slug}>
             <a
               href={p.href}
               className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-paper transition-colors duration-[120ms] hover:border-ink"
             >
-              <div className="relative flex items-center justify-center bg-surface px-10 pb-2 pt-8">
+              <div className="relative aspect-square overflow-hidden">
                 {p.etiqueta && (
-                  <span className="absolute left-4 top-4 rounded-full bg-ink px-2.5 py-1 text-[11px] font-semibold text-paper">
+                  <span className="absolute left-4 top-4 z-10 rounded-full bg-ink px-2.5 py-1 text-[11px] font-semibold text-paper">
                     {p.etiqueta}
                   </span>
                 )}
-                <Cartel
-                  canal={p.canal}
-                  className="w-[150px] transition-transform duration-300 ease-[var(--ease-ft)] group-hover:-translate-y-1"
+                <Image
+                  src={p.foto}
+                  alt={p.alt}
+                  width={700}
+                  height={700}
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  /* La primera entra en el LCP de quien scrollea rápido. */
+                  priority={i === 0}
+                  className="size-full object-cover transition-transform duration-500 ease-[var(--ease-ft)] group-hover:scale-[1.03]"
                 />
               </div>
 
@@ -50,13 +56,40 @@ export function Tienda() {
                 <p className="t-body mt-2 flex-1 text-muted">{p.bajada}</p>
                 <p className="t-h3 mt-5 tnum">{precioARS(p.precioARS)}</p>
                 <p className="t-caption mt-1 text-muted">
-                  Envío a todo el país · App gratis incluida
+                  QR + NFC · Envío a todo el país · App gratis incluida
                 </p>
               </div>
             </a>
           </li>
         ))}
       </ul>
+
+      {/* Los tres formatos: acá se entiende que es un objeto con medidas. */}
+      <div className="mt-14 border-t border-line pt-10">
+        <h3 className="t-h3">Cada canal viene en tres formatos</h3>
+        <ul className="mt-6 grid gap-5 md:grid-cols-3">
+          {formatos.map((f) => (
+            <li
+              key={f.nombre}
+              className="flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-paper p-4"
+            >
+              <Image
+                src={f.foto}
+                alt={f.nombre}
+                width={200}
+                height={200}
+                sizes="88px"
+                className="size-22 shrink-0 rounded-lg object-cover"
+              />
+              <div className="min-w-0">
+                <p className="font-semibold">{f.nombre}</p>
+                <p className="t-caption text-brand tnum">{f.medida}</p>
+                <p className="t-caption mt-1 text-muted">{f.texto}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </Section>
   );
 }

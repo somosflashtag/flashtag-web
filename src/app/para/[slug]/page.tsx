@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/Button";
-import { Cartel } from "@/components/ui/Cartel";
+import Image from "next/image";
 import { QRMark } from "@/components/ui/QRMark";
 import { Section } from "@/components/ui/Section";
 import { casosPublicables } from "@/content/casos";
@@ -65,9 +65,14 @@ export default async function RubroPage({
             </p>
           </div>
 
-          <Cartel
-            canal={r.slug === "gastronomia" ? "google" : "combo"}
-            className="mx-auto w-[210px] lg:w-[260px]"
+          <Image
+            src={r.foto.src}
+            alt={r.foto.alt}
+            width={700}
+            height={700}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            priority
+            className="w-full rounded-[var(--radius-surface)] object-cover shadow-[var(--shadow-float)]"
           />
         </div>
       </Section>

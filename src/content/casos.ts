@@ -27,6 +27,8 @@ export type Caso = {
   /** Permiso del comercio para usar su nombre. */
   autorizado: boolean;
   testimonio?: { texto: string; autor: string; cargo: string };
+  /** Foto del cartel en el local del cliente. Cae a la de producto si falta. */
+  foto?: { src: string; alt: string };
   /** Nombre del .md en content/casos-detalle/. Habilita /casos/<slug>. */
   detalle?: string;
   /** Portada de la página de detalle. */
@@ -50,6 +52,10 @@ export const rubros: { id: Rubro; label: string }[] = [
 export const casos: Caso[] = [
   {
     slug: "el-ateneo",
+    foto: {
+      src: "/locales/el-ateneo.webp",
+      alt: "Cartel de FlashTag con la marca El Ateneo en el mostrador del local",
+    },
     negocio: "El Ateneo Grand Splendid",
     ciudad: "Recoleta, CABA",
     rubro: "retail",
@@ -98,6 +104,10 @@ export const casos: Caso[] = [
   },
   {
     slug: "derentas",
+    foto: {
+      src: "/locales/derentas.webp",
+      alt: "Tarjeta de FlashTag con la marca deRentas, con lanyard, en la mano",
+    },
     negocio: "deRentas",
     ciudad: "Vicente López, GBA",
     rubro: "servicios",
@@ -193,6 +203,10 @@ export const casos: Caso[] = [
   },
   {
     slug: "yenny",
+    foto: {
+      src: "/locales/yenny.webp",
+      alt: "Cartel de FlashTag con la marca Yenny sobre el mostrador de la librería",
+    },
     negocio: "Yenny",
     ciudad: "Argentina",
     rubro: "retail",
@@ -216,6 +230,10 @@ export const casos: Caso[] = [
   },
   {
     slug: "fiat-autodrive",
+    foto: {
+      src: "/locales/fiat-autodrive.webp",
+      alt: "Cartel de FlashTag con la marca AutoDrive sostenido en la mano",
+    },
     negocio: "Fiat AutoDrive",
     ciudad: "Belgrano, CABA",
     rubro: "corporativo",

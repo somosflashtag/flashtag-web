@@ -20,6 +20,8 @@ export type PaginaRubro = {
   titular: string;
   bajada: string;
   metaDescripcion: string;
+  /** Foto del producto en un local del rubro. */
+  foto: { src: string; alt: string };
   beneficios: { titulo: string; texto: string }[];
 };
 
@@ -35,6 +37,10 @@ export const paginasRubro: PaginaRubro[] = [
       "QR en mesas para ver el menú, reseñas de Google respondidas con IA y métricas de escaneo. Empezá con el cartel y escalá cuando quieras.",
     metaDescripcion:
       "Carta digital por QR, reseñas de Google respondidas con IA y métricas de escaneo para restaurantes, cafeterías y pastelerías.",
+    foto: {
+      src: "/productos/cartel-google.webp",
+      alt: "Cartel de Google de FlashTag sobre la mesa de un café",
+    },
     beneficios: [
       {
         titulo: "Carta digital en el QR de la mesa",
@@ -68,6 +74,10 @@ export const paginasRubro: PaginaRubro[] = [
       "QR en probadores, Link Pages por colección, métricas de escaneo y reseñas respondidas con IA. Todo desde un solo lugar.",
     metaDescripcion:
       "QR en góndolas y probadores, Link Pages por colección y métricas de escaneo para tiendas de ropa, deco y lifestyle.",
+    foto: {
+      src: "/productos/cartel-instagram.webp",
+      alt: "Cartel de Instagram de FlashTag en un local comercial",
+    },
     beneficios: [
       {
         titulo: "QR en góndolas y probadores",
@@ -101,6 +111,10 @@ export const paginasRubro: PaginaRubro[] = [
       "Una Link Page con tu agenda, servicios, precios y WhatsApp. Reseñas respondidas con IA y métricas para entender de dónde vienen tus clientes.",
     metaDescripcion:
       "Link Page con agenda, servicios y WhatsApp, más reseñas con IA, para peluqueros, trainers, tatuadores y profesionales independientes.",
+    foto: {
+      src: "/productos/cartel-whatsapp.webp",
+      alt: "Cartel de WhatsApp de FlashTag en un mostrador",
+    },
     beneficios: [
       {
         titulo: "Tu Link Page profesional",
@@ -134,6 +148,10 @@ export const paginasRubro: PaginaRubro[] = [
       "El plan Full incluye hasta 500 QR, 100 Link Pages y 3 cuentas de Google Business. Pensado para agencias que manejan varios locales o franquicias.",
     metaDescripcion:
       "Panel multi-cliente con 500 QR dinámicos, 100 Link Pages y 3 cuentas de Google Business para agencias y franquicias.",
+    foto: {
+      src: "/productos/gama.webp",
+      alt: "Cartel, sticker y tarjeta de FlashTag con QR y NFC",
+    },
     beneficios: [
       {
         titulo: "Panel centralizado multi-cliente",
