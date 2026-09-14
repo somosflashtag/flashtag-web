@@ -1,30 +1,25 @@
+## Sobre el cliente
+
+Betular Pâtisserie es la pastelería del chef Damián Betular, ubicada en Villa Devoto, CABA. Con un equipo de 48 personas y una propuesta de alta pastelería francesa con impronta de barrio, el local opera de lunes a lunes y convoca a cientos de personas por día.
+
+Damián es una de las figuras más reconocidas de la gastronomía argentina, con presencia en MasterChef Celebrity y Bake Off Argentina, lo que le da a la marca una comunidad fiel y un volumen de visitas muy por encima del promedio del rubro.
+
 ## El desafío
 
-Betular Patisserie tiene varios locales en Buenos Aires y una base de clientes fiel que genera reseñas positivas de forma orgánica. Pero el equipo sentía que podía hacer más: la carta impresa se desactualizaba rápido, las reseñas de Google tardaban en responderse y no había forma de saber qué hacían los clientes en el local más allá de la caja.
+El local recibe cientos de visitas diarias y la experiencia que ofrece genera una satisfacción altísima. Pero convertir esa satisfacción en una reseña en Google dependía de que el cliente tomara la iniciativa solo: buscar el negocio, entrar al perfil, escribir. La mayoría no lo hacía.
 
-Buscaban una solución que no requiriera una app propia, no generara fricción para el cliente y se pudiera implementar rápido sin depender del equipo de IT.
+Pedirlo verbalmente tampoco era una opción: con ese volumen de gente, depende de que cada persona del equipo lo recuerde en cada turno, e interrumpe un momento que la marca cuida mucho. Hacía falta algo que funcionara solo y que no rompiera la estética del local.
 
 ## La solución
 
-Implementaron FlashTag con carteles de Google en cada mesa y mostrador de los tres locales principales. La configuración fue sencilla:
+Betular implementó carteles personalizados de FlashTag distribuidos en el local, diseñados con la paleta, la tipografía y la estética de la marca — sin elementos genéricos, sin romper la identidad visual del espacio.
 
-### Carta digital dinámica
+El cartel hace una sola cosa, y la hace bien: llevar al cliente al perfil de Google con el mínimo esfuerzo posible. Puede escanearlo con la cámara o simplemente apoyar el celular — dos gestos naturales, sin pasos intermedios, sin buscar el negocio, sin navegar.
 
-Cada QR en mesa apunta a la carta actualizada. Cuando cambian los pasteles de temporada, actualizan el link en 30 segundos desde la app.
+El momento de activación coincide con el pico emocional de la visita, cuando la experiencia está más fresca y la disposición a dejar una reseña es mayor.
 
-### Reseñas respondidas con IA
+## Resultados
 
-Conectaron su Google Business Profile y activaron la respuesta asistida con IA. Cada reseña se responde en menos de 24 horas con el tono amigable de la marca.
+Con más de 5.200 reseñas acumuladas y una puntuación de 4,4 sobre 5, Betular mantiene uno de los perfiles más activos del rubro en CABA.
 
-### Métricas por local
-
-Dashboard con escaneos diarios por local, picos horarios y origen del tráfico. El equipo de marketing revisa los datos cada semana para optimizar la experiencia en sala.
-
-## Los resultados
-
-A los tres meses de implementar FlashTag:
-
-- De 80 escaneos mensuales al momento de activar, pasaron a más de 500 en el tercer mes.
-- El rating en Google subió de 4,5 a 4,8 gracias a las respuestas rápidas y personalizadas con IA.
-- El equipo de marketing ahorró aproximadamente 4 horas semanales en gestión de reseñas.
-- El 68% de los clientes que escanean el QR de mesa abren la carta, y el 12% hace click en el botón de WhatsApp.
+El proceso no requiere intervención del equipo: los carteles hacen el trabajo solos, en cada mesa, en cada visita, todos los días.

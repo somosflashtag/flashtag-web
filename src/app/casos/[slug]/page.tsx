@@ -78,11 +78,16 @@ export default async function CasoPage({
               </p>
               <h1 className="t-h2 mt-5">{c.portada.titular}</h1>
               <p className="t-lead measure mt-5 text-muted">{c.portada.bajada}</p>
-              <p className="t-caption mt-6 flex flex-wrap gap-x-5 gap-y-2 text-muted">
-                <span>{c.ciudad}</span>
-                <span>{rubro}</span>
-                <span>{c.portada.plan}</span>
-              </p>
+              <ul className="t-caption mt-6 flex flex-wrap gap-2 text-muted">
+                {c.portada.datos.map((d) => (
+                  <li
+                    key={d}
+                    className="rounded-full border border-line bg-paper px-3 py-1.5"
+                  >
+                    {d}
+                  </li>
+                ))}
+              </ul>
             </div>
             <Cartel canal="google" className="mx-auto w-[190px] lg:w-[230px]" />
           </div>
@@ -92,7 +97,7 @@ export default async function CasoPage({
       {/* Las cifras solo salen cuando están cruzadas con el dashboard. */}
       {c.metricaVerificada && (
         <Container>
-          <dl className="grid grid-cols-2 gap-4 py-10 lg:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-4 py-12 lg:grid-cols-4">
             {c.portada.cifras.map((f) => (
               <div
                 key={f.label}

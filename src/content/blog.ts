@@ -70,11 +70,10 @@ export const articulos: Articulo[] = [
     categoria: "Casos reales",
     titulo: "Cómo Betular Patisserie usa FlashTag para conectar con sus clientes",
     bajada:
-      "La pastelería de Mariano Betular implementó QR en sus mesas y packaging.",
+      "La pastelería de Damián Betular implementó QR en sus mesas y packaging.",
     fecha: "2026-03-14",
     minutos: 4,
     cuerpo: null,
-    requiereAutorizacion: true,
   },
   {
     slug: "link-page-vs-linktree",

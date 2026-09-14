@@ -8,7 +8,7 @@ Un QR estático tiene la URL codificada en el propio patrón de puntos. Si quer�
 
 Un QR dinámico, en cambio, apunta a una URL corta de redirección que vos controlás desde un panel. El patrón impreso nunca cambia; cambiás el destino desde la app.
 
-> **Ejemplo real:** una pastelería que actualiza su carta de temporada cada dos semanas. Con un QR dinámico, el QR en la mesa sigue siendo el mismo: solo se actualiza la URL de destino desde FlashTag, en 30 segundos.
+> **Ejemplo real:** Betular Pâtisserie actualiza su carta de temporada cada dos semanas. Con un QR dinámico, el QR en la mesa sigue siendo el mismo: solo se actualiza la URL de destino desde FlashTag, en 30 segundos.
 
 ## 2. Cinco usos que aumentan tus ventas directamente
 

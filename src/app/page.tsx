@@ -8,6 +8,7 @@ import { HeroMockup } from "@/components/HeroMockup";
 import { Faq } from "@/components/Faq";
 import { Pricing } from "@/components/Pricing";
 import { Tienda } from "@/components/Tienda";
+import { CasosDestacados } from "@/components/CasosDestacados";
 import { features, pasos } from "@/content/features";
 import { faqs } from "@/content/faq";
 import { planes } from "@/content/planes";
@@ -210,6 +211,9 @@ export default function Home() {
           </Button>
         </div>
       </Section>
+
+      {/* ── PRUEBA SOCIAL: nombres reconocibles con números chequeables ── */}
+      <CasosDestacados />
 
       {/* ── TIENDA: el paso 1 de arriba es comprar un cartel. Acá están. ── */}
       <Tienda />
