@@ -42,7 +42,7 @@ export const articulos: Articulo[] = [
       "El 90% de los consumidores lee reseñas antes de visitar un local. Acá te mostramos cómo FlashTag te ayuda a responder cada una con tono profesional y personalizado, automáticamente.",
     fecha: "2026-04-03",
     minutos: 7,
-    cuerpo: null,
+    cuerpo: "responder-resenas-google-con-ia",
   },
   {
     slug: "5-metricas-comercio-local",
@@ -52,7 +52,7 @@ export const articulos: Articulo[] = [
       "No necesitás ser analista de datos. Solo necesitás saber dónde mirar. Te contamos cuáles son los números que realmente importan para tomar decisiones en tu negocio.",
     fecha: "2026-03-28",
     minutos: 6,
-    cuerpo: null,
+    cuerpo: "5-metricas-comercio-local",
   },
   {
     slug: "programas-de-fidelidad-argentina",
@@ -63,17 +63,17 @@ export const articulos: Articulo[] = [
       "Las tarjetas de puntos pasaron de moda. Los clientes quieren recompensas digitales, instantáneas y sin fricciones. Te mostramos el modelo que funciona hoy.",
     fecha: "2026-03-21",
     minutos: 8,
-    cuerpo: null,
+    cuerpo: "programas-de-fidelidad-argentina",
   },
   {
     slug: "caso-betular-patisserie",
     categoria: "Casos reales",
     titulo: "Cómo Betular Patisserie usa FlashTag para conectar con sus clientes",
     bajada:
-      "La pastelería de Damián Betular implementó QR en sus mesas y packaging.",
+      "Más de 5.200 reseñas en Google. Lo interesante no es el número: son las cuatro decisiones de diseño detrás, y ninguna requiere ser famoso. Se copian en un local de diez mesas.",
     fecha: "2026-03-14",
     minutos: 4,
-    cuerpo: null,
+    cuerpo: "caso-betular-patisserie",
   },
   {
     slug: "link-page-vs-linktree",
@@ -83,7 +83,7 @@ export const articulos: Articulo[] = [
       "Linktree es genial para creadores de contenido. Para un comercio con stock, precios y QR físicos, hay una herramienta mucho más completa. Acá hacemos la comparación.",
     fecha: "2026-03-07",
     minutos: 5,
-    cuerpo: null,
+    cuerpo: "link-page-vs-linktree",
   },
 ];
 
