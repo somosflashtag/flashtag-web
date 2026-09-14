@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import { QRMark } from "@/components/ui/QRMark";
@@ -83,7 +84,7 @@ export default async function RubroPage({
           {r.beneficios.map((b) => (
             <li
               key={b.titulo}
-              className="rounded-[var(--radius-card)] border border-line p-6"
+              className="card-lift rounded-[var(--radius-card)] border border-line bg-paper p-6"
             >
               <QRMark />
               <h3 className="t-h3 mt-4">{b.titulo}</h3>
@@ -106,12 +107,12 @@ export default async function RubroPage({
               </li>
             ))}
           </ul>
-          <a
+          <Link
             href="/casos"
             className="t-caption mt-6 inline-block font-semibold text-brand underline underline-offset-4"
           >
             Ver todos los casos
-          </a>
+          </Link>
         </Section>
       )}
 
@@ -120,12 +121,12 @@ export default async function RubroPage({
         <ul className="mt-8 flex flex-wrap gap-3">
           {otros.map((o) => (
             <li key={o.slug}>
-              <a
+              <Link
                 href={`/para/${o.slug}`}
                 className="inline-flex rounded-full border border-line px-5 py-2.5 text-sm font-medium transition-colors duration-[120ms] hover:border-ink"
               >
                 {o.nav}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

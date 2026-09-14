@@ -86,7 +86,13 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Cómo funciona el programa de fidelidad?",
     respuesta:
-      "Todavía no está disponible: es lo próximo que estamos construyendo. La idea es que tus clientes acumulen puntos por compra o visita y los canjeen por beneficios que configurás vos, todo vía QR desde el celular y sin apps extras.",
+      "Tus clientes suman visitas o puntos escaneando el mismo cartel que ya tenés en el local, y canjean los premios que configurás vos desde la app. No necesitan instalar nada: la tarjeta vive en su teléfono. Está incluido en el plan Full.",
+    mostrarEn: ["home", "precios"],
+  },
+  {
+    pregunta: "¿Qué es la ruleta de premios?",
+    respuesta:
+      "Un juego al que se llega escaneando el QR: el cliente gira y se lleva un premio que definiste vos (un descuento, un producto, un 'otra vez'). Vos elegís la probabilidad y el tope diario de cada premio. Está incluida desde el plan Starter.",
     mostrarEn: ["precios"],
   },
 ];

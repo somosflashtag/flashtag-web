@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/Button";
 import { QRMark } from "@/components/ui/QRMark";
 import { Section } from "@/components/ui/Section";
+import { CasoCard } from "@/components/CasoCard";
 import { casosPublicables, rubros } from "@/content/casos";
-import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
 import { cta } from "@/lib/site";
 
@@ -52,25 +52,7 @@ export default function CasosPage() {
             <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {casosPublicables.map((c) => (
                 <li key={c.slug}>
-                  <Link
-                    href={c.detalle ? `/casos/${c.slug}` : "/casos"}
-                    className="flex h-full flex-col rounded-[var(--radius-card)] border border-line p-6 transition-colors duration-[120ms] hover:border-ink"
-                  >
-                    <p className="t-caption uppercase tracking-wide text-brand">
-                      {rubros.find((r) => r.id === c.rubro)?.label}
-                    </p>
-                    <h2 className="t-h3 mt-3">{c.negocio}</h2>
-                    <p className="t-caption mt-1 text-muted">{c.ciudad}</p>
-                    {c.metricaVerificada && c.metrica && (
-                      <p className="t-h3 mt-5 text-brand tnum">{c.metrica}</p>
-                    )}
-                    <p className="t-body mt-3 flex-1 text-muted">{c.uso}</p>
-                    {c.detalle && (
-                      <span className="t-caption mt-5 font-semibold text-brand underline underline-offset-4">
-                        Leer el caso completo
-                      </span>
-                    )}
-                  </Link>
+                  <CasoCard caso={c} />
                 </li>
               ))}
             </ul>

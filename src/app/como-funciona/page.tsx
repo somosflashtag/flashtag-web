@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/Button";
 import { QRMark } from "@/components/ui/QRMark";
 import { Section } from "@/components/ui/Section";
+import { AppTour } from "@/components/AppTour";
+import { Mock } from "@/components/app/mocks";
 import { features } from "@/content/features";
 import { pasos, pasosIntro } from "@/content/pasos";
 import { pageMeta } from "@/lib/seo";
@@ -9,32 +11,44 @@ import { cta } from "@/lib/site";
 export const metadata = pageMeta({
   title: "Cómo funciona",
   description:
-    "De comprar un cartel a ver métricas en el dashboard, en menos de 48 horas. Los cuatro pasos para empezar con FlashTag.",
+    "De comprar un cartel a ver métricas en el dashboard, en menos de 48 horas. Los cuatro pasos para empezar con FlashTag y un recorrido por la app.",
   path: "/como-funciona",
 });
 
 export default function ComoFuncionaPage() {
+  const screens = Object.fromEntries(
+    features.map((f) => [f.slug, <Mock key={f.slug} id={f.mock} />]),
+  );
+
   return (
     <>
-      <Section className="bg-surface">
-        <p className="flex items-center gap-2 text-sm font-semibold text-brand">
-          <QRMark /> Cómo funciona
-        </p>
-        <h1 className="t-display measure mt-4">{pasosIntro.titular}</h1>
-        <p className="t-lead measure mt-6 text-muted">{pasosIntro.bajada}</p>
-      </Section>
+      <div className="relative overflow-hidden border-b border-line bg-surface">
+        <div aria-hidden="true" className="bg-dots absolute inset-0 opacity-60 [mask-image:linear-gradient(to_left,black,transparent)]" />
+        <Section className="relative">
+          <p className="flex items-center gap-2 text-sm font-semibold text-brand">
+            <QRMark /> Cómo funciona
+          </p>
+          <h1 className="t-display measure mt-4">{pasosIntro.titular}</h1>
+          <p className="t-lead measure mt-6 text-muted">{pasosIntro.bajada}</p>
+        </Section>
+      </div>
 
       <Section>
         <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {pasos.map((p, i) => (
             <li
               key={p.titulo}
-              className="rounded-[var(--radius-card)] border border-line p-6"
+              data-reveal
+              style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+              className="relative rounded-[var(--radius-surface)] border border-line p-6"
             >
-              <span className="flex size-9 items-center justify-center rounded-full bg-brand-soft text-sm font-semibold text-brand tnum">
+              {i < pasos.length - 1 && (
+                <span aria-hidden="true" className="absolute -right-5 top-10 hidden h-px w-5 bg-line lg:block" />
+              )}
+              <span className="flex size-10 items-center justify-center rounded-full bg-ink text-sm font-semibold text-paper tnum">
                 {i + 1}
               </span>
-              <h2 className="t-h3 mt-4">{p.titulo}</h2>
+              <h2 className="t-h3 mt-5">{p.titulo}</h2>
               <p className="t-body mt-2 text-muted">{p.texto}</p>
             </li>
           ))}
@@ -42,35 +56,18 @@ export default function ComoFuncionaPage() {
       </Section>
 
       <Section className="border-y border-line bg-surface">
-        <h2 className="t-h2">Qué hacés desde la app</h2>
-        <p className="t-lead measure mt-4 text-muted">
-          Con o sin cartel. Todo se administra desde el mismo lugar.
-        </p>
-        <ul className="mt-10 grid gap-5 md:grid-cols-2">
-          {features.map((f) => (
-            <li
-              key={f.slug}
-              className="rounded-[var(--radius-card)] border border-line bg-paper p-6 lg:p-8"
-            >
-              <p className="t-caption flex items-center gap-2 text-brand">
-                <QRMark /> {f.nombre}
-              </p>
-              <h3 className="t-h3 mt-3">{f.titular}</h3>
-              <p className="t-body measure mt-3 text-muted">{f.bajada}</p>
-              <ul className="mt-4 space-y-2">
-                {f.casos.map((c) => (
-                  <li key={c} className="t-body flex gap-2.5 text-muted">
-                    <QRMark className="mt-1.5" size={10} tone="muted" />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+        <div data-reveal>
+          <p className="flex items-center gap-2 text-sm font-semibold text-brand">
+            <QRMark size={12} /> Qué hacés desde la app
+          </p>
+          <h2 className="t-h2 mt-4 text-balance">Con o sin cartel. Todo desde el mismo lugar.</h2>
+        </div>
+        <div className="mt-12 lg:mt-16" data-reveal>
+          <AppTour features={features} screens={screens} />
+        </div>
       </Section>
 
-      <Section dark>
+      <Section dark className="surface-deep">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="t-h2">¿Listo para llevar tu local al siguiente nivel?</h2>
           <p className="t-lead mt-4 text-muted-dark">

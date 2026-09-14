@@ -50,13 +50,13 @@ Antes de elegir herramienta, respondete tres preguntas:
 - **¿Cuánto vale un cliente que vuelve?** Si tu ticket promedio es de 8.000 pesos y tu margen es del 40%, cada visita extra te deja 3.200. Ese es tu techo de inversión por visita.
 - **¿Qué estás dispuesto a regalar?** Poné el número antes de empezar, no después.
 
-## Qué estamos construyendo en FlashTag
+## Cómo funciona en FlashTag
 
-El programa de fidelidad **todavía no está disponible**. Es lo próximo en la hoja de ruta y preferimos decirlo así, en vez de venderlo como si ya existiera.
+El programa de fidelidad de FlashTag usa el mismo cartel que ya tenés en la mesa o en la caja. El cliente escanea el QR o apoya el teléfono, suma la visita y ve en el momento cuánto le falta para el premio. No instala nada: la tarjeta vive en su navegador.
 
-La idea es que tus clientes acumulen puntos por compra o visita, y los canjeen por beneficios que configurás vos — todo vía QR o NFC desde el celular, sin apps extras que bajarse. Va a estar incluido en el plan Full.
+Vos definís los premios desde la app — cuántas visitas, qué se llevan, si hay tope diario — y validás cada canje con un código. Todo queda registrado: cuántos miembros tenés, cuántos volvieron esta semana y qué premio funciona mejor. Está incluido en el plan Full.
 
-Mientras tanto, lo que sí podés hacer hoy es construir la base: si tus clientes ya escanean tu cartel para dejar reseñas o entrar a tu Link Page, ese hábito es exactamente el que el programa de fidelidad va a aprovechar después.
+Si tus clientes ya escanean tu cartel para dejar reseñas o entrar a tu Link Page, el hábito ya está construido: el programa de fidelidad lo aprovecha desde el primer día.
 
 ## En resumen
 

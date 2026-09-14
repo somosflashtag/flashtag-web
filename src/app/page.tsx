@@ -1,11 +1,13 @@
 import { JsonLd } from "@/components/JsonLd";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { QRMark } from "@/components/ui/QRMark";
-import { HeroMockup } from "@/components/HeroMockup";
+import { Hero } from "@/components/Hero";
+import { Bento } from "@/components/Bento";
+import { AppTour } from "@/components/AppTour";
+import { PhoneFrame } from "@/components/app/PhoneFrame";
+import { Mock, MockFidelidad } from "@/components/app/mocks";
 import { Faq } from "@/components/Faq";
 import { Pricing } from "@/components/Pricing";
 import { Tienda } from "@/components/Tienda";
@@ -18,9 +20,9 @@ import { cta, site } from "@/lib/site";
 import { faqSchema, pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "FlashTag — QR dinámicos y reseñas con IA para tu local",
+  title: "FlashTag — QR dinámicos, NFC, reseñas con IA y fidelidad para tu local",
   description:
-    "Carteles con QR, Link Pages, métricas y reseñas de Google respondidas con IA. La herramienta de marketing para tu comercio. Probala gratis.",
+    "Carteles con QR y NFC conectados a una app: reseñas de Google respondidas con IA, Link Pages, métricas y programa de fidelidad. Probala gratis.",
   path: "/",
 });
 
@@ -34,6 +36,7 @@ const softwareSchema = {
   operatingSystem: "Web",
   url: site.urls.app,
   publisher: { "@id": `${site.domain}/#organization` },
+  featureList: features.map((f) => f.nombre),
   offers: planes.map((p) => ({
     "@type": "Offer",
     name: p.nombre,
@@ -43,65 +46,30 @@ const softwareSchema = {
   })),
 };
 
+const fidelidad = features.find((f) => f.slug === "fidelidad")!;
+
 export default function Home() {
+  /* Las pantallas se renderizan acá (server) y el tour solo elige cuál mostrar. */
+  const screens = Object.fromEntries(
+    features.map((f) => [f.slug, <Mock key={f.slug} id={f.mock} />]),
+  );
+
   return (
     <>
       <JsonLd id="ld-software" data={softwareSchema} />
       <JsonLd id="ld-faq-home" data={faqSchema(faqsHome)} />
 
-      {/* ── HERO ─────────────────────────────────────────────── */}
-      <Container>
-        <div className="grid items-center gap-14 py-14 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-24">
-          <div>
-            <p className="flex items-center gap-2 text-sm font-semibold">
-              <QRMark size={13} />
-              Hecho en Argentina
-            </p>
+      <Hero />
 
-            {/* El titular está visible desde el frame 1: nunca espera a la animación */}
-            <h1 className="t-display mt-5 text-balance">
-              Tu local ya tiene clientes.
-              <br className="hidden sm:block" /> Falta que vuelvan.
-            </h1>
-
-            <p className="t-lead measure mt-6 text-muted">
-              Un cartel con QR <strong className="font-semibold text-ink">y NFC</strong>:
-              tu cliente lo escanea o apoya el teléfono y ya está en tu ficha de
-              Google. Sumá Link Pages, reseñas respondidas con IA y métricas que
-              te dicen qué hacer la semana que viene.
-            </p>
-
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href={cta.primary.href} variant="primary" size="lg" arrow>
-                {cta.primary.label}
-              </Button>
-              <Button href={cta.secondary.href} variant="secondary" size="lg">
-                {cta.secondary.label}
-              </Button>
-            </div>
-
-            <p className="mt-5 text-sm text-muted">
-              Sin tarjeta de crédito. Activación en minutos. Soporte por WhatsApp
-              en castellano.
-            </p>
-          </div>
-
-          <div className="lg:pl-4">
-            <HeroMockup />
-          </div>
-        </div>
-      </Container>
-
-      {/* ── PRUEBA SOCIAL: marcas reales, no integraciones sin confirmar ── */}
       <Clientes />
 
       {/* ── EL PROBLEMA ──────────────────────────────────────── */}
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-          <h2 className="t-h2 text-balance">
+          <h2 className="t-h2 text-balance" data-reveal>
             Por tu local pasa gente todos los días. ¿Cuánta vuelve?
           </h2>
-          <div>
+          <div data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
             <p className="t-lead measure text-muted">
               Vendés bien, atendés bien, pero no tenés forma de saber quién entró,
               qué miró ni cómo hacer que vuelva. Las reseñas se acumulan sin
@@ -123,106 +91,123 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── PRODUCTO: layout alternado, no grid de cards iguales ── */}
-      <section id="producto" className="border-t border-line">
-        <Container>
-          <div className="py-14 md:py-20 lg:py-32">
-            <h2 className="t-h2 measure text-balance">
-              Todo lo que tu local necesita, en un solo lugar
-            </h2>
-
-            <div className="mt-14 space-y-20 lg:mt-20 lg:space-y-32">
-              {features.map((f, i) => (
-                <article
-                  key={f.slug}
-                  className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16"
-                >
-                  <div className={i % 2 === 1 ? "lg:order-2" : undefined}>
-                    <p className="flex items-center gap-2 text-sm font-semibold text-brand">
-                      <QRMark size={12} />
-                      {f.nombre}
-                    </p>
-                    <h3 className="t-h2 mt-4 text-balance">{f.titular}</h3>
-                    <p className="t-body measure mt-5 text-muted">{f.bajada}</p>
-
-                    <ul className="mt-6 space-y-2.5">
-                      {f.casos.map((c) => (
-                        <li key={c} className="flex gap-2.5 text-[0.9375rem]">
-                          <QRMark size={11} tone="muted" className="mt-1.5" />
-                          {c}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Link
-                      href={`/producto/${f.slug}`}
-                      className="group mt-7 inline-flex items-center gap-2 text-[0.9375rem] font-semibold"
-                    >
-                      Ver cómo funciona
-                      <svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true" className="transition-transform duration-[120ms] ease-[var(--ease-ft)] group-hover:translate-x-1">
-                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </Link>
-                  </div>
-
-                  {/* Placeholder gráfico del sistema visual — nunca "imagen pendiente" */}
-                  <div
-                    className={`aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-surface)] border border-line bg-surface ${i % 2 === 1 ? "lg:order-1" : ""}`}
-                  >
-                    {f.foto && (
-                      <Image
-                        src={f.foto.src}
-                        alt={f.foto.alt}
-                        width={760}
-                        height={570}
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="size-full object-cover"
-                      />
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── CÓMO EMPEZAR: acá SÍ va numeración, es una secuencia real ── */}
-      <Section dark>
-        <h2 className="t-h2 measure text-balance">Del cartel al dashboard en 4 pasos</h2>
-        <ol className="mt-12 grid gap-10 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-8">
-          {pasos.map((p) => (
-            <li key={p.n} className="border-t border-white/15 pt-5">
-              <span className="t-stat text-white/25">0{p.n}</span>
-              <h3 className="t-h3 mt-3">{p.titulo}</h3>
-              <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-white/60">
-                {p.texto}
-              </p>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-12">
-          <Button href="/como-funciona" variant="secondary" size="lg" arrow className="border-white/25 text-white hover:border-white hover:bg-white/10">
-            Ver el proceso completo
-          </Button>
+      {/* ── BENTO: las seis capacidades, con la app asomando ── */}
+      <Section id="producto" className="border-t border-line bg-surface">
+        <div className="mx-auto max-w-3xl text-center" data-reveal>
+          <p className="flex items-center justify-center gap-2 text-sm font-semibold text-brand">
+            <QRMark size={12} /> La app
+          </p>
+          <h2 className="t-h2 mt-4 text-balance">
+            Todo lo que tu local necesita, en un solo lugar
+          </h2>
+          <p className="t-lead mx-auto mt-4 text-muted">
+            Un cartel en la mesa y seis herramientas en tu celular. Cada una se
+            usa sola; juntas hacen que el cliente vuelva.
+          </p>
+        </div>
+        <div className="mt-12 lg:mt-16">
+          <Bento />
         </div>
       </Section>
 
-      {/* ── PRUEBA SOCIAL: nombres reconocibles con números chequeables ── */}
+      {/* ── TOUR: así se ve adentro ─────────────────────────── */}
+      <Section id="tour">
+        <div data-reveal>
+          <p className="flex items-center justify-center gap-2 text-sm font-semibold text-brand lg:justify-start">
+            <QRMark size={12} /> Así se ve adentro
+          </p>
+          <h2 className="t-h2 mt-4 text-balance text-center lg:text-left">
+            Recorré la app sin crear una cuenta
+          </h2>
+        </div>
+        <div className="mt-12 lg:mt-16" data-reveal>
+          <AppTour features={features} screens={screens} />
+        </div>
+      </Section>
+
+      {/* ── CÓMO EMPEZAR ───────────────────────────────────── */}
+      <Section dark className="surface-deep relative overflow-hidden">
+        <div aria-hidden="true" className="bg-dots-dark absolute inset-0 opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+        <div className="relative">
+          <h2 className="t-h2 measure text-balance" data-reveal>
+            Del cartel al dashboard en 4 pasos
+          </h2>
+          <ol className="mt-12 grid gap-10 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-8">
+            {pasos.map((p, i) => (
+              <li
+                key={p.n}
+                data-reveal
+                style={{ "--reveal-delay": `${i * 90}ms` } as React.CSSProperties}
+                className="relative border-t border-white/15 pt-5"
+              >
+                <span className="absolute -top-px left-0 h-px w-12 bg-teal" aria-hidden="true" />
+                <span className="t-stat text-white/25">0{p.n}</span>
+                <h3 className="t-h3 mt-3">{p.titulo}</h3>
+                <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-white/60">
+                  {p.texto}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-12">
+            <Button href="/como-funciona" variant="secondary" size="lg" arrow className="border-white/25 text-white hover:border-white hover:bg-white/10">
+              Ver el proceso completo
+            </Button>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── FIDELIDAD: la razón por la que vuelven ──────────── */}
+      <Section id="fidelidad" className="border-b border-line bg-surface">
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+          <div className="lg:order-2" data-reveal>
+            <p className="flex items-center gap-2 text-sm font-semibold text-brand">
+              <QRMark size={12} />
+              {fidelidad.nombre}
+              <span className="rounded-full bg-brand-soft px-2 py-0.5 text-[11px] font-semibold text-brand">
+                Plan {fidelidad.desde}
+              </span>
+            </p>
+            <h2 className="t-h2 mt-4 text-balance">{fidelidad.titular}</h2>
+            <p className="t-body measure mt-5 text-muted">{fidelidad.bajada}</p>
+            <ul className="mt-6 space-y-2.5">
+              {fidelidad.casos.map((c) => (
+                <li key={c} className="flex gap-2.5 text-[0.9375rem]">
+                  <QRMark size={11} tone="muted" className="mt-1.5" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/producto/fidelidad" variant="primary" size="lg" arrow>
+                Ver cómo funciona
+              </Button>
+              <Button href="/precios" variant="secondary" size="lg">
+                Ver el plan Full
+              </Button>
+            </div>
+          </div>
+          <div className="lg:order-1" data-reveal style={{ "--reveal-delay": "120ms" } as React.CSSProperties}>
+            <PhoneFrame>
+              <MockFidelidad />
+            </PhoneFrame>
+          </div>
+        </div>
+      </Section>
+
       <CasosDestacados />
 
-      {/* ── TIENDA: el paso 1 de arriba es comprar un cartel. Acá están. ── */}
       <Tienda />
 
       {/* ── PRECIOS ──────────────────────────────────────────── */}
       <Section id="precios">
-        <div className="text-center">
+        <div className="text-center" data-reveal>
           <h2 className="t-h2 text-balance">Precios claros, sin letra chica</h2>
           <p className="t-lead measure mx-auto mt-4 text-muted">
             Empezá gratis. Pasá a un plan pago solo cuando te empiece a rendir.
           </p>
         </div>
-        <div className="mt-12">
+        <div className="mt-12" data-reveal>
           <Pricing />
         </div>
         <div className="mt-10 text-center">
@@ -232,54 +217,10 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── WAITLIST: el ancla que en Framer estaba huérfana ─── */}
-      <Section id="waitlist" className="border-t border-line bg-surface">
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <p className="flex items-center gap-2 text-sm font-semibold text-brand">
-              <QRMark size={12} />
-              Próximamente
-            </p>
-            <h2 className="t-h2 mt-4 text-balance">
-              Programa de fidelidad con puntos
-            </h2>
-            <p className="t-body measure mt-5 text-muted">
-              Tus clientes acumulan puntos cada vez que escanean o compran, y los
-              canjean por premios. Sin tarjeta plástica, sin app que instalar.
-              Estamos construyéndolo — anotate y sos de los primeros en probarlo.
-            </p>
-          </div>
-          <div className="lg:pt-10">
-            <form className="flex flex-col gap-3 sm:flex-row" action="/api/waitlist" method="post">
-              <div className="flex-1">
-                <label htmlFor="waitlist-email" className="sr-only">
-                  Tu email
-                </label>
-                <input
-                  id="waitlist-email"
-                  name="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="tu@email.com"
-                  className="min-h-[52px] w-full rounded-[var(--radius-btn)] border border-line bg-paper px-4 outline-none transition-colors focus:border-ink"
-                />
-              </div>
-              <Button type="submit" variant="primary" size="lg">
-                Anotarme
-              </Button>
-            </form>
-            <p className="mt-3 text-sm text-muted">
-              Te escribimos solo cuando esté listo. Nada más.
-            </p>
-          </div>
-        </div>
-      </Section>
-
       {/* ── FAQ ──────────────────────────────────────────────── */}
-      <Section>
+      <Section className="border-t border-line">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
-          <div>
+          <div data-reveal>
             <h2 className="t-h2 text-balance">Preguntas que nos hacen siempre</h2>
             <p className="t-body mt-4 text-muted">
               ¿Te quedó alguna otra?{" "}
@@ -289,13 +230,15 @@ export default function Home() {
               .
             </p>
           </div>
-          <Faq items={faqsHome} />
+          <div data-reveal>
+            <Faq items={faqsHome} />
+          </div>
         </div>
       </Section>
 
       {/* ── CTA FINAL ────────────────────────────────────────── */}
-      <Section dark className="text-center">
-        <h2 className="t-h2 measure mx-auto text-balance">
+      <Section dark className="surface-deep text-center">
+        <h2 className="t-h2 measure mx-auto text-balance" data-reveal>
           Probalo gratis y mirá qué pasa en una semana
         </h2>
         <p className="t-lead measure mx-auto mt-5 text-white/60">

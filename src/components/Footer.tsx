@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Container } from "./ui/Container";
 import { Logo } from "./ui/Logo";
 import { QRMark } from "./ui/QRMark";
-import { site } from "@/lib/site";
 import { columnasFooter } from "@/lib/nav";
 
 

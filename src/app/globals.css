@@ -16,6 +16,7 @@
   --color-brand: #613ec4;
   --color-brand-press: #4e31a0;
   --color-brand-soft: #efeafa;
+  --color-brand-glow: rgb(97 62 196 / 0.35);
 
   /* Violeta profundo — titulares y superficies oscuras. 14:1 sobre arena. */
   --color-ink: #2d014b;
@@ -56,6 +57,7 @@
   /* --- Sombras: solo dos niveles ----------------------------- */
   --shadow-rest: 0 1px 2px rgb(45 1 75 / 0.08);
   --shadow-float: 0 12px 32px rgb(45 1 75 / 0.16);
+  --shadow-device: 0 30px 60px -20px rgb(45 1 75 / 0.45), 0 0 0 1px rgb(45 1 75 / 0.06);
 
   /* --- Motion ------------------------------------------------ */
   --ease-ft: cubic-bezier(0.32, 0.72, 0, 1);
@@ -313,5 +315,159 @@
     background: var(--color-surface);
     font-weight: 600;
     color: var(--color-ink);
+  }
+}
+
+/* ============================================================
+   TEXTURAS TECNOLÓGICAS
+   La grilla de módulos del QR como fondo. Siempre en tokens,
+   siempre por debajo de 8% de contraste: es textura, no dibujo.
+   ============================================================ */
+
+@layer components {
+  /* Grilla de puntos: la retícula de un QR vista de lejos. */
+  .bg-dots {
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--color-ink) 11%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+
+  .bg-dots-dark {
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--color-paper) 13%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+
+  /* Halo violeta detrás de un dispositivo o titular. */
+  .glow-brand {
+    background: radial-gradient(
+      closest-side,
+      var(--color-brand-glow),
+      transparent
+    );
+  }
+
+  /* Superficie oscura con degradado sutil: profundidad sin decoración. */
+  .surface-deep {
+    background:
+      radial-gradient(
+        80% 60% at 100% 0%,
+        color-mix(in srgb, var(--color-brand) 28%, transparent),
+        transparent
+      ),
+      var(--color-ink);
+  }
+
+  /* Tarjeta interactiva: sube al hover, con el borde de marca. */
+  .card-lift {
+    transition:
+      transform 220ms var(--ease-ft),
+      box-shadow 220ms var(--ease-ft),
+      border-color 220ms var(--ease-ft);
+  }
+  .card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-float);
+    border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-line));
+  }
+
+  /* Texto con degradado de marca, para una sola palabra por titular. */
+  .text-glow {
+    background: linear-gradient(90deg, var(--color-brand) 0%, var(--color-teal) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* ============================================================
+   REVEAL AL SCROLL
+   Solo se activa cuando el observer está montado (html[data-reveal]):
+   sin JS todo se ve, nada queda oculto.
+   ============================================================ */
+
+html[data-reveal="on"] [data-reveal] {
+  opacity: 0;
+  translate: 0 16px;
+  transition:
+    opacity 600ms var(--ease-ft),
+    translate 600ms var(--ease-ft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html[data-reveal="on"] [data-reveal].is-in {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* ============================================================
+   MICRO-MOTION DE PRODUCTO (maquetas de la app)
+   ============================================================ */
+
+@keyframes ft-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes ft-scan {
+  0%,
+  100% {
+    transform: translateY(-6%);
+  }
+  50% {
+    transform: translateY(106%);
+  }
+}
+
+@keyframes ft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes ft-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ft-ping {
+  animation: ft-ping 1.8s var(--ease-ft) infinite;
+}
+.ft-scan {
+  animation: ft-scan 3.2s ease-in-out infinite;
+}
+.ft-float {
+  animation: ft-float 5s ease-in-out infinite;
+}
+.ft-spin-slow {
+  animation: ft-spin-slow 24s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-reveal="on"] [data-reveal] {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+  .ft-ping,
+  .ft-scan,
+  .ft-float,
+  .ft-spin-slow {
+    animation: none;
   }
 }

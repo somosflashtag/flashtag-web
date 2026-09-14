@@ -79,7 +79,7 @@ export const planes: Plan[] = [
       { label: "3 cuentas de Google Business", incluido: true },
       { label: "2.000 reseñas con IA por mes", incluido: true },
       { label: "Ruleta de premios", incluido: true },
-      { label: "Programa de fidelidad", incluido: true, nota: "Próximamente" },
+      { label: "Programa de fidelidad", incluido: true },
       { label: "Soporte prioritario", incluido: true },
     ],
   },

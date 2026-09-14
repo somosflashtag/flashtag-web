@@ -14,8 +14,9 @@ export function pageMeta({
   ogImage?: string;
 }): Metadata {
   const url = `${site.domain}${path}`;
-  const image = ogImage ?? `/og${path === "/" ? "/home" : path}.png`;
 
+  /* La imagen OG la genera cada segmento con opengraph-image.tsx (ver lib/og).
+     Solo se fuerza una acá cuando la página trae la suya. */
   return {
     title,
     description,
@@ -27,13 +28,13 @@ export function pageMeta({
       siteName: site.name,
       locale: site.locale,
       type: "website",
-      images: [{ url: image, width: 1200, height: 630, alt: title }],
+      ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630, alt: title }] }),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      ...(ogImage && { images: [ogImage] }),
     },
   };
 }

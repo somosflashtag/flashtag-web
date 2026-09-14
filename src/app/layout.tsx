@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCTA } from "@/components/StickyCTA";
+import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <StickyCTA />
+        <Reveal />
       </body>
     </html>
   );

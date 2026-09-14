@@ -42,7 +42,19 @@ escrito a mano en un componente, es un bug esperando a desincronizarse.
 tener el número real, y mientras sea `null` ningún componente lo muestra.
 Preferimos no mostrar nada antes que mostrar un número que no podemos sostener.
 
-**5. Marcas de terceros solo con autorización.** No se listan logos ni nombres
+**5. La app se muestra en código, no en capturas.** Las pantallas de
+my.flashtag.tech viven en `src/components/app/mocks.tsx` (una por sección:
+inicio, QR, links, reseñas, métricas, fidelidad, ruleta) dentro de
+`PhoneFrame`. Se construyen con tokens y sin JS. Si la app cambia una
+pantalla, se cambia la maqueta; nunca se sube un PNG que envejece.
+El comercio de las maquetas ("Café Rivas") es ficticio: es demo, no prueba
+social.
+
+**6. Fidelidad y ruleta son features publicadas.** Se venden como el resto:
+página propia en `/producto/`, lugar en el bento y el tour, plan en
+`planes.ts`. Nada de "próximamente" en el sitio.
+
+**7. Marcas de terceros solo con autorización.** No se listan logos ni nombres
 de empresas (clientes, integraciones, medios) sin permiso escrito y sin que la
 integración exista de verdad en producción.
 
@@ -68,9 +80,12 @@ integración exista de verdad en producción.
 - [ ] Redes en `site.social`
 - [ ] Autorización escrita de los comercios → `casos.ts` (`autorizado`)
 - [ ] URLs de las notas de prensa → `prensa.ts` (`verificada`)
-- [ ] Texto de los 6 artículos → `blog.ts` (`cuerpo`)
 - [ ] Aval institucional UBA → `cursos.ts` (`avalPendiente`)
 - [ ] Sanity Studio (las deps se quitaron hasta montarlo)
+- [ ] Alinear las maquetas de `mocks.tsx` con capturas reales de la app
+      (secciones, nombres de pestañas, copys de botones)
+- [ ] Imágenes OG (`lib/og.tsx`) sin Poppins: Satori necesita el archivo de
+      la fuente. Al tener el SVG del logo, sumarlo ahí también
 
 ## Documentos legales
 

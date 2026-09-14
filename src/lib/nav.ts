@@ -19,20 +19,40 @@ export type NavItem = { label: string; href: string; externo?: boolean };
 
 /** Menú principal. Máximo 5 ítems: más que eso deja de ser navegable. */
 export const navPrincipal: NavItem[] = [
-  { label: "Cómo funciona", href: "/como-funciona" },
+  { label: "Producto", href: "/como-funciona" },
   { label: "Precios", href: "/precios" },
   { label: "Casos", href: "/casos" },
   { label: "Cursos", href: "/cursos" },
   { label: "Nosotros", href: "/nosotros" },
 ];
 
+/**
+ * Desplegable de "Producto": las seis capacidades de la app y las cuatro
+ * puertas de entrada por rubro. Se arma desde el contenido, no a mano.
+ */
+export const menuProducto = {
+  features: features.map((f) => ({
+    label: f.nombre,
+    descripcion: f.corto,
+    href: `/producto/${f.slug}`,
+  })),
+  rubros: paginasRubro.map((r) => ({
+    label: r.nav,
+    href: `/para/${r.slug}`,
+  })),
+  extra: [
+    { label: "Cómo funciona", href: "/como-funciona" },
+    { label: "Activá tu FlashTag", href: "/activar-tu-flashtag" },
+    { label: "Tienda", href: site.urls.shop, externo: true },
+  ] as NavItem[],
+};
+
 export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
   {
     titulo: "Producto",
     links: [
-      { label: "Cómo funciona", href: "/como-funciona" },
+      ...features.map((f) => ({ label: f.nombre, href: `/producto/${f.slug}` })),
       { label: "Precios", href: "/precios" },
-      { label: "Casos", href: "/casos" },
       { label: "Tienda", href: site.urls.shop, externo: true },
     ],
   },

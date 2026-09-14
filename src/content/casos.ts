@@ -29,6 +29,8 @@ export type Caso = {
   testimonio?: { texto: string; autor: string; cargo: string };
   /** Foto del cartel en el local del cliente. Cae a la de producto si falta. */
   foto?: { src: string; alt: string };
+  /** Logo monocromo (arena) para fondo violeta. Los mismos de clientes.ts. */
+  logo?: string;
   /** Nombre del .md en content/casos-detalle/. Habilita /casos/<slug>. */
   detalle?: string;
   /** Portada de la página de detalle. */
@@ -52,6 +54,7 @@ export const rubros: { id: Rubro; label: string }[] = [
 export const casos: Caso[] = [
   {
     slug: "el-ateneo",
+    logo: "/logos/el-ateneo.webp",
     foto: {
       src: "/locales/el-ateneo.webp",
       alt: "Cartel de FlashTag con la marca El Ateneo en el mostrador del local",
@@ -80,6 +83,7 @@ export const casos: Caso[] = [
   },
   {
     slug: "betular-patisserie",
+    logo: "/logos/betular.webp",
     negocio: "Betular Pâtisserie",
     ciudad: "Villa Devoto, CABA",
     rubro: "gastronomia",
@@ -104,6 +108,7 @@ export const casos: Caso[] = [
   },
   {
     slug: "derentas",
+    logo: "/logos/derentas.webp",
     foto: {
       src: "/locales/derentas.webp",
       alt: "Tarjeta de FlashTag con la marca deRentas, con lanyard, en la mano",
@@ -131,6 +136,7 @@ export const casos: Caso[] = [
   },
   {
     slug: "ganga-home",
+    logo: "/logos/ganga-home.webp",
     negocio: "Ganga Home",
     ciudad: "Dot Baires Shopping, CABA",
     rubro: "retail",
@@ -179,6 +185,7 @@ export const casos: Caso[] = [
   },
   {
     slug: "almacen-de-pizzas",
+    logo: "/logos/almacen-de-pizzas.webp",
     negocio: "Almacén de Pizzas",
     ciudad: "AMBA",
     rubro: "gastronomia",
@@ -203,6 +210,7 @@ export const casos: Caso[] = [
   },
   {
     slug: "yenny",
+    logo: "/logos/yenny.webp",
     foto: {
       src: "/locales/yenny.webp",
       alt: "Cartel de FlashTag con la marca Yenny sobre el mostrador de la librería",
@@ -230,6 +238,7 @@ export const casos: Caso[] = [
   },
   {
     slug: "fiat-autodrive",
+    logo: "/logos/autodrive.webp",
     foto: {
       src: "/locales/fiat-autodrive.webp",
       alt: "Cartel de FlashTag con la marca AutoDrive sostenido en la mano",
