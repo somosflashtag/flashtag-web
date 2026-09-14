@@ -148,11 +148,11 @@ export const features: Feature[] = [
     slug: "fidelidad",
     nombre: "Programa de fidelidad",
     corto: "Que vuelvan, y que se note",
-    titular: "Tus clientes vuelven. Ahora lo podés premiar.",
+    titular: "Tu tarjeta de fidelidad, en la billetera del celular de tu cliente",
     bajada:
-      "Una tarjeta de fidelidad digital que vive en el teléfono del cliente. Suma visitas o puntos con el mismo cartel que ya tenés en la mesa, y canjea premios que configurás vos. Sin tarjeta de cartón, sin app que instalar.",
+      "Tu cliente no descarga ninguna app. Escanea el cartel y guarda tu tarjeta, con tu logo y el esquema de puntos que vos elegiste, en Apple Wallet o en la billetera de Android. Suma visitas con el mismo cartel de siempre y canjea los premios que configurás vos. Sin imprimir nada, siempre a mano.",
     analogia:
-      "Es la tarjeta de sellos de toda la vida, pero que no se pierde en el bolsillo y te dice quién volvió.",
+      "Es la tarjeta de sellos de toda la vida, pero vive al lado de su tarjeta de embarque y su SUBE: no se pierde, y te dice quién volvió.",
     casos: [
       "El café número 10 es gratis",
       "Un descuento por traer a un amigo",
@@ -160,12 +160,12 @@ export const features: Feature[] = [
     ],
     pasos: [
       {
-        titulo: "Definís el premio",
-        texto: "Cuántas visitas, qué se llevan. Lo cambiás cuando quieras.",
+        titulo: "Diseñás tu tarjeta",
+        texto: "Tu logo, tus colores y el esquema de puntos o visitas que elijas.",
       },
       {
-        titulo: "El cliente escanea o apoya",
-        texto: "Con el cartel de siempre. Se suma la visita y ve cuánto le falta.",
+        titulo: "El cliente la guarda en su Wallet",
+        texto: "Escanea o apoya el teléfono y la agrega a Apple Wallet o Google Wallet. Sin bajar nada.",
       },
       {
         titulo: "Canjea desde el celular",
@@ -181,7 +181,7 @@ export const features: Feature[] = [
     corto: "Un giro por visita",
     titular: "Convertí cada visita en un juego",
     bajada:
-      "El cliente escanea, gira la ruleta y se lleva un premio: un descuento, un producto o un 'otra vez'. Vos elegís los premios y la probabilidad de cada uno. Es la excusa perfecta para que dejen la reseña o te sigan en Instagram.",
+      "El cliente escanea, gira la ruleta y se lleva un premio. Vos la personalizás entera: los premios, los colores de cada casillero y el porcentaje de suerte de cada uno. Es la excusa perfecta para que dejen la reseña o te sigan en Instagram.",
     casos: [
       "Un giro a cambio de una reseña",
       "Premios distintos por franja horaria",
@@ -189,8 +189,8 @@ export const features: Feature[] = [
     ],
     pasos: [
       {
-        titulo: "Cargás los premios",
-        texto: "Seis casilleros, cada uno con su probabilidad y su tope diario.",
+        titulo: "Armás tu ruleta",
+        texto: "Premios, colores y porcentaje de suerte de cada casillero. Con tope diario si querés.",
       },
       {
         titulo: "Lo linkeás al QR",

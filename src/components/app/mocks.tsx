@@ -468,6 +468,21 @@ export function MockFidelidad() {
             <strong className="text-paper">3 visitas más</strong> y el café es
             gratis.
           </p>
+          {/* Sin app: la tarjeta va a la billetera del teléfono. Solo texto,
+              sin logos de terceros (AGENTS.md §7). */}
+          <div className="mt-3 grid grid-cols-2 gap-1.5">
+            {["Apple Wallet", "Google Wallet"].map((w) => (
+              <span
+                key={w}
+                className="flex items-center justify-center gap-1 rounded-lg bg-paper py-1.5 text-[9px] font-semibold text-ink"
+              >
+                <svg viewBox="0 0 12 12" width="9" height="9" fill="none" aria-hidden="true">
+                  <path d="M6 2v6M3.5 5.5 6 8l2.5-2.5M2.5 10h7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Agregar a {w}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Lo que configura el comercio */}
@@ -558,14 +573,22 @@ export function MockRuleta() {
             <circle cx="50" cy="50" r="7" fill="var(--color-paper)" stroke="var(--color-ink)" strokeWidth="1.2" />
           </svg>
         </div>
-        <ul className="mt-3 grid grid-cols-3 gap-1.5 text-[9px] font-medium">
-          {segs.map((s, i) => (
-            <li key={s} className="flex items-center gap-1 truncate">
-              <span className="size-2 shrink-0 rounded-full" style={{ background: colors[i] }} />
-              {s}
-            </li>
-          ))}
-        </ul>
+        {/* Lo que configura el comercio: premio, color y suerte por casillero */}
+        <Card className="mt-3 p-2.5">
+          <div className="flex items-center justify-between">
+            <Label>Premios · color · suerte</Label>
+            <span className="text-[9px] font-semibold text-brand">Editar</span>
+          </div>
+          <ul className="mt-1.5 space-y-1 text-[9px] font-medium">
+            {segs.map((s, i) => (
+              <li key={s} className="flex items-center gap-1.5">
+                <span className="size-2.5 shrink-0 rounded-full border border-line" style={{ background: colors[i] }} />
+                <span className="flex-1 truncate">{s}</span>
+                <span className="text-muted tnum">{[20, 5, 40, 15, 5, 15][i]}%</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
         <div className="mt-auto rounded-xl bg-ink px-3 py-2 text-center text-[11px] font-semibold text-paper">
           Girar
         </div>

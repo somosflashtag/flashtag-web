@@ -10,6 +10,8 @@ export type Plan = {
   nombre: string;
   paraQuien: string;
   precioMensual: number;
+  /** Precio publicado en pesos, por mes. Se paga con Mercado Pago. */
+  precioARS: number;
   precioAnualPorMes: number | null;
   totalAnual: number | null;
   destacado: boolean;
@@ -25,6 +27,7 @@ export const planes: Plan[] = [
     nombre: "Free",
     paraQuien: "Clientes que compraron un cartel FlashTag",
     precioMensual: 0,
+    precioARS: 0,
     precioAnualPorMes: 0,
     totalAnual: 0,
     destacado: false,
@@ -45,9 +48,10 @@ export const planes: Plan[] = [
     id: "starter",
     nombre: "Starter",
     paraQuien: "Un local único que quiere profesionalizarse",
-    precioMensual: 29,
-    precioAnualPorMes: 25,
-    totalAnual: 295,
+    precioMensual: 49,
+    precioARS: 75000,
+    precioAnualPorMes: 42,
+    totalAnual: 500,
     destacado: true,
     cta: { label: "Empezar con Starter", href: "https://my.flashtag.tech/login" },
     features: [
@@ -67,6 +71,7 @@ export const planes: Plan[] = [
     nombre: "Full",
     paraQuien: "Mini-cadenas, franquicias y agencias",
     precioMensual: 99,
+    precioARS: 149000,
     precioAnualPorMes: 84,
     totalAnual: 1009,
     destacado: false,
@@ -86,4 +91,11 @@ export const planes: Plan[] = [
 ];
 
 export const notaFiscal =
-  "Precios sin IVA (21%). Facturación A/B/C en Argentina. Pagá con tarjeta internacional (Stripe) o en pesos con Mercado Pago al cambio MEP del día.";
+  "Precios sin IVA (21%). Facturación A/B/C en Argentina. Pagá en dólares con tarjeta internacional (Stripe) o en pesos con Mercado Pago.";
+
+const fmtARS = new Intl.NumberFormat("es-AR", {
+  style: "currency",
+  currency: "ARS",
+  maximumFractionDigits: 0,
+});
+export const precioARS = (n: number) => fmtARS.format(n);

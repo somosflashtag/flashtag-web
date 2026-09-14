@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "./ui/Button";
-import { planes, notaFiscal, type Plan } from "@/content/planes";
+import { planes, notaFiscal, precioARS, type Plan } from "@/content/planes";
 import { cn } from "@/lib/cn";
 
 function Check({ on }: { on: boolean }) {
@@ -52,12 +52,17 @@ function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
             <span className={cn("text-sm", plan.destacado ? "text-white/60" : "text-muted")}>/mes</span>
           </p>
         )}
+        {plan.precioMensual > 0 && (
+          <p className={cn("mt-2 text-[0.9375rem] font-medium", plan.destacado ? "text-white/80" : "text-ink")}>
+            o <span className="tnum">{precioARS(plan.precioARS)}</span> ARS/mes
+          </p>
+        )}
         <p className={cn("mt-1.5 text-[13px]", plan.destacado ? "text-white/50" : "text-muted")}>
           {plan.precioMensual === 0
             ? "Para siempre, sin tarjeta"
             : anual
               ? `USD ${plan.totalAnual} facturados por año`
-              : "Facturación mensual"}
+              : "Facturación mensual · sin permanencia"}
         </p>
       </div>
 
@@ -127,10 +132,10 @@ export function Pricing({ conNota = true }: { conNota?: boolean }) {
         </div>
       </div>
 
-      {/* 3 col → 1 col, con el destacado primero en phone */}
+      {/* Siempre Free → Starter → Full, también en phone. */}
       <div className="mt-10 grid gap-5 md:grid-cols-3">
         {planes.map((p) => (
-          <div key={p.id} className={cn(p.destacado && "order-first md:order-none")}>
+          <div key={p.id}>
             <PlanCard plan={p} anual={anual} />
           </div>
         ))}

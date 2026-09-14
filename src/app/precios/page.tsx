@@ -10,7 +10,7 @@ import { faqSchema, pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Precios y planes",
   description:
-    "Plan gratis para siempre, Starter USD 29 y Full USD 99. Sin permanencia, con factura A/B/C en Argentina. Compará todos los planes.",
+    "Plan gratis para siempre, Starter USD 49 y Full USD 99, con precio en pesos. Sin permanencia, con factura A/B/C en Argentina. Compará todos los planes.",
   path: "/precios",
 });
 

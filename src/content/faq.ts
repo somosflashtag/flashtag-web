@@ -32,7 +32,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Los precios incluyen IVA?",
     respuesta:
-      "No. Los precios son sin IVA (21%). Emitimos factura A, B o C en Argentina. Pagás con tarjeta internacional vía Stripe o en pesos con Mercado Pago al cambio MEP del día.",
+      "No. Los precios son sin IVA (21%). Emitimos factura A, B o C en Argentina. Pagás en dólares con tarjeta internacional vía Stripe o en pesos con Mercado Pago.",
     mostrarEn: ["home", "precios"],
   },
   {
@@ -62,7 +62,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Cómo se calcula el precio en pesos?",
     respuesta:
-      "Usamos el dólar MEP del día de la facturación. El valor equivalente en pesos lo mostramos en la web y en el checkout antes de cobrarte.",
+      "El precio en pesos está publicado en cada plan y es el que ves en el checkout antes de confirmar. Lo revisamos cuando se mueve el tipo de cambio, pero nunca pagás algo distinto de lo que viste.",
     mostrarEn: ["precios"],
   },
   {
@@ -86,13 +86,13 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Cómo funciona el programa de fidelidad?",
     respuesta:
-      "Tus clientes suman visitas o puntos escaneando el mismo cartel que ya tenés en el local, y canjean los premios que configurás vos desde la app. No necesitan instalar nada: la tarjeta vive en su teléfono. Está incluido en el plan Full.",
+      "Tu cliente no descarga ninguna app. Escanea el cartel y guarda tu tarjeta de fidelidad, con tu logo y el esquema de puntos que elegiste, en Apple Wallet o en la billetera de Android. Suma visitas o puntos con el mismo cartel de siempre y canjea los premios que configurás vos. Sin imprimir nada, siempre a mano. Está incluido en el plan Full.",
     mostrarEn: ["home", "precios"],
   },
   {
     pregunta: "¿Qué es la ruleta de premios?",
     respuesta:
-      "Un juego al que se llega escaneando el QR: el cliente gira y se lleva un premio que definiste vos (un descuento, un producto, un 'otra vez'). Vos elegís la probabilidad y el tope diario de cada premio. Está incluida desde el plan Starter.",
+      "Un juego al que se llega escaneando el QR: el cliente gira y se lleva un premio. Es completamente personalizable: los premios, los colores de la ruleta y el porcentaje de suerte de cada casillero los elegís vos. Está incluida desde el plan Starter.",
     mostrarEn: ["precios"],
   },
 ];
