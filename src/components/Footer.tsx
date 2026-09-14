@@ -53,8 +53,7 @@ export function Footer() {
           <p className="text-sm text-muted">
             © {new Date().getFullYear()} FlashTag. Todos los derechos reservados.
           </p>
-          {/* TODO legal: /privacidad y /terminos son obligatorias antes de
-              cobrar online. Se linkean cuando existan, no antes. */}
+
         </div>
       </Container>
       {/* Espacio para que la barra CTA fija no tape el footer en phone */}

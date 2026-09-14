@@ -63,5 +63,19 @@ integración exista de verdad en producción.
 - [ ] `site.proof.locales` — número real de comercios
 - [ ] `site.urls.whatsapp` — número real
 - [ ] Redes en `site.social`
-- [ ] Páginas del nav que todavía no existen: `/como-funciona`, `/casos`, `/blog`
+- [ ] Autorización escrita de los comercios → `casos.ts` (`autorizado`)
+- [ ] URLs de las notas de prensa → `prensa.ts` (`verificada`)
+- [ ] Texto de los 6 artículos → `blog.ts` (`cuerpo`)
+- [ ] Aval institucional UBA → `cursos.ts` (`avalPendiente`)
 - [ ] Sanity Studio (las deps se quitaron hasta montarlo)
+
+## Documentos legales
+
+`/terminos` y `/privacidad` se renderizan desde `src/content/legal/*.md`.
+Esos archivos son un **export de la app** (`scripts/extraer-legales.mjs` en
+my.flashtag.tech): la fuente de verdad es el TSX de la app, no esta copia.
+
+Para actualizarlos: volver a correr el script allá y pisar el `.md` acá.
+No editarlos a mano — Google compara el texto publicado en el dominio del
+consent screen contra el de la app, y si difieren puede rechazar la
+verificación del scope de Google Business Profile.

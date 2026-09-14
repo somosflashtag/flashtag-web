@@ -9,7 +9,7 @@ import { site } from "./site";
  * Al crear una página nueva, agregarla acá y recién ahí aparece en el menú.
  *
  * Pendientes de construir (no listar hasta que existan):
- *   /recursos, /para/[rubro], /privacidad, /terminos
+ *   /recursos, /para/[rubro]
  */
 
 export type NavItem = { label: string; href: string; externo?: boolean };
@@ -49,8 +49,12 @@ export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
     ],
   },
   {
-    titulo: "Entrar",
-    links: [{ label: "Ingresar a la app", href: site.urls.login, externo: true }],
+    titulo: "Legal",
+    links: [
+      { label: "Términos y condiciones", href: "/terminos" },
+      { label: "Política de privacidad", href: "/privacidad" },
+      { label: "Ingresar a la app", href: site.urls.login, externo: true },
+    ],
   },
 ];
 
@@ -65,5 +69,7 @@ export const rutas = [
   "/prensa",
   "/contacto",
   "/blog",
+  "/terminos",
+  "/privacidad",
   ...features.map((f) => `/producto/${f.slug}`),
 ];

@@ -220,3 +220,98 @@
     transform: none !important;
   }
 }
+
+/* ============================================================
+   DOCUMENTOS LEGALES
+   Texto largo generado desde Markdown. Prioridad: legibilidad
+   y que las tablas de subprocesadores se lean en un teléfono.
+   ============================================================ */
+
+@layer components {
+  .legal {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  .legal > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .legal h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .legal h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .legal h3 {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-ink);
+    margin-top: 2rem;
+  }
+
+  .legal strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .legal a {
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .legal ul,
+  .legal ol {
+    padding-left: 1.5rem;
+    list-style: disc;
+  }
+
+  .legal ol {
+    list-style: decimal;
+  }
+
+  .legal li + li {
+    margin-top: 0.5rem;
+  }
+
+  /* Las tablas son más anchas que un teléfono: scrollean solas,
+     sin arrastrar la página con ellas. */
+  .legal table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+  }
+
+  .legal th,
+  .legal td {
+    border: 1px solid var(--color-line);
+    padding: 0.625rem 0.875rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .legal th {
+    background: var(--color-surface);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+}
