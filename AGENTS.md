@@ -57,8 +57,11 @@ integración exista de verdad en producción.
 
 ## Pendientes
 
-- [ ] SVG del isologotipo original (hoy `Logo.tsx` es una reconstrucción
-      tipográfica en Poppins, marcada como provisoria en el propio archivo)
+- [ ] SVG del isologotipo original. Hoy `Logo.tsx` es una reconstrucción
+      tipográfica en **Fredoka** (geométrica redondeada, la familia más
+      cercana al logo real en Google Fonts), apilada y con "tag" alineado
+      al borde derecho de "flash". Es lo más fiel posible sin el archivo,
+      pero sigue siendo una reconstrucción
 - [ ] Favicon oficial (hoy `src/app/icon.svg` usa el marcador QR del sistema)
 - [ ] `site.proof.locales` — número real de comercios
 - [ ] `site.urls.whatsapp` — número real

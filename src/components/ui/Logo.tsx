@@ -4,37 +4,51 @@ import { cn } from "@/lib/cn";
 /**
  * Wordmark FlashTag.
  *
- * ⚠️ PROVISORIO — reconstruido tipográficamente con Poppins (la familia de
- * títulos del manual) respetando la estructura real: "flash" en violeta
- * profundo, "tag" en violeta de marca, ambos en minúscula.
- * Cuando exista el SVG original del isologotipo, reemplazar el contenido de
- * <Wordmark /> por el <svg> y borrar este comentario. Nada más cambia:
- * todo el sitio consume este componente.
+ * ⚠️ RECONSTRUCCIÓN, no el archivo original. Sigue pendiente el SVG del
+ * isologotipo; hasta entonces esto es lo más fiel que se puede sin él.
  *
- * `stacked` replica el bloque de dos líneas del manual (footer, hero).
- * `inline` es la versión de una línea para barras de 64px (header).
+ * Reproduce tres rasgos del logo real:
+ *  1. Tipografía geométrica redondeada (Fredoka) en lugar de una de
+ *     terminales rectas. Es el rasgo que más define la marca.
+ *  2. "flash" y "tag" en dos líneas muy juntas, con interlínea comprimida.
+ *  3. "tag" alineado al borde DERECHO de "flash" — no a una sangría fija.
+ *     Ese encastre es lo que hace que las dos palabras lean como un bloque.
+ *
+ * Cuando llegue el SVG: reemplazar el interior de <Wordmark> por el <svg>
+ * y borrar este comentario. Nada más cambia — todo el sitio consume este
+ * componente.
  */
 function Wordmark({ stacked }: { stacked: boolean }) {
+  if (!stacked) {
+    return (
+      <span className="font-[family-name:var(--font-logo)] text-[1em] font-semibold leading-none tracking-[-0.02em]">
+        <span className="text-ink">flash</span>
+        <span className="text-brand">tag</span>
+      </span>
+    );
+  }
+
   return (
     <span
-      className={cn(
-        "font-[family-name:var(--font-display)] font-bold lowercase tracking-[-0.03em]",
-        stacked ? "flex flex-col leading-[0.82]" : "leading-none",
-      )}
+      /* items-end alinea "tag" al borde derecho de "flash", como el original.
+         El pb reserva el descendente de la "g": con la interlínea comprimida
+         que pide el logo, sin eso la cola queda cortada. */
+      className="flex flex-col items-end pb-[0.16em] font-[family-name:var(--font-logo)] text-[1em] font-semibold leading-[0.8] tracking-[-0.02em]"
     >
       <span className="text-ink">flash</span>
-      <span className={cn("text-brand", stacked && "pl-[0.9em]")}>tag</span>
+      <span className="text-brand">tag</span>
     </span>
   );
 }
 
 export function Logo({
   className,
-  variant = "inline",
+  variant = "stacked",
   href = "/",
   onClick,
 }: {
   className?: string;
+  /** `stacked` es el logo real. `inline` solo donde no entra en dos líneas. */
   variant?: "inline" | "stacked";
   /** `null` renderiza el wordmark sin envolverlo en un link. */
   href?: string | null;

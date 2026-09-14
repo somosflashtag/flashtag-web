@@ -1,6 +1,6 @@
 import { JsonLd } from "@/components/JsonLd";
 import type { Metadata, Viewport } from "next";
-import { Poppins, Roboto } from "next/font/google";
+import { Fredoka, Poppins, Roboto } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -13,6 +13,13 @@ const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["600", "700"],
+  display: "swap",
+});
+/* Solo para el wordmark: geométrica redondeada, como el logo original. */
+const fredoka = Fredoka({
+  variable: "--font-logo",
+  subsets: ["latin"],
+  weight: ["500", "600"],
   display: "swap",
 });
 const roboto = Roboto({
@@ -44,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={site.lang}
-      className={`${poppins.variable} ${roboto.variable} h-full antialiased`}
+      className={`${poppins.variable} ${roboto.variable} ${fredoka.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <JsonLd id="ld-org" data={organizationSchema} />
