@@ -1,4 +1,7 @@
+import { articulosPublicables } from "@/content/blog";
+import { casosConDetalle } from "@/content/casos";
 import { features } from "@/content/features";
+import { paginasRubro } from "@/content/rubros";
 import { site } from "./site";
 
 /**
@@ -9,7 +12,7 @@ import { site } from "./site";
  * Al crear una página nueva, agregarla acá y recién ahí aparece en el menú.
  *
  * Pendientes de construir (no listar hasta que existan):
- *   /recursos, /para/[rubro]
+ *   /recursos
  */
 
 export type NavItem = { label: string; href: string; externo?: boolean };
@@ -34,10 +37,18 @@ export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
     ],
   },
   {
+    titulo: "Para tu rubro",
+    links: paginasRubro.map((r) => ({
+      label: r.nav,
+      href: `/para/${r.slug}`,
+    })),
+  },
+  {
     titulo: "Recursos",
     links: [
       { label: "Cursos", href: "/cursos" },
       { label: "Blog", href: "/blog" },
+      { label: "Activá tu FlashTag", href: "/activar-tu-flashtag" },
     ],
   },
   {
@@ -71,5 +82,9 @@ export const rutas = [
   "/blog",
   "/terminos",
   "/privacidad",
+  "/activar-tu-flashtag",
   ...features.map((f) => `/producto/${f.slug}`),
+  ...paginasRubro.map((r) => `/para/${r.slug}`),
+  ...articulosPublicables.map((a) => `/blog/${a.slug}`),
+  ...casosConDetalle.map((c) => `/casos/${c.slug}`),
 ];

@@ -28,6 +28,16 @@ export type Caso = {
   /** Permiso escrito del comercio para usar su nombre. */
   autorizado: boolean;
   testimonio?: { texto: string; autor: string; cargo: string };
+  /** Nombre del .md en content/casos-detalle/. Habilita /casos/<slug>. */
+  detalle?: string;
+  /** Titular y cifras de la página de detalle. */
+  portada?: {
+    titular: string;
+    bajada: string;
+    plan: string;
+    /** Se muestran solo si `metricaVerificada`. */
+    cifras: { valor: string; label: string }[];
+  };
 };
 
 export const rubros: { id: Rubro; label: string }[] = [
@@ -105,9 +115,22 @@ export const casos: Caso[] = [
     ciudad: "Buenos Aires",
     rubro: "gastronomia",
     uso: "QR en mesas y packaging premium con menú digital",
-    metrica: "",
+    metrica: "+525% de escaneos en 3 meses",
     metricaVerificada: false,
     autorizado: false,
+    detalle: "betular-patisserie",
+    portada: {
+      titular: "Betular Patisserie: de 80 a 500+ escaneos por mes",
+      bajada:
+        "La pastelería porteña implementó FlashTag en sus locales y transformó cada mesa en un punto de contacto digital con sus clientes.",
+      plan: "Plan Starter",
+      cifras: [
+        { valor: "+525%", label: "Aumento de escaneos en 3 meses" },
+        { valor: "500+", label: "Escaneos mensuales activos" },
+        { valor: "4,8", label: "Rating de Google promedio" },
+        { valor: "48 h", label: "Setup completo en el local" },
+      ],
+    },
   },
   {
     slug: "fiat-autodrive",
@@ -123,3 +146,8 @@ export const casos: Caso[] = [
 
 /** Lo único que la web puede mostrar. */
 export const casosPublicables = casos.filter((c) => c.autorizado);
+
+/** Casos con página propia: además de autorizados, tienen texto escrito. */
+export const casosConDetalle = casosPublicables.filter(
+  (c) => c.detalle && c.portada,
+);

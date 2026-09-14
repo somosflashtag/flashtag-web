@@ -1,11 +1,11 @@
 /**
  * BLOG — metadatos migrados del sitio de Framer.
  *
- * ⚠️ Ninguno tiene `cuerpo`: de Framer solo se pudo recuperar título, bajada,
- * categoría y fecha. Un índice que linkea a artículos sin texto son seis 404
- * nuevos, así que la página publica SOLO los que tienen cuerpo.
+ * `cuerpo` es el nombre del .md en content/articulos/. Un índice que linkea a
+ * artículos sin texto son 404 nuevos, así que la página publica SOLO los que
+ * tienen archivo.
  *
- * Para publicar uno: pegar el texto en `cuerpo` (Markdown) y aparece solo.
+ * Para publicar uno: crear content/articulos/<slug>.md y poner su nombre acá.
  * Cuando esté montado Sanity, este archivo se reemplaza por el CMS y la
  * página no cambia — lee la misma forma de datos.
  */
@@ -17,7 +17,7 @@ export type Articulo = {
   bajada: string;
   fecha: string; // ISO
   minutos: number;
-  /** Markdown. Sin esto el artículo no se publica. */
+  /** Nombre del .md en content/articulos/. Sin esto no se publica. */
   cuerpo: string | null;
   /** El caso usa una marca de tercero: requiere autorización (AGENTS.md §5). */
   requiereAutorizacion?: boolean;
@@ -32,7 +32,7 @@ export const articulos: Articulo[] = [
       "Un QR estático es un link que no podés cambiar. Un QR dinámico es una herramienta de marketing. Te explicamos la diferencia y cómo sacarle provecho desde el primer día.",
     fecha: "2026-04-10",
     minutos: 5,
-    cuerpo: null,
+    cuerpo: "qr-dinamicos-para-vender-mas",
   },
   {
     slug: "responder-resenas-google-con-ia",

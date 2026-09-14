@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { QRMark } from "@/components/ui/QRMark";
 import { Section } from "@/components/ui/Section";
 import { casosPublicables, rubros } from "@/content/casos";
+import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
 import { cta } from "@/lib/site";
 
@@ -60,6 +61,14 @@ export default function CasosPage() {
                   <h2 className="t-h3 mt-3">{c.negocio}</h2>
                   <p className="t-caption mt-1 text-muted">{c.ciudad}</p>
                   <p className="t-body mt-4 text-muted">{c.uso}</p>
+                  {c.detalle && c.portada && (
+                    <Link
+                      href={`/casos/${c.slug}`}
+                      className="t-caption mt-4 inline-block font-semibold text-brand underline underline-offset-4"
+                    >
+                      Leer el caso completo
+                    </Link>
+                  )}
                   {c.metricaVerificada && c.metrica && (
                     <p className="t-caption mt-4 font-semibold text-brand tnum">
                       {c.metrica}
