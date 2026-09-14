@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   FLASHTAG — DESIGN TOKENS
+   Concepto: "El escaneo". Anatomía del QR como sistema gráfico.
+   Regla: el primario es ACENTO, no fondo. Máximo 3 usos por pantalla.
+   ============================================================ */
+
+@theme {
+  /* --- Color -------------------------------------------------
+     ⚠️ --color-brand es el ÚNICO lugar donde se cambia el primario.
+     Reemplazar por el HEX exacto del logo cuando esté disponible. */
+  --color-brand: #ff4d00;
+  --color-brand-press: #d63f00;
+  --color-brand-soft: #fff1eb;
+
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-surface: #f4f5f7;
+  --color-surface-dark: #14161a;
+  --color-line: #e3e5e9;
+  --color-line-dark: #26282e;
+  --color-muted: #6b7280;
+  --color-muted-dark: #9aa1ad;
+
+  /* Solo dentro de mockups de producto — nunca en el sitio */
+  --color-signal: #1b4dff;
+  --color-up: #00b368;
+  --color-down: #e5484d;
+
+  /* --- Tipografía -------------------------------------------- */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* --- Espaciado: grilla 8px --------------------------------- */
+  --spacing-section: 3.5rem;      /* 56px  phone   */
+  --spacing-section-md: 5rem;     /* 80px  tablet  */
+  --spacing-section-lg: 8rem;     /* 128px desktop */
+
+  /* --- Radios diferenciados por jerarquía -------------------- */
+  --radius-btn: 10px;
+  --radius-card: 16px;
+  --radius-surface: 24px;
+
+  /* --- Sombras: solo dos niveles ----------------------------- */
+  --shadow-rest: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-float: 0 12px 32px rgb(0 0 0 / 0.12);
+
+  /* --- Motion ------------------------------------------------ */
+  --ease-ft: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ============================================================
+   BASE
+   ============================================================ */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Tap targets y anti-zoom en iOS */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Foco visible en teclado — accesibilidad AA */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* Números tabulares en datos */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================================
+   ESCALA TIPOGRÁFICA (Desktop / Phone según brief 3.4)
+   ============================================================ */
+
+@layer components {
+  .t-display {
+    font-size: clamp(2.5rem, 1.6rem + 3.8vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+
+  .t-h2 {
+    font-size: clamp(1.875rem, 1.35rem + 2.2vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .t-h3 {
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .t-lead {
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .t-body {
+    font-size: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
+    line-height: 1.6;
+  }
+
+  .t-caption {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .t-stat {
+    font-size: clamp(2rem, 1.6rem + 1.7vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Largo de línea máximo: 68 caracteres */
+  .measure {
+    max-width: 62ch;
+  }
+}
+
+/* ============================================================
+   MOTION — solo como respuesta a una acción del usuario.
+   Un único momento orquestado: el hero.
+   ============================================================ */
+
+@keyframes ft-module-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--tx, 0), var(--ty, 0)) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes ft-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ft-module {
+  animation: ft-module-in 450ms var(--ease-ft) both;
+}
+
+.ft-rise {
+  animation: ft-rise 400ms var(--ease-ft) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .ft-module,
+  .ft-rise {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
