@@ -6,6 +6,7 @@ import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { cta } from "@/lib/site";
 import { cn } from "@/lib/cn";
+import { Logo } from "./ui/Logo";
 
 const nav = [
   { label: "Producto", href: "/#producto" },
@@ -44,13 +45,7 @@ export function Header() {
     >
       <Container>
         <div className="flex h-16 items-center justify-between gap-4 lg:h-[72px]">
-          <Link
-            href="/"
-            className="text-[1.0625rem] font-bold tracking-tight"
-            onClick={() => setOpen(false)}
-          >
-            FlashTag
-          </Link>
+          <Logo className="text-[1.375rem]" onClick={() => setOpen(false)} />
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
             {nav.map((item) => (

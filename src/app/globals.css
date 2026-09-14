@@ -8,29 +8,40 @@
 
 @theme {
   /* --- Color -------------------------------------------------
-     ⚠️ --color-brand es el ÚNICO lugar donde se cambia el primario.
-     Reemplazar por el HEX exacto del logo cuando esté disponible. */
-  --color-brand: #ff4d00;
-  --color-brand-press: #d63f00;
-  --color-brand-soft: #fff1eb;
+     Paleta oficial — Manual de Marca FlashTag (DT Comunicación).
+     Primario de acción: violeta #613ec4. Titulares: #2d014b.
+     Fondo de sección: arena #efe7d6. El primario es ACENTO, no fondo. */
 
-  --color-ink: #000000;
+  /* Violeta de marca — CTAs, links, foco. 7.1:1 sobre blanco (AAA). */
+  --color-brand: #613ec4;
+  --color-brand-press: #4e31a0;
+  --color-brand-soft: #efeafa;
+
+  /* Violeta profundo — titulares y superficies oscuras. 14:1 sobre arena. */
+  --color-ink: #2d014b;
   --color-paper: #ffffff;
-  --color-surface: #f4f5f7;
-  --color-surface-dark: #14161a;
-  --color-line: #e3e5e9;
-  --color-line-dark: #26282e;
-  --color-muted: #6b7280;
-  --color-muted-dark: #9aa1ad;
+  --color-surface: #efe7d6;      /* arena de marca */
+  --color-surface-dark: #2d014b; /* violeta profundo */
+  --color-line: #e2d8c4;
+  --color-line-dark: #46206b;
+  --color-muted: #6b5b7b;        /* 5.1:1 sobre arena */
+  --color-muted-dark: #b9a8cc;
+
+  /* Acentos del manual. Nunca como color de texto chico:
+     el coral no llega a 4.5:1 sobre blanco. Solo fondos y gráficos. */
+  --color-coral: #db4f45;
+  --color-gold: #ffc64a;
+  --color-teal: #0094a5;
 
   /* Solo dentro de mockups de producto — nunca en el sitio */
-  --color-signal: #1b4dff;
-  --color-up: #00b368;
-  --color-down: #e5484d;
+  --color-signal: #0094a5;
+  --color-up: #0094a5;
+  --color-down: #db4f45;
 
   /* --- Tipografía -------------------------------------------- */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), var(--font-roboto), ui-sans-serif, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
   /* --- Espaciado: grilla 8px --------------------------------- */
   --spacing-section: 3.5rem;      /* 56px  phone   */
@@ -43,8 +54,8 @@
   --radius-surface: 24px;
 
   /* --- Sombras: solo dos niveles ----------------------------- */
-  --shadow-rest: 0 1px 2px rgb(0 0 0 / 0.06);
-  --shadow-float: 0 12px 32px rgb(0 0 0 / 0.12);
+  --shadow-rest: 0 1px 2px rgb(45 1 75 / 0.08);
+  --shadow-float: 0 12px 32px rgb(45 1 75 / 0.16);
 
   /* --- Motion ------------------------------------------------ */
   --ease-ft: cubic-bezier(0.32, 0.72, 0, 1);
@@ -85,7 +96,7 @@
   }
 
   ::selection {
-    background: var(--color-ink);
+    background: var(--color-brand);
     color: var(--color-paper);
   }
 
@@ -103,13 +114,15 @@
 @layer components {
   .t-display {
     font-size: clamp(2.5rem, 1.6rem + 3.8vw, 4.5rem);
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.02;
   }
 
   .t-h2 {
     font-size: clamp(1.875rem, 1.35rem + 2.2vw, 3rem);
+    font-family: var(--font-display);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.1;
@@ -117,6 +130,7 @@
 
   .t-h3 {
     font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    font-family: var(--font-display);
     font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.25;
@@ -141,6 +155,7 @@
 
   .t-stat {
     font-size: clamp(2rem, 1.6rem + 1.7vw, 2.5rem);
+    font-family: var(--font-display);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1;

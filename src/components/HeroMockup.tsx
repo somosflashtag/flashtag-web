@@ -88,7 +88,7 @@ export function HeroMockup() {
   return (
     <div className="relative w-full">
       {/* Dashboard: superficie oscura, tipografía tabular, precisión de instrumento */}
-      <div className="relative overflow-hidden rounded-[var(--radius-surface)] bg-[var(--color-surface-dark)] p-5 text-white shadow-[var(--shadow-float)] sm:p-6">
+      <div className="relative overflow-hidden rounded-[var(--radius-surface)] bg-[var(--color-surface-dark)] p-5 text-white shadow-[var(--shadow-float)] sm:p-6 sm:pb-32">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <span className="size-2 rounded-full bg-[var(--color-up)]" />
@@ -128,7 +128,7 @@ export function HeroMockup() {
           <div className="flex items-center gap-2">
             <div className="flex gap-0.5" aria-label="5 estrellas">
               {Array.from({ length: 5 }).map((_, i) => (
-                <svg key={i} viewBox="0 0 12 12" width="11" height="11" fill="#FFC53D" aria-hidden="true">
+                <svg key={i} viewBox="0 0 12 12" width="11" height="11" fill="var(--color-gold)" aria-hidden="true">
                   <path d="M6 0.8l1.6 3.3 3.6.5-2.6 2.5.6 3.6L6 9l-3.2 1.7.6-3.6L0.8 4.6l3.6-.5z" />
                 </svg>
               ))}
@@ -139,7 +139,7 @@ export function HeroMockup() {
             &ldquo;Muy buen café y atención rapidísima. Vuelvo seguro.&rdquo;
           </p>
           <div className="mt-3 rounded-lg border border-[var(--color-signal)]/30 bg-[var(--color-signal)]/10 p-3">
-            <p className="text-[11px] font-semibold tracking-wide text-[#8AA3FF]">
+            <p className="text-[11px] font-semibold tracking-wide text-[#7fd8e3]">
               RESPUESTA SUGERIDA
             </p>
             <p className="mt-1.5 text-[13px] leading-relaxed text-white/85">
@@ -151,7 +151,7 @@ export function HeroMockup() {
       </div>
 
       {/* El QR que se ensambla — flota sobre el dashboard */}
-      <div className="absolute -bottom-6 -left-4 hidden rounded-[var(--radius-card)] bg-white p-3.5 shadow-[var(--shadow-float)] sm:block">
+      <div className="absolute bottom-5 -left-5 hidden rounded-[var(--radius-card)] bg-white p-3.5 shadow-[var(--shadow-float)] sm:block">
         <svg viewBox="0 0 100 100" width="104" height="104" aria-label="Código QR de FlashTag">
           {QR_PATTERN.map((row, y) =>
             row.map((on, x) =>

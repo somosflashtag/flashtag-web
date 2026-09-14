@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "./ui/Container";
+import { Logo } from "./ui/Logo";
 import { QRMark } from "./ui/QRMark";
 import { site } from "@/lib/site";
 import { features } from "@/content/features";
@@ -47,9 +48,7 @@ export function Footer() {
       <Container>
         <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-4 lg:grid-cols-5 lg:py-20">
           <div className="col-span-2 lg:col-span-1">
-            <Link href="/" className="text-lg font-bold tracking-tight">
-              FlashTag
-            </Link>
+            <Logo variant="stacked" className="text-[2rem]" />
             <p className="measure mt-3 text-sm leading-relaxed text-muted">
               Marketing phygital para comercios locales. Hecho en Argentina.
             </p>

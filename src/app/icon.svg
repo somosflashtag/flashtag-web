@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Arena de marca (#efe7d6) + marcador QR en violeta (#613ec4).
+       A 16px el wordmark no se lee: el marcador es el elemento del sistema
+       que sobrevive al tamaño. Reemplazable por el isotipo oficial. -->
+  <rect width="64" height="64" rx="14" fill="#efe7d6"/>
+  <rect x="14" y="14" width="36" height="36" rx="8" fill="none" stroke="#2d014b" stroke-width="6"/>
+  <rect x="26" y="26" width="12" height="12" rx="2.5" fill="#613ec4"/>
+</svg>
