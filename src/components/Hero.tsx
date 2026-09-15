@@ -2,6 +2,7 @@ import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { QRCode } from "./ui/QRCode";
 import { QRMark } from "./ui/QRMark";
+import { Bandera } from "./ui/Bandera";
 import { PhoneFrame } from "./app/PhoneFrame";
 import { MockDashboard } from "./app/mocks";
 import { cta } from "@/lib/site";
@@ -19,11 +20,7 @@ export function Hero() {
         <div className="grid items-center gap-14 py-14 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:py-24">
           <div data-reveal>
             <ul className="flex flex-wrap gap-2">
-              {[
-                "Productos de calidad con QR + NFC",
-                "Aplicación para crecer tu negocio",
-                "Hecho en 🇦🇷",
-              ].map((t) => (
+              {["Productos de calidad con QR + NFC", "Aplicación para crecer tu negocio"].map((t) => (
                 <li
                   key={t}
                   className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1.5 text-[13px] font-semibold"
@@ -32,6 +29,11 @@ export function Hero() {
                   {t}
                 </li>
               ))}
+              <li className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1.5 text-[13px] font-semibold">
+                <QRMark size={12} />
+                Hecho en
+                <Bandera size={13} />
+              </li>
             </ul>
 
             <h1 className="t-display mt-6 text-balance">
