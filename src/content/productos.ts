@@ -75,6 +75,7 @@ export const formatos = [
     texto: "Con base propia. Para el mostrador o la caja del local.",
     foto: "/productos/carteles.webp",
     href: `${SHOP}/collections/carteles`,
+    cta: "Ver carteles",
   },
   {
     nombre: "Stickers para vidriera",
@@ -82,6 +83,7 @@ export const formatos = [
     texto: "Para la vidriera. Lo ve quien pasa, antes de entrar.",
     foto: "/productos/stickers.webp",
     href: `${SHOP}/collections/stickers`,
+    cta: "Ver stickers",
   },
   {
     nombre: "Tarjeta de plástico con NFC",
@@ -89,6 +91,7 @@ export const formatos = [
     texto: "Del tamaño de una tarjeta. Con lanyard para llevarla encima.",
     foto: "/productos/tarjetas.webp",
     href: `${SHOP}/collections/tarjetas`,
+    cta: "Ver tarjetas",
   },
 ];
 

@@ -98,7 +98,7 @@ export function Tienda() {
                 </div>
               </div>
               <Button href={f.href} variant="primary" size="md" arrow className="mt-5 w-full">
-                Ver {f.nombre.toLowerCase()}
+                {f.cta}
               </Button>
             </li>
           ))}
