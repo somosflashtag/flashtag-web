@@ -22,7 +22,7 @@ export function Tienda() {
           href={tienda.href}
           className="t-caption font-semibold text-brand underline underline-offset-4"
         >
-          Ver toda la tienda
+          Ver todos los productos
         </a>
       </div>
 
@@ -54,7 +54,9 @@ export function Tienda() {
               <div className="flex flex-1 flex-col p-6">
                 <h3 className="t-h3">{p.nombre}</h3>
                 <p className="t-body mt-2 flex-1 text-muted">{p.bajada}</p>
-                <p className="t-h3 mt-5 tnum">{precioARS(p.precioARS)}</p>
+                <p className="t-h3 mt-5 tnum">
+                  {p.precioARS !== undefined ? precioARS(p.precioARS) : "Ver precio en la tienda"}
+                </p>
                 <p className="t-caption mt-1 text-muted">
                   QR + NFC · Envío a todo el país · App gratis incluida
                 </p>
@@ -66,13 +68,14 @@ export function Tienda() {
 
       {/* Los tres formatos: acá se entiende que es un objeto con medidas. */}
       <div className="mt-14 border-t border-line pt-10">
-        <h3 className="t-h3">Cada canal viene en tres formatos</h3>
+        <h3 className="t-h3">Tres formatos, tres lugares del local</h3>
         <ul className="mt-6 grid gap-5 md:grid-cols-3">
           {formatos.map((f) => (
-            <li
-              key={f.nombre}
-              className="flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-paper p-4"
-            >
+            <li key={f.nombre}>
+              <a
+                href={f.href}
+                className="card-lift flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-paper p-4"
+              >
               <Image
                 src={f.foto}
                 alt={f.nombre}
@@ -86,6 +89,7 @@ export function Tienda() {
                 <p className="t-caption text-brand tnum">{f.medida}</p>
                 <p className="t-caption mt-1 text-muted">{f.texto}</p>
               </div>
+              </a>
             </li>
           ))}
         </ul>

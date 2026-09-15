@@ -14,7 +14,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Puedo usar el cartel de Google para otra cosa?",
     respuesta:
-      "Cada cartel está pensado para un canal: el de Google lleva a tu ficha para que te dejen la reseña, el de Instagram a tu perfil para que te sigan, el de WhatsApp abre una conversación. Si querés un QR que apunte a lo que vos decidas (una promo, un menú, un formulario), creás un QR dinámico desde la app y lo cambiás cuando quieras.",
+      "No. Cada cartel tiene un solo uso: el de Google es solo para que te dejen reseñas, el de Instagram solo para que te sigan en Instagram y el de WhatsApp solo para iniciar una conversación por WhatsApp. Si querés un QR que apunte a lo que vos decidas (una promo, un menú, un formulario), eso es un QR dinámico: lo creás desde la app y lo cambiás cuando quieras.",
     mostrarEn: ["home"],
   },
   {

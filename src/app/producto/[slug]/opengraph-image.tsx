@@ -13,7 +13,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const { slug } = await params;
   const f = features.find((x) => x.slug === slug);
   return ogImage({
-    eyebrow: "FlashTag · Producto",
+    eyebrow: "FlashTag · Aplicación",
     kicker: f?.nombre,
     title: f?.titular ?? "FlashTag",
   });

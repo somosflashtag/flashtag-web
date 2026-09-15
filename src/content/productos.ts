@@ -20,7 +20,8 @@ export type Producto = {
   nombre: string;
   /** Para qué sirve, en una línea. */
   bajada: string;
-  precioARS: number;
+  /** Si falta, la tarjeta manda a ver el precio en la tienda. */
+  precioARS?: number;
   /** "Más vendido", "Ahorrás más". Opcional. */
   etiqueta?: string;
   /** Foto del producto en un local real. */
@@ -41,7 +42,7 @@ export const productos: Producto[] = [
     etiqueta: "Más vendido",
     foto: "/productos/cartel-google.webp",
     alt: "Cartel acrílico de Google de FlashTag sobre la mesa de madera de un café",
-    href: `${SHOP}/products/cartel-google`,
+    href: `${SHOP}/products/cartel-de-google-para-mejorar-tu-reputacion-online`,
   },
   {
     slug: "cartel-instagram",
@@ -51,39 +52,42 @@ export const productos: Producto[] = [
     precioARS: 39999,
     foto: "/productos/cartel-instagram.webp",
     alt: "Cartel acrílico de Instagram de FlashTag apoyado en un local",
-    href: `${SHOP}/products/cartel-instagram`,
+    href: `${SHOP}/collections/carteles`,
   },
   {
-    slug: "cartel-whatsapp",
-    nombre: "Cartel de WhatsApp",
+    slug: "combo",
+    nombre: "Combo: Google + Instagram + WhatsApp",
     bajada:
-      "Para que inicien una conversación por WhatsApp sin cargar el número. Pedidos, reservas y consultas directo a tu chat.",
-    precioARS: 39999,
-    foto: "/productos/cartel-whatsapp.webp",
-    alt: "Cartel acrílico de WhatsApp de FlashTag en un mostrador",
-    href: `${SHOP}/products/cartel-whatsapp`,
+      "Los tres carteles para el mostrador: reseñas en Google, seguidores en Instagram y conversaciones por WhatsApp. Cada uno con su uso.",
+    etiqueta: "Ahorrás más",
+    foto: "/productos/carteles.webp",
+    alt: "Los tres carteles de FlashTag: Google, Instagram y WhatsApp",
+    href: `${SHOP}/products/combo-cartel-instagram-cartel-google-cartel-whatsapp`,
   },
 ];
 
 /** Los tres formatos en que viene cualquier canal. */
 export const formatos = [
   {
-    nombre: "Cartel acrílico",
+    nombre: "Carteles",
     medida: "14 × 14 cm",
     texto: "Con base propia. Para el mostrador o la caja del local.",
     foto: "/productos/carteles.webp",
+    href: `${SHOP}/collections/carteles`,
   },
   {
-    nombre: "Sticker para vidriera",
+    nombre: "Stickers para vidriera",
     medida: "15 × 15 cm",
     texto: "Para la vidriera. Lo ve quien pasa, antes de entrar.",
     foto: "/productos/stickers.webp",
+    href: `${SHOP}/collections/stickers`,
   },
   {
-    nombre: "Tarjeta de plástico",
+    nombre: "Tarjeta de plástico con NFC",
     medida: "8,6 × 5,4 cm",
     texto: "Del tamaño de una tarjeta. Con lanyard para llevarla encima.",
     foto: "/productos/tarjetas.webp",
+    href: `${SHOP}/collections/tarjetas`,
   },
 ];
 
@@ -91,7 +95,7 @@ export const tienda = {
   titular: "Un cartel para cada canal de tu local",
   bajada:
     "Cada cartel tiene su uso: Google para reseñas, Instagram para seguidores, WhatsApp para conversaciones. Llega con el QR y el chip NFC activados: lo ponés en el mostrador y empieza a funcionar.",
-  href: SHOP,
+  href: `${SHOP}/`,
 };
 
 const fmt = new Intl.NumberFormat("es-AR", {

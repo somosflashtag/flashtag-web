@@ -54,7 +54,7 @@ export default async function ProductoPage({
               <nav className="t-caption text-muted" aria-label="Migas de pan">
                 <Link href="/" className="hover:text-ink">Inicio</Link>
                 {" / "}
-                <Link href="/como-funciona" className="hover:text-ink">Producto</Link>
+                <Link href="/como-funciona" className="hover:text-ink">Aplicación</Link>
                 {" / "}
                 <span>{f.nombre}</span>
               </nav>

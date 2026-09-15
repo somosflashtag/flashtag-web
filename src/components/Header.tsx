@@ -11,7 +11,7 @@ import { Logo } from "./ui/Logo";
 import { menuProducto, navPrincipal } from "@/lib/nav";
 
 /**
- * Header con desplegable de "Producto".
+ * Header con desplegable de "Aplicación".
  * Desktop: el ítem abre un panel con hover o foco, se cierra con Escape.
  * Phone: menú a pantalla completa con las features agrupadas.
  */
@@ -69,7 +69,7 @@ export function Header() {
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
             {navPrincipal.map((item) =>
-              item.label === "Producto" ? (
+              item.label === "Aplicación" ? (
                 <div
                   key={item.href}
                   className="relative"
@@ -229,7 +229,7 @@ export function Header() {
           className="fixed inset-x-0 top-16 z-50 h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-paper lg:hidden"
         >
           <Container>
-            <p className="t-caption pt-6 uppercase tracking-wide text-muted">Producto</p>
+            <p className="t-caption pt-6 uppercase tracking-wide text-muted">Aplicación</p>
             <ul className="mt-2 grid grid-cols-2 gap-2">
               {menuProducto.features.map((f) => (
                 <li key={f.href}>
@@ -246,7 +246,7 @@ export function Header() {
             <nav className="mt-4 flex flex-col" aria-label="Principal móvil">
               {[
                 { label: "Cómo funciona", href: "/como-funciona" },
-                ...navPrincipal.filter((i) => i.label !== "Producto"),
+                ...navPrincipal.filter((i) => i.label !== "Aplicación"),
                 { label: "Blog", href: "/blog" },
                 { label: "Contacto", href: "/contacto" },
               ].map((item) => (
