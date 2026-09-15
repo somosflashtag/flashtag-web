@@ -1,3 +1,4 @@
+import { CtaFinal } from "@/components/CtaFinal";
 import { JsonLd } from "@/components/JsonLd";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
@@ -80,16 +81,11 @@ export default function PreciosPage() {
         </div>
       </Section>
 
-      <Section dark className="text-center">
-        <h2 className="t-h2 measure mx-auto text-balance">
-          Empezá gratis. Pagá cuando te rinda.
-        </h2>
-        <div className="mt-8 flex justify-center">
-          <Button href={cta.primary.href} variant="primary" size="lg" arrow>
-            {cta.primary.label}
-          </Button>
-        </div>
-      </Section>
+      <CtaFinal titulo="Empezá gratis. Pagá cuando te rinda.">
+        <Button href={cta.primary.href} variant="primary" size="lg" arrow>
+          {cta.primary.label}
+        </Button>
+      </CtaFinal>
     </>
   );
 }

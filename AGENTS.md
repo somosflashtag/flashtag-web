@@ -56,7 +56,20 @@ página propia en `/producto/`, lugar en el bento y el tour, plan en
 
 **7. Marcas de terceros solo con autorización.** No se listan logos ni nombres
 de empresas (clientes, integraciones, medios) sin permiso escrito y sin que la
-integración exista de verdad en producción.
+integración exista de verdad en producción. Única excepción: los medios de
+pago del checkout (`src/content/pagos.ts`) — son marcas que el comercio está
+obligado a exhibir y que operan de verdad en shop.flashtag.tech. Si una
+pasarela se da de baja, sale de la lista el mismo día.
+
+**8. El footer es violeta; el bloque anterior nunca.** El footer va sobre
+`--color-ink` y es el único bloque oscuro del final. Por eso toda página
+cierra con `<CtaFinal>` (panel de arena sobre blanco) y ninguna termina en
+una sección oscura: si lo hiciera, footer y cierre se leerían como una sola
+mancha. `CtaFinal` es el cierre estándar — no se copia el patrón a mano.
+Sobre el footer, el logo va en `tone="light"` (blanco monocromático) y el
+violeta de marca no se usa como color de texto: no llega a 4.5:1 sobre ink.
+Los legales no son una columna: van en la barra inferior, en línea con el
+copyright (`linksLegales` en `lib/nav.ts`).
 
 ## Accesibilidad — piso, no aspiración
 
@@ -76,8 +89,16 @@ integración exista de verdad en producción.
       pero sigue siendo una reconstrucción
 - [ ] Favicon oficial (hoy `src/app/icon.svg` usa el marcador QR del sistema)
 - [ ] `site.proof.locales` — número real de comercios
-- [ ] `site.urls.whatsapp` — número real
-- [ ] Redes en `site.social`
+- [ ] Confirmar los handles de `site.social` (hoy: instagram.com/flashtag.tech,
+      youtube.com/@flashtag.tech, tiktok.com/@flashtag.tech). Son los que
+      corresponden al dominio, pero nadie los verificó contra las cuentas
+      reales — y un link roto en el footer está en todas las páginas
+- [ ] `site.social.linkedin` — sin cuenta todavía
+- [ ] `site.dataFiscal.qr` — el token de ARCA (ex AFIP) del CUIT
+      20-39644692-9. Hasta que esté, el badge no se muestra
+- [ ] Assets oficiales de los medios de pago. Hoy `PaymentMark.tsx` son
+      reconstrucciones tipográficas de los wordmarks; Mercado Pago y Stripe
+      publican SVG en sus brand kits
 - [ ] Autorización escrita de los comercios → `casos.ts` (`autorizado`)
 - [ ] URLs de las notas de prensa → `prensa.ts` (`verificada`)
 - [ ] Aval institucional UBA → `cursos.ts` (`avalPendiente`)
@@ -97,3 +118,13 @@ Para actualizarlos: volver a correr el script allá y pisar el `.md` acá.
 No editarlos a mano — Google compara el texto publicado en el dominio del
 consent screen contra el de la app, y si difieren puede rechazar la
 verificación del scope de Google Business Profile.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

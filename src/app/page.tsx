@@ -1,3 +1,4 @@
+import { CtaFinal } from "@/components/CtaFinal";
 import { JsonLd } from "@/components/JsonLd";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -239,23 +240,17 @@ export default function Home() {
       </Section>
 
       {/* ── CTA FINAL ────────────────────────────────────────── */}
-      <Section dark className="surface-deep text-center">
-        <h2 className="t-h2 measure mx-auto text-balance" data-reveal>
-          Probalo gratis y mirá qué pasa en una semana
-        </h2>
-        <p className="t-lead measure mx-auto mt-5 text-white/60">
-          Sin tarjeta, sin permanencia y sin instalar nada. Si no te sirve, lo
-          dejás.
-        </p>
-        <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href={cta.primary.href} variant="primary" size="lg" arrow>
-            {cta.primary.label}
-          </Button>
-          <Button href={cta.secondary.href} variant="secondary" size="lg" className="border-white/25 text-white hover:border-white hover:bg-white/10">
-            {cta.secondary.label}
-          </Button>
-        </div>
-      </Section>
+      <CtaFinal
+        titulo="Probalo gratis y mirá qué pasa en una semana"
+        texto="Sin tarjeta, sin permanencia y sin instalar nada. Si no te sirve, lo dejás."
+      >
+        <Button href={cta.primary.href} variant="primary" size="lg" arrow>
+          {cta.primary.label}
+        </Button>
+        <Button href={cta.secondary.href} variant="secondary" size="lg">
+          {cta.secondary.label}
+        </Button>
+      </CtaFinal>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { CtaFinal } from "@/components/CtaFinal";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { QRCode } from "@/components/ui/QRCode";
@@ -112,23 +113,17 @@ export default function ActivarPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-line bg-surface">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">¿Todavía no tenés tu FlashTag?</h2>
-          <p className="t-lead mt-4 text-muted">
-            Elegí el cartel, tarjeta o sticker que mejor se adapta a tu local.
-            Llega con el QR activado y listo para usar.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href={site.urls.shop} variant="primary" size="lg" arrow>
-              Comprá uno en nuestra tienda
-            </Button>
-            <Button href="/precios" variant="secondary" size="lg">
-              Ver planes
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CtaFinal
+        titulo="¿Todavía no tenés tu FlashTag?"
+        texto="Elegí el cartel, tarjeta o sticker que mejor se adapta a tu local. Llega con el QR activado y listo para usar."
+      >
+        <Button href={site.urls.shop} variant="primary" size="lg" arrow>
+          Comprá uno en nuestra tienda
+        </Button>
+        <Button href="/precios" variant="secondary" size="lg">
+          Ver planes
+        </Button>
+      </CtaFinal>
     </>
   );
 }

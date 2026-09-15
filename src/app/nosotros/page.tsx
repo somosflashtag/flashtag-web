@@ -1,3 +1,4 @@
+import { CtaFinal } from "@/components/CtaFinal";
 import { Button } from "@/components/ui/Button";
 import { QRMark } from "@/components/ui/QRMark";
 import { Section } from "@/components/ui/Section";
@@ -104,25 +105,14 @@ export default function NosotrosPage() {
         </ol>
       </Section>
 
-      <Section dark>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">{equipo.titular}</h2>
-          <p className="t-lead mt-4 text-muted-dark">{equipo.texto}</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href={`mailto:${equipo.email}`} variant="primary" size="lg" arrow>
-              Escribinos a {equipo.email}
-            </Button>
-            <Button
-              href={cta.primary.href}
-              variant="secondary"
-              size="lg"
-              className="border-white/25 text-white hover:border-white hover:bg-white/10"
-            >
-              {cta.primary.label}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CtaFinal titulo={equipo.titular} texto={equipo.texto}>
+        <Button href={`mailto:${equipo.email}`} variant="primary" size="lg" arrow>
+          Escribinos a {equipo.email}
+        </Button>
+        <Button href={cta.primary.href} variant="secondary" size="lg">
+          {cta.primary.label}
+        </Button>
+      </CtaFinal>
     </>
   );
 }

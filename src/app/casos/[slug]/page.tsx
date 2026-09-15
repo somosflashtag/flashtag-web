@@ -3,10 +3,10 @@ import path from "node:path";
 import { marked } from "marked";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { CtaFinal } from "@/components/CtaFinal";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Image from "next/image";
-import { Section } from "@/components/ui/Section";
 import { casosConDetalle, rubros } from "@/content/casos";
 import { pageMeta } from "@/lib/seo";
 import { cta, site } from "@/lib/site";
@@ -153,27 +153,17 @@ export default async function CasoPage({
         </Link>
       </Container>
 
-      <Section dark>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">¿Querés resultados como estos?</h2>
-          <p className="t-lead mt-4 text-muted-dark">
-            Empezá con un cartel y escalá cuando quieras.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href={site.urls.shop} variant="primary" size="lg" arrow>
-              Comprá tu cartel
-            </Button>
-            <Button
-              href={cta.primary.href}
-              variant="secondary"
-              size="lg"
-              className="border-white/25 text-white hover:border-white hover:bg-white/10"
-            >
-              {cta.primary.label}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CtaFinal
+        titulo="¿Querés resultados como estos?"
+        texto="Empezá con un cartel y escalá cuando quieras."
+      >
+        <Button href={site.urls.shop} variant="primary" size="lg" arrow>
+          Comprá tu cartel
+        </Button>
+        <Button href={cta.primary.href} variant="secondary" size="lg">
+          {cta.primary.label}
+        </Button>
+      </CtaFinal>
     </>
   );
 }
