@@ -19,9 +19,9 @@ export const site = {
     whatsapp: "https://wa.me/541132132506",
   },
 
-  /** Redes públicas. Handles PENDIENTES de confirmar: hoy usan el nombre de la org. */
+  /** Redes públicas. YouTube y TikTok PENDIENTES de confirmar. */
   social: {
-    instagram: "https://www.instagram.com/somosflashtag",
+    instagram: "https://www.instagram.com/flashtag.tech/",
     youtube: "https://www.youtube.com/@somosflashtag",
     tiktok: "https://www.tiktok.com/@somosflashtag",
     linkedin: "",

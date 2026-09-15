@@ -46,7 +46,6 @@ export function MediosDePago() {
         <Badge>Visa</Badge>
         <Mastercard />
         <Badge>Amex</Badge>
-        <Badge ancho={52}>Diners</Badge>
       </Grupo>
       <span aria-hidden="true" className="hidden h-6 w-px bg-white/20 sm:block" />
       <Grupo titulo="Stripe">
