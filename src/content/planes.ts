@@ -14,6 +14,8 @@ export type Plan = {
   precioARS: number;
   precioAnualPorMes: number | null;
   totalAnual: number | null;
+  /** Total anual publicado en pesos. */
+  totalAnualARS: number | null;
   destacado: boolean;
   cta: { label: string; href: string };
   features: Feature[];
@@ -30,6 +32,7 @@ export const planes: Plan[] = [
     precioARS: 0,
     precioAnualPorMes: 0,
     totalAnual: 0,
+    totalAnualARS: 0,
     destacado: false,
     cta: { label: "Empezá gratis", href: "https://my.flashtag.tech/login" },
     features: [
@@ -51,7 +54,8 @@ export const planes: Plan[] = [
     precioMensual: 49,
     precioARS: 75000,
     precioAnualPorMes: 42,
-    totalAnual: 500,
+    totalAnual: 499,
+    totalAnualARS: 750000,
     destacado: true,
     cta: { label: "Empezar con Starter", href: "https://my.flashtag.tech/login" },
     features: [
@@ -72,8 +76,9 @@ export const planes: Plan[] = [
     paraQuien: "Mini-cadenas, franquicias y agencias",
     precioMensual: 99,
     precioARS: 149000,
-    precioAnualPorMes: 84,
-    totalAnual: 1009,
+    precioAnualPorMes: 83,
+    totalAnual: 999,
+    totalAnualARS: 1500000,
     destacado: false,
     cta: { label: "Empezar con Full", href: "https://my.flashtag.tech/login" },
     features: [

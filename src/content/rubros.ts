@@ -34,18 +34,18 @@ export const paginasRubro: PaginaRubro[] = [
     titular:
       "Tu restaurante con carta digital, reseñas respondidas y clientes que vuelven.",
     bajada:
-      "QR en mesas para ver el menú, reseñas de Google respondidas con IA y métricas de escaneo. Empezá con el cartel y escalá cuando quieras.",
+      "Cartel de Google en el mostrador, carta digital con un QR dinámico, reseñas respondidas con IA y un programa de fidelidad que hace que vuelvan. Empezá con el cartel y escalá cuando quieras.",
     metaDescripcion:
       "Carta digital por QR, reseñas de Google respondidas con IA y métricas de escaneo para restaurantes, cafeterías y pastelerías.",
     foto: {
       src: "/productos/cartel-google.webp",
-      alt: "Cartel de Google de FlashTag sobre la mesa de un café",
+      alt: "Cartel de Google de FlashTag en un café",
     },
     beneficios: [
       {
-        titulo: "Carta digital en el QR de la mesa",
+        titulo: "Carta digital con un QR dinámico",
         texto:
-          "Cambiá el menú del día sin reimprimir nada. El QR en la mesa siempre apunta a lo último.",
+          "Creás el QR desde la app y lo apuntás al menú del día. Lo cambiás desde el celular cuando cambia la carta.",
       },
       {
         titulo: "Reseñas de Google en segundos",
@@ -87,7 +87,7 @@ export const paginasRubro: PaginaRubro[] = [
       {
         titulo: "Link Pages por colección",
         texto:
-          "Una URL por temporada, categoría o promo. Cambiala cuando quieras sin reimprimir carteles.",
+          "Una URL por temporada, categoría o promo. La cambiás desde la app cuando quieras.",
       },
       {
         titulo: "Reseñas de Google con IA",

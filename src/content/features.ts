@@ -29,29 +29,29 @@ export const features: Feature[] = [
   {
     slug: "qr-dinamicos",
     nombre: "QR dinámicos",
-    corto: "Cambiá el destino sin reimprimir",
-    titular: "Un cartel que podés reescribir desde el celular",
+    corto: "Un QR para lo que necesites hoy",
+    titular: "Creá un QR que apunta a lo que vos decidas",
     bajada:
-      "El QR impreso nunca cambia, pero el destino sí. Editás el link desde la app y el cartel que está en la mesa apunta a otro lado al instante. Con QR y NFC: se escanea o se apoya el teléfono.",
+      "Cada cartel de FlashTag tiene su canal: Google, Instagram, WhatsApp. Cuando necesitás algo distinto, creás un QR dinámico desde la app: una promo, el menú de temporada, un formulario de turnos. El destino lo cambiás cuando quieras desde el celular, con métricas de cada escaneo.",
     analogia:
-      "Es como tener un cartel que podés reescribir desde el mostrador, sin levantarte.",
+      "Es un QR que hoy dice una cosa y mañana otra, sin que nadie en el local tenga que hacer nada.",
     casos: [
-      "Menú que cambia por temporada",
-      "La promo del día, sin imprimir nada nuevo",
-      "Pedido directo por WhatsApp",
+      "El menú de temporada",
+      "La promo de la semana",
+      "Un formulario de turnos o reservas",
     ],
     pasos: [
       {
-        titulo: "Activás el cartel",
-        texto: "Escaneás tu propio QR, creás la cuenta y el cartel queda vinculado.",
+        titulo: "Creás el QR en la app",
+        texto: "Le ponés nombre, lo descargás y lo ponés donde quieras: un flyer, un packaging, la vidriera.",
       },
       {
         titulo: "Elegís a dónde apunta",
-        texto: "Reseña de Google, menú, WhatsApp, tu Link Page. Lo que necesites hoy.",
+        texto: "Una promo, un menú, un formulario, tu Link Page. Lo que necesites hoy.",
       },
       {
         titulo: "Lo cambiás cuando quieras",
-        texto: "El cambio es instantáneo. El cartel de la pared sigue siendo el mismo.",
+        texto: "Desde el celular, al instante, y ves cuántos lo escanearon.",
       },
     ],
     mock: "qr",
@@ -89,14 +89,14 @@ export const features: Feature[] = [
   {
     slug: "resenas-ia",
     nombre: "Reseñas con IA",
-    corto: "Respondé Google en 30 segundos",
-    titular: "Respondé todas tus reseñas en 30 segundos",
+    corto: "Respuestas automáticas con la voz de tu marca",
+    titular: "Tus reseñas de Google, respondidas automáticamente con tu voz",
     bajada:
-      "Conectás tu cuenta de Google Business, FlashTag trae tus reseñas y genera una respuesta personalizada en el tono de tu marca. Vos la revisás, la ajustás si querés y la publicás.",
+      "Conectás tu cuenta de Google Business y FlashTag responde cada reseña de forma automática, con la voz de tu marca: vos definís el tono, cómo saludás, qué palabras usás y cuáles no. Podés revisar cada respuesta antes de publicar o dejar que salgan solas.",
     casos: [
-      "Respondé las de 5 estrellas sin repetirte",
-      "Bajá el tono de una reseña negativa",
-      "Mejorá tu posición en Google Maps",
+      "Las de 5 estrellas, respondidas sin repetirte",
+      "Una reseña negativa, con el tono justo",
+      "Mejor posición en Google Maps sin esfuerzo",
     ],
     pasos: [
       {
@@ -104,12 +104,12 @@ export const features: Feature[] = [
         texto: "Un clic en 'Conectar Google' y tus fichas aparecen en la app.",
       },
       {
-        titulo: "La IA propone",
-        texto: "Cada reseña llega con una respuesta sugerida en el tono de tu local.",
+        titulo: "Definís tu voz",
+        texto: "Tono, saludo, firma, palabras prohibidas. La IA responde como vos.",
       },
       {
-        titulo: "Vos publicás",
-        texto: "Aprobás, editás o descartás. Nada sale sin que lo veas.",
+        titulo: "Se responden solas",
+        texto: "Automático, o con tu aprobación antes de publicar. Vos elegís.",
       },
     ],
     mock: "resenas",
@@ -118,27 +118,27 @@ export const features: Feature[] = [
   {
     slug: "metricas",
     nombre: "Métricas",
-    corto: "Qué hacer la semana que viene",
-    titular: "Qué hacer la semana que viene, no un gráfico más",
+    corto: "Cómo interactúan con cada producto",
+    titular: "Métricas de cómo tus clientes interactúan con tu negocio",
     bajada:
-      "Escaneos por día, hora, dispositivo y ubicación. Clics por botón. Comparativa entre carteles. Todo apunta a tres preguntas: cuándo escanean, qué cartel funciona mejor, y qué hacés después.",
+      "Cuántos escanean el cartel de Google, cuántos siguen tu Instagram, cuántos giran la ruleta, cuántos entran al programa de fidelidad y cuándo lo hacen. Métricas sobre la interacción con cada uno de tus productos, en un panel que te dice qué está funcionando.",
     casos: [
-      "Descubrí tu hora pico real",
-      "Compará qué cartel rinde más",
-      "Medí si la promo funcionó",
+      "Qué producto genera más interacción",
+      "Cuánta gente usa la ruleta cada semana",
+      "Cuántos clientes vuelven por la fidelidad",
     ],
     pasos: [
       {
         titulo: "Se mide solo",
-        texto: "Cada escaneo, toque NFC y clic queda registrado. Sin configurar nada.",
+        texto: "Cada escaneo, toque NFC, giro y canje queda registrado. Sin configurar nada.",
       },
       {
         titulo: "Lo ves en el celular",
-        texto: "Un panel con lo que importa: picos, carteles, botones, recurrencia.",
+        texto: "Un panel con lo que importa: productos, horarios, ruleta, fidelidad, recurrencia.",
       },
       {
         titulo: "Decidís con datos",
-        texto: "Movés el cartel, cambiás la promo, ajustás el horario. Y volvés a medir.",
+        texto: "Ajustás premios, horarios y ubicación de cada producto. Y volvés a medir.",
       },
     ],
     mock: "metricas",
@@ -147,10 +147,10 @@ export const features: Feature[] = [
   {
     slug: "fidelidad",
     nombre: "Programa de fidelidad",
-    corto: "Que vuelvan, y que se note",
+    corto: "Una comunidad que te elige y vuelve",
     titular: "Tu tarjeta de fidelidad, en la billetera del celular de tu cliente",
     bajada:
-      "Tu cliente no descarga ninguna app. Escanea el cartel y guarda tu tarjeta, con tu logo y el esquema de puntos que vos elegiste, en Apple Wallet o en la billetera de Android. Suma visitas con el mismo cartel de siempre y canjea los premios que configurás vos. Sin imprimir nada, siempre a mano.",
+      "Construí una comunidad de clientes que te compran varias veces, te eligen y son premiados por eso. Tu cliente no descarga ninguna app: escanea y guarda tu tarjeta, con tu logo y el esquema de puntos que vos elegiste, en Apple Wallet o en la billetera de Android. Sin imprimir nada, siempre a mano.",
     analogia:
       "Es la tarjeta de sellos de toda la vida, pero vive al lado de su tarjeta de embarque y su SUBE: no se pierde, y te dice quién volvió.",
     casos: [
@@ -165,7 +165,7 @@ export const features: Feature[] = [
       },
       {
         titulo: "El cliente la guarda en su Wallet",
-        texto: "Escanea o apoya el teléfono y la agrega a Apple Wallet o Google Wallet. Sin bajar nada.",
+        texto: "Escanea o apoya el teléfono y la agrega a Apple Wallet o Google Wallet. Sin descargar nada.",
       },
       {
         titulo: "Canjea desde el celular",
@@ -178,10 +178,10 @@ export const features: Feature[] = [
   {
     slug: "ruleta",
     nombre: "Ruleta de premios",
-    corto: "Un giro por visita",
-    titular: "Convertí cada visita en un juego",
+    corto: "Una experiencia gamificada con tu marca",
+    titular: "Divertí a tus clientes y dales algo a cambio",
     bajada:
-      "El cliente escanea, gira la ruleta y se lleva un premio. Vos la personalizás entera: los premios, los colores de cada casillero y el porcentaje de suerte de cada uno. Es la excusa perfecta para que dejen la reseña o te sigan en Instagram.",
+      "Una experiencia gamificada con tu marca: el cliente escanea, gira la ruleta y se lleva un premio. Vos la personalizás entera: los premios, los colores de cada casillero y el porcentaje de suerte de cada uno. La excusa perfecta para que dejen la reseña o te sigan en tus redes.",
     casos: [
       "Un giro a cambio de una reseña",
       "Premios distintos por franja horaria",
@@ -194,7 +194,7 @@ export const features: Feature[] = [
       },
       {
         titulo: "Lo linkeás al QR",
-        texto: "El cartel de la mesa o de la caja lleva a la ruleta.",
+        texto: "Desde un QR dinámico, tu Link Page o el cartel del mostrador.",
       },
       {
         titulo: "Validás el premio",
@@ -213,7 +213,7 @@ export const pasos = [
   {
     n: 1,
     titulo: "Elegís tu cartel",
-    texto: "Carteles de mesa, tarjetas, stickers o combos. O empezás sin comprar nada.",
+    texto: "Un cartel por canal para el mostrador (Google, Instagram, WhatsApp), stickers para la vidriera, tarjetas. O empezás sin comprar nada.",
   },
   {
     n: 2,
@@ -228,6 +228,6 @@ export const pasos = [
   {
     n: 4,
     titulo: "Medís y ajustás",
-    texto: "Mirás qué pasa cada semana y cambiás lo que haga falta. Sin reimprimir.",
+    texto: "Mirás qué pasa cada semana desde la app y ajustás lo que haga falta.",
   },
 ] as const;

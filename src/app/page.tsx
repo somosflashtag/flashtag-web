@@ -72,14 +72,15 @@ export default function Home() {
           <div data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
             <p className="t-lead measure text-muted">
               Vendés bien, atendés bien, pero no tenés forma de saber quién entró,
-              qué miró ni cómo hacer que vuelva. Las reseñas se acumulan sin
-              respuesta y tu cartel dice lo mismo desde hace ocho meses.
+              qué le interesó ni cómo hacer que vuelva. Las reseñas se acumulan
+              sin respuesta y los seguidores, los contactos y las visitas
+              repetidas quedan librados a la suerte.
             </p>
             <ul className="mt-8 space-y-4">
               {[
                 "El 76% de quienes buscan un negocio local cerca visitan uno en 24 horas.",
                 "Los comercios que responden reseñas reciben más consultas que los que no.",
-                "Un cartel impreso que no podés cambiar es dinero congelado en la pared.",
+                "Un cliente que ya está en tu local es el más fácil de convertir: solo hay que darle un gesto para hacerlo.",
               ].map((t) => (
                 <li key={t} className="flex gap-3">
                   <QRMark size={13} className="mt-1.5" />
@@ -101,8 +102,9 @@ export default function Home() {
             Todo lo que tu local necesita, en un solo lugar
           </h2>
           <p className="t-lead mx-auto mt-4 text-muted">
-            Un cartel en la mesa y seis herramientas en tu celular. Cada una se
-            usa sola; juntas hacen que el cliente vuelva.
+            Un producto físico y una solución digital. Cada funcionalidad está
+            pensada para que tu cliente interactúe, convierta con tu negocio y
+            vuelva. Pensada para ayudarte a crecer.
           </p>
         </div>
         <div className="mt-12 lg:mt-16">

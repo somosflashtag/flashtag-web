@@ -52,7 +52,7 @@ Antes de elegir herramienta, respondete tres preguntas:
 
 ## Cómo funciona en FlashTag
 
-El programa de fidelidad de FlashTag usa el mismo cartel que ya tenés en la mesa o en la caja. El cliente escanea el QR o apoya el teléfono y guarda tu tarjeta, con tu logo y tu esquema de puntos, en Apple Wallet o en la billetera de Android. No descarga ninguna app y no imprimís nada: la tarjeta queda siempre a mano, al lado de su tarjeta de embarque y su SUBE.
+El programa de fidelidad de FlashTag usa el mismo cartel que ya tenés en el mostrador o en la caja. El cliente escanea el QR o apoya el teléfono y guarda tu tarjeta, con tu logo y tu esquema de puntos, en Apple Wallet o en la billetera de Android. No descarga ninguna app y no imprimís nada: la tarjeta queda siempre a mano, al lado de su tarjeta de embarque y su SUBE.
 
 Vos definís los premios desde la app — cuántas visitas, qué se llevan, si hay tope diario — y validás cada canje con un código. Todo queda registrado: cuántos miembros tenés, cuántos volvieron esta semana y qué premio funciona mejor. Está incluido en el plan Full.
 

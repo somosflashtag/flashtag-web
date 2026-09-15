@@ -22,7 +22,7 @@ const queEs = [
   {
     titulo: "Contenido editable",
     texto:
-      "Cambiá el link, la página o la info detrás del QR cuando quieras. Sin reimprimir nada.",
+      "Cambiá el link, la página o la info detrás del QR cuando quieras, desde la app.",
   },
   {
     titulo: "Métricas reales",

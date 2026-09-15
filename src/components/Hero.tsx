@@ -30,10 +30,10 @@ export function Hero() {
             </h1>
 
             <p className="t-lead measure mt-6 text-muted">
-              Un cartel en la mesa, una app en tu celular. Tu cliente escanea o
-              apoya el teléfono y deja la reseña, te sigue, suma puntos o pide
-              por WhatsApp. Vos ves todo en el dashboard y cambiás lo que haga
-              falta sin reimprimir nada.
+              Un producto físico y una solución digital. Tu cliente escanea o
+              apoya el teléfono y deja la reseña en Google, te sigue en tus
+              redes, inicia una conversación por WhatsApp o suma puntos en tu
+              programa de fidelidad. Vos ves todo en la app.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -63,7 +63,7 @@ export function Hero() {
                 <MockDashboard />
               </PhoneFrame>
 
-              {/* El cartel: QR + NFC, el objeto que está en la mesa */}
+              {/* El cartel: QR + NFC, el objeto que está en el mostrador */}
               <div className="absolute bottom-10 left-0 hidden w-[164px] rounded-[var(--radius-card)] border border-line bg-paper p-3 shadow-[var(--shadow-float)] sm:block lg:-left-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-semibold uppercase tracking-wide text-muted">
@@ -96,7 +96,7 @@ export function Hero() {
                 </span>
                 <span className="text-[12px] font-semibold leading-tight">
                   Toque NFC
-                  <span className="block text-[10px] font-medium text-muted">Mesa 4 · ahora</span>
+                  <span className="block text-[10px] font-medium text-muted">Mostrador · ahora</span>
                 </span>
               </div>
             </div>

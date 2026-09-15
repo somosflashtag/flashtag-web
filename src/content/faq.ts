@@ -12,15 +12,15 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home"],
   },
   {
-    pregunta: "¿Puedo cambiar el destino del QR después de imprimirlo?",
+    pregunta: "¿Puedo usar el cartel de Google para otra cosa?",
     respuesta:
-      "Sí, esa es justamente la idea. El QR impreso nunca cambia, pero desde el dashboard editás a dónde apunta y el cambio es instantáneo. No tenés que reimprimir nada.",
+      "Cada cartel está pensado para un canal: el de Google lleva a tu ficha para que te dejen la reseña, el de Instagram a tu perfil para que te sigan, el de WhatsApp abre una conversación. Si querés un QR que apunte a lo que vos decidas (una promo, un menú, un formulario), creás un QR dinámico desde la app y lo cambiás cuando quieras.",
     mostrarEn: ["home"],
   },
   {
     pregunta: "¿Cómo funcionan las reseñas con IA?",
     respuesta:
-      "Conectás tu cuenta de Google Business Profile, FlashTag trae tus reseñas y genera una respuesta personalizada en el tono de tu marca. Vos la revisás, la ajustás si querés y la publicás.",
+      "Conectás tu cuenta de Google Business Profile y FlashTag responde tus reseñas automáticamente con la voz de tu marca: vos definís el tono, el saludo y las palabras que usás. Podés aprobar cada respuesta antes de publicar o dejar que salgan solas.",
     mostrarEn: ["home"],
   },
   {

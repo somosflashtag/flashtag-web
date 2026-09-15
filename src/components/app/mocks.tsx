@@ -151,7 +151,7 @@ export function MockDashboard() {
             </svg>
           </span>
           <div className="min-w-0 flex-1">
-            <p className="text-[12px] font-semibold">Cartel mesa 4 · NFC</p>
+            <p className="text-[12px] font-semibold">Cartel de Google · NFC</p>
             <p className="text-[10px] text-muted">Último toque hace 2 min</p>
           </div>
           <span className="size-2 rounded-full bg-teal" />
@@ -165,9 +165,9 @@ export function MockDashboard() {
 
 export function MockQR() {
   const destinos = [
-    { label: "Reseña en Google", on: true },
-    { label: "Menú del día", on: false },
-    { label: "WhatsApp", on: false },
+    { label: "Promo de la semana", on: true },
+    { label: "Menú de temporada", on: false },
+    { label: "Formulario de turnos", on: false },
   ];
   return (
     <AppShell active="qr" title="Mis QR">
@@ -181,8 +181,8 @@ export function MockQR() {
             />
           </div>
           <div className="min-w-0">
-            <p className="truncate text-[12px] font-semibold">Cartel de mesa · Google</p>
-            <p className="text-[10px] text-muted">QR + NFC · activo</p>
+            <p className="truncate text-[12px] font-semibold">QR dinámico · Promo</p>
+            <p className="text-[10px] text-muted">Creado en la app · activo</p>
             <p className="mt-1.5 text-[11px] font-semibold text-brand tnum">
               1.204 escaneos
             </p>
@@ -229,7 +229,7 @@ export function MockQR() {
         <Card className="flex items-center justify-between">
           <div>
             <Label>Cambios este mes</Label>
-            <p className="text-[12px] font-semibold">4 · sin reimprimir nada</p>
+            <p className="text-[12px] font-semibold">4 · desde el celular</p>
           </div>
           <span className="rounded-full bg-teal/10 px-2 py-0.5 text-[10px] font-semibold text-teal">
             En vivo
@@ -298,7 +298,7 @@ export function MockResenas() {
     <AppShell active="resenas" title="Reseñas">
       <div className="space-y-2.5">
         <div className="flex gap-1.5">
-          {["Todas · 12", "Sin responder · 3", "5 ★"].map((t, i) => (
+          {["Todas · 12", "Automáticas · 9", "5 ★"].map((t, i) => (
             <span
               key={t}
               className={cn(
@@ -331,7 +331,7 @@ export function MockResenas() {
               <svg viewBox="0 0 12 12" width="10" height="10" fill="currentColor" aria-hidden="true">
                 <path d="M6 0l1.2 3.6L11 4.8 7.2 6 6 9.6 4.8 6 1 4.8l3.8-1.2z" />
               </svg>
-              Respuesta sugerida
+              Respondida automáticamente · voz de marca
             </p>
             <p className="mt-1 text-[11px] leading-snug">
               ¡Gracias, Marina! Nos alegra que te haya gustado. Te esperamos con
@@ -339,10 +339,10 @@ export function MockResenas() {
             </p>
             <div className="mt-2 flex gap-1.5">
               <span className="flex-1 rounded-lg bg-brand py-1.5 text-center text-[10px] font-semibold text-white">
-                Publicar
+                Ver en Google
               </span>
               <span className="flex-1 rounded-lg border border-line bg-paper py-1.5 text-center text-[10px] font-semibold">
-                Editar
+                Ajustar voz
               </span>
             </div>
           </div>
@@ -370,7 +370,7 @@ export function MockMetricas() {
   const horas = [4, 6, 9, 14, 22, 31, 38, 27, 19, 33, 46, 40, 24, 12];
   const max = Math.max(...horas);
   const carteles = [
-    { n: "Mesa · Google", v: 62 },
+    { n: "Mostrador · Google", v: 62 },
     { n: "Vidriera · Instagram", v: 41 },
     { n: "Caja · WhatsApp", v: 28 },
   ];
@@ -379,7 +379,7 @@ export function MockMetricas() {
       <div className="space-y-2.5">
         <Card>
           <div className="flex items-center justify-between">
-            <Label>Escaneos por hora</Label>
+            <Label>Interacciones por hora</Label>
             <span className="text-[10px] font-semibold text-brand">Pico 19:00</span>
           </div>
           <div className="mt-2.5 flex h-16 items-end gap-[3px]">
@@ -421,12 +421,12 @@ export function MockMetricas() {
         </Card>
         <div className="grid grid-cols-2 gap-2.5">
           <Card>
-            <Label>Dispositivo</Label>
-            <p className="mt-1 text-[12px] font-semibold">91% celular</p>
+            <Label>Giros de ruleta</Label>
+            <p className="mt-1 text-[12px] font-semibold tnum">212</p>
           </Card>
           <Card>
-            <Label>Recurrentes</Label>
-            <p className="mt-1 text-[12px] font-semibold tnum">34%</p>
+            <Label>Nuevos en fidelidad</Label>
+            <p className="mt-1 text-[12px] font-semibold tnum">38</p>
           </Card>
         </div>
       </div>

@@ -19,6 +19,8 @@ function Check({ on }: { on: boolean }) {
 
 function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
   const precio = anual && plan.precioAnualPorMes !== null ? plan.precioAnualPorMes : plan.precioMensual;
+  const ars =
+    anual && plan.totalAnualARS ? Math.round(plan.totalAnualARS / 12) : plan.precioARS;
 
   return (
     <div
@@ -54,14 +56,14 @@ function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
         )}
         {plan.precioMensual > 0 && (
           <p className={cn("mt-2 text-[0.9375rem] font-medium", plan.destacado ? "text-white/80" : "text-ink")}>
-            o <span className="tnum">{precioARS(plan.precioARS)}</span> ARS/mes
+            o <span className="tnum">{precioARS(ars)}</span> ARS/mes
           </p>
         )}
         <p className={cn("mt-1.5 text-[13px]", plan.destacado ? "text-white/50" : "text-muted")}>
           {plan.precioMensual === 0
             ? "Para siempre, sin tarjeta"
             : anual
-              ? `USD ${plan.totalAnual} facturados por año`
+              ? `USD ${plan.totalAnual} o ${precioARS(plan.totalAnualARS ?? 0)} ARS por año`
               : "Facturación mensual · sin permanencia"}
         </p>
       </div>

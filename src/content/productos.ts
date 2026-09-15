@@ -2,7 +2,11 @@
  * TIENDA — los productos físicos que se venden en shop.flashtag.tech.
  *
  * Es lo más tangible que tiene la marca: un objeto que llega al local, con
- * precio en pesos y foto en una mesa real. Por eso vive en la home.
+ * precio en pesos y foto en un local real. Por eso vive en la home.
+ *
+ * Cada cartel tiene UN canal (Google, Instagram, WhatsApp...). No es un QR
+ * genérico: el de Google lleva a la ficha de Google y nada más. Para un
+ * destino libre está el QR dinámico de la app.
  *
  * Cada pieza trae QR **y NFC**: se escanea con la cámara o se apoya el
  * teléfono. El gesto de apoyar es el diferencial — no hay que abrir nada.
@@ -32,7 +36,7 @@ export const productos: Producto[] = [
     slug: "cartel-google",
     nombre: "Cartel de Google",
     bajada:
-      "El que más se vende. Va en la mesa o el mostrador y lleva directo a tu ficha de Google para que te dejen la reseña.",
+      "El que más se vende. Va en el mostrador y lleva directo a tu ficha de Google para que te dejen la reseña.",
     precioARS: 39999,
     etiqueta: "Más vendido",
     foto: "/productos/cartel-google.webp",
@@ -43,7 +47,7 @@ export const productos: Producto[] = [
     slug: "cartel-instagram",
     nombre: "Cartel de Instagram",
     bajada:
-      "Convierte a quien ya está en tu local en seguidor. Apoya el teléfono, te sigue, vuelve a lo suyo.",
+      "Convierte a quien ya está en tu local en seguidor. Apoya el teléfono, te sigue en tus redes, vuelve a lo suyo.",
     precioARS: 39999,
     foto: "/productos/cartel-instagram.webp",
     alt: "Cartel acrílico de Instagram de FlashTag apoyado en un local",
@@ -53,7 +57,7 @@ export const productos: Producto[] = [
     slug: "cartel-whatsapp",
     nombre: "Cartel de WhatsApp",
     bajada:
-      "Para que te escriban sin cargar el número. Pedidos, reservas y consultas directo a tu chat.",
+      "Para que inicien una conversación por WhatsApp sin cargar el número. Pedidos, reservas y consultas directo a tu chat.",
     precioARS: 39999,
     foto: "/productos/cartel-whatsapp.webp",
     alt: "Cartel acrílico de WhatsApp de FlashTag en un mostrador",
@@ -66,13 +70,13 @@ export const formatos = [
   {
     nombre: "Cartel acrílico",
     medida: "14 × 14 cm",
-    texto: "Con base propia. Va en la mesa, el mostrador o la caja.",
+    texto: "Con base propia. Para el mostrador o la caja del local.",
     foto: "/productos/carteles.webp",
   },
   {
     nombre: "Sticker para vidriera",
     medida: "15 × 15 cm",
-    texto: "Se pega en el vidrio o la pared. Ideal para la entrada.",
+    texto: "Para la vidriera. Lo ve quien pasa, antes de entrar.",
     foto: "/productos/stickers.webp",
   },
   {
@@ -84,9 +88,9 @@ export const formatos = [
 ];
 
 export const tienda = {
-  titular: "Elegí el cartel que va en tu local",
+  titular: "Un cartel para cada canal de tu local",
   bajada:
-    "Llega impreso, con el QR y el chip NFC ya activados. Lo ponés en la mesa y empieza a funcionar.",
+    "Cada cartel tiene su uso: Google para reseñas, Instagram para seguidores, WhatsApp para conversaciones. Llega con el QR y el chip NFC activados: lo ponés en el mostrador y empieza a funcionar.",
   href: SHOP,
 };
 
