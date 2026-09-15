@@ -75,7 +75,7 @@ integración exista de verdad en producción.
 
 - [ ] Favicon oficial (hoy `src/app/icon.svg` usa el marcador QR del sistema)
 - [ ] `site.proof.locales` — número real de comercios
-- [ ] Confirmar YouTube y TikTok en `site.social` (hoy usan "somosflashtag")
+- [ ] Confirmar TikTok en `site.social` (hoy usa "somosflashtag"; YouTube ya es `@Somos_FlashTag`)
 - [ ] Logos oficiales de Stripe y Mercado Pago → `MediosDePago.tsx`
 - [ ] Imagen del QR de Data Fiscal → `site.dataFiscal`
 - [ ] Autorización escrita de los comercios → `casos.ts` (`autorizado`)

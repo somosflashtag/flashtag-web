@@ -22,7 +22,7 @@ export const site = {
   /** Redes públicas. YouTube y TikTok PENDIENTES de confirmar. */
   social: {
     instagram: "https://www.instagram.com/flashtag.tech/",
-    youtube: "https://www.youtube.com/@somosflashtag",
+    youtube: "https://www.youtube.com/@Somos_FlashTag",
     tiktok: "https://www.tiktok.com/@somosflashtag",
     linkedin: "",
   },
