@@ -78,16 +78,15 @@ export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
       { label: "Nosotros", href: "/nosotros" },
       { label: "Contacto", href: "/contacto" },
       { label: "Prensa", href: "/prensa" },
-    ],
-  },
-  {
-    titulo: "Legal",
-    links: [
-      { label: "Términos y condiciones", href: "/terminos" },
-      { label: "Política de privacidad", href: "/privacidad" },
       { label: "Ingresar a la app", href: site.urls.login, externo: true },
     ],
   },
+];
+
+/** Van en línea al pie, después de la raya. */
+export const linksLegales: NavItem[] = [
+  { label: "Términos y condiciones", href: "/terminos" },
+  { label: "Política de privacidad", href: "/privacidad" },
 ];
 
 /** Rutas propias, para el sitemap. Incluye una página por feature. */

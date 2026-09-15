@@ -132,10 +132,10 @@ export default async function ArticuloPage({
         </div>
       </Container>
 
-      <Section dark>
+      <Section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="t-h2">Empezá hoy. Es gratis.</h2>
-          <p className="t-lead mt-4 text-muted-dark">
+          <p className="t-lead mt-4 text-muted">
             Sin tarjeta de crédito. Setup en minutos.
           </p>
           <Button

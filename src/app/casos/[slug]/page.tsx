@@ -153,10 +153,10 @@ export default async function CasoPage({
         </Link>
       </Container>
 
-      <Section dark>
+      <Section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="t-h2">¿Querés resultados como estos?</h2>
-          <p className="t-lead mt-4 text-muted-dark">
+          <p className="t-lead mt-4 text-muted">
             Empezá con un cartel y escalá cuando quieras.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -167,7 +167,6 @@ export default async function CasoPage({
               href={cta.primary.href}
               variant="secondary"
               size="lg"
-              className="border-white/25 text-white hover:border-white hover:bg-white/10"
             >
               {cta.primary.label}
             </Button>

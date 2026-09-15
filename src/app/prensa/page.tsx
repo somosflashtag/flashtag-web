@@ -126,10 +126,10 @@ export default function PrensaPage() {
         </div>
       </Section>
 
-      <Section dark>
+      <Section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="t-h2">¿Cubrís comercio local o tecnología?</h2>
-          <p className="t-lead mt-4 text-muted-dark">
+          <p className="t-lead mt-4 text-muted">
             Contamos con datos de uso, casos y voceros disponibles para
             entrevistas.
           </p>
@@ -142,7 +142,7 @@ export default function PrensaPage() {
           >
             Contactar a prensa
           </Button>
-          <p className="t-caption mt-6 text-muted-dark">
+          <p className="t-caption mt-6 text-muted">
             {site.name} · Buenos Aires, Argentina
           </p>
         </div>

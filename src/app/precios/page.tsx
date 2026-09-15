@@ -80,7 +80,7 @@ export default function PreciosPage() {
         </div>
       </Section>
 
-      <Section dark className="text-center">
+      <Section className="border-t border-line bg-surface text-center">
         <h2 className="t-h2 measure mx-auto text-balance">
           Empezá gratis. Pagá cuando te rinda.
         </h2>

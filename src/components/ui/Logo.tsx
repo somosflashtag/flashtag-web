@@ -18,12 +18,15 @@ import { cn } from "@/lib/cn";
  * y borrar este comentario. Nada más cambia — todo el sitio consume este
  * componente.
  */
-function Wordmark({ stacked }: { stacked: boolean }) {
+function Wordmark({ stacked, light }: { stacked: boolean; light: boolean }) {
+  /* Variante en blanco para fondos oscuros: las dos palabras en blanco. */
+  const a = light ? "text-paper" : "text-ink";
+  const b = light ? "text-paper" : "text-brand";
   if (!stacked) {
     return (
       <span className="font-[family-name:var(--font-logo)] text-[1em] font-semibold leading-none tracking-[-0.02em]">
-        <span className="text-ink">flash</span>
-        <span className="text-brand">tag</span>
+        <span className={a}>flash</span>
+        <span className={b}>tag</span>
       </span>
     );
   }
@@ -35,8 +38,8 @@ function Wordmark({ stacked }: { stacked: boolean }) {
          que pide el logo, sin eso la cola queda cortada. */
       className="flex flex-col items-end pb-[0.16em] font-[family-name:var(--font-logo)] text-[1em] font-semibold leading-[0.8] tracking-[-0.02em]"
     >
-      <span className="text-ink">flash</span>
-      <span className="text-brand">tag</span>
+      <span className={a}>flash</span>
+      <span className={b}>tag</span>
     </span>
   );
 }
@@ -46,6 +49,7 @@ export function Logo({
   variant = "stacked",
   href = "/",
   onClick,
+  tone = "dark",
 }: {
   className?: string;
   /** `stacked` es el logo real. `inline` solo donde no entra en dos líneas. */
@@ -53,8 +57,10 @@ export function Logo({
   /** `null` renderiza el wordmark sin envolverlo en un link. */
   href?: string | null;
   onClick?: () => void;
+  /** `light` sobre fondos oscuros. */
+  tone?: "dark" | "light";
 }) {
-  const mark = <Wordmark stacked={variant === "stacked"} />;
+  const mark = <Wordmark stacked={variant === "stacked"} light={tone === "light"} />;
 
   if (href === null) {
     return (

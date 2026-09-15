@@ -67,10 +67,10 @@ export default function ComoFuncionaPage() {
         </div>
       </Section>
 
-      <Section dark className="surface-deep">
+      <Section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="t-h2">¿Listo para llevar tu local al siguiente nivel?</h2>
-          <p className="t-lead mt-4 text-muted-dark">
+          <p className="t-lead mt-4 text-muted">
             Empezá gratis, sin tarjeta de crédito. Setup en minutos.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -81,7 +81,6 @@ export default function ComoFuncionaPage() {
               href={cta.secondary.href}
               variant="secondary"
               size="lg"
-              className="border-white/25 text-white hover:border-white hover:bg-white/10"
             >
               {cta.secondary.label}
             </Button>

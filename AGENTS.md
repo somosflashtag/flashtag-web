@@ -54,7 +54,9 @@ social.
 página propia en `/producto/`, lugar en el bento y el tour, plan en
 `planes.ts`. Nada de "próximamente" en el sitio.
 
-**7. Marcas de terceros solo con autorización.** No se listan logos ni nombres
+**7. Marcas de terceros solo con autorización.** Los medios de pago del
+footer (`MediosDePago.tsx`) son badges tipográficos, no los logos oficiales.
+ No se listan logos ni nombres
 de empresas (clientes, integraciones, medios) sin permiso escrito y sin que la
 integración exista de verdad en producción.
 
@@ -76,8 +78,8 @@ integración exista de verdad en producción.
       pero sigue siendo una reconstrucción
 - [ ] Favicon oficial (hoy `src/app/icon.svg` usa el marcador QR del sistema)
 - [ ] `site.proof.locales` — número real de comercios
-- [ ] `site.urls.whatsapp` — número real
-- [ ] Redes en `site.social`
+- [ ] Confirmar los handles de `site.social` (hoy usan "somosflashtag")
+- [ ] Imagen del QR de Data Fiscal → `site.dataFiscal`
 - [ ] Autorización escrita de los comercios → `casos.ts` (`autorizado`)
 - [ ] URLs de las notas de prensa → `prensa.ts` (`verificada`)
 - [ ] Aval institucional UBA → `cursos.ts` (`avalPendiente`)

@@ -239,11 +239,11 @@ export default function Home() {
       </Section>
 
       {/* ── CTA FINAL ────────────────────────────────────────── */}
-      <Section dark className="surface-deep text-center">
+      <Section className="border-t border-line bg-surface text-center">
         <h2 className="t-h2 measure mx-auto text-balance" data-reveal>
           Probalo gratis y mirá qué pasa en una semana
         </h2>
-        <p className="t-lead measure mx-auto mt-5 text-white/60">
+        <p className="t-lead measure mx-auto mt-5 text-muted">
           Sin tarjeta, sin permanencia y sin instalar nada. Si no te sirve, lo
           dejás.
         </p>
@@ -251,7 +251,7 @@ export default function Home() {
           <Button href={cta.primary.href} variant="primary" size="lg" arrow>
             {cta.primary.label}
           </Button>
-          <Button href={cta.secondary.href} variant="secondary" size="lg" className="border-white/25 text-white hover:border-white hover:bg-white/10">
+          <Button href={cta.secondary.href} variant="secondary" size="lg">
             {cta.secondary.label}
           </Button>
         </div>

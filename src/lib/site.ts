@@ -16,15 +16,24 @@ export const site = {
     /** Portal de la app. Es el destino de TODO CTA de "probar / empezar". */
     login: "https://my.flashtag.tech/login",
     shop: "https://shop.flashtag.tech",
-    whatsapp: "https://wa.me/54911XXXXXXXX", // PENDIENTE: número real
+    whatsapp: "https://wa.me/541132132506",
   },
 
+  /** Redes públicas. Handles PENDIENTES de confirmar: hoy usan el nombre de la org. */
   social: {
-    instagram: "", // PENDIENTE
-    linkedin: "", // PENDIENTE
-    tiktok: "", // PENDIENTE
-    youtube: "", // PENDIENTE
+    instagram: "https://www.instagram.com/somosflashtag",
+    youtube: "https://www.youtube.com/@somosflashtag",
+    tiktok: "https://www.tiktok.com/@somosflashtag",
+    linkedin: "",
   },
+
+  contacto: {
+    email: "hola@flashtag.tech",
+    telefono: "+54 11 3213 2506",
+  },
+
+  /** Imagen del QR de Data Fiscal (AFIP). `null` hasta subir el archivo. */
+  dataFiscal: null as { src: string; href: string } | null,
 
   /**
    * ⚠️ PRUEBA SOCIAL — un solo número en todo el sitio.
