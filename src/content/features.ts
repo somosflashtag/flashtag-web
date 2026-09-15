@@ -1,4 +1,5 @@
 import type { MockId } from "@/components/app/mocks";
+import { pasos as pasosBase } from "./pasos";
 
 /**
  * FEATURES — las seis capacidades de la app, en el orden en que se venden.
@@ -209,25 +210,5 @@ export const features: Feature[] = [
 export const featurePorSlug = (slug: string) =>
   features.find((f) => f.slug === slug);
 
-export const pasos = [
-  {
-    n: 1,
-    titulo: "Elegís tu cartel",
-    texto: "Un cartel por canal para el mostrador (Google, Instagram, WhatsApp), stickers para la vidriera, tarjetas. O empezás sin comprar nada.",
-  },
-  {
-    n: 2,
-    titulo: "Lo recibís con el QR impreso",
-    texto: "Envíos a todo el país. Llega listo para usar, sin configuración.",
-  },
-  {
-    n: 3,
-    titulo: "Activás tu cuenta gratis",
-    texto: "Escaneás tu propio cartel, creás la cuenta y ya podés editar el destino.",
-  },
-  {
-    n: 4,
-    titulo: "Medís y ajustás",
-    texto: "Mirás qué pasa cada semana desde la app y ajustás lo que haga falta.",
-  },
-] as const;
+/** Los 4 pasos de la home: la misma fuente que /como-funciona, numerada. */
+export const pasos = pasosBase.map((p, i) => ({ n: i + 1, ...p }));

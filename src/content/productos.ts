@@ -52,7 +52,7 @@ export const productos: Producto[] = [
     precioARS: 39999,
     foto: "/productos/cartel-instagram.webp",
     alt: "Cartel acrílico de Instagram de FlashTag apoyado en un local",
-    href: `${SHOP}/collections/carteles`,
+    href: `${SHOP}/products/cartel-de-instagram-aumenta-tus-seguidores`,
   },
   {
     slug: "combo",

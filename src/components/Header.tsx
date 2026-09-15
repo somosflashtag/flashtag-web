@@ -194,7 +194,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button href={cta.secondary.href} variant="ghost" size="sm" className="hidden lg:inline-flex">
+            <Button href={cta.secondary.href} variant="secondary" size="sm" className="hidden lg:inline-flex">
               {cta.secondary.label}
             </Button>
             <Button href={cta.primary.href} variant="primary" size="sm">

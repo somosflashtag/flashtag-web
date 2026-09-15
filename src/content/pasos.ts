@@ -1,28 +1,33 @@
-/** Los 4 pasos de "Así de simple es empezar" (migrado de Framer). */
+/**
+ * CÓMO FUNCIONA — los 4 pasos, fuente única para la home y /como-funciona.
+ * Metodología: elegís el modelo en la tienda, lo recibís, lo activás gratis
+ * desde la app asociándolo a su ID, y medís su interacción.
+ */
 
 export const pasos = [
   {
-    titulo: "Comprás tu cartel",
+    titulo: "Elegís el modelo en la tienda",
     texto:
-      "Elegís diseño en la tienda: tarjetas, carteles o stickers, según cómo sea tu local.",
+      "Carteles, stickers o tarjetas. De Google, Instagram, WhatsApp, Web, TikTok, Tripadvisor o Facebook: cada producto con su uso.",
   },
   {
     titulo: "Lo recibís en tu local",
-    texto: "Con el QR ya impreso y listo para usar. No hay nada que configurar.",
+    texto: "Llega con el QR y el chip NFC listos. Envíos a todo el país.",
   },
   {
-    titulo: "Lo activás gratis",
+    titulo: "Lo activás gratis desde la app",
     texto:
-      "Escaneás el QR, te registrás en la app y lo configurás en un par de minutos.",
+      "De manera remota: creás tu cuenta y asociás el cartel con su ID correspondiente. Listo en minutos.",
   },
   {
-    titulo: "Crecés tu negocio",
+    titulo: "Medís la interacción",
     texto:
-      "Medís, respondés reseñas y fidelizás. Todo desde el mismo lugar.",
+      "Cuántos escanean o apoyan el teléfono, cuándo y en qué producto. Datos para tomar mejores decisiones.",
   },
 ];
 
 export const pasosIntro = {
   titular: "Así de simple es empezar.",
-  bajada: "De comprar un cartel a ver métricas en el dashboard, en menos de 48 horas.",
+  bajada:
+    "De elegir el modelo en la tienda a ver la interacción de tu cartel en la app, en menos de 48 horas.",
 };
