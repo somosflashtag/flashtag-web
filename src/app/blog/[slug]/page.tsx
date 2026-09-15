@@ -3,10 +3,10 @@ import path from "node:path";
 import { marked } from "marked";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { CtaFinal } from "@/components/CtaFinal";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { QRMark } from "@/components/ui/QRMark";
-import { Section } from "@/components/ui/Section";
 import { articulos, articulosPublicables } from "@/content/blog";
 import { pageMeta } from "@/lib/seo";
 import { cta, site } from "@/lib/site";
@@ -132,23 +132,14 @@ export default async function ArticuloPage({
         </div>
       </Container>
 
-      <Section dark>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">Empezá hoy. Es gratis.</h2>
-          <p className="t-lead mt-4 text-muted-dark">
-            Sin tarjeta de crédito. Setup en minutos.
-          </p>
-          <Button
-            href={cta.primary.href}
-            variant="primary"
-            size="lg"
-            arrow
-            className="mt-8"
-          >
-            Crear cuenta gratis
-          </Button>
-        </div>
-      </Section>
+      <CtaFinal
+        titulo="Empezá hoy. Es gratis."
+        texto="Sin tarjeta de crédito. Setup en minutos."
+      >
+        <Button href={cta.primary.href} variant="primary" size="lg" arrow>
+          Crear cuenta gratis
+        </Button>
+      </CtaFinal>
     </>
   );
 }

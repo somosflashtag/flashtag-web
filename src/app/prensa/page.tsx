@@ -1,3 +1,4 @@
+import { CtaFinal } from "@/components/CtaFinal";
 import { Button } from "@/components/ui/Button";
 import { QRMark } from "@/components/ui/QRMark";
 import { Section } from "@/components/ui/Section";
@@ -126,27 +127,15 @@ export default function PrensaPage() {
         </div>
       </Section>
 
-      <Section dark>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">¿Cubrís comercio local o tecnología?</h2>
-          <p className="t-lead mt-4 text-muted-dark">
-            Contamos con datos de uso, casos y voceros disponibles para
-            entrevistas.
-          </p>
-          <Button
-            href={`mailto:${EMAIL}`}
-            variant="primary"
-            size="lg"
-            arrow
-            className="mt-8"
-          >
-            Contactar a prensa
-          </Button>
-          <p className="t-caption mt-6 text-muted-dark">
-            {site.name} · Buenos Aires, Argentina
-          </p>
-        </div>
-      </Section>
+      <CtaFinal
+        titulo="¿Cubrís comercio local o tecnología?"
+        texto="Contamos con datos de uso, casos y voceros disponibles para entrevistas."
+        pie={`${site.name} · Buenos Aires, Argentina`}
+      >
+        <Button href={`mailto:${EMAIL}`} variant="primary" size="lg" arrow>
+          Contactar a prensa
+        </Button>
+      </CtaFinal>
     </>
   );
 }

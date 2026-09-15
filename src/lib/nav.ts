@@ -78,16 +78,20 @@ export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
       { label: "Nosotros", href: "/nosotros" },
       { label: "Contacto", href: "/contacto" },
       { label: "Prensa", href: "/prensa" },
-    ],
-  },
-  {
-    titulo: "Legal",
-    links: [
-      { label: "Términos y condiciones", href: "/terminos" },
-      { label: "Política de privacidad", href: "/privacidad" },
       { label: "Ingresar a la app", href: site.urls.login, externo: true },
     ],
   },
+];
+
+/**
+ * Legales. No son una columna del footer: van en la barra inferior, en
+ * línea con el copyright. Es donde los busca la gente y donde los esperan
+ * Google y las pasarelas de pago.
+ */
+export const linksLegales: NavItem[] = [
+  { label: "Términos y condiciones", href: "/terminos" },
+  { label: "Política de privacidad", href: "/privacidad" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 /** Rutas propias, para el sitemap. Incluye una página por feature. */

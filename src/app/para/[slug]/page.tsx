@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { CtaFinal } from "@/components/CtaFinal";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import { QRMark } from "@/components/ui/QRMark";
@@ -132,27 +133,17 @@ export default async function RubroPage({
         </ul>
       </Section>
 
-      <Section dark>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">Empezá hoy. Es gratis.</h2>
-          <p className="t-lead mt-4 text-muted-dark">
-            Sin tarjeta de crédito. Setup en minutos.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href={cta.primary.href} variant="primary" size="lg" arrow>
-              Crear cuenta gratis
-            </Button>
-            <Button
-              href={cta.secondary.href}
-              variant="secondary"
-              size="lg"
-              className="border-white/25 text-white hover:border-white hover:bg-white/10"
-            >
-              {cta.secondary.label}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CtaFinal
+        titulo="Empezá hoy. Es gratis."
+        texto="Sin tarjeta de crédito. Setup en minutos."
+      >
+        <Button href={cta.primary.href} variant="primary" size="lg" arrow>
+          Crear cuenta gratis
+        </Button>
+        <Button href={cta.secondary.href} variant="secondary" size="lg">
+          {cta.secondary.label}
+        </Button>
+      </CtaFinal>
     </>
   );
 }
