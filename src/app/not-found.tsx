@@ -23,7 +23,7 @@ export default function NotFound() {
         </p>
 
         <ul className="mt-10 flex flex-wrap justify-center gap-2.5">
-          {navPrincipal.map((d) => (
+          {navPrincipal.filter((d) => !d.externo).map((d) => (
             <li key={d.href}>
               <Link
                 href={d.href}

@@ -67,7 +67,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4 lg:h-[72px]">
           <Logo className="text-[1.25rem] lg:text-[1.375rem]" onClick={() => setOpen(false)} />
 
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Principal">
             {navPrincipal.map((item) =>
               item.label === "Aplicación" ? (
                 <div
@@ -181,6 +181,14 @@ export function Header() {
                     </div>
                   )}
                 </div>
+              ) : item.externo ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-[0.9375rem] font-medium text-muted transition-colors duration-[120ms] hover:text-ink"
+                >
+                  {item.label}
+                </a>
               ) : (
                 <Link
                   key={item.href}
@@ -247,18 +255,26 @@ export function Header() {
               {[
                 { label: "Cómo funciona", href: "/como-funciona" },
                 ...navPrincipal.filter((i) => i.label !== "Aplicación"),
-                { label: "Blog", href: "/blog" },
-                { label: "Contacto", href: "/contacto" },
-              ].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="border-b border-line py-4 text-xl font-semibold tracking-tight"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              ].map((item) =>
+                item.externo ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="border-b border-line py-4 text-xl font-semibold tracking-tight"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="border-b border-line py-4 text-xl font-semibold tracking-tight"
+                  >
+                    {item.label}
+                  </Link>
+                ),
+              )}
             </nav>
             <div className="flex flex-col gap-3 py-8">
               <Button href={cta.primary.href} variant="primary" size="lg" arrow>

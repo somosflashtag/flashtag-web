@@ -17,13 +17,14 @@ import { site } from "./site";
 
 export type NavItem = { label: string; href: string; externo?: boolean };
 
-/** Menú principal. Máximo 5 ítems: más que eso deja de ser navegable. */
+/** Menú principal. Cursos, Blog y Contacto viven solo en el footer. */
 export const navPrincipal: NavItem[] = [
   { label: "Aplicación", href: "/como-funciona" },
   { label: "Precios", href: "/precios" },
   { label: "Casos", href: "/casos" },
-  { label: "Cursos", href: "/cursos" },
   { label: "Nosotros", href: "/nosotros" },
+  { label: "Activá tu FlashTag", href: "/activar-tu-flashtag" },
+  { label: "Tienda online", href: site.urls.shop, externo: true },
 ];
 
 /**
