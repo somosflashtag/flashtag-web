@@ -8,6 +8,7 @@ import { StickyCTA } from "@/components/StickyCTA";
 import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 /* Manual de marca: Poppins Bold en titulos, Roboto en cuerpo. */
 const poppins = Poppins({
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <StickyCTA />
         <Reveal />
+        <SpeedInsights />
       </body>
     </html>
   );
