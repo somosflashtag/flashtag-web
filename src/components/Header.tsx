@@ -65,7 +65,7 @@ export function Header() {
     >
       <Container>
         <div className="flex h-16 items-center justify-between gap-4 lg:h-[72px]">
-          <Logo className="text-[1.25rem] lg:text-[1.375rem]" onClick={() => setOpen(false)} />
+          <Logo className="text-[2.125rem] lg:text-[2.375rem]" onClick={() => setOpen(false)} />
 
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Principal">
             {navPrincipal.map((item) =>

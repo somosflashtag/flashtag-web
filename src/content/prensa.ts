@@ -62,7 +62,8 @@ export const mencionesPublicables = menciones.filter(
 export type PiezaKit = { label: string; href: string | null };
 
 export const kitPrensa: PiezaKit[] = [
-  { label: "Logo FlashTag (SVG + PNG)", href: null },
+  { label: "Logo FlashTag (SVG)", href: "/marca/logo-flashtag.svg" },
+  { label: "Logo FlashTag en blanco (SVG)", href: "/marca/logo-flashtag-blanco.svg" },
   { label: "Fotos del equipo", href: null },
   { label: "Boilerplate de empresa", href: null },
   { label: "Fact sheet", href: null },

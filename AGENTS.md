@@ -14,8 +14,10 @@ npm run build   # obligatorio antes de pushear
 ni las proporciones. No se le agregan contornos, sombras, degradados ni
 rotaciones (prohibiciones explícitas del Manual de Marca, p. 9). Si hace falta
 una variante que no existe, se pide — no se improvisa.
-El único archivo que lo define es `src/components/ui/Logo.tsx`; todo el sitio
-lo consume desde ahí.
+El único archivo que lo define es `src/components/ui/Logo.tsx`: los vectores
+del `LogoFlashTag.eps` original, con sus dos colores propios (`#25164b` y
+`#5052a3`, que NO son tokens de UI) y la variante en blanco. Todo el sitio
+lo consume desde ahí; `LogoOG.tsx` repite los trazos para las imágenes OG.
 
 **2. Los colores salen del manual, no de la intuición.** Se cambian en
 `src/app/globals.css`, en el bloque `@theme`, y en ningún otro lugar. Un hex
@@ -71,11 +73,6 @@ integración exista de verdad en producción.
 
 ## Pendientes
 
-- [ ] SVG del isologotipo original. Hoy `Logo.tsx` es una reconstrucción
-      tipográfica en **Fredoka** (geométrica redondeada, la familia más
-      cercana al logo real en Google Fonts), apilada y con "tag" alineado
-      al borde derecho de "flash". Es lo más fiel posible sin el archivo,
-      pero sigue siendo una reconstrucción
 - [ ] Favicon oficial (hoy `src/app/icon.svg` usa el marcador QR del sistema)
 - [ ] `site.proof.locales` — número real de comercios
 - [ ] Confirmar los handles de `site.social` (hoy usan "somosflashtag")
@@ -87,7 +84,7 @@ integración exista de verdad en producción.
 - [ ] Alinear las maquetas de `mocks.tsx` con capturas reales de la app
       (secciones, nombres de pestañas, copys de botones)
 - [ ] Imágenes OG (`lib/og.tsx`) sin Poppins: Satori necesita el archivo de
-      la fuente. Al tener el SVG del logo, sumarlo ahí también
+      la fuente
 
 ## Documentos legales
 

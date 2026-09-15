@@ -1,12 +1,13 @@
 import { ImageResponse } from "next/og";
 import { QR_PATTERN } from "@/components/ui/QRCode";
+import { LogoOG } from "@/components/ui/LogoOG";
 
 /**
  * Imagen Open Graph (1200×630) generada en build.
  * Colores del manual escritos como literales porque Satori no lee
  * variables CSS — es el único lugar del sitio donde eso está permitido.
- * Tipografía: la del runtime de next/og. El wordmark no se reproduce acá
- * (regla 1 de AGENTS.md): se usa el marcador QR del sistema.
+ * Tipografía: la del runtime de next/og. El isologotipo va en blanco,
+ * con los vectores originales (LogoOG).
  */
 const INK = "#2d014b";
 const BRAND = "#613ec4";
@@ -61,11 +62,9 @@ export function ogImage({
             width: 820,
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 26, fontWeight: 600 }}>
-            <div style={{ width: 22, height: 22, border: `3px solid ${TEAL}`, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div style={{ width: 8, height: 8, background: TEAL }} />
-            </div>
-            {eyebrow}
+          <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 24, fontWeight: 600, color: "#b9a8cc" }}>
+            <LogoOG height={64} />
+            {eyebrow !== "FlashTag" && <span>{eyebrow.replace(/^FlashTag · /, "")}</span>}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {kicker && (

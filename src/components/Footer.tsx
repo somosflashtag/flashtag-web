@@ -36,7 +36,7 @@ export function Footer() {
         {/* Navegación */}
         <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-4 lg:grid-cols-5 lg:py-20">
           <div className="col-span-2 lg:col-span-1">
-            <Logo variant="stacked" tone="light" className="text-[2rem]" />
+            <Logo tone="light" className="text-[3.25rem]" />
             <p className="measure mt-3 text-sm leading-relaxed text-muted-dark">
               Marketing phygital para comercios locales. Hecho en Argentina.
             </p>
