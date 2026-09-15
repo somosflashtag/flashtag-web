@@ -78,25 +78,28 @@ export function Tienda() {
         <h3 className="t-h3">Tres formatos, tres lugares del local</h3>
         <ul className="mt-6 grid gap-5 md:grid-cols-3">
           {formatos.map((f) => (
-            <li key={f.nombre}>
-              <a
-                href={f.href}
-                className="card-lift flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-paper p-4"
-              >
-              <Image
-                src={f.foto}
-                alt={f.nombre}
-                width={200}
-                height={200}
-                sizes="88px"
-                className="size-22 shrink-0 rounded-lg object-cover"
-              />
-              <div className="min-w-0">
-                <p className="font-semibold">{f.nombre}</p>
-                <p className="t-caption text-brand tnum">{f.medida}</p>
-                <p className="t-caption mt-1 text-muted">{f.texto}</p>
+            <li
+              key={f.nombre}
+              className="card-lift flex flex-col rounded-[var(--radius-card)] border border-line bg-paper p-5"
+            >
+              <div className="flex items-center gap-4">
+                <Image
+                  src={f.foto}
+                  alt={f.nombre}
+                  width={200}
+                  height={200}
+                  sizes="88px"
+                  className="size-22 shrink-0 rounded-lg object-cover"
+                />
+                <div className="min-w-0">
+                  <p className="font-semibold">{f.nombre}</p>
+                  <p className="t-caption text-brand tnum">{f.medida}</p>
+                  <p className="t-caption mt-1 text-muted">{f.texto}</p>
+                </div>
               </div>
-              </a>
+              <Button href={f.href} variant="primary" size="md" arrow className="mt-5 w-full">
+                Ver {f.nombre.toLowerCase()}
+              </Button>
             </li>
           ))}
         </ul>
