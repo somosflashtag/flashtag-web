@@ -149,15 +149,16 @@ export const features: Feature[] = [
     slug: "fidelidad",
     nombre: "Programa de fidelidad",
     corto: "Una comunidad que te elige y vuelve",
-    titular: "Tu tarjeta de fidelidad, en la billetera del celular de tu cliente",
+    titular: "Tu programa de fidelidad, en la billetera del celular de tu cliente",
     bajada:
-      "Construí una comunidad de clientes que te compran varias veces, te eligen y son premiados por eso. Tu cliente no descarga ninguna app: escanea y guarda tu tarjeta, con tu logo y el esquema de puntos que vos elegiste, en Apple Wallet o en la billetera de Android. Sin imprimir nada, siempre a mano.",
+      "Sellos, puntos, cashback, descuentos, cupones, membresías, gift cards o packs de sesiones: elegís la modalidad, le ponés tu logo y tu esquema de premios. Tu cliente no descarga ninguna app: escanea y la guarda en Apple Wallet o Google Wallet. Y desde ahí le mandás push gratis, lo saludás en su cumpleaños y lo premiás por traer amigos.",
     analogia:
       "Es la tarjeta de sellos de toda la vida, pero vive al lado de su tarjeta de embarque y su SUBE: no se pierde, y te dice quién volvió.",
     casos: [
       "El café número 10 es gratis",
-      "Un descuento por traer a un amigo",
-      "Un regalo a cambio de la primera reseña",
+      "Una membresía mensual con cupo de clases",
+      "Una gift card para regalar en fechas especiales",
+      "Puntos extra por traer a un amigo",
     ],
     pasos: [
       {

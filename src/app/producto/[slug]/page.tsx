@@ -5,6 +5,7 @@ import { QRMark } from "@/components/ui/QRMark";
 import { Section } from "@/components/ui/Section";
 import { PhoneFrame } from "@/components/app/PhoneFrame";
 import { Mock } from "@/components/app/mocks";
+import { FidelidadDetalle } from "@/components/FidelidadDetalle";
 import { features } from "@/content/features";
 import { planes } from "@/content/planes";
 import { pageMeta } from "@/lib/seo";
@@ -103,6 +104,8 @@ export default async function ProductoPage({
           ))}
         </ol>
       </Section>
+
+      {f.slug === "fidelidad" && <FidelidadDetalle />}
 
       <Section className="border-t border-line bg-surface">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
