@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 export const metadata = pageMeta({
   title: "Activá tu FlashTag",
   description:
-    "Ingresá el código impreso en tu cartel, tarjeta o sticker para activar tu QR dinámico y empezar a gestionarlo desde la app.",
+    "Ingresá el ID/código impreso en tu cartel, tarjeta o sticker para activarlo y empezar a gestionarlo desde la app.",
   path: "/activar-tu-flashtag",
 });
 
@@ -40,7 +40,7 @@ export default function ActivarPage() {
             <QRCode size={56} color="var(--color-brand)" className="mx-auto" />
             <h1 className="t-h2 mt-6">Activá tu FlashTag</h1>
             <p className="t-lead mt-4 text-muted">
-              Ingresá el ID de tu producto. Lo encontrás impreso en el
+              Ingresá el ID/código de tu producto. Lo encontrás impreso en el
               packaging o en el reverso del cartel. La activación es remota y
               gratis.
             </p>
@@ -53,7 +53,7 @@ export default function ActivarPage() {
               className="mt-8 flex flex-col gap-3"
             >
               <label htmlFor="codigo" className="sr-only">
-                Código de activación
+                ID/código de activación
               </label>
               <input
                 id="codigo"
@@ -62,7 +62,7 @@ export default function ActivarPage() {
                 inputMode="text"
                 autoComplete="off"
                 spellCheck={false}
-                placeholder="ID · Ej: FT-A1B2C3"
+                placeholder="ID/código · Ej: FT-A1B2C3"
                 pattern="[A-Za-z0-9\-]{4,20}"
                 required
                 className="w-full rounded-[var(--radius-btn)] border border-line bg-paper px-5 py-4 text-center text-lg tracking-widest placeholder:tracking-normal placeholder:text-muted focus:border-brand focus:outline-none"
@@ -73,7 +73,7 @@ export default function ActivarPage() {
             </form>
 
             <p className="t-caption mt-4 text-muted">
-              ¿No encontrás el ID? Está en la etiqueta del producto, abajo del
+              ¿No encontrás el ID/código? Está en la etiqueta del producto, abajo del
               QR.
             </p>
           </div>

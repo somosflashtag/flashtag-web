@@ -58,8 +58,9 @@ export const productos: Producto[] = [
     slug: "combo",
     nombre: "Combo: Google + Instagram + WhatsApp",
     bajada:
-      "Los tres carteles para el mostrador: reseñas en Google, seguidores en Instagram y conversaciones por WhatsApp. Cada uno con su uso.",
-    etiqueta: "Ahorrás más",
+      "Los tres carteles para el mostrador: reseñas en Google, seguidores en Instagram y conversaciones por WhatsApp. Cada uno con su uso. Con envío gratuito.",
+    precioARS: 104999,
+    etiqueta: "Envío gratis",
     foto: "/productos/carteles.webp",
     alt: "Los tres carteles de FlashTag: Google, Instagram y WhatsApp",
     href: `${SHOP}/products/combo-cartel-instagram-cartel-google-cartel-whatsapp`,

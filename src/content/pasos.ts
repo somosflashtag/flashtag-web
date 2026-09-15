@@ -1,7 +1,7 @@
 /**
  * CÓMO FUNCIONA — los 4 pasos, fuente única para la home y /como-funciona.
  * Metodología: elegís el modelo en la tienda, lo recibís, lo activás gratis
- * desde la app asociándolo a su ID, y medís su interacción.
+ * desde la app asociándolo a su ID/código, y medís su interacción.
  */
 
 export const pasos = [
@@ -17,7 +17,7 @@ export const pasos = [
   {
     titulo: "Lo activás gratis desde la app",
     texto:
-      "De manera remota: creás tu cuenta y asociás el cartel con su ID correspondiente. Listo en minutos.",
+      "De manera remota: creás tu cuenta y asociás el cartel con su ID/código correspondiente. Listo en minutos.",
   },
   {
     titulo: "Medís la interacción",
