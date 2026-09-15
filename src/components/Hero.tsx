@@ -18,10 +18,21 @@ export function Hero() {
       <Container>
         <div className="grid items-center gap-14 py-14 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:py-24">
           <div data-reveal>
-            <p className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1.5 text-[13px] font-semibold">
-              <QRMark size={12} />
-              QR + NFC · Hecho en Argentina
-            </p>
+            <ul className="flex flex-wrap gap-2">
+              {[
+                "Productos de calidad con QR + NFC",
+                "Aplicación para crecer tu negocio",
+                "Hecho en 🇦🇷",
+              ].map((t) => (
+                <li
+                  key={t}
+                  className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1.5 text-[13px] font-semibold"
+                >
+                  <QRMark size={12} />
+                  {t}
+                </li>
+              ))}
+            </ul>
 
             <h1 className="t-display mt-6 text-balance">
               Tu local ya tiene clientes.
