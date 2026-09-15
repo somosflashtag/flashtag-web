@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Button } from "./ui/Button";
 import { QRMark } from "./ui/QRMark";
 import { Section } from "./ui/Section";
 import { formatos, precioARS, productos, tienda } from "@/content/productos";
@@ -65,6 +66,12 @@ export function Tienda() {
           </li>
         ))}
       </ul>
+
+      <div className="mt-10 flex justify-center">
+        <Button href={tienda.href} variant="primary" size="lg" arrow>
+          Ver todos los productos
+        </Button>
+      </div>
 
       {/* Los tres formatos: acá se entiende que es un objeto con medidas. */}
       <div className="mt-14 border-t border-line pt-10">
