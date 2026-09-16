@@ -6,7 +6,7 @@
 export type Feature = { label: string; incluido: boolean; nota?: string };
 
 export type Plan = {
-  id: "free" | "starter" | "full";
+  id: "free" | "starter" | "full" | "evolution";
   nombre: string;
   paraQuien: string;
   precioMensual: number;
@@ -44,6 +44,7 @@ export const planes: Plan[] = [
       { label: "Reseñas con IA", incluido: false },
       { label: "Ruleta de premios", incluido: false },
       { label: "Programa de fidelidad", incluido: false },
+      { label: "Asesoramiento en SEO local", incluido: false },
       { label: "Soporte por comunidad", incluido: true },
     ],
   },
@@ -67,13 +68,14 @@ export const planes: Plan[] = [
       { label: "100 reseñas con IA por mes", incluido: true },
       { label: "Ruleta de premios", incluido: true },
       { label: "Programa de fidelidad", incluido: false },
+      { label: "Asesoramiento en SEO local", incluido: false },
       { label: "Soporte por email", incluido: true },
     ],
   },
   {
     id: "full",
     nombre: "Full",
-    paraQuien: "Mini-cadenas, franquicias y agencias",
+    paraQuien: "Mini-cadenas y franquicias de hasta 3 locales",
     precioMensual: 99,
     precioARS: 149000,
     precioAnualPorMes: 83,
@@ -89,8 +91,34 @@ export const planes: Plan[] = [
       { label: "3 cuentas de Google Business", incluido: true },
       { label: "2.000 reseñas con IA por mes", incluido: true },
       { label: "Ruleta de premios", incluido: true },
-      { label: "Programa de fidelidad", incluido: true },
+      { label: "Programa de fidelidad", incluido: true, nota: "hasta 2.500 miembros activos" },
+      { label: "Asesoramiento en SEO local", incluido: false },
       { label: "Soporte prioritario", incluido: true },
+    ],
+  },
+  {
+    id: "evolution",
+    nombre: "Evolution",
+    paraQuien: "Agencias y franquicias con más de 3 cuentas de Google",
+    precioMensual: 299,
+    // ARS y anual siguen la misma relación que Full (~1.500 ARS/USD, anual ≈ 10 meses).
+    precioARS: 450000,
+    precioAnualPorMes: 249,
+    totalAnual: 2990,
+    totalAnualARS: 4500000,
+    destacado: false,
+    cta: { label: "Empezar con Evolution", href: "https://my.flashtag.tech/login" },
+    features: [
+      { label: "Productos asociados ilimitados", incluido: true },
+      { label: "QR dinámicos ilimitados", incluido: true },
+      { label: "Link Pages ilimitadas", incluido: true },
+      { label: "Métricas avanzadas de Google Business", incluido: true },
+      { label: "Hasta 20 cuentas de Google Business", incluido: true },
+      { label: "5.000 reseñas con IA por mes", incluido: true },
+      { label: "Ruleta de premios", incluido: true },
+      { label: "Programa de fidelidad", incluido: true, nota: "hasta 10.000 miembros activos" },
+      { label: "Asesoramiento en SEO local", incluido: true },
+      { label: "Soporte dedicado", incluido: true },
     ],
   },
 ];

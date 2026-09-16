@@ -42,9 +42,15 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home", "precios"],
   },
   {
-    pregunta: "¿Qué pasa si tengo más de 30 comercios?",
+    pregunta: "¿Qué pasa si tengo más de 20 comercios?",
     respuesta:
-      "Ahí entrás en Enterprise: armamos un plan a medida con multi-cuenta, reportes consolidados y soporte dedicado. Escribinos y lo vemos.",
+      "Armamos un plan a medida: multicuenta, reportes consolidados por cliente y soporte dedicado, pensado para agencias de marketing y grandes franquicias. Escribinos y lo vemos.",
+    mostrarEn: ["precios"],
+  },
+  {
+    pregunta: "¿Cuándo conviene Evolution en vez de Full?",
+    respuesta:
+      "Cuando manejás más de 3 cuentas de Google Business, ya sea porque sos agencia o porque tu franquicia creció. Evolution suma hasta 5.000 reseñas con IA por mes, fidelidad hasta 10.000 miembros activos y asesoramiento en SEO local para que cada ficha rankee mejor en su zona.",
     mostrarEn: ["precios"],
   },
   {

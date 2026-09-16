@@ -145,9 +145,9 @@ export const paginasRubro: PaginaRubro[] = [
     eyebrow: "Para agencias con múltiples clientes",
     titular: "Gestioná 5, 10 o 30 comercios desde un solo panel.",
     bajada:
-      "El plan Full incluye hasta 500 QR, 100 Link Pages y 3 cuentas de Google Business. Pensado para agencias que manejan varios locales o franquicias.",
+      "El plan Full cubre hasta 3 cuentas de Google Business. Con Evolution pasás a 20 cuentas, 5.000 reseñas con IA por mes y asesoramiento en SEO local para cada ficha.",
     metaDescripcion:
-      "Panel multi-cliente con 500 QR dinámicos, 100 Link Pages y 3 cuentas de Google Business para agencias y franquicias.",
+      "Panel multi-cliente con hasta 20 cuentas de Google Business, reseñas con IA y asesoramiento en SEO local para agencias y franquicias.",
     foto: {
       src: "/productos/gama.webp",
       alt: "Cartel, sticker y tarjeta de FlashTag con QR y NFC",

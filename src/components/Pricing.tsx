@@ -93,7 +93,7 @@ function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
             <span>
               {f.label}
               {f.nota && (
-                <span className="ml-1.5 rounded bg-current/10 px-1.5 py-0.5 text-[11px] font-medium opacity-70">
+                <span className="mt-1 block w-fit rounded bg-current/10 px-1.5 py-0.5 text-[11px] font-medium opacity-70">
                   {f.nota}
                 </span>
               )}
@@ -134,8 +134,8 @@ export function Pricing({ conNota = true }: { conNota?: boolean }) {
         </div>
       </div>
 
-      {/* Siempre Free → Starter → Full, también en phone. */}
-      <div className="mt-10 grid gap-5 md:grid-cols-3">
+      {/* Siempre Free → Starter → Full → Evolution, también en phone. */}
+      <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {planes.map((p) => (
           <div key={p.id}>
             <PlanCard plan={p} anual={anual} />

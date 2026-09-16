@@ -10,7 +10,7 @@ import { faqSchema, pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Precios y planes",
   description:
-    "Plan gratis para siempre, Starter USD 49 y Full USD 99, con precio en pesos. Sin permanencia, con factura A/B/C en Argentina. Compará todos los planes.",
+    "Plan gratis para siempre, Starter USD 49, Full USD 99 y Evolution USD 299 para agencias y franquicias, con precio en pesos. Sin permanencia, con factura A/B/C en Argentina. Compará todos los planes.",
   path: "/precios",
 });
 
@@ -20,14 +20,14 @@ const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   name: "FlashTag — Planes",
-  description: "Planes de FlashTag para comercios locales: Free, Starter y Full.",
+  description: "Planes de FlashTag para comercios locales, agencias y franquicias: Free, Starter, Full y Evolution.",
   brand: { "@id": `${site.domain}/#organization` },
   offers: {
     "@type": "AggregateOffer",
     lowPrice: "0",
-    highPrice: "99",
+    highPrice: "299",
     priceCurrency: "USD",
-    offerCount: 3,
+    offerCount: 4,
     url: `${site.domain}/precios`,
   },
 };
@@ -57,11 +57,12 @@ export default function PreciosPage() {
         <div className="rounded-[var(--radius-surface)] border border-line bg-surface p-8 sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
             <div>
-              <h2 className="t-h3">¿Más de 30 comercios?</h2>
+              <h2 className="t-h3">¿Más de 20 comercios?</h2>
               <p className="t-body measure mt-3 text-muted">
-                Armamos un plan a medida: multi-cuenta, reportes consolidados,
-                onboarding del equipo y soporte dedicado. Contanos cuántos locales
-                manejás y lo vemos.
+                Armamos un plan a medida para agencias de marketing y grandes
+                franquicias: multicuenta, reportes consolidados por cliente,
+                onboarding del equipo y soporte dedicado. Contanos cuántos
+                locales manejás y lo vemos.
               </p>
             </div>
             <div className="lg:justify-self-end">
