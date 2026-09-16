@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "./ui/Button";
-import { planes, notaFiscal, precioARS, type Plan } from "@/content/planes";
+import { planes, precioARS, type Plan } from "@/content/planes";
 import { cn } from "@/lib/cn";
 
 function Check({ on }: { on: boolean }) {
@@ -105,6 +105,24 @@ function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
   );
 }
 
+/**
+ * Misma frase que `notaFiscal` en planes.ts, con los logos oficiales a color
+ * (`public/pagos/*-color.svg`) en lugar de los nombres entre paréntesis.
+ */
+function NotaFacturacion() {
+  const logo = "mx-1 inline-block w-auto align-[-0.3em]";
+  return (
+    <p className="measure mx-auto mt-8 text-center text-sm leading-[1.9] text-muted">
+      Facturación A/B/C en Argentina. Pagá en dólares con tarjeta internacional vía
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/pagos/stripe-color.svg" alt="Stripe" width={43} height={18} className={logo} style={{ height: 18 }} />
+      o en pesos con
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/pagos/mercado-pago-color.svg" alt="Mercado Pago" width={87} height={22} className={logo} style={{ height: 22 }} />
+    </p>
+  );
+}
+
 export function Pricing({ conNota = true }: { conNota?: boolean }) {
   const [anual, setAnual] = useState(false);
 
@@ -143,11 +161,7 @@ export function Pricing({ conNota = true }: { conNota?: boolean }) {
         ))}
       </div>
 
-      {conNota && (
-        <p className="measure mx-auto mt-8 text-center text-sm leading-relaxed text-muted">
-          {notaFiscal}
-        </p>
-      )}
+      {conNota && <NotaFacturacion />}
     </div>
   );
 }
