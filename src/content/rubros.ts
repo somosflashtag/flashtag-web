@@ -159,7 +159,7 @@ export const paginasRubro: PaginaRubro[] = [
           "Un solo login para ver los QR, las métricas y las reseñas de todos tus clientes. Sin saltar entre cuentas.",
       },
       {
-        titulo: "Hasta 500 QR dinámicos",
+        titulo: "Hasta 2.500 QR dinámicos",
         texto:
           "Escalá con tu cartera. Asigná QR por cliente, por punto de venta o por campaña.",
       },

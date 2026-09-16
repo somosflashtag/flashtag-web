@@ -30,9 +30,9 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home"],
   },
   {
-    pregunta: "¿Los precios incluyen IVA?",
+    pregunta: "¿Cómo se paga y qué factura recibo?",
     respuesta:
-      "No. Los precios son sin IVA (21%). Emitimos factura A, B o C en Argentina. Pagás en dólares con tarjeta internacional vía Stripe o en pesos con Mercado Pago.",
+      "Emitimos factura A, B o C en Argentina. Pagás en dólares con tarjeta internacional vía Stripe o en pesos con Mercado Pago.",
     mostrarEn: ["home", "precios"],
   },
   {

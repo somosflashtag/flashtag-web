@@ -66,7 +66,7 @@ export const planes: Plan[] = [
       { label: "Métricas avanzadas de Google Business", incluido: true },
       { label: "1 cuenta de Google Business", incluido: true },
       { label: "100 reseñas con IA por mes", incluido: true },
-      { label: "Ruleta de premios", incluido: true },
+      { label: "Hasta 3 ruletas de premios", incluido: true },
       { label: "Programa de fidelidad", incluido: false },
       { label: "Asesoramiento en SEO local", incluido: false },
       { label: "Soporte por email", incluido: true },
@@ -86,11 +86,11 @@ export const planes: Plan[] = [
     features: [
       { label: "Productos asociados ilimitados", incluido: true },
       { label: "Hasta 500 QR dinámicos", incluido: true },
-      { label: "Hasta 100 Link Pages", incluido: true },
+      { label: "Hasta 50 Link Pages", incluido: true },
       { label: "Métricas avanzadas de Google Business", incluido: true },
       { label: "3 cuentas de Google Business", incluido: true },
       { label: "2.000 reseñas con IA por mes", incluido: true },
-      { label: "Ruleta de premios", incluido: true },
+      { label: "Hasta 10 ruletas de premios", incluido: true },
       { label: "Programa de fidelidad", incluido: true, nota: "hasta 2.500 miembros activos" },
       { label: "Asesoramiento en SEO local", incluido: false },
       { label: "Soporte prioritario", incluido: true },
@@ -107,15 +107,15 @@ export const planes: Plan[] = [
     totalAnual: 2990,
     totalAnualARS: 4500000,
     destacado: false,
-    cta: { label: "Empezar con Evolution", href: "https://my.flashtag.tech/login" },
+    cta: { label: "Elegir Evolution", href: "https://my.flashtag.tech/login" },
     features: [
       { label: "Productos asociados ilimitados", incluido: true },
-      { label: "QR dinámicos ilimitados", incluido: true },
-      { label: "Link Pages ilimitadas", incluido: true },
+      { label: "Hasta 2.500 QR dinámicos", incluido: true },
+      { label: "Hasta 100 Link Pages", incluido: true },
       { label: "Métricas avanzadas de Google Business", incluido: true },
       { label: "Hasta 20 cuentas de Google Business", incluido: true },
       { label: "5.000 reseñas con IA por mes", incluido: true },
-      { label: "Ruleta de premios", incluido: true },
+      { label: "Hasta 50 ruletas de premios", incluido: true },
       { label: "Programa de fidelidad", incluido: true, nota: "hasta 10.000 miembros activos" },
       { label: "Asesoramiento en SEO local", incluido: true },
       { label: "Soporte dedicado", incluido: true },
@@ -124,7 +124,7 @@ export const planes: Plan[] = [
 ];
 
 export const notaFiscal =
-  "Precios sin IVA (21%). Facturación A/B/C en Argentina. Pagá en dólares con tarjeta internacional (Stripe) o en pesos con Mercado Pago.";
+  "Facturación A/B/C en Argentina. Pagá en dólares con tarjeta internacional (Stripe) o en pesos con Mercado Pago.";
 
 const fmtARS = new Intl.NumberFormat("es-AR", {
   style: "currency",
