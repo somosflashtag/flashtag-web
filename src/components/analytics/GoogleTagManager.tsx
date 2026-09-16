@@ -1,10 +1,8 @@
 import Script from "next/script";
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+const GTM_ID = "GTM-58KGD6L2";
 
 export function GoogleTagManager() {
-  if (!GTM_ID) return null;
-
   return (
     <>
       <Script
@@ -23,8 +21,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 
 export function GoogleTagManagerNoscript() {
-  if (!GTM_ID) return null;
-
   return (
     <noscript>
       <iframe
