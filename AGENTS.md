@@ -15,7 +15,9 @@ ni las proporciones. No se le agregan contornos, sombras, degradados ni
 rotaciones (prohibiciones explícitas del Manual de Marca, p. 9). Si hace falta
 una variante que no existe, se pide — no se improvisa.
 El único archivo que lo define es `src/components/ui/Logo.tsx`: los vectores
-del `LogoFlashTag.eps` original, con sus dos colores propios (`#25164b` y
+del `LogoFlashTag.eps` original. El isotipo "ft" (`FT_Violeta.eps`) vive en
+`src/app/icon.svg` y `apple-icon.png`, sobre un tile arena, sin tocar los trazos.
+Los vectores del wordmark, con sus dos colores propios (`#25164b` y
 `#5052a3`, que NO son tokens de UI) y la variante en blanco. Todo el sitio
 lo consume desde ahí; `LogoOG.tsx` repite los trazos para las imágenes OG.
 
@@ -56,9 +58,10 @@ social.
 página propia en `/producto/`, lugar en el bento y el tour, plan en
 `planes.ts`. Nada de "próximamente" en el sitio.
 
-**7. Marcas de terceros solo con autorización.** Los medios de pago del
-footer (`MediosDePago.tsx`) son badges tipográficos, no los logos oficiales.
- No se listan logos ni nombres
+**7. Marcas de terceros solo con autorización.** En el footer
+(`MediosDePago.tsx`) Mercado Pago usa su logo oficial en blanco
+(`public/pagos/mercado-pago.svg`, del kit que nos pasaron); Stripe y las
+tarjetas son badges tipográficos hasta tener su kit. No se listan logos ni nombres
 de empresas (clientes, integraciones, medios) sin permiso escrito y sin que la
 integración exista de verdad en producción.
 
@@ -73,10 +76,9 @@ integración exista de verdad en producción.
 
 ## Pendientes
 
-- [ ] Favicon oficial (hoy `src/app/icon.svg` usa el marcador QR del sistema)
 - [ ] `site.proof.locales` — número real de comercios
 - [ ] Confirmar TikTok en `site.social` (hoy usa "somosflashtag"; YouTube ya es `@Somos_FlashTag`)
-- [ ] Logos oficiales de Stripe y Mercado Pago → `MediosDePago.tsx`
+- [ ] Logo oficial de Stripe → `MediosDePago.tsx` (Mercado Pago ya está)
 - [ ] Imagen del QR de Data Fiscal → `site.dataFiscal`
 - [ ] Autorización escrita de los comercios → `casos.ts` (`autorizado`)
 - [ ] URLs de las notas de prensa → `prensa.ts` (`verificada`)

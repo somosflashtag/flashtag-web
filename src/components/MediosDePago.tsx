@@ -3,9 +3,9 @@
  * internacional), cada uno con las tarjetas que procesa.
  *
  * Son marcas de terceros con las que la integración existe en producción
- * (AGENTS.md §7): se muestran como badges tipográficos monocromos, sin
- * reproducir los logos oficiales. Para usar los logos hay que pedir el
- * material de marca de cada uno.
+ * (AGENTS.md §7). Mercado Pago usa su logo oficial en blanco
+ * (`public/pagos/mercado-pago.svg`, del kit de marca que nos pasaron).
+ * Stripe y las tarjetas siguen como badges tipográficos hasta tener su kit.
  */
 
 function Badge({ children, ancho = 44 }: { children: React.ReactNode; ancho?: number }) {
@@ -30,19 +30,27 @@ function Mastercard() {
   );
 }
 
-function Grupo({ titulo, children }: { titulo: string; children: React.ReactNode }) {
+function Grupo({ titulo, children }: { titulo: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
-      <span className="mr-1 text-[13px] font-semibold text-paper">{titulo}</span>
+      <span className="mr-1 flex items-center text-[13px] font-semibold text-paper">{titulo}</span>
       {children}
     </div>
+  );
+}
+
+function LogoMercadoPago() {
+  // 1080×272.76 → a 22px de alto son 87px de ancho.
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src="/pagos/mercado-pago.svg" alt="Mercado Pago" width={87} height={22} className="h-[22px] w-auto" />
   );
 }
 
 export function MediosDePago() {
   return (
     <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-8">
-      <Grupo titulo="Mercado Pago">
+      <Grupo titulo={<LogoMercadoPago />}>
         <Badge>Visa</Badge>
         <Mastercard />
         <Badge>Amex</Badge>
