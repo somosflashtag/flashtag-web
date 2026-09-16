@@ -1,3 +1,7 @@
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoscript,
+} from "@/components/analytics/GoogleTagManager";
 import { JsonLd } from "@/components/JsonLd";
 import type { Metadata, Viewport } from "next";
 import { Poppins, Roboto } from "next/font/google";
@@ -47,7 +51,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang={site.lang}
       className={`${poppins.variable} ${roboto.variable} h-full antialiased`}
     >
+      <GoogleTagManager />
       <body className="flex min-h-full flex-col">
+        <GoogleTagManagerNoscript />
         <JsonLd id="ld-org" data={organizationSchema} />
         <JsonLd id="ld-website" data={websiteSchema} />
         <a
