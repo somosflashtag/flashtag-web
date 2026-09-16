@@ -3,9 +3,9 @@
  * internacional), cada uno con las tarjetas que procesa.
  *
  * Son marcas de terceros con las que la integración existe en producción
- * (AGENTS.md §7). Mercado Pago usa su logo oficial en blanco
- * (`public/pagos/mercado-pago.svg`, del kit de marca que nos pasaron).
- * Stripe y las tarjetas siguen como badges tipográficos hasta tener su kit.
+ * (AGENTS.md §7). Mercado Pago y Stripe usan sus logos oficiales en blanco
+ * (`public/pagos/*.svg`, de los kits de marca que nos pasaron). Las tarjetas
+ * siguen como badges tipográficos hasta tener sus kits.
  */
 
 function Badge({ children, ancho = 44 }: { children: React.ReactNode; ancho?: number }) {
@@ -39,13 +39,16 @@ function Grupo({ titulo, children }: { titulo: React.ReactNode; children: React.
   );
 }
 
-function LogoMercadoPago() {
-  // 1080×272.76 → a 22px de alto son 87px de ancho.
+/** Logos oficiales en blanco, alineados por altura. */
+function LogoPago({ src, alt, ancho, alto }: { src: string; alt: string; ancho: number; alto: number }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src="/pagos/mercado-pago.svg" alt="Mercado Pago" width={87} height={22} className="h-[22px] w-auto" />
+    <img src={src} alt={alt} width={ancho} height={alto} style={{ height: alto }} className="w-auto" />
   );
 }
+// Mercado Pago 1080×272.76 → 22px de alto son 87px. Stripe 1080×449.4 → 20px son 48px.
+const LogoMercadoPago = () => <LogoPago src="/pagos/mercado-pago.svg" alt="Mercado Pago" ancho={87} alto={22} />;
+const LogoStripe = () => <LogoPago src="/pagos/stripe.svg" alt="Stripe" ancho={48} alto={20} />;
 
 export function MediosDePago() {
   return (
@@ -56,7 +59,7 @@ export function MediosDePago() {
         <Badge>Amex</Badge>
       </Grupo>
       <span aria-hidden="true" className="hidden h-6 w-px bg-white/20 sm:block" />
-      <Grupo titulo="Stripe">
+      <Grupo titulo={<LogoStripe />}>
         <Badge>Visa</Badge>
         <Mastercard />
         <Badge>Amex</Badge>

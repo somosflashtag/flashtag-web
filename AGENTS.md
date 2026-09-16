@@ -59,9 +59,9 @@ página propia en `/producto/`, lugar en el bento y el tour, plan en
 `planes.ts`. Nada de "próximamente" en el sitio.
 
 **7. Marcas de terceros solo con autorización.** En el footer
-(`MediosDePago.tsx`) Mercado Pago usa su logo oficial en blanco
-(`public/pagos/mercado-pago.svg`, del kit que nos pasaron); Stripe y las
-tarjetas son badges tipográficos hasta tener su kit. No se listan logos ni nombres
+(`MediosDePago.tsx`) Mercado Pago y Stripe usan sus logos oficiales en
+blanco (`public/pagos/*.svg`, de los kits que nos pasaron); las tarjetas son
+badges tipográficos hasta tener sus kits. No se listan logos ni nombres
 de empresas (clientes, integraciones, medios) sin permiso escrito y sin que la
 integración exista de verdad en producción.
 
@@ -77,8 +77,6 @@ integración exista de verdad en producción.
 ## Pendientes
 
 - [ ] `site.proof.locales` — número real de comercios
-- [ ] Confirmar TikTok en `site.social` (hoy usa "somosflashtag"; YouTube ya es `@Somos_FlashTag`)
-- [ ] Logo oficial de Stripe → `MediosDePago.tsx` (Mercado Pago ya está)
 - [ ] Imagen del QR de Data Fiscal → `site.dataFiscal`
 - [ ] Autorización escrita de los comercios → `casos.ts` (`autorizado`)
 - [ ] URLs de las notas de prensa → `prensa.ts` (`verificada`)
