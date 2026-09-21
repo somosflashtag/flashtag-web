@@ -74,16 +74,16 @@ export const capacidadesPanel: CapacidadPanel[] = [
     confirmado: true,
   },
   {
-    titulo: "Exportás a CSV o XLSX",
+    titulo: "Exportás a CSV",
     texto:
       "Te llevás el dato a tu planilla para cruzarlo con tus ventas, armar tu propio reporte o pasárselo a tu agencia.",
-    confirmado: false,
+    confirmado: true,
   },
   {
     titulo: "Reiniciás el contador",
     texto:
       "Arrancás una campaña nueva desde cero sin perder el cartel ni cambiar el QR: volvés el contador a cero y medís limpio.",
-    confirmado: false,
+    confirmado: true,
   },
 ];
 
@@ -237,6 +237,6 @@ export const preguntasDelPanel = [
   {
     pregunta: "¿Qué le muestro a mi agencia o a mi socio?",
     respuesta:
-      "El panel consolidado del período, con todos los productos juntos. Y si conectaste tu píxel y tu Google Analytics, el mismo dato aparece al lado del resto de tus campañas.",
+      "El panel consolidado del período, con todos los productos juntos, o el CSV exportado si prefiere su propia planilla. Y si conectaste tu píxel y tu Google Analytics, el mismo dato aparece al lado del resto de tus campañas.",
   },
 ];
