@@ -3,7 +3,11 @@
  * Cualquier página que muestre precios lee de acá. Sin excepciones.
  */
 
+import { site } from "@/lib/site";
+
 export type Feature = { label: string; incluido: boolean; nota?: string };
+
+export type Ciclo = "mensual" | "anual";
 
 export type Plan = {
   id: "free" | "starter" | "full" | "evolution";
@@ -130,6 +134,21 @@ export const planes: Plan[] = [
     ],
   },
 ];
+
+/**
+ * A dónde va el botón de un plan según el ciclo elegido en el toggle.
+ *
+ * Los planes pagos van al checkout de la app: `/suscribirse` arma la
+ * suscripción de Mercado Pago para ese plan y ciclo y redirige a pagar. Si el
+ * visitante no tiene cuenta, la app lo lleva a registrarse y, al confirmar el
+ * mail, sigue solo hasta el pago. El plan lo activa el webhook de la pasarela
+ * cuando confirma el primer cobro. Free sigue yendo al login: no hay nada que
+ * cobrar.
+ */
+export function hrefContratar(plan: Plan, ciclo: Ciclo): string {
+  if (plan.precioMensual === 0) return plan.cta.href;
+  return `${site.urls.app}/suscribirse?plan=${plan.id}&ciclo=${ciclo}`;
+}
 
 export const notaFiscal =
   "Facturación A/B/C en Argentina. Pagá en dólares con tarjeta internacional (Stripe) o en pesos con Mercado Pago.";
