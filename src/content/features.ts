@@ -2,7 +2,7 @@ import type { MockId } from "@/components/app/mocks";
 import { pasos as pasosBase } from "./pasos";
 
 /**
- * FEATURES — las seis capacidades de la app, en el orden en que se venden.
+ * FEATURES — las siete capacidades de la app, en el orden en que se venden.
  *
  * Cada una tiene su pantalla (`mock`) construida en código en
  * components/app/mocks.tsx, su página en /producto/[slug] y su lugar en el
@@ -204,6 +204,37 @@ export const features: Feature[] = [
       },
     ],
     mock: "ruleta",
+    desde: "Starter",
+  },
+  {
+    slug: "pixeles",
+    nombre: "Píxeles de Google y Meta",
+    corto: "Tus escaneos, en Google Analytics y Meta Ads",
+    titular: "Conectá tus QR con Google Analytics, Meta y Tag Manager",
+    bajada:
+      "Pegás tu ID de Google Analytics 4, tu Meta Pixel o tu contenedor de Google Tag Manager en la app, y cada escaneo de tus QR y cada visita a tu Link Page llega a las herramientas que ya usás. Sirve para armar públicos de remarketing con la gente que pasó por tu local, medir qué escaneo terminó en una venta y comparar el cartel con tus anuncios en el mismo panel.",
+    analogia:
+      "Es ponerle a tu cartel el mismo píxel que tiene tu sitio: quien lo escaneó en el local entra a tus públicos de Meta y a tus informes de Google como cualquier otra visita.",
+    casos: [
+      "Remarketing en Instagram a quienes escanearon en el local",
+      "Medir cuántas ventas online arrancaron en un flyer",
+      "Comparar el cartel del mostrador contra tus anuncios",
+    ],
+    pasos: [
+      {
+        titulo: "Copiás el ID",
+        texto: "El Measurement ID de Google Analytics (G-…), el ID numérico de tu Meta Pixel o el contenedor de Tag Manager (GTM-…).",
+      },
+      {
+        titulo: "Lo pegás en la app",
+        texto: "En 'Análisis de seguimiento', dentro de Estadísticas de tu QR o tu Link Page. Activás el seguimiento de eventos si querés medir los clics.",
+      },
+      {
+        titulo: "Lo ves donde siempre",
+        texto: "Escaneos y clics aparecen en Google Analytics, Meta o Tag Manager como una visita más. Sin instalar nada.",
+      },
+    ],
+    mock: "pixeles",
     desde: "Starter",
   },
 ];

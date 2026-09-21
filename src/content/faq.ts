@@ -24,6 +24,12 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home"],
   },
   {
+    pregunta: "¿Puedo conectar mi Google Analytics o el píxel de Meta?",
+    respuesta:
+      "Sí. En la app pegás tu Measurement ID de Google Analytics 4, tu Meta Pixel ID o tu contenedor de Google Tag Manager, y cada escaneo de tus QR y cada visita a tu Link Page llega a esas herramientas como una visita más. Con eso armás públicos de remarketing con la gente que pasó por tu local y medís qué escaneo terminó en una venta. Está desde el plan Starter; en Free tenés las métricas de escaneos y clics de la app, sin píxeles.",
+    mostrarEn: ["home"],
+  },
+  {
     pregunta: "¿Necesito saber de tecnología para usarlo?",
     respuesta:
       "No. Si sabés usar Instagram, sabés usar FlashTag. Todo se edita desde el celular y el soporte es por WhatsApp, en castellano.",
