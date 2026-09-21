@@ -6,6 +6,8 @@ import { Section } from "@/components/ui/Section";
 import { PhoneFrame } from "@/components/app/PhoneFrame";
 import { Mock } from "@/components/app/mocks";
 import { FidelidadDetalle } from "@/components/FidelidadDetalle";
+import { Analitica } from "@/components/Analitica";
+import { analiticaPara } from "@/content/analitica";
 import { features } from "@/content/features";
 import { planes } from "@/content/planes";
 import { pageMeta } from "@/lib/seo";
@@ -44,6 +46,7 @@ export default async function ProductoPage({
 
   const otras = features.filter((x) => x.slug !== f.slug);
   const plan = planes.find((p) => p.nombre === f.desde);
+  const tieneAnalitica = Boolean(analiticaPara(f.slug));
 
   return (
     <>
@@ -153,7 +156,9 @@ export default async function ProductoPage({
         </div>
       </Section>
 
-      <Section>
+      {tieneAnalitica && <Analitica slug={f.slug} />}
+
+      <Section className="border-t border-line">
         <h2 className="t-h2" data-reveal>El resto de la app</h2>
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {otras.map((o, i) => (

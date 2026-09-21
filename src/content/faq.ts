@@ -24,6 +24,18 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home"],
   },
   {
+    pregunta: "¿Qué datos veo de cada escaneo?",
+    respuesta:
+      "Escaneos totales, escaneos únicos y visitas; el día y la hora; la ciudad y el país; el dispositivo, el sistema operativo y el idioma del teléfono; y qué producto lo generó (el cartel del mostrador, el sticker de la vidriera, la tarjeta o un QR dinámico). Todo en tiempo real: escaneás para probar y ya lo ves en el panel.",
+    mostrarEn: ["home", "precios"],
+  },
+  {
+    pregunta: "¿Puedo conectar mi píxel de Meta o mi Google Analytics?",
+    respuesta:
+      "Sí. Podés conectar tu píxel de Meta para armar públicos de remarketing en Instagram y Facebook con la gente que escaneó en tu local, y tu Google Analytics para que el tráfico de tus QR y tus Link Pages entre como una fuente más de tu marketing. Próximamente sumamos más integraciones de analítica, como el píxel de TikTok.",
+    mostrarEn: ["home", "precios"],
+  },
+  {
     pregunta: "¿Necesito saber de tecnología para usarlo?",
     respuesta:
       "No. Si sabés usar Instagram, sabés usar FlashTag. Todo se edita desde el celular y el soporte es por WhatsApp, en castellano.",
