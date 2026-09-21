@@ -76,6 +76,12 @@ export const capacidadesPanel: CapacidadPanel[] = [
     confirmado: true,
   },
   {
+    titulo: "Elegís el período",
+    texto:
+      "Un rango de fechas a medida: esta semana, el mes pasado, la temporada entera. El panel recalcula todo sobre lo que elegiste.",
+    confirmado: true,
+  },
+  {
     titulo: "Exportás a CSV",
     texto:
       "Te llevás el dato a tu planilla para cruzarlo con tus ventas, armar tu propio reporte o pasárselo a tu agencia.",
@@ -116,6 +122,62 @@ export const integraciones = {
     items: ["Píxel de TikTok", "Más plataformas de anuncios"],
   },
 } as const;
+
+/**
+ * POR QUÉ MEDIR — el argumento que va antes de la lista de features.
+ * Nadie paga por "analítica": pagan por dejar de decidir a ciegas.
+ */
+export const beneficios = [
+  {
+    titulo: "Sabés a quién le estás hablando",
+    texto:
+      "Ciudad, horario, dispositivo e idioma de quien te escanea. Dejás de suponer quién es tu cliente y empezás a verlo.",
+  },
+  {
+    titulo: "Sabés qué te trae gente y qué no",
+    texto:
+      "Cuál de tus carteles, QR o campañas genera interacción real. Ahí decidís dónde poner la plata el mes que viene.",
+  },
+  {
+    titulo: "Detectás dónde se te cae la gente",
+    texto:
+      "Si un QR tiene muchos escaneos y pocas visitas, algo falla entre el escaneo y el destino. El número te avisa antes de que lo notes vos.",
+  },
+  {
+    titulo: "Medís el impacto de cada cambio",
+    texto:
+      "Moviste el cartel, cambiaste el destino, lanzaste una promo: comparás el antes y el después con el dato al lado, no de memoria.",
+  },
+  {
+    titulo: "Segmentás con algo concreto",
+    texto:
+      "Con ciudad, horario y dispositivo armás públicos reales para tus campañas, en lugar de tirarle a todos y esperar.",
+  },
+  {
+    titulo: "Te ponés objetivos que se pueden cumplir",
+    texto:
+      "Con tu propio historial sabés qué es un buen mes para tu local. Dejás de compararte contra un número inventado.",
+  },
+];
+
+/** Dónde se entra a ver todo esto. Baja la fricción de "¿será complicado?". */
+export const dondeSeVe = {
+  titulo: "Dónde lo mirás",
+  items: [
+    {
+      titulo: "En Métricas",
+      texto: "El panel de toda tu cuenta, con el total del período que elijas.",
+    },
+    {
+      titulo: "En cada producto",
+      texto: "Entrás a un cartel o a un QR y ves su detalle, solo el de esa pieza.",
+    },
+    {
+      titulo: "Desde el celular",
+      texto: "El mismo panel, sin instalar nada y sin pedirle nada a nadie.",
+    },
+  ],
+};
 
 /** El encuadre por feature: el mismo bloque, con el foco de cada producto. */
 export type AnaliticaFeature = {

@@ -1,10 +1,18 @@
 import { Section } from "./ui/Section";
 import { QRMark } from "./ui/QRMark";
-import { consolidado, preguntasDelPanel } from "@/content/analitica";
+import {
+  beneficios,
+  consolidado,
+  dondeSeVe,
+  preguntasDelPanel,
+} from "@/content/analitica";
 
 /**
- * Secciones propias de /producto/metricas: la vista consolidada de toda la
- * cuenta y las preguntas de negocio que el panel contesta.
+ * Secciones propias de /producto/metricas: por qué conviene medir, la vista
+ * consolidada de toda la cuenta y las preguntas de negocio que contesta.
+ *
+ * El orden es el argumento: primero por qué te sirve, después dónde está, y
+ * recién al final qué dato trae cada pantalla.
  *
  * El resumen se dibuja en código, como el resto de las maquetas: si la app
  * cambia la pantalla, se cambia acá. Nunca un PNG que envejece.
@@ -12,6 +20,33 @@ import { consolidado, preguntasDelPanel } from "@/content/analitica";
 export function MetricasDetalle() {
   return (
     <>
+      <Section className="border-t border-line">
+        <div className="measure" data-reveal>
+          <h2 className="t-h2 text-balance">
+            Qué cambia en tu negocio cuando medís
+          </h2>
+          <p className="t-lead mt-5 text-muted">
+            Un cartel sin métricas es un volante: lo ponés y esperás. Con
+            métricas sabés si funciona, cuándo funciona y qué conviene cambiar.
+            Eso es lo que hacés distinto la semana que viene.
+          </p>
+        </div>
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+          {beneficios.map((b, i) => (
+            <li
+              key={b.titulo}
+              data-reveal
+              style={{ "--reveal-delay": `${(i % 3) * 80}ms` } as React.CSSProperties}
+              className="rounded-[var(--radius-card)] border border-line p-6"
+            >
+              <QRMark size={13} />
+              <h3 className="t-h3 mt-4 text-[1.0625rem] text-balance">{b.titulo}</h3>
+              <p className="t-body mt-2 text-muted">{b.texto}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
       <Section id="consolidado" className="border-t border-line bg-surface">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div data-reveal>
@@ -61,6 +96,21 @@ export function MetricasDetalle() {
               ))}
             </dl>
           </div>
+        </div>
+
+        <div className="mt-12 border-t border-line pt-10 lg:mt-16" data-reveal>
+          <h3 className="t-h3">{dondeSeVe.titulo}</h3>
+          <ul className="mt-6 grid gap-5 md:grid-cols-3">
+            {dondeSeVe.items.map((d) => (
+              <li key={d.titulo} className="flex gap-3">
+                <QRMark size={12} tone="muted" className="mt-1.5" />
+                <div>
+                  <p className="text-[0.9375rem] font-semibold">{d.titulo}</p>
+                  <p className="t-body mt-1 text-muted">{d.texto}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </Section>
 
