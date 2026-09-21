@@ -53,7 +53,7 @@ export const planes: Plan[] = [
   {
     id: "starter",
     nombre: "Starter",
-    paraQuien: "Un local único que quiere profesionalizarse",
+    paraQuien: "El local que invierte en publicidad y quiere saber si le rinde",
     precioMensual: 49,
     precioARS: 75000,
     precioAnualPorMes: 42,

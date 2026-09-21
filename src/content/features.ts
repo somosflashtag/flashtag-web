@@ -19,6 +19,15 @@ export type Feature = {
    * Píxeles lo llevan porque sin esto competían por la misma búsqueda.
    */
   seoTitle?: string;
+  /**
+   * Descripción para Google, de 150 caracteres o menos.
+   *
+   * `bajada` es el lead del hero: está escrita para leerse en la página, y
+   * pasa los 300 caracteres. Google corta en ~155, así que usarla dejaba el
+   * resultado partido a la mitad de la frase. Acá va la versión que se lee
+   * entera en el buscador.
+   */
+  seoDescription?: string;
   titular: string;
   bajada: string;
   analogia?: string;
@@ -36,6 +45,8 @@ export const features: Feature[] = [
     slug: "qr-dinamicos",
     nombre: "QR dinámicos",
     corto: "Un QR para lo que necesites hoy",
+    seoDescription:
+      "Creá un QR y cambiá su destino cuando quieras desde el celular: una promo, un menú, un formulario. Con métricas de cada escaneo. Gratis en el plan Free.",
     titular: "Creá un QR que apunta a lo que vos decidas",
     bajada:
       "Cada cartel de FlashTag tiene su canal: Google, Instagram, WhatsApp. Cuando necesitás algo distinto, creás un QR dinámico desde la app: una promo, el menú de temporada, un formulario de turnos. El destino lo cambiás cuando quieras desde el celular, y cada escaneo queda medido: cuántos fueron, cuántas personas distintas, a qué hora y desde dónde.",
@@ -71,6 +82,8 @@ export const features: Feature[] = [
     slug: "link-pages",
     nombre: "Link Pages",
     corto: "Tu minisitio con métricas por botón",
+    seoDescription:
+      "Tu minisitio con botones a WhatsApp, menú, reservas y redes. Con tu marca, editable en un minuto y con los clics medidos por botón. Gratis en el plan Free.",
     titular: "Tu minisitio, conectado al cartel de tu local",
     bajada:
       "Un lugar propio con botones a WhatsApp, Google Maps, menú, catálogo, redes y promos. Con tu marca, editable en un minuto, y con analítica completa: visitas, clics por botón y de dónde llegó cada una.",
@@ -102,6 +115,8 @@ export const features: Feature[] = [
     slug: "resenas-ia",
     nombre: "Reseñas con IA",
     corto: "Respuestas automáticas con la voz de tu marca",
+    seoDescription:
+      "Conectá tu Google Business y FlashTag responde cada reseña con la voz de tu marca. Vos definís el tono y aprobás antes de publicar. Desde el plan Starter.",
     titular: "Tus reseñas de Google, respondidas automáticamente con tu voz",
     bajada:
       "Conectás tu cuenta de Google Business y FlashTag responde cada reseña de forma automática, con la voz de tu marca: vos definís el tono, cómo saludás, qué palabras usás y cuáles no. Podés revisar cada respuesta antes de publicar o dejar que salgan solas.",
@@ -131,6 +146,8 @@ export const features: Feature[] = [
     slug: "metricas",
     nombre: "Métricas",
     corto: "Cómo interactúan con cada producto",
+    seoDescription:
+      "Escaneos totales y únicos, mapa de calor por hora, ranking de ciudades y export a CSV. Mirá qué funciona en tu local y qué conviene cambiar.",
     seoTitle: "Métricas de QR: qué mide FlashTag en cada escaneo",
     titular: "Métricas de cómo tus clientes interactúan con tu negocio",
     bajada:
@@ -163,6 +180,8 @@ export const features: Feature[] = [
     slug: "fidelidad",
     nombre: "Programa de fidelidad",
     corto: "Una comunidad que te elige y vuelve",
+    seoDescription:
+      "Sellos, puntos, cashback o membresías en Apple Wallet y Google Wallet. Tu cliente no descarga ninguna app: escanea y la guarda. Desde el plan Full.",
     titular: "Tu programa de fidelidad, en la billetera del celular de tu cliente",
     bajada:
       "Sellos, puntos, cashback, descuentos, cupones, membresías, gift cards o packs de sesiones: elegís la modalidad, le ponés tu logo y tu esquema de premios. Tu cliente no descarga ninguna app: escanea y la guarda en Apple Wallet o Google Wallet. Y desde ahí le mandás push gratis, lo saludás en su cumpleaños y lo premiás por traer amigos.",
@@ -195,6 +214,8 @@ export const features: Feature[] = [
     slug: "ruleta",
     nombre: "Ruleta de premios",
     corto: "Una experiencia gamificada con tu marca",
+    seoDescription:
+      "El cliente escanea, gira y se lleva un premio. Vos elegís premios, colores y porcentaje de suerte. La excusa para que te dejen la reseña. Desde Starter.",
     titular: "Divertí a tus clientes y dales algo a cambio",
     bajada:
       "Una experiencia gamificada con tu marca: el cliente escanea, gira la ruleta y se lleva un premio. Vos la personalizás entera: los premios, los colores de cada casillero y el porcentaje de suerte de cada uno. La excusa perfecta para que dejen la reseña o te sigan en tus redes. Y cada giro se mide: cuántos, a qué hora y qué premio salió.",
@@ -226,6 +247,8 @@ export const features: Feature[] = [
     slug: "pixeles",
     nombre: "Píxeles de Google y Meta",
     corto: "Tus escaneos, en Google Analytics y Meta Ads",
+    seoDescription:
+      "Pegás tu ID de Google Analytics, Meta Pixel o Tag Manager y cada escaneo llega a tus campañas. Armá remarketing con quien pasó por tu local.",
     seoTitle: "Píxel de Meta y Google Analytics para tus QR",
     titular: "Conectá tus QR con Google Analytics, Meta y Tag Manager",
     bajada:

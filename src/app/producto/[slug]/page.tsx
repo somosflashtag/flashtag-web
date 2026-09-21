@@ -33,7 +33,7 @@ export async function generateMetadata({
   if (!f) return {};
   return pageMeta({
     title: f.seoTitle ?? f.nombre,
-    description: f.bajada,
+    description: f.seoDescription ?? f.bajada,
     path: `/producto/${f.slug}`,
   });
 }
