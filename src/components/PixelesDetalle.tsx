@@ -1,6 +1,14 @@
+import Link from "next/link";
 import { Section } from "./ui/Section";
 import { QRMark } from "./ui/QRMark";
-import { beneficios, campos, eventos, privacidad } from "@/content/pixeles";
+import {
+  beneficios,
+  campos,
+  eventos,
+  herramientas,
+  privacidad,
+  puenteMetricas,
+} from "@/content/pixeles";
 
 /**
  * Secciones propias de /producto/pixeles: los beneficios, los tres campos
@@ -40,7 +48,33 @@ export function PixelesDetalle() {
       </Section>
 
       <Section id="campos">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+        {/* Badges tipográficos, no logos: los kits de Google y Meta no están
+            autorizados por escrito (AGENTS.md §7). */}
+        <ul className="grid gap-4 sm:grid-cols-3" data-reveal>
+          {herramientas.map((h, i) => (
+            <li
+              key={h.sigla}
+              style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+              className="relative rounded-[var(--radius-surface)] border border-line bg-paper p-6"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute right-5 top-5 flex size-5 items-center justify-center rounded-full bg-brand"
+              >
+                <svg viewBox="0 0 12 12" width="9" height="9" fill="none">
+                  <path d="M2.5 6.2l2.2 2.2 4.8-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="flex h-11 w-fit items-center rounded-[var(--radius-btn)] bg-ink px-3 text-[15px] font-bold tracking-tight text-paper">
+                {h.sigla}
+              </span>
+              <p className="mt-4 font-semibold">{h.nombre}</p>
+              <p className="t-body mt-1 text-muted">{h.que}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:mt-16">
           <div data-reveal>
             <p className="flex items-center gap-2 text-sm font-semibold text-brand">
               <QRMark size={12} /> Tres campos
@@ -53,6 +87,16 @@ export function PixelesDetalle() {
             </p>
             <p className="t-body mt-6 rounded-[var(--radius-card)] border border-line bg-surface p-5 text-muted">
               {privacidad}
+            </p>
+            <p className="t-body mt-6 text-muted">
+              {puenteMetricas.texto}{" "}
+              <Link
+                href={puenteMetricas.href}
+                className="font-semibold text-ink underline underline-offset-4"
+              >
+                {puenteMetricas.cta}
+              </Link>
+              .
             </p>
           </div>
 

@@ -96,36 +96,26 @@ export const capacidadesPanel: CapacidadPanel[] = [
   },
 ];
 
-/** Integraciones de tracking. Solo lo que ya funciona en producción. */
+/**
+ * PUENTE A /producto/pixeles — no la explicación.
+ *
+ * Este bloque sale en la home y en cada página de producto con analítica, así
+ * que describir acá GA4, Meta y GTM significaba repetir en cinco URLs lo que
+ * /producto/pixeles explica campo por campo: las dos páginas terminaban
+ * compitiendo por la misma búsqueda. Acá va el titular y el link; el detalle
+ * vive en `content/pixeles.ts` y en ningún otro lado.
+ *
+ * La división: /producto/metricas es LEER el dato, /producto/pixeles es
+ * ACTIVARLO en tus campañas.
+ */
 export const integraciones = {
-  titulo: "Conectá tus propias herramientas",
+  titulo: "Y si querés, el dato sale de FlashTag",
   /** Mismo criterio que `Feature.desde`: el plan en el que se habilita. */
   desde: "Starter" as const,
   texto:
-    "El dato no se queda encerrado en FlashTag. Enchufás tu píxel y tu analítica y el tráfico de tus QR entra a tu ecosistema como cualquier otra fuente de tu marketing.",
-  activas: [
-    {
-      nombre: "Píxel de Meta",
-      texto:
-        "Cada escaneo puede disparar un evento a tu píxel: armás públicos de remarketing en Instagram y Facebook con la gente que ya pasó por tu local.",
-    },
-    {
-      nombre: "Google Analytics",
-      texto:
-        "Las visitas de tus QR y tus Link Pages entran a tu GA4 como una fuente más y las cruzás con el resto de tus campañas.",
-    },
-    {
-      nombre: "Google Tag Manager",
-      texto:
-        "Pegás tu contenedor y todo lo que ya tengas adentro (Google Ads, TikTok, LinkedIn) se dispara también desde tus QR, sin volver a tocar la app.",
-    },
-  ],
-  /** La página que lo explica campo por campo. */
+    "Pegás el ID de Google Analytics, de tu píxel de Meta o de tu contenedor de Tag Manager y cada escaneo llega a las herramientas que ya usás. Ahí armás públicos de remarketing con quien pasó por tu local y comparás el cartel contra tus anuncios.",
   href: "/producto/pixeles",
   cta: "Ver cómo se conecta",
-  // Hubo un bloque "Próximamente" (píxel de TikTok, más plataformas). Se sacó
-  // el 21/09/2026: AGENTS.md §6, nada de "próximamente" en el sitio. TikTok ya
-  // entra hoy por Tag Manager; cuando tenga campo propio en la app, se lista.
 } as const;
 
 /**
@@ -154,9 +144,9 @@ export const beneficios = [
       "Moviste el cartel, cambiaste el destino, lanzaste una promo: comparás el antes y el después con el dato al lado, no de memoria.",
   },
   {
-    titulo: "Segmentás con algo concreto",
+    titulo: "Sabés cuándo reforzar y cuándo aflojar",
     texto:
-      "Con ciudad, horario y dispositivo armás públicos reales para tus campañas, en lugar de tirarle a todos y esperar.",
+      "El mapa de calor te marca las horas que rinden y las que no. Ahí decidís turnos, stock y en qué momento lanzar la promo.",
   },
   {
     titulo: "Te ponés objetivos que se pueden cumplir",
@@ -226,7 +216,7 @@ export const analiticaPorFeature: Record<string, AnaliticaFeature> = {
   metricas: {
     titular: "Analítica completa de cada escaneo, en un solo panel",
     bajada:
-      "Todo lo que pasa con tus productos, tus QR, tus Link Pages, tu ruleta y tu programa de fidelidad, junto y en tiempo real. Y si querés llevarte el dato a tu propio stack, lo conectás con tu píxel y tu analítica.",
+      "Todo lo que pasa con tus productos, tus QR, tus Link Pages, tu ruleta y tu programa de fidelidad, junto y en tiempo real. Un solo lugar para entender qué mueve tu local, sin abrir cinco pantallas.",
     foco: [
       "Qué producto genera más interacción y cuál conviene mover de lugar",
       "Qué horarios y qué días concentran los escaneos",
@@ -307,6 +297,6 @@ export const preguntasDelPanel = [
   {
     pregunta: "¿Qué le muestro a mi agencia o a mi socio?",
     respuesta:
-      "El panel consolidado del período, con todos los productos juntos, o el CSV exportado si prefiere su propia planilla. Y si conectaste tu píxel y tu Google Analytics, el mismo dato aparece al lado del resto de tus campañas.",
+      "El panel consolidado del período, con todos los productos juntos, o el CSV exportado si prefiere trabajarlo en su propia planilla.",
   },
 ];

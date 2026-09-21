@@ -29,6 +29,20 @@ export const beneficios: Beneficio[] = [
   },
 ];
 
+/**
+ * La tira de "estas tres, listas" que abre la sección de campos.
+ *
+ * ⚠️ Badges TIPOGRÁFICOS, no logos (AGENTS.md §7): los kits de marca de Google
+ * y Meta no están autorizados por escrito todavía. Mismo criterio que las
+ * tarjetas en MediosDePago.tsx. Cuando lleguen los kits se reemplaza `sigla`
+ * por el SVG oficial y no se toca nada más.
+ */
+export const herramientas = [
+  { sigla: "GA4", nombre: "Google Analytics", que: "Informes, embudos y audiencias" },
+  { sigla: "GTM", nombre: "Google Tag Manager", que: "Todo lo que ya tengas en el contenedor" },
+  { sigla: "Meta", nombre: "Meta Pixel", que: "Públicos y conversiones en Instagram y Facebook" },
+];
+
 export type CampoPixel = {
   /** Como se llama el campo en la app. */
   label: string;
@@ -76,6 +90,14 @@ export const eventos = [
     texto: "Con el seguimiento de eventos activado: WhatsApp, menú, reservas, cada botón por separado.",
   },
 ];
+
+/** Puente de vuelta: píxeles ACTIVA el dato, métricas lo LEE. */
+export const puenteMetricas = {
+  texto:
+    "El panel propio de FlashTag mide todo esto igual, sin conectar nada. Los píxeles son para llevarlo a tus campañas.",
+  cta: "Ver el panel de métricas",
+  href: "/producto/metricas",
+};
 
 export const privacidad =
   "Los datos van a tu cuenta de Google o de Meta, no a la nuestra. FlashTag no ve lo que hay en tu Analytics: solo dispara el píxel con el ID que vos pegaste.";

@@ -31,7 +31,7 @@ export async function generateMetadata({
   const f = features.find((x) => x.slug === slug);
   if (!f) return {};
   return pageMeta({
-    title: f.nombre,
+    title: f.seoTitle ?? f.nombre,
     description: f.bajada,
     path: `/producto/${f.slug}`,
   });

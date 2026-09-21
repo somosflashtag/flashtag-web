@@ -107,12 +107,13 @@ export function Analitica({
           </div>
         )}
 
-        {/* Integraciones de tracking */}
+        {/* Puente a /producto/pixeles. El detalle de cada campo vive allá:
+            repetirlo acá hacía que las dos páginas pelearan la misma búsqueda. */}
         <div
           data-reveal
           style={{ "--reveal-delay": "100ms" } as React.CSSProperties}
           className={cn(
-            "rounded-[var(--radius-surface)] border border-line bg-paper p-6 lg:p-8",
+            "flex flex-col rounded-[var(--radius-surface)] border border-line bg-paper p-6 lg:p-8",
             !f && "lg:col-span-2",
           )}
         >
@@ -121,40 +122,15 @@ export function Analitica({
             <DesdePlan plan={integraciones.desde} />
           </h3>
           <p className="t-body measure mt-3 text-muted">{integraciones.texto}</p>
-
-          <ul className={cn("mt-6 grid gap-4", !f && "sm:grid-cols-2")}>
-            {integraciones.activas.map((i) => (
-              <li
-                key={i.nombre}
-                className="rounded-[var(--radius-card)] border border-line bg-surface p-5"
-              >
-                <p className="flex items-center gap-2 text-[0.9375rem] font-semibold">
-                  <span
-                    aria-hidden="true"
-                    className="size-2 shrink-0 rounded-full bg-teal"
-                  />
-                  {i.nombre}
-                </p>
-                <p className="t-body mt-2 text-muted">{i.texto}</p>
-              </li>
-            ))}
-          </ul>
-
-          {/* Sin "próximamente" (AGENTS.md §6): lo que no está en producción
-              no se lista. En su lugar, la página que explica campo por campo. */}
-          {slug !== "pixeles" && (
-            <div className="mt-6 border-t border-line pt-5">
-              <Link
-                href={integraciones.href}
-                className="group inline-flex min-h-[44px] items-center gap-2 text-[0.9375rem] font-semibold"
-              >
-                {integraciones.cta}
-                <svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true" className="transition-transform duration-[120ms] group-hover:translate-x-1">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-            </div>
-          )}
+          <Link
+            href={integraciones.href}
+            className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-[0.9375rem] font-semibold"
+          >
+            {integraciones.cta}
+            <svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true" className="transition-transform duration-[120ms] group-hover:translate-x-1">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </div>
       </div>
     </Section>

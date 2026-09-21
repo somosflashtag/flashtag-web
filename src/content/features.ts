@@ -14,6 +14,11 @@ export type Feature = {
   nombre: string;
   /** Verbo corto para el menú y el bento. */
   corto: string;
+  /**
+   * Título para Google, cuando el nombre del feature no alcanza. Métricas y
+   * Píxeles lo llevan porque sin esto competían por la misma búsqueda.
+   */
+  seoTitle?: string;
   titular: string;
   bajada: string;
   analogia?: string;
@@ -124,14 +129,15 @@ export const features: Feature[] = [
     slug: "metricas",
     nombre: "Métricas",
     corto: "Cómo interactúan con cada producto",
+    seoTitle: "Métricas de QR: qué mide FlashTag en cada escaneo",
     titular: "Métricas de cómo tus clientes interactúan con tu negocio",
     bajada:
-      "Cuántos escanean el cartel de Google, cuántos siguen tu Instagram, cuántos giran la ruleta, cuántos entran al programa de fidelidad y cuándo lo hacen. Analítica completa de cada escaneo —totales, únicos, visitas, día y hora, ciudad, dispositivo— en un panel en tiempo real. Y si querés llevarte el dato, lo conectás con tu píxel de Meta o tu Google Analytics.",
+      "Cuántos escanean el cartel de Google, cuántos siguen tu Instagram, cuántos giran la ruleta y cuándo lo hacen. Totales, únicos y visitas; día y hora en un mapa de calor; ciudad, dispositivo y qué producto lo generó. Todo en un panel en tiempo real que te dice qué está funcionando en tu local y qué conviene cambiar.",
     casos: [
       "Qué producto genera más interacción",
       "Cuánta gente usa la ruleta cada semana",
       "Cuántos clientes vuelven por la fidelidad",
-      "Armar públicos de remarketing con quienes ya pasaron por tu local",
+      "En qué horarios conviene reforzar el local",
     ],
     pasos: [
       {
@@ -145,7 +151,7 @@ export const features: Feature[] = [
       {
         titulo: "Decidís con datos",
         texto:
-          "Ajustás premios, horarios y ubicación de cada producto. Y si querés, el dato también viaja a tu píxel y a tu Google Analytics.",
+          "Ajustás premios, horarios y ubicación de cada producto según lo que muestra el panel. Y volvés a medir la semana siguiente.",
       },
     ],
     mock: "metricas",
@@ -218,6 +224,7 @@ export const features: Feature[] = [
     slug: "pixeles",
     nombre: "Píxeles de Google y Meta",
     corto: "Tus escaneos, en Google Analytics y Meta Ads",
+    seoTitle: "Píxel de Meta y Google Analytics para tus QR",
     titular: "Conectá tus QR con Google Analytics, Meta y Tag Manager",
     bajada:
       "Pegás tu ID de Google Analytics 4, tu Meta Pixel o tu contenedor de Google Tag Manager en la app, y cada escaneo de tus QR y cada visita a tu Link Page llega a las herramientas que ya usás. Sirve para armar públicos de remarketing con la gente que pasó por tu local, medir qué escaneo terminó en una venta y comparar el cartel con tus anuncios en el mismo panel.",
