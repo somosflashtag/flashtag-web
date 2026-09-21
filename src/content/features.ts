@@ -235,7 +235,7 @@ export const features: Feature[] = [
       },
     ],
     mock: "pixeles",
-    desde: "Free",
+    desde: "Starter",
   },
 ];
 
