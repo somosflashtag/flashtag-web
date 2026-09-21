@@ -176,3 +176,67 @@ export const analiticaPara = (slug: string): AnaliticaFeature | undefined =>
 
 /** Lo único publicable: nada sale al sitio sin estar confirmado en la app. */
 export const capacidadesPublicadas = capacidadesPanel.filter((c) => c.confirmado);
+
+/**
+ * VISTA CONSOLIDADA — la sección de estadísticas de toda la cuenta, no la de
+ * un producto suelto. Es el argumento que le importa a quien tiene varios
+ * locales o varios clientes: no entrar uno por uno.
+ *
+ * ⚠️ REVISAR `filtros` contra la app antes de dar por buena la lista.
+ */
+export const consolidado = {
+  titular: "Todo junto, en un solo panel",
+  bajada:
+    "No tenés que entrar producto por producto. Elegís el período y ves el total de tu cuenta: cuántos productos tenés activos, cuántos escaneos sumaron entre todos, cuántas personas distintas fueron y cuántas terminaron entrando. Después filtrás por lo que te interese mirar.",
+  /** Los números son de un comercio ficticio: es una demo, no prueba social. */
+  periodo: "1 al 30 de septiembre",
+  resumen: [
+    { label: "Productos activos", valor: "12" },
+    { label: "Escaneos", valor: "3.410" },
+    { label: "Escaneos únicos", valor: "2.180" },
+    { label: "Visitas", valor: "1.640" },
+  ],
+  filtros: [
+    "Por producto o por QR",
+    "Por sucursal",
+    "Por sistema operativo",
+    "Por país o ciudad",
+  ],
+} as const;
+
+/**
+ * LAS PREGUNTAS QUE CONTESTA — el panel traducido al idioma del comerciante.
+ * Nadie entra al dashboard a "ver métricas": entra a resolver una duda.
+ */
+export const preguntasDelPanel = [
+  {
+    pregunta: "¿Me conviene abrir los domingos?",
+    respuesta:
+      "El mapa de calor te dice cuántos escaneos entran cada día y a qué hora. Si el domingo está en blanco, ya tenés la respuesta. Si está encendido a las 11, el problema es que abrís a las 13.",
+  },
+  {
+    pregunta: "¿El cartel de la vidriera sirve o lo estoy desperdiciando?",
+    respuesta:
+      "Cada producto mide por separado. Si el del mostrador se lleva el 60% y el de la vidriera el 5%, no es que la vidriera no funcione: está mal puesto. Movelo y volvé a mirar en una semana.",
+  },
+  {
+    pregunta: "¿La promo del martes movió algo?",
+    respuesta:
+      "Cambiás el destino del QR el lunes, comparás martes contra martes y el número te lo dice. Sin encuestas ni suposiciones: escaneos antes y escaneos después.",
+  },
+  {
+    pregunta: "¿Cuánta gente nueva entra y cuánta ya me conocía?",
+    respuesta:
+      "Esa es la diferencia entre escaneos totales y escaneos únicos. Si los totales crecen y los únicos no, no estás llegando a gente nueva: estás cansando a la de siempre.",
+  },
+  {
+    pregunta: "¿Mis clientes son del barrio o vienen de afuera?",
+    respuesta:
+      "El ranking de ciudades te lo muestra ordenado. Cambia todo: si son del barrio, jugás a la recurrencia; si vienen de afuera, jugás a que te dejen la reseña antes de irse.",
+  },
+  {
+    pregunta: "¿Qué le muestro a mi agencia o a mi socio?",
+    respuesta:
+      "El panel consolidado del período, con todos los productos juntos. Y si conectaste tu píxel y tu Google Analytics, el mismo dato aparece al lado del resto de tus campañas.",
+  },
+];

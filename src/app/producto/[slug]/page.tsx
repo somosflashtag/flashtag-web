@@ -7,6 +7,7 @@ import { PhoneFrame } from "@/components/app/PhoneFrame";
 import { Mock } from "@/components/app/mocks";
 import { FidelidadDetalle } from "@/components/FidelidadDetalle";
 import { Analitica } from "@/components/Analitica";
+import { MetricasDetalle } from "@/components/MetricasDetalle";
 import { analiticaPara } from "@/content/analitica";
 import { features } from "@/content/features";
 import { planes } from "@/content/planes";
@@ -109,6 +110,7 @@ export default async function ProductoPage({
       </Section>
 
       {f.slug === "fidelidad" && <FidelidadDetalle />}
+      {f.slug === "metricas" && <MetricasDetalle />}
 
       <Section className="border-t border-line bg-surface">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
