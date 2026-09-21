@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 import type { Feature } from "@/content/features";
 
 /**
- * Tour de la app: seis pestañas, un teléfono.
+ * Tour de la app: siete pestañas, un teléfono.
  * Las pantallas llegan renderizadas desde el servidor (`screens`), así que
  * este componente solo decide cuál mostrar. Cero lógica de producto acá.
  */

@@ -7,8 +7,8 @@
  * se cambia acá y aparece en todos lados.
  *
  * ⚠️ Nada de esto es aspiracional. Si una integración todavía no está en
- * producción va en `proximamente`, nunca en `activas`. Lo mismo con las
- * métricas: si la app no la muestra, no se lista.
+ * producción, no se lista (AGENTS.md §6: nada de "próximamente" en el sitio).
+ * Lo mismo con las métricas: si la app no la muestra, no se lista.
  */
 
 export type DatoMedido = { titulo: string; texto: string };
@@ -114,13 +114,18 @@ export const integraciones = {
       texto:
         "Las visitas de tus QR y tus Link Pages entran a tu GA4 como una fuente más y las cruzás con el resto de tus campañas.",
     },
+    {
+      nombre: "Google Tag Manager",
+      texto:
+        "Pegás tu contenedor y todo lo que ya tengas adentro (Google Ads, TikTok, LinkedIn) se dispara también desde tus QR, sin volver a tocar la app.",
+    },
   ],
-  proximamente: {
-    titulo: "Próximamente",
-    texto:
-      "Estamos sumando más analítica y más integraciones de tracking a la plataforma.",
-    items: ["Píxel de TikTok", "Más plataformas de anuncios"],
-  },
+  /** La página que lo explica campo por campo. */
+  href: "/producto/pixeles",
+  cta: "Ver cómo se conecta",
+  // Hubo un bloque "Próximamente" (píxel de TikTok, más plataformas). Se sacó
+  // el 21/09/2026: AGENTS.md §6, nada de "próximamente" en el sitio. TikTok ya
+  // entra hoy por Tag Manager; cuando tenga campo propio en la app, se lista.
 } as const;
 
 /**

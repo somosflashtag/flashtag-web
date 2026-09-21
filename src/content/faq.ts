@@ -30,9 +30,9 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home", "precios"],
   },
   {
-    pregunta: "¿Puedo conectar mi píxel de Meta o mi Google Analytics?",
+    pregunta: "¿Puedo conectar mi Google Analytics o el píxel de Meta?",
     respuesta:
-      "Sí. Podés conectar tu píxel de Meta para armar públicos de remarketing en Instagram y Facebook con la gente que escaneó en tu local, y tu Google Analytics para que el tráfico de tus QR y tus Link Pages entre como una fuente más de tu marketing. Ambas se habilitan desde el plan Starter, igual que la exportación a CSV. Próximamente sumamos más integraciones de analítica, como el píxel de TikTok.",
+      "Sí. En la app pegás tu Measurement ID de Google Analytics 4, tu Meta Pixel ID o tu contenedor de Google Tag Manager, y cada escaneo de tus QR y cada visita a tu Link Page llega a esas herramientas como una visita más. Con eso armás públicos de remarketing con la gente que pasó por tu local y medís qué escaneo terminó en una venta. Se habilita desde el plan Starter, igual que la exportación a CSV; en Free tenés las métricas de escaneos y clics de la app, sin píxeles.",
     mostrarEn: ["home", "precios"],
   },
   {

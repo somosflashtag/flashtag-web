@@ -21,7 +21,8 @@ export type MockId =
   | "resenas"
   | "metricas"
   | "fidelidad"
-  | "ruleta";
+  | "ruleta"
+  | "pixeles";
 
 /* ---------- piezas comunes ---------- */
 
@@ -645,6 +646,89 @@ export function MockRuleta() {
   );
 }
 
+/* ---------- 8. Píxeles: "Análisis de seguimiento" ---------- */
+
+/**
+ * La sección Estadísticas del editor: tres campos de ID y el toggle de
+ * eventos, con los mismos nombres que la app. Los IDs son inventados.
+ */
+export function MockPixeles() {
+  const campos = [
+    { label: "Google Analytics 4 ID", valor: "G-4K2P7XQ1ZB", activo: false },
+    { label: "Meta Pixel ID", valor: "1029384756", activo: false },
+    { label: "Google Tag Manager ID", valor: "GTM-K7P2QX4", activo: true },
+  ];
+  const eventos = [
+    { e: "page_view", d: "Link Page", t: "hace 1 min" },
+    { e: "click", d: "Pedir por WhatsApp", t: "hace 3 min" },
+    { e: "scan", d: "QR · Promo", t: "hace 8 min" },
+  ];
+  return (
+    <AppShell active="links" title="Link Page · Estadísticas">
+      <div className="space-y-2.5">
+        <Card>
+          <Label>Análisis de seguimiento</Label>
+          <ul className="mt-2 space-y-2">
+            {campos.map((c) => (
+              <li key={c.label}>
+                <p className="text-[10px] font-medium text-muted">{c.label}</p>
+                <p
+                  className={cn(
+                    "mt-1 rounded-lg border px-2.5 py-1.5 font-mono text-[11px] tnum",
+                    c.activo
+                      ? "border-brand bg-brand-soft text-ink ring-2 ring-brand/20"
+                      : "border-line bg-paper text-ink",
+                  )}
+                >
+                  {c.valor}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-2.5 flex items-center gap-2">
+            <span className="relative h-4 w-7 shrink-0 rounded-full bg-brand">
+              <span className="absolute right-0.5 top-0.5 size-3 rounded-full bg-paper" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold leading-none">Seguimiento de eventos</p>
+              <p className="mt-0.5 text-[9px] leading-snug text-muted">
+                Cada clic en un botón llega a tus herramientas.
+              </p>
+            </div>
+          </div>
+        </Card>
+
+        <Card>
+          <div className="flex items-center justify-between">
+            <Label>Últimos eventos enviados</Label>
+            <span className="rounded-full bg-teal/10 px-2 py-0.5 text-[9px] font-semibold text-teal">
+              En vivo
+            </span>
+          </div>
+          <ul className="mt-2 space-y-1.5">
+            {eventos.map((ev) => (
+              <li
+                key={ev.e + ev.d}
+                className="flex items-center gap-2 rounded-xl border border-line px-2.5 py-1.5"
+              >
+                <span className="size-1.5 shrink-0 rounded-full bg-teal" />
+                <span className="font-mono text-[10px] font-semibold text-brand">{ev.e}</span>
+                <span className="min-w-0 flex-1 truncate text-[10px] font-medium">{ev.d}</span>
+                <span className="text-[9px] text-muted">{ev.t}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        <div className="flex items-center justify-between rounded-xl bg-ink px-3 py-2 text-[11px] font-semibold text-paper">
+          Guardar cambios
+          <span className="text-[9px] font-medium text-white/60">Sin instalar nada</span>
+        </div>
+      </div>
+    </AppShell>
+  );
+}
+
 /* ---------- índice ---------- */
 
 export const mocks: Record<MockId, () => React.JSX.Element> = {
@@ -655,6 +739,7 @@ export const mocks: Record<MockId, () => React.JSX.Element> = {
   metricas: MockMetricas,
   fidelidad: MockFidelidad,
   ruleta: MockRuleta,
+  pixeles: MockPixeles,
 };
 
 export function Mock({ id }: { id: MockId }) {

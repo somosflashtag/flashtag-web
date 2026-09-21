@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { QRMark } from "./ui/QRMark";
 import { Section } from "./ui/Section";
 import {
@@ -139,24 +140,21 @@ export function Analitica({
             ))}
           </ul>
 
-          <div className="mt-6 border-t border-line pt-5">
-            <p className="t-caption font-semibold text-muted">
-              {integraciones.proximamente.titulo}
-            </p>
-            <p className="t-body mt-2 text-muted">
-              {integraciones.proximamente.texto}
-            </p>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {integraciones.proximamente.items.map((t) => (
-                <li
-                  key={t}
-                  className="rounded-full border border-dashed border-line px-3 py-1 text-[0.8125rem] font-medium text-muted"
-                >
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Sin "próximamente" (AGENTS.md §6): lo que no está en producción
+              no se lista. En su lugar, la página que explica campo por campo. */}
+          {slug !== "pixeles" && (
+            <div className="mt-6 border-t border-line pt-5">
+              <Link
+                href={integraciones.href}
+                className="group inline-flex min-h-[44px] items-center gap-2 text-[0.9375rem] font-semibold"
+              >
+                {integraciones.cta}
+                <svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true" className="transition-transform duration-[120ms] group-hover:translate-x-1">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </Section>

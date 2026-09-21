@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { PhoneFrame } from "@/components/app/PhoneFrame";
 import { Mock } from "@/components/app/mocks";
 import { FidelidadDetalle } from "@/components/FidelidadDetalle";
+import { PixelesDetalle } from "@/components/PixelesDetalle";
 import { Analitica } from "@/components/Analitica";
 import { MetricasDetalle } from "@/components/MetricasDetalle";
 import { analiticaPara } from "@/content/analitica";
@@ -110,6 +111,7 @@ export default async function ProductoPage({
       </Section>
 
       {f.slug === "fidelidad" && <FidelidadDetalle />}
+      {f.slug === "pixeles" && <PixelesDetalle />}
       {f.slug === "metricas" && <MetricasDetalle />}
 
       <Section className="border-t border-line bg-surface">
@@ -162,7 +164,7 @@ export default async function ProductoPage({
 
       <Section className="border-t border-line">
         <h2 className="t-h2" data-reveal>El resto de la app</h2>
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {otras.map((o, i) => (
             <li key={o.slug} data-reveal style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}>
               <Link
