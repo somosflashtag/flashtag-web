@@ -9,6 +9,15 @@ import {
 } from "@/content/analitica";
 import { cn } from "@/lib/cn";
 
+/** El mismo chip de plan que usan el tour y las páginas de producto. */
+function DesdePlan({ plan }: { plan: string }) {
+  return (
+    <span className="rounded-full bg-brand-soft px-2 py-0.5 text-[11px] font-semibold text-brand">
+      Desde {plan}
+    </span>
+  );
+}
+
 /**
  * Bloque de analítica. Un solo componente para la home y para cada página de
  * /producto: el copy de arriba cambia según el feature (`slug`), la grilla de
@@ -66,7 +75,10 @@ export function Analitica({
               <li key={c.titulo} className="flex gap-3">
                 <QRMark size={12} tone="muted" className="mt-1.5" />
                 <div>
-                  <p className="text-[0.9375rem] font-semibold">{c.titulo}</p>
+                  <p className="flex flex-wrap items-center gap-2 text-[0.9375rem] font-semibold">
+                    {c.titulo}
+                    {c.desde && <DesdePlan plan={c.desde} />}
+                  </p>
                   <p className="t-body mt-1 text-muted">{c.texto}</p>
                 </div>
               </li>
@@ -103,7 +115,10 @@ export function Analitica({
             !f && "lg:col-span-2",
           )}
         >
-          <h3 className="t-h3">{integraciones.titulo}</h3>
+          <h3 className="t-h3 flex flex-wrap items-center gap-3">
+            {integraciones.titulo}
+            <DesdePlan plan={integraciones.desde} />
+          </h3>
           <p className="t-body measure mt-3 text-muted">{integraciones.texto}</p>
 
           <ul className={cn("mt-6 grid gap-4", !f && "sm:grid-cols-2")}>

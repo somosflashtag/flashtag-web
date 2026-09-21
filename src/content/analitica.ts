@@ -58,6 +58,8 @@ export type CapacidadPanel = {
   titulo: string;
   texto: string;
   confirmado: boolean;
+  /** Plan mínimo, cuando la capacidad no está en todos. */
+  desde?: "Starter" | "Full";
 };
 
 export const capacidadesPanel: CapacidadPanel[] = [
@@ -78,6 +80,7 @@ export const capacidadesPanel: CapacidadPanel[] = [
     texto:
       "Te llevás el dato a tu planilla para cruzarlo con tus ventas, armar tu propio reporte o pasárselo a tu agencia.",
     confirmado: true,
+    desde: "Starter",
   },
   {
     titulo: "Reiniciás el contador",
@@ -90,6 +93,8 @@ export const capacidadesPanel: CapacidadPanel[] = [
 /** Integraciones de tracking. Solo lo que ya funciona en producción. */
 export const integraciones = {
   titulo: "Conectá tus propias herramientas",
+  /** Mismo criterio que `Feature.desde`: el plan en el que se habilita. */
+  desde: "Starter" as const,
   texto:
     "El dato no se queda encerrado en FlashTag. Enchufás tu píxel y tu analítica y el tráfico de tus QR entra a tu ecosistema como cualquier otra fuente de tu marketing.",
   activas: [
@@ -181,8 +186,6 @@ export const capacidadesPublicadas = capacidadesPanel.filter((c) => c.confirmado
  * VISTA CONSOLIDADA — la sección de estadísticas de toda la cuenta, no la de
  * un producto suelto. Es el argumento que le importa a quien tiene varios
  * locales o varios clientes: no entrar uno por uno.
- *
- * ⚠️ REVISAR `filtros` contra la app antes de dar por buena la lista.
  */
 export const consolidado = {
   titular: "Todo junto, en un solo panel",
