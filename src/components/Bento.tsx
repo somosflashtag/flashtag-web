@@ -5,20 +5,25 @@ import { features } from "@/content/features";
 import { cn } from "@/lib/cn";
 
 /**
- * Bento de features: seis tarjetas, cada una con su pantalla real asomando.
- * Las dos primeras son grandes porque son las que más se usan.
+ * Bento de features: siete tarjetas, cada una con su pantalla real asomando.
+ * Las dos primeras son grandes porque son las que más se usan. El resto va
+ * de a tres por fila; si la última fila queda con dos, se ensanchan para
+ * que no quede un hueco.
  */
 export function Bento() {
+  const resto = features.length - 2;
+  const filaFinalDeDos = resto % 3 === 2;
   return (
     <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
       {features.map((f, i) => {
         const grande = i < 2;
+        const ancha = !grande && filaFinalDeDos && i >= features.length - 2;
         return (
           <li
             key={f.slug}
             data-reveal
             style={{ "--reveal-delay": `${(i % 3) * 80}ms` } as React.CSSProperties}
-            className={cn(grande ? "lg:col-span-3" : "lg:col-span-2")}
+            className={cn(grande || ancha ? "lg:col-span-3" : "lg:col-span-2")}
           >
             <Link
               href={`/producto/${f.slug}`}

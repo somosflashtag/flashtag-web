@@ -48,15 +48,19 @@ Preferimos no mostrar nada antes que mostrar un número que no podemos sostener.
 
 **5. La app se muestra en código, no en capturas.** Las pantallas de
 my.flashtag.tech viven en `src/components/app/mocks.tsx` (una por sección:
-inicio, QR, links, reseñas, métricas, fidelidad, ruleta) dentro de
+inicio, QR, links, reseñas, métricas, fidelidad, ruleta, píxeles) dentro de
 `PhoneFrame`. Se construyen con tokens y sin JS. Si la app cambia una
 pantalla, se cambia la maqueta; nunca se sube un PNG que envejece.
 El comercio de las maquetas ("Café Rivas") es ficticio: es demo, no prueba
 social.
 
-**6. Fidelidad y ruleta son features publicadas.** Se venden como el resto:
-página propia en `/producto/`, lugar en el bento y el tour, plan en
+**6. Fidelidad, ruleta y píxeles son features publicadas.** Se venden como el
+resto: página propia en `/producto/`, lugar en el bento y el tour, plan en
 `planes.ts`. Nada de "próximamente" en el sitio.
+Los píxeles (`/producto/pixeles`) describen los tres campos que tiene la app
+en "Análisis de seguimiento" (GA4, Meta Pixel, GTM) y los eventos que manda.
+El copy de `content/pixeles.ts` es la promesa pública: si la app no manda un
+evento, no se lista acá.
 
 **7. Marcas de terceros solo con autorización.** En el footer
 (`MediosDePago.tsx`) Mercado Pago y Stripe usan sus logos oficiales en

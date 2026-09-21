@@ -92,7 +92,7 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── BENTO: las seis capacidades, con la app asomando ── */}
+      {/* ── BENTO: las siete capacidades, con la app asomando ── */}
       <Section id="producto" className="border-t border-line bg-surface">
         <div className="mx-auto max-w-3xl text-center" data-reveal>
           <p className="flex items-center justify-center gap-2 text-sm font-semibold text-brand">

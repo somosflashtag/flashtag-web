@@ -28,7 +28,7 @@ export const navPrincipal: NavItem[] = [
 ];
 
 /**
- * Desplegable de "Aplicación": las seis capacidades de la app y las cuatro
+ * Desplegable de "Aplicación": las siete capacidades de la app y las cuatro
  * puertas de entrada por rubro. Se arma desde el contenido, no a mano.
  */
 export const menuProducto = {
