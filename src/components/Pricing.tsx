@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "./ui/Button";
-import { planes, precioARS, type Plan } from "@/content/planes";
+import { hrefContratar, planes, precioARS, type Plan } from "@/content/planes";
 import { cn } from "@/lib/cn";
 
 function Check({ on }: { on: boolean }) {
@@ -69,7 +69,7 @@ function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
       </div>
 
       <Button
-        href={plan.cta.href}
+        href={hrefContratar(plan, anual ? "anual" : "mensual")}
         variant={plan.destacado ? "primary" : "secondary"}
         size="md"
         className="mt-6 w-full"
