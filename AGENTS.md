@@ -8,6 +8,25 @@ npm run dev     # localhost:3000
 npm run build   # obligatorio antes de pushear
 ```
 
+## Cómo entra el trabajo — rama y pull request
+
+`main` publica. Por eso acá **el trabajo entra por rama y PR**, nunca directo
+a `main` (decisión de Tomás, 21/09/2026).
+
+- Una rama por tarea (`claude/lo-que-sea`), PR contra `main`.
+- Vercel deja un **preview en cada PR**: ese link es la revisión. Mirar la
+  página que se tocó y, si se movió copy compartido, también la home y el FAQ.
+- `npm run build` local antes de pushear igual. El preview no lo reemplaza:
+  llega tarde y cuesta un ciclo.
+- **El merge lo decide Tomás.** Un PR verde no se mergea solo.
+
+No confundir con la app (`flashtag-app`, my.flashtag.tech), que tiene la regla
+opuesta escrita en su `CLAUDE.md`: ahí **todo va directo a `main` y no se abren
+PRs**. Son dos flujos distintos a propósito. Lo que se publica acá lo lee
+alguien que todavía no es cliente, y un error en el sitio público se ve; en la
+app, el que lo ve ya compró y el costo de esperar una revisión es más alto que
+el de corregir en caliente.
+
 ## Reglas innegociables
 
 **1. El logo no se toca.** Ni los colores, ni el espaciado, ni la tipografía,
