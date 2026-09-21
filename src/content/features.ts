@@ -41,11 +41,13 @@ export const features: Feature[] = [
       "La promo de la semana",
       "Un formulario de turnos o reservas",
       "Medir qué campaña o qué pieza trajo gente de verdad",
+      "Pasarle el vectorial en CMYK a tu diseñador o a la imprenta",
     ],
     pasos: [
       {
-        titulo: "Creás el QR en la app",
-        texto: "Le ponés nombre, lo descargás y lo ponés donde quieras: un flyer, un packaging, la vidriera.",
+        titulo: "Creás el QR y lo descargás",
+        texto:
+          "Le ponés nombre y lo bajás en el formato que necesites: PNG para las redes, EPS o PDF en CMYK para la imprenta. Después va donde quieras: un flyer, un packaging, la vidriera.",
       },
       {
         titulo: "Elegís a dónde apunta",
