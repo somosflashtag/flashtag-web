@@ -18,7 +18,13 @@ a `main` (decisión de Tomás, 21/09/2026).
   página que se tocó y, si se movió copy compartido, también la home y el FAQ.
 - `npm run build` local antes de pushear igual. El preview no lo reemplaza:
   llega tarde y cuesta un ciclo.
-- **El merge lo decide Tomás.** Un PR verde no se mergea solo.
+- ~~**El merge lo decide Tomás.** Un PR verde no se mergea solo.~~
+  `@deprecated 2026-09-21: Tomás pidió "siempre mergeá". La sesión que abre
+  el PR lo mergea ella misma en cuanto el preview está READY y el build
+  local pasó. El PR sigue existiendo por el preview y por el registro de qué
+  cambió y por qué; lo que ya no hay es espera.`
+- **La sesión mergea su propio PR** cuando el build local y el preview de
+  Vercel están en verde. No se pide confirmación.
 
 No confundir con la app (`flashtag-app`, my.flashtag.tech), que tiene la regla
 opuesta escrita en su `CLAUDE.md`: ahí **todo va directo a `main` y no se abren
