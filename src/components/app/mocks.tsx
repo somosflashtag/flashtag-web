@@ -227,6 +227,28 @@ export function MockQR() {
           </div>
         </Card>
 
+        {/* "Guardar como…" de la app: los formatos que baja el mismo QR.
+            Los siete son los que genera de verdad (ver content/formatos.ts). */}
+        <Card>
+          <Label>Descargar</Label>
+          <ul className="mt-2 flex flex-wrap gap-1.5">
+            {["PNG", "JPEG", "SVG", "EPS", "PDF", "SVG Tiny", "ASCII"].map((f) => (
+              <li
+                key={f}
+                className="rounded-lg border border-line px-2 py-1 text-[10px] font-semibold text-ink"
+              >
+                {f}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-2.5 flex items-center justify-between rounded-xl bg-surface px-3 py-2 text-[10px] font-medium text-muted">
+            100 × 100 mm
+            <span className="rounded-full bg-teal/10 px-2 py-0.5 font-semibold text-teal">
+              CMYK
+            </span>
+          </div>
+        </Card>
+
         <Card className="flex items-center justify-between">
           <div>
             <Label>Cambios este mes</Label>

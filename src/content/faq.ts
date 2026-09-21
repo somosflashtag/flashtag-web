@@ -30,6 +30,12 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home", "precios"],
   },
   {
+    pregunta: "¿En qué formatos puedo descargar el QR?",
+    respuesta:
+      "En siete: PNG y JPEG para pantalla, redes y WhatsApp; SVG, EPS, PDF y SVG Tiny si es para imprimir; y ASCII, que es el QR en texto plano. En los vectoriales elegís la medida impresa en milímetros y el modo de color, RGB o CMYK, que es el que pide una gráfica. En PNG y JPEG elegís los píxeles, hasta 4096 o la medida que quieras. Todos salen con la zona de silencio que pide la norma, así que si trabajás con un diseñador o con una agencia, le pasás el EPS o el PDF y no vuelve con el “mandámelo en vector”.",
+    mostrarEn: ["home"],
+  },
+  {
     pregunta: "¿Puedo conectar mi Google Analytics o el píxel de Meta?",
     respuesta:
       "Sí. En la app pegás tu Measurement ID de Google Analytics 4, tu Meta Pixel ID o tu contenedor de Google Tag Manager, y cada escaneo de tus QR y cada visita a tu Link Page llega a esas herramientas como una visita más. Con eso armás públicos de remarketing con la gente que pasó por tu local y medís qué escaneo terminó en una venta. Se habilita desde el plan Starter, igual que la exportación a CSV; en Free tenés las métricas de escaneos y clics de la app, sin píxeles.",

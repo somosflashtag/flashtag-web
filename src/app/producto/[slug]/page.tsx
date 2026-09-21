@@ -7,6 +7,7 @@ import { PhoneFrame } from "@/components/app/PhoneFrame";
 import { Mock } from "@/components/app/mocks";
 import { FidelidadDetalle } from "@/components/FidelidadDetalle";
 import { PixelesDetalle } from "@/components/PixelesDetalle";
+import { FormatosDescarga } from "@/components/FormatosDescarga";
 import { Analitica } from "@/components/Analitica";
 import { MetricasDetalle } from "@/components/MetricasDetalle";
 import { analiticaPara } from "@/content/analitica";
@@ -110,6 +111,7 @@ export default async function ProductoPage({
         </ol>
       </Section>
 
+      {f.slug === "qr-dinamicos" && <FormatosDescarga />}
       {f.slug === "fidelidad" && <FidelidadDetalle />}
       {f.slug === "pixeles" && <PixelesDetalle />}
       {f.slug === "metricas" && <MetricasDetalle />}
