@@ -26,7 +26,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Qué datos veo de cada escaneo?",
     respuesta:
-      "Escaneos totales, escaneos únicos y visitas; el día y la hora; la ciudad y el país; el dispositivo, el sistema operativo y el idioma del teléfono; y qué producto lo generó (el cartel del mostrador, el sticker de la vidriera, la tarjeta o un QR dinámico). Todo en tiempo real: escaneás para probar y ya lo ves en el panel.",
+      "Escaneos totales, escaneos únicos y visitas; un mapa de calor de las horas cruzadas con los días de la semana; el ranking de ciudades y países con su porcentaje; el dispositivo, el sistema operativo y el idioma del teléfono; y qué producto lo generó (el cartel del mostrador, el sticker de la vidriera, la tarjeta o un QR dinámico). Lo mirás por día, por mes o por año, y todo entra en tiempo real: escaneás para probar y ya lo ves en el panel.",
     mostrarEn: ["home", "precios"],
   },
   {

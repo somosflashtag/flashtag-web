@@ -377,22 +377,37 @@ export function MockMetricas() {
   return (
     <AppShell active="inicio" title="Métricas">
       <div className="space-y-2">
-        {/* Totales, únicos y visitas: tres números distintos */}
+        {/* Totales, únicos y visitas: tres números distintos, con granularidad */}
         <Card>
           <div className="flex items-center justify-between">
-            <Label>Últimos 30 días</Label>
+            <div className="flex gap-0.5 rounded-lg bg-surface p-0.5">
+              {["Día", "Mes", "Año"].map((g, i) => (
+                <span
+                  key={g}
+                  className={cn(
+                    "rounded-md px-1.5 py-0.5 text-[9px] font-semibold",
+                    i === 0 ? "bg-paper text-brand shadow-[var(--shadow-rest)]" : "text-muted",
+                  )}
+                >
+                  {g}
+                </span>
+              ))}
+            </div>
             <span className="rounded-full bg-teal/10 px-2 py-0.5 text-[9px] font-semibold text-teal">
               En tiempo real
             </span>
           </div>
           <dl className="mt-2 grid grid-cols-3 gap-2 text-center">
             {[
-              { k: "Escaneos", v: "1.244" },
-              { k: "Únicos", v: "863" },
-              { k: "Visitas", v: "1.102" },
+              { k: "Escaneos", v: "1.244", c: "bg-brand" },
+              { k: "Únicos", v: "863", c: "bg-teal" },
+              { k: "Visitas", v: "1.102", c: "bg-gold" },
             ].map((x) => (
               <div key={x.k} className="rounded-xl bg-surface py-1.5">
-                <dt className="text-[9px] font-medium text-muted">{x.k}</dt>
+                <dt className="flex items-center justify-center gap-1 text-[9px] font-medium text-muted">
+                  <span aria-hidden="true" className={cn("size-1.5 rounded-full", x.c)} />
+                  {x.k}
+                </dt>
                 <dd className="text-[13px] font-semibold tnum">{x.v}</dd>
               </div>
             ))}

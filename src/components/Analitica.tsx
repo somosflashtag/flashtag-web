@@ -3,6 +3,7 @@ import { Section } from "./ui/Section";
 import {
   analitica,
   analiticaPara,
+  capacidadesPublicadas,
   datosMedidos,
   integraciones,
 } from "@/content/analitica";
@@ -53,7 +54,28 @@ export function Analitica({
         ))}
       </ul>
 
-      <div className="mt-12 grid items-start gap-5 lg:grid-cols-2 lg:gap-8">
+      {/* Qué hacés con el dato una vez que está adentro */}
+      {capacidadesPublicadas.length > 0 && (
+        <div
+          data-reveal
+          className="mt-5 rounded-[var(--radius-surface)] border border-line bg-paper p-6 lg:p-8"
+        >
+          <h3 className="t-h3">Y lo leés como te sirve</h3>
+          <ul className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+            {capacidadesPublicadas.map((c) => (
+              <li key={c.titulo} className="flex gap-3">
+                <QRMark size={12} tone="muted" className="mt-1.5" />
+                <div>
+                  <p className="text-[0.9375rem] font-semibold">{c.titulo}</p>
+                  <p className="t-body mt-1 text-muted">{c.texto}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="mt-5 grid items-start gap-5 lg:grid-cols-2 lg:gap-8">
         {/* Qué decidís con eso — solo cuando el bloque está en un producto */}
         {f && (
           <div

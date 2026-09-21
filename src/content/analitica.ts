@@ -18,22 +18,22 @@ export const datosMedidos: DatoMedido[] = [
   {
     titulo: "Escaneos, únicos y visitas",
     texto:
-      "Cuántas veces se escaneó, cuántas personas distintas lo hicieron y cuántas terminaron entrando. Son tres números diferentes y los tres importan.",
+      "Los totales incluyen los escaneos repetidos del mismo teléfono; los únicos cuentan una vez por dispositivo. Son tres números distintos y los tres importan.",
   },
   {
     titulo: "Día y hora",
     texto:
-      "A qué hora se mueve tu local y qué día rinde más. El dato que te dice cuándo conviene lanzar la promo.",
+      "Un mapa de calor cruza las horas del día con los siete días de la semana. El cuadrado más oscuro es tu mejor momento para lanzar la promo.",
   },
   {
     titulo: "Ciudad y país",
     texto:
-      "De dónde viene la gente que te escanea. Si tu zona es turística o si tus clientes son del barrio, lo vas a ver en el mapa.",
+      "Un ranking ordenado de mayor a menor, con los escaneos de cada ciudad y su porcentaje sobre el total. Si tu zona es turística, lo vas a ver ahí.",
   },
   {
     titulo: "Dispositivo, sistema e idioma",
     texto:
-      "Android o iPhone, navegador e idioma del teléfono. Sirve para saber cómo te están viendo del otro lado.",
+      "Android, iOS, Windows o macOS, con el porcentaje de cada uno. Más el navegador y el idioma del teléfono: así sabés cómo te ven del otro lado.",
   },
   {
     titulo: "Qué producto lo generó",
@@ -44,6 +44,46 @@ export const datosMedidos: DatoMedido[] = [
     titulo: "En tiempo real",
     texto:
       "El dato entra en segundos. Escaneás vos para probar y ya lo ves reflejado en el panel, sin esperar al día siguiente.",
+  },
+];
+
+/**
+ * QUÉ HACÉS CON EL PANEL — la capa de arriba del dato crudo.
+ *
+ * `confirmado: false` NO se publica: el componente lo filtra. Es el mismo
+ * criterio que `site.proof.locales` o `casos.autorizado`. Se pone en `true`
+ * recién cuando la capacidad está verificada en my.flashtag.tech.
+ */
+export type CapacidadPanel = {
+  titulo: string;
+  texto: string;
+  confirmado: boolean;
+};
+
+export const capacidadesPanel: CapacidadPanel[] = [
+  {
+    titulo: "Por día, por mes o por año",
+    texto:
+      "Cambiás la granularidad y comparás esta semana con la anterior, o este mes con el mismo mes del año pasado. En gráfico de líneas o de barras, como prefieras leerlo.",
+    confirmado: true,
+  },
+  {
+    titulo: "Las tres series, juntas o por separado",
+    texto:
+      "Prendés y apagás totales, únicos y visitas sobre el mismo gráfico. Ahí se ve si tenés mucha gente distinta o poca gente que escanea muchas veces.",
+    confirmado: true,
+  },
+  {
+    titulo: "Exportás a CSV o XLSX",
+    texto:
+      "Te llevás el dato a tu planilla para cruzarlo con tus ventas, armar tu propio reporte o pasárselo a tu agencia.",
+    confirmado: false,
+  },
+  {
+    titulo: "Reiniciás el contador",
+    texto:
+      "Arrancás una campaña nueva desde cero sin perder el cartel ni cambiar el QR: volvés el contador a cero y medís limpio.",
+    confirmado: false,
   },
 ];
 
@@ -133,3 +173,6 @@ export const analitica = {
 
 export const analiticaPara = (slug: string): AnaliticaFeature | undefined =>
   analiticaPorFeature[slug];
+
+/** Lo único publicable: nada sale al sitio sin estar confirmado en la app. */
+export const capacidadesPublicadas = capacidadesPanel.filter((c) => c.confirmado);
