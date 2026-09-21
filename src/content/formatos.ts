@@ -60,7 +60,7 @@ export const puntosImprenta: PuntoImprenta[] = [
   {
     titulo: "CMYK de verdad",
     texto:
-      "El EPS y el PDF salen en modo CMYK, que es lo que espera la máquina de imprenta. PNG y JPEG son RGB por definición del formato: te lo decimos ahí mismo en vez de mandarte un archivo que vuelve.",
+      "El EPS y el PDF salen siempre en modo CMYK, que es lo que espera la máquina de imprenta, y el JPEG te deja elegir entre RGB y CMYK. El PNG y el SVG son RGB por definición del formato: ahí no te hacemos elegir algo que el archivo no puede guardar.",
   },
   {
     titulo: "La medida, en milímetros",

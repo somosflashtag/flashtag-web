@@ -32,7 +32,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿En qué formatos puedo descargar el QR?",
     respuesta:
-      "En siete: PNG y JPEG para pantalla, redes y WhatsApp; SVG, EPS, PDF y SVG Tiny si es para imprimir; y ASCII, que es el QR en texto plano. En los vectoriales elegís la medida impresa en milímetros y el modo de color, RGB o CMYK, que es el que pide una gráfica. En PNG y JPEG elegís los píxeles, hasta 4096 o la medida que quieras. Todos salen con la zona de silencio que pide la norma, así que si trabajás con un diseñador o con una agencia, le pasás el EPS o el PDF y no vuelve con el “mandámelo en vector”.",
+      "En siete: PNG y JPEG para pantalla, redes y WhatsApp; SVG, EPS, PDF y SVG Tiny si es para imprimir; y ASCII, que es el QR en texto plano. En los vectoriales elegís la medida impresa en milímetros, y el EPS y el PDF salen siempre en CMYK, que es el modo que pide una gráfica; el JPEG te deja elegir entre RGB y CMYK. En PNG y JPEG elegís los píxeles, hasta 4096 o la medida que quieras. Todos salen con la zona de silencio que pide la norma, así que si trabajás con un diseñador o con una agencia, le pasás el EPS o el PDF y no vuelve con el “mandámelo en vector”.",
     mostrarEn: ["home"],
   },
   {
