@@ -6,6 +6,7 @@ import { QRMark } from "@/components/ui/QRMark";
 import { Hero } from "@/components/Hero";
 import { Bento } from "@/components/Bento";
 import { AppTour } from "@/components/AppTour";
+import { Analitica } from "@/components/Analitica";
 import { PhoneFrame } from "@/components/app/PhoneFrame";
 import { Mock, MockFidelidad } from "@/components/app/mocks";
 import { Faq } from "@/components/Faq";
@@ -126,6 +127,9 @@ export default function Home() {
           <AppTour features={features} screens={screens} />
         </div>
       </Section>
+
+      {/* ── ANALÍTICA: el dato detrás de cada escaneo ───────── */}
+      <Analitica className="bg-surface" />
 
       {/* ── CÓMO EMPEZAR ───────────────────────────────────── */}
       <Section dark className="surface-deep relative overflow-hidden">

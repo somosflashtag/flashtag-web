@@ -98,7 +98,7 @@ export const formatos = [
 export const tienda = {
   titular: "Un cartel para cada canal de tu local",
   bajada:
-    "Cada cartel tiene su uso: Google para reseñas, Instagram para seguidores, WhatsApp para conversaciones. Llega con el QR y el chip NFC activados: lo ponés en el mostrador y empieza a funcionar.",
+    "Cada cartel tiene su uso: Google para reseñas, Instagram para seguidores, WhatsApp para conversaciones. Llega con el QR y el chip NFC activados: lo ponés en el mostrador y empieza a funcionar. Y cada escaneo se mide en la app: cuántos, cuándo y desde dónde.",
   href: `${SHOP}/`,
 };
 

@@ -59,7 +59,7 @@ export function Tienda() {
                   {p.precioARS !== undefined ? precioARS(p.precioARS) : "Ver precio en la tienda"}
                 </p>
                 <p className="t-caption mt-1 text-muted">
-                  QR + NFC · Envío a todo el país · App gratis incluida
+                  QR + NFC · Escaneos medidos en la app · Envío a todo el país
                 </p>
               </div>
             </a>

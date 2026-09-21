@@ -33,13 +33,14 @@ export const features: Feature[] = [
     corto: "Un QR para lo que necesites hoy",
     titular: "Creá un QR que apunta a lo que vos decidas",
     bajada:
-      "Cada cartel de FlashTag tiene su canal: Google, Instagram, WhatsApp. Cuando necesitás algo distinto, creás un QR dinámico desde la app: una promo, el menú de temporada, un formulario de turnos. El destino lo cambiás cuando quieras desde el celular, con métricas de cada escaneo.",
+      "Cada cartel de FlashTag tiene su canal: Google, Instagram, WhatsApp. Cuando necesitás algo distinto, creás un QR dinámico desde la app: una promo, el menú de temporada, un formulario de turnos. El destino lo cambiás cuando quieras desde el celular, y cada escaneo queda medido: cuántos fueron, cuántas personas distintas, a qué hora y desde dónde.",
     analogia:
       "Es un QR que hoy dice una cosa y mañana otra, sin que nadie en el local tenga que hacer nada.",
     casos: [
       "El menú de temporada",
       "La promo de la semana",
       "Un formulario de turnos o reservas",
+      "Medir qué campaña o qué pieza trajo gente de verdad",
     ],
     pasos: [
       {
@@ -51,8 +52,9 @@ export const features: Feature[] = [
         texto: "Una promo, un menú, un formulario, tu Link Page. Lo que necesites hoy.",
       },
       {
-        titulo: "Lo cambiás cuando quieras",
-        texto: "Desde el celular, al instante, y ves cuántos lo escanearon.",
+        titulo: "Lo cambiás y lo medís",
+        texto:
+          "Cambiás el destino desde el celular al instante y ves cuántos lo escanearon, cuándo y desde qué dispositivo.",
       },
     ],
     mock: "qr",
@@ -64,11 +66,12 @@ export const features: Feature[] = [
     corto: "Tu minisitio con métricas por botón",
     titular: "Tu minisitio, conectado al cartel de tu local",
     bajada:
-      "Un lugar propio con botones a WhatsApp, Google Maps, menú, catálogo, redes y promos. Con tu marca, editable en un minuto, y con métricas de clic por cada botón.",
+      "Un lugar propio con botones a WhatsApp, Google Maps, menú, catálogo, redes y promos. Con tu marca, editable en un minuto, y con analítica completa: visitas, clics por botón y de dónde llegó cada una.",
     casos: [
       "Reservas y turnos sin llamadas",
       "Catálogo completo desde la góndola",
       "Todas tus redes en un solo lugar",
+      "Saber qué botón se lleva los clics y cuál sobra",
     ],
     pasos: [
       {
@@ -81,7 +84,8 @@ export const features: Feature[] = [
       },
       {
         titulo: "Mirás qué tocan",
-        texto: "Clics por botón. Si nadie toca 'Reservar', ya sabés qué cambiar.",
+        texto:
+          "Visitas, clics por botón y origen de cada una. Si nadie toca 'Reservar', ya sabés qué cambiar.",
       },
     ],
     mock: "links",
@@ -122,11 +126,12 @@ export const features: Feature[] = [
     corto: "Cómo interactúan con cada producto",
     titular: "Métricas de cómo tus clientes interactúan con tu negocio",
     bajada:
-      "Cuántos escanean el cartel de Google, cuántos siguen tu Instagram, cuántos giran la ruleta, cuántos entran al programa de fidelidad y cuándo lo hacen. Métricas sobre la interacción con cada uno de tus productos, en un panel que te dice qué está funcionando.",
+      "Cuántos escanean el cartel de Google, cuántos siguen tu Instagram, cuántos giran la ruleta, cuántos entran al programa de fidelidad y cuándo lo hacen. Analítica completa de cada escaneo —totales, únicos, visitas, día y hora, ciudad, dispositivo— en un panel en tiempo real. Y si querés llevarte el dato, lo conectás con tu píxel de Meta o tu Google Analytics.",
     casos: [
       "Qué producto genera más interacción",
       "Cuánta gente usa la ruleta cada semana",
       "Cuántos clientes vuelven por la fidelidad",
+      "Armar públicos de remarketing con quienes ya pasaron por tu local",
     ],
     pasos: [
       {
@@ -139,7 +144,8 @@ export const features: Feature[] = [
       },
       {
         titulo: "Decidís con datos",
-        texto: "Ajustás premios, horarios y ubicación de cada producto. Y volvés a medir.",
+        texto:
+          "Ajustás premios, horarios y ubicación de cada producto. Y si querés, el dato también viaja a tu píxel y a tu Google Analytics.",
       },
     ],
     mock: "metricas",
@@ -183,11 +189,12 @@ export const features: Feature[] = [
     corto: "Una experiencia gamificada con tu marca",
     titular: "Divertí a tus clientes y dales algo a cambio",
     bajada:
-      "Una experiencia gamificada con tu marca: el cliente escanea, gira la ruleta y se lleva un premio. Vos la personalizás entera: los premios, los colores de cada casillero y el porcentaje de suerte de cada uno. La excusa perfecta para que dejen la reseña o te sigan en tus redes.",
+      "Una experiencia gamificada con tu marca: el cliente escanea, gira la ruleta y se lleva un premio. Vos la personalizás entera: los premios, los colores de cada casillero y el porcentaje de suerte de cada uno. La excusa perfecta para que dejen la reseña o te sigan en tus redes. Y cada giro se mide: cuántos, a qué hora y qué premio salió.",
     casos: [
       "Un giro a cambio de una reseña",
       "Premios distintos por franja horaria",
       "Lanzamientos y fechas especiales",
+      "Ajustar los porcentajes de suerte con los datos en la mano",
     ],
     pasos: [
       {
@@ -199,8 +206,9 @@ export const features: Feature[] = [
         texto: "Desde un QR dinámico, tu Link Page o el cartel del mostrador.",
       },
       {
-        titulo: "Validás el premio",
-        texto: "El cliente muestra el código, vos lo marcás como canjeado.",
+        titulo: "Validás el premio y medís",
+        texto:
+          "El cliente muestra el código, vos lo marcás como canjeado y el giro queda registrado en tus métricas.",
       },
     ],
     mock: "ruleta",

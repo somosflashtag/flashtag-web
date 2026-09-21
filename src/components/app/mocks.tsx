@@ -377,13 +377,49 @@ export function MockMetricas() {
   ];
   return (
     <AppShell active="inicio" title="Métricas">
-      <div className="space-y-2.5">
+      <div className="space-y-2">
+        {/* Totales, únicos y visitas: tres números distintos, con granularidad */}
+        <Card>
+          <div className="flex items-center justify-between">
+            <div className="flex gap-0.5 rounded-lg bg-surface p-0.5">
+              {["Día", "Mes", "Año"].map((g, i) => (
+                <span
+                  key={g}
+                  className={cn(
+                    "rounded-md px-1.5 py-0.5 text-[9px] font-semibold",
+                    i === 0 ? "bg-paper text-brand shadow-[var(--shadow-rest)]" : "text-muted",
+                  )}
+                >
+                  {g}
+                </span>
+              ))}
+            </div>
+            <span className="rounded-full bg-teal/10 px-2 py-0.5 text-[9px] font-semibold text-teal">
+              En tiempo real
+            </span>
+          </div>
+          <dl className="mt-2 grid grid-cols-3 gap-2 text-center">
+            {[
+              { k: "Escaneos", v: "1.244", c: "bg-brand" },
+              { k: "Únicos", v: "863", c: "bg-teal" },
+              { k: "Visitas", v: "1.102", c: "bg-gold" },
+            ].map((x) => (
+              <div key={x.k} className="rounded-xl bg-surface py-1.5">
+                <dt className="flex items-center justify-center gap-1 text-[9px] font-medium text-muted">
+                  <span aria-hidden="true" className={cn("size-1.5 rounded-full", x.c)} />
+                  {x.k}
+                </dt>
+                <dd className="text-[13px] font-semibold tnum">{x.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </Card>
         <Card>
           <div className="flex items-center justify-between">
             <Label>Interacciones por hora</Label>
             <span className="text-[10px] font-semibold text-brand">Pico 19:00</span>
           </div>
-          <div className="mt-2.5 flex h-16 items-end gap-[3px]">
+          <div className="mt-2.5 flex h-12 items-end gap-[3px]">
             {horas.map((h, i) => (
               <span
                 key={i}
@@ -420,7 +456,7 @@ export function MockMetricas() {
             ))}
           </ul>
         </Card>
-        <div className="grid grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-2 gap-2">
           <Card>
             <Label>Giros de ruleta</Label>
             <p className="mt-1 text-[12px] font-semibold tnum">212</p>
@@ -430,6 +466,18 @@ export function MockMetricas() {
             <p className="mt-1 text-[12px] font-semibold tnum">38</p>
           </Card>
         </div>
+        {/* El dato también viaja al stack del comercio */}
+        <Card className="flex items-center justify-between gap-2 p-2.5">
+          <div className="min-w-0">
+            <Label>Integraciones</Label>
+            <p className="truncate text-[11px] font-semibold">
+              Píxel de Meta · Google Analytics
+            </p>
+          </div>
+          <span className="shrink-0 rounded-full bg-teal/10 px-2 py-0.5 text-[9px] font-semibold text-teal">
+            Conectadas
+          </span>
+        </Card>
       </div>
     </AppShell>
   );

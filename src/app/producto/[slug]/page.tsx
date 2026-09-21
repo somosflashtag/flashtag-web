@@ -7,6 +7,9 @@ import { PhoneFrame } from "@/components/app/PhoneFrame";
 import { Mock } from "@/components/app/mocks";
 import { FidelidadDetalle } from "@/components/FidelidadDetalle";
 import { PixelesDetalle } from "@/components/PixelesDetalle";
+import { Analitica } from "@/components/Analitica";
+import { MetricasDetalle } from "@/components/MetricasDetalle";
+import { analiticaPara } from "@/content/analitica";
 import { features } from "@/content/features";
 import { planes } from "@/content/planes";
 import { pageMeta } from "@/lib/seo";
@@ -45,6 +48,7 @@ export default async function ProductoPage({
 
   const otras = features.filter((x) => x.slug !== f.slug);
   const plan = planes.find((p) => p.nombre === f.desde);
+  const tieneAnalitica = Boolean(analiticaPara(f.slug));
 
   return (
     <>
@@ -108,6 +112,7 @@ export default async function ProductoPage({
 
       {f.slug === "fidelidad" && <FidelidadDetalle />}
       {f.slug === "pixeles" && <PixelesDetalle />}
+      {f.slug === "metricas" && <MetricasDetalle />}
 
       <Section className="border-t border-line bg-surface">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -155,7 +160,9 @@ export default async function ProductoPage({
         </div>
       </Section>
 
-      <Section>
+      {tieneAnalitica && <Analitica slug={f.slug} />}
+
+      <Section className="border-t border-line">
         <h2 className="t-h2" data-reveal>El resto de la app</h2>
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {otras.map((o, i) => (

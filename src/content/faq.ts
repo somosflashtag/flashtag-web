@@ -24,10 +24,16 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home"],
   },
   {
+    pregunta: "¿Qué datos veo de cada escaneo?",
+    respuesta:
+      "Escaneos totales, escaneos únicos y visitas; un mapa de calor de las horas cruzadas con los días de la semana; el ranking de ciudades y países con su porcentaje; el dispositivo, el sistema operativo y el idioma del teléfono; y qué producto lo generó (el cartel del mostrador, el sticker de la vidriera, la tarjeta o un QR dinámico). Lo mirás por día, por mes o por año, y todo entra en tiempo real: escaneás para probar y ya lo ves en el panel. Si querés trabajarlo por tu cuenta, exportás todo a CSV.",
+    mostrarEn: ["home", "precios"],
+  },
+  {
     pregunta: "¿Puedo conectar mi Google Analytics o el píxel de Meta?",
     respuesta:
-      "Sí. En la app pegás tu Measurement ID de Google Analytics 4, tu Meta Pixel ID o tu contenedor de Google Tag Manager, y cada escaneo de tus QR y cada visita a tu Link Page llega a esas herramientas como una visita más. Con eso armás públicos de remarketing con la gente que pasó por tu local y medís qué escaneo terminó en una venta. Está desde el plan Starter; en Free tenés las métricas de escaneos y clics de la app, sin píxeles.",
-    mostrarEn: ["home"],
+      "Sí. En la app pegás tu Measurement ID de Google Analytics 4, tu Meta Pixel ID o tu contenedor de Google Tag Manager, y cada escaneo de tus QR y cada visita a tu Link Page llega a esas herramientas como una visita más. Con eso armás públicos de remarketing con la gente que pasó por tu local y medís qué escaneo terminó en una venta. Se habilita desde el plan Starter, igual que la exportación a CSV; en Free tenés las métricas de escaneos y clics de la app, sin píxeles.",
+    mostrarEn: ["home", "precios"],
   },
   {
     pregunta: "¿Necesito saber de tecnología para usarlo?",
