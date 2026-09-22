@@ -151,7 +151,7 @@ export function hrefContratar(plan: Plan, ciclo: Ciclo): string {
 }
 
 export const notaFiscal =
-  "Facturación A/B/C en Argentina. Pagá en dólares con tarjeta internacional (Stripe) o en pesos con Mercado Pago.";
+  "Todos los precios son finales: ya incluyen IVA. Facturación A/B/C en Argentina. Pagá en dólares con tarjeta internacional (Stripe) o en pesos con Mercado Pago.";
 
 const fmtARS = new Intl.NumberFormat("es-AR", {
   style: "currency",

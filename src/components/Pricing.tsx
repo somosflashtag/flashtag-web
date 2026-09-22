@@ -113,6 +113,7 @@ function NotaFacturacion() {
   const logo = "mx-1 inline-block w-auto align-[-0.3em]";
   return (
     <p className="measure mx-auto mt-8 text-center text-sm leading-[1.9] text-muted">
+      <strong className="font-semibold text-ink">Todos los precios son finales: ya incluyen IVA.</strong>{" "}
       Facturación A/B/C en Argentina. Pagá en dólares con tarjeta internacional vía
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/pagos/stripe-color.svg" alt="Stripe" width={43} height={18} className={logo} style={{ height: 18 }} />
