@@ -104,7 +104,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Qué incluye el plan Free para siempre?",
     respuesta:
-      "Productos asociados ilimitados, 3 QR dinámicos, 1 Link Page y métricas básicas. Y si compraste un producto FlashTag, una ruleta de premios. No requiere tarjeta de crédito.",
+      "Productos asociados ilimitados, 3 QR dinámicos, 1 Link Page y métricas básicas. Y si compraste un producto FlashTag, una ruleta de premios y tu FlashCard. No requiere tarjeta de crédito.",
     mostrarEn: ["precios"],
   },
   {
@@ -118,6 +118,12 @@ export const faqs: FaqItem[] = [
     respuesta:
       "Tu cliente no descarga ninguna app. Escanea el cartel y guarda tu tarjeta de fidelidad, con tu logo y el esquema de puntos que elegiste, en Apple Wallet o en la billetera de Android. Suma visitas o puntos con el mismo cartel de siempre y canjea los premios que configurás vos. Sin imprimir nada, siempre a mano. Está incluido en el plan Full.",
     mostrarEn: ["home", "precios"],
+  },
+  {
+    pregunta: "¿Qué es la FlashCard?",
+    respuesta:
+      "Tu tarjeta de presentación digital: foto, cargo, WhatsApp, mail y redes en un QR o un link, con seis diseños y los colores de tu marca. Quien la escanea la guarda en la agenda con un toque, y si cambiás un dato la tarjeta se actualiza sola sin reimprimir nada. Con la compra de un producto FlashTag tenés una en el plan Free; desde Starter, una por cada persona del equipo.",
+    mostrarEn: ["precios"],
   },
   {
     pregunta: "¿Qué es la ruleta de premios?",

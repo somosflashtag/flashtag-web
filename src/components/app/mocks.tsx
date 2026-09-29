@@ -22,7 +22,8 @@ export type MockId =
   | "metricas"
   | "fidelidad"
   | "ruleta"
-  | "pixeles";
+  | "pixeles"
+  | "flashcard";
 
 /* ---------- piezas comunes ---------- */
 
@@ -753,6 +754,77 @@ export function MockPixeles() {
 
 /* ---------- índice ---------- */
 
+/* ---------- 9. FlashCard ---------- */
+
+/**
+ * La tarjeta de presentación digital como la ve quien escanea: foto,
+ * nombre, cargo, "Agregar contacto" y las redes. Es la plantilla "Tarjeta"
+ * de la app (foto a lo ancho con la tarjeta blanca pisándola).
+ */
+export function MockFlashCard() {
+  const redes = [
+    ["IG", "var(--color-coral)"],
+    ["in", "var(--color-teal)"],
+    ["WA", "var(--color-brand)"],
+    ["@", "var(--color-gold)"],
+  ] as const;
+  return (
+    <AppShell active="links" title="FlashCard">
+      <div className="flex h-full flex-col">
+        <div className="overflow-hidden rounded-2xl border border-line bg-paper shadow-[var(--shadow-rest)]">
+          {/* Foto a lo ancho: un retrato abstracto con tokens, sin imagen */}
+          <div className="relative h-32 bg-gradient-to-br from-brand-soft via-surface to-brand-soft">
+            <span aria-hidden="true" className="absolute left-1/2 top-5 size-12 -translate-x-1/2 rounded-full bg-gold" />
+            <span aria-hidden="true" className="absolute left-1/2 top-[4.1rem] h-16 w-24 -translate-x-1/2 rounded-t-[3rem] bg-coral" />
+            <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-5 rounded-t-[1.2rem] bg-paper" />
+          </div>
+          <div className="px-3 pb-3">
+            <p className="text-[13px] font-bold leading-tight">Camila Rivas</p>
+            <p className="text-[10px] font-semibold text-muted">Dueña · Café Rivas</p>
+            <p className="mt-1 text-[10px] text-muted">Café de especialidad en Palermo. Escribime y te reservo mesa.</p>
+            <div className="mt-2.5 flex items-center gap-2">
+              <span className="rounded-full bg-brand px-3 py-1.5 text-[10px] font-semibold text-white">
+                Agregar contacto
+              </span>
+              <span className="flex size-7 items-center justify-center rounded-full bg-brand-soft text-[10px] font-bold text-brand">☏</span>
+              <span className="flex size-7 items-center justify-center rounded-full bg-brand-soft text-[10px] font-bold text-brand">✉</span>
+            </div>
+            <ul className="mt-2.5 divide-y divide-line rounded-xl border border-line text-[9px]">
+              {[
+                ["WhatsApp", "+54 9 11 5555 5555"],
+                ["Mail", "hola@caferivas.com"],
+                ["Web", "caferivas.com"],
+              ].map(([k, v]) => (
+                <li key={k} className="flex items-center justify-between px-2 py-1.5">
+                  <span className="font-semibold uppercase tracking-wide text-muted">{k}</span>
+                  <span className="font-medium">{v}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-2.5 flex gap-1.5">
+              {redes.map(([r, c]) => (
+                <span key={r} className="flex size-7 items-center justify-center rounded-full text-[9px] font-bold text-white" style={{ background: c }}>
+                  {r}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <Card className="mt-3 p-2.5">
+          <div className="flex items-center justify-between">
+            <Label>Plantilla · color · foto</Label>
+            <span className="text-[9px] font-semibold text-brand">Editar</span>
+          </div>
+          <p className="mt-1 text-[10px] text-muted">Cambiás un dato y la tarjeta se actualiza sola. El QR es el mismo.</p>
+        </Card>
+        <div className="mt-auto rounded-xl bg-ink px-3 py-2 text-center text-[11px] font-semibold text-paper">
+          Descargar QR
+        </div>
+      </div>
+    </AppShell>
+  );
+}
+
 export const mocks: Record<MockId, () => React.JSX.Element> = {
   dashboard: MockDashboard,
   qr: MockQR,
@@ -762,6 +834,7 @@ export const mocks: Record<MockId, () => React.JSX.Element> = {
   fidelidad: MockFidelidad,
   ruleta: MockRuleta,
   pixeles: MockPixeles,
+  flashcard: MockFlashCard,
 };
 
 export function Mock({ id }: { id: MockId }) {

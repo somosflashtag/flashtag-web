@@ -112,6 +112,41 @@ export const features: Feature[] = [
     desde: "Free",
   },
   {
+    slug: "flashcard",
+    nombre: "FlashCard",
+    corto: "Tu tarjeta de presentación digital",
+    seoTitle: "FlashCard: tarjeta de presentación digital con QR",
+    seoDescription:
+      "Tu tarjeta de contacto en un QR: foto, cargo, WhatsApp y redes, con seis diseños. La cambiás cuando quieras sin reimprimir. Gratis con tu producto FlashTag.",
+    titular: "La tarjeta de presentación que no se pierde ni se reimprime",
+    bajada:
+      "Armás tu tarjeta con foto, cargo, WhatsApp, mail y redes, elegís uno de seis diseños con los colores de tu marca y la compartís por QR o por link. Quien la escanea la guarda en la agenda con un toque. Cambiás de teléfono o de cargo y la tarjeta se actualiza sola: el QR es el mismo. Si compraste un producto FlashTag, va incluida en el plan Free.",
+    analogia:
+      "Es la tarjeta de papel de siempre, pero que nunca queda vieja y que el otro no puede perder.",
+    casos: [
+      "Una por cada persona del equipo, con la marca del local",
+      "En la firma del mail, en el mostrador o en la vidriera",
+      "Que te guarden el WhatsApp sin dictar el número",
+      "Cambiás un dato y no reimprimís nada",
+    ],
+    pasos: [
+      {
+        titulo: "Cargás tus datos",
+        texto: "Nombre, cargo, foto, WhatsApp, mail, web y redes. Lo que quieras mostrar.",
+      },
+      {
+        titulo: "Elegís el diseño",
+        texto: "Seis plantillas, tu paleta y tu tipografía. La ves en el celular mientras la armás.",
+      },
+      {
+        titulo: "La compartís",
+        texto: "Por QR o por link. Quien la abre la guarda en la agenda con un toque.",
+      },
+    ],
+    mock: "flashcard",
+    desde: "Free",
+  },
+  {
     slug: "resenas-ia",
     nombre: "Reseñas con IA",
     corto: "Respuestas automáticas con la voz de tu marca",
