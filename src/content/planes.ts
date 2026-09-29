@@ -48,7 +48,11 @@ export const planes: Plan[] = [
       { label: "Exportación de métricas a CSV", incluido: false },
       { label: "Cuentas de Google Business", incluido: false },
       { label: "Reseñas con IA", incluido: false },
-      { label: "Ruleta de premios", incluido: false },
+      // Con la compra de un producto FlashTag (29/09/2026): el que compró el
+      // cartel ya pagó por usar la app con él. La app lo aplica igual
+      // (puedeCrearConProducto en flashtag-app).
+      { label: "Ruleta de premios", incluido: true, nota: "1 ruleta con la compra de tu producto FlashTag" },
+      { label: "Filtro de reseñas negativas", incluido: false },
       { label: "Programa de fidelidad", incluido: false },
       { label: "Asesoramiento en SEO local", incluido: false },
       { label: "Soporte por comunidad", incluido: true },
@@ -75,6 +79,7 @@ export const planes: Plan[] = [
       { label: "1 cuenta de Google Business", incluido: true },
       { label: "100 reseñas con IA por mes", incluido: true },
       { label: "Hasta 3 ruletas de premios", incluido: true },
+      { label: "Filtro de reseñas negativas", incluido: true, nota: "se activa en los carteles de tus sucursales" },
       { label: "Programa de fidelidad", incluido: false },
       { label: "Asesoramiento en SEO local", incluido: false },
       { label: "Soporte por email", incluido: true },
@@ -101,6 +106,7 @@ export const planes: Plan[] = [
       { label: "3 cuentas de Google Business", incluido: true },
       { label: "2.000 reseñas con IA por mes", incluido: true },
       { label: "Hasta 10 ruletas de premios", incluido: true },
+      { label: "Filtro de reseñas negativas", incluido: true, nota: "se activa en los carteles de tus sucursales" },
       { label: "Programa de fidelidad", incluido: true, nota: "hasta 2.500 miembros activos" },
       { label: "Asesoramiento en SEO local", incluido: false },
       { label: "Soporte prioritario", incluido: true },
@@ -128,6 +134,7 @@ export const planes: Plan[] = [
       { label: "Hasta 20 cuentas de Google Business", incluido: true },
       { label: "5.000 reseñas con IA por mes", incluido: true },
       { label: "Hasta 50 ruletas de premios", incluido: true },
+      { label: "Filtro de reseñas negativas", incluido: true, nota: "se activa en los carteles de tus sucursales" },
       { label: "Programa de fidelidad", incluido: true, nota: "hasta 10.000 miembros activos" },
       { label: "Asesoramiento en SEO local", incluido: true },
       { label: "Soporte dedicado", incluido: true },

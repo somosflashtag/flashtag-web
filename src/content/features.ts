@@ -119,10 +119,11 @@ export const features: Feature[] = [
       "Conectá tu Google Business y FlashTag responde cada reseña con la voz de tu marca. Vos definís el tono y aprobás antes de publicar. Desde el plan Starter.",
     titular: "Tus reseñas de Google, respondidas automáticamente con tu voz",
     bajada:
-      "Conectás tu cuenta de Google Business y FlashTag responde cada reseña de forma automática, con la voz de tu marca: vos definís el tono, cómo saludás, qué palabras usás y cuáles no. Podés revisar cada respuesta antes de publicar o dejar que salgan solas.",
+      "Conectás tu cuenta de Google Business y FlashTag responde cada reseña de forma automática, con la voz de tu marca: vos definís el tono, cómo saludás, qué palabras usás y cuáles no. Podés revisar cada respuesta antes de publicar o dejar que salgan solas. Y con el filtro de reseñas, activás en tus carteles de Google una landing previa: el cliente contento sigue a Google y el disconforme te escribe a vos, antes de que sea una reseña pública.",
     casos: [
       "Las de 5 estrellas, respondidas sin repetirte",
       "Una reseña negativa, con el tono justo",
+      "Filtrar las malas reseñas antes de que lleguen a Google",
       "Mejor posición en Google Maps sin esfuerzo",
     ],
     pasos: [
@@ -215,10 +216,10 @@ export const features: Feature[] = [
     nombre: "Ruleta de premios",
     corto: "Una experiencia gamificada con tu marca",
     seoDescription:
-      "El cliente escanea, gira y se lleva un premio. Vos elegís premios, colores y porcentaje de suerte. La excusa para que te dejen la reseña. Desde Starter.",
+      "El cliente escanea, gira y se lleva un premio. Vos elegís premios, colores y porcentaje de suerte. Gratis con la compra de tu producto FlashTag.",
     titular: "Divertí a tus clientes y dales algo a cambio",
     bajada:
-      "Una experiencia gamificada con tu marca: el cliente escanea, gira la ruleta y se lleva un premio. Vos la personalizás entera: los premios, los colores de cada casillero y el porcentaje de suerte de cada uno. La excusa perfecta para que dejen la reseña o te sigan en tus redes. Y cada giro se mide: cuántos, a qué hora y qué premio salió.",
+      "Una experiencia gamificada con tu marca: el cliente escanea, gira la ruleta y se lleva un premio. Vos la personalizás entera: los premios, los colores de cada casillero y el porcentaje de suerte de cada uno. La excusa perfecta para que dejen la reseña o te sigan en tus redes. Y cada giro se mide: cuántos, a qué hora y qué premio salió. Si compraste un producto FlashTag, la primera ruleta va incluida en el plan Free.",
     casos: [
       "Un giro a cambio de una reseña",
       "Premios distintos por franja horaria",
@@ -241,7 +242,9 @@ export const features: Feature[] = [
       },
     ],
     mock: "ruleta",
-    desde: "Starter",
+    // Desde el 29/09/2026 la primera ruleta entra en Free con un producto
+    // FlashTag asociado; Starter sube a 3. Ver planes.ts.
+    desde: "Free",
   },
   {
     slug: "pixeles",

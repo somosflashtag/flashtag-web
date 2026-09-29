@@ -18,6 +18,12 @@ export const faqs: FaqItem[] = [
     mostrarEn: ["home"],
   },
   {
+    pregunta: "¿Qué es el filtro de reseñas negativas?",
+    respuesta:
+      "Una landing previa que activás en los carteles de Google de una sucursal, o de todas, desde la app y sin reimprimir nada. El cliente contento sigue a Google y deja su reseña; el disconforme te escribe a vos, con nombre y contacto, y lo resolvés antes de que sea una reseña pública. Está incluido desde el plan Starter.",
+    mostrarEn: ["home", "precios"],
+  },
+  {
     pregunta: "¿Cómo funcionan las reseñas con IA?",
     respuesta:
       "Conectás tu cuenta de Google Business Profile y FlashTag responde tus reseñas automáticamente con la voz de tu marca: vos definís el tono, el saludo y las palabras que usás. Podés aprobar cada respuesta antes de publicar o dejar que salgan solas.",
@@ -98,7 +104,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Qué incluye el plan Free para siempre?",
     respuesta:
-      "Productos asociados ilimitados, 3 QR dinámicos, 1 Link Page y métricas básicas. No requiere tarjeta de crédito.",
+      "Productos asociados ilimitados, 3 QR dinámicos, 1 Link Page y métricas básicas. Y si compraste un producto FlashTag, una ruleta de premios. No requiere tarjeta de crédito.",
     mostrarEn: ["precios"],
   },
   {
@@ -116,7 +122,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Qué es la ruleta de premios?",
     respuesta:
-      "Un juego al que se llega escaneando el QR: el cliente gira y se lleva un premio. Es completamente personalizable: los premios, los colores de la ruleta y el porcentaje de suerte de cada casillero los elegís vos. Está incluida desde el plan Starter.",
+      "Un juego al que se llega escaneando el QR: el cliente gira y se lleva un premio. Es completamente personalizable: los premios, los colores de la ruleta y el porcentaje de suerte de cada casillero los elegís vos. En el plan Free tenés una ruleta con la compra de tu producto FlashTag; desde Starter, hasta 3.",
     mostrarEn: ["precios"],
   },
 ];
