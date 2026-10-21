@@ -31,5 +31,5 @@ export const clientes: Cliente[] = [
   { nombre: "deRentas", logo: "/logos/derentas.webp", ancho: 124 },
   { nombre: "Brasov", logo: "/logos/brasov.webp", ancho: 92 },
   { nombre: "Boba's Bubble Tea", logo: "/logos/bobas.webp", ancho: 62 },
-  { nombre: "Gordis Burger", logo: "/logos/gordis-burger.webp", ancho: 120 },
+  { nombre: "Gordis Burger", logo: "/logos/gordis-burger.webp", ancho: 100 },
 ];
