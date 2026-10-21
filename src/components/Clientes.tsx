@@ -29,7 +29,7 @@ export function Clientes({ titulo = "Marcas que ya lo usan" }: { titulo?: string
                 height={44}
                 sizes={`${c.ancho}px`}
                 style={{ width: c.ancho, height: "auto" }}
-                className="opacity-75 transition-opacity duration-200 hover:opacity-100"
+                className="brightness-0 invert opacity-75 transition-opacity duration-200 hover:opacity-100"
               />
             </li>
           ))}
