@@ -108,7 +108,7 @@ export const planes: Plan[] = [
       { label: "Hasta 10 ruletas de premios", incluido: true },
       { label: "Filtro de reseñas negativas", incluido: true, nota: "se activa en los carteles de tus sucursales" },
       { label: "Programa de fidelidad", incluido: true, nota: "hasta 2.500 miembros activos" },
-      { label: "Asesoramiento en SEO local", incluido: false },
+      { label: "Asesoramiento en SEO local", incluido: true },
       { label: "Soporte prioritario", incluido: true },
     ],
   },

@@ -74,7 +74,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Cuándo conviene Evolution en vez de Full?",
     respuesta:
-      "Cuando manejás más de 3 cuentas de Google Business, ya sea porque sos agencia o porque tu franquicia creció. Evolution suma hasta 5.000 reseñas con IA por mes, fidelidad hasta 10.000 miembros activos y asesoramiento en SEO local para que cada ficha rankee mejor en su zona.",
+      "Cuando manejás más de 3 cuentas de Google Business, ya sea porque sos agencia o porque tu franquicia creció. Evolution suma hasta 5.000 reseñas con IA por mes y fidelidad hasta 10.000 miembros activos.",
     mostrarEn: ["precios"],
   },
   {
