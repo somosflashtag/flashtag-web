@@ -8,14 +8,22 @@ import { QRMark } from "./ui/QRMark";
 import { cta } from "@/lib/site";
 import { cn } from "@/lib/cn";
 import { Logo } from "./ui/Logo";
+import { PromoBanner } from "./PromoBanner";
 import { menuProducto, navPrincipal } from "@/lib/nav";
+import type { Promo } from "@/content/promos";
 
 /**
  * Header con desplegable de "Aplicación".
  * Desktop: el ítem abre un panel con hover o foco, se cierra con Escape.
  * Phone: menú a pantalla completa con las features agrupadas.
+ *
+ * `promo`: la promo vigente (`promoVigente()` en el layout, que es server).
+ * Si hay una, la barra `PromoBanner` va arriba de la fila del logo, adentro
+ * del sticky. Por eso el menú mobile se posiciona contra el header (`top-full`
+ * y alto `100dvh - 100%`) y no contra el viewport con un `top-16` fijo: la
+ * altura del header ya no es constante.
  */
-export function Header() {
+export function Header({ promo = null }: { promo?: Promo | null }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [producto, setProducto] = useState(false);
@@ -63,6 +71,7 @@ export function Header() {
           : "border-transparent bg-paper",
       )}
     >
+      <PromoBanner promo={promo} />
       <Container>
         <div className="flex h-16 items-center justify-between gap-4 lg:h-[72px]">
           <Logo className="text-[2.125rem] lg:text-[2.375rem]" onClick={() => setOpen(false)} />
@@ -234,7 +243,7 @@ export function Header() {
       {open && (
         <div
           id="menu-mobile"
-          className="fixed inset-x-0 top-16 z-50 h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-paper lg:hidden"
+          className="absolute inset-x-0 top-full z-50 h-[calc(100dvh-100%)] overflow-y-auto border-t border-line bg-paper lg:hidden"
         >
           <Container>
             <p className="t-caption pt-6 uppercase tracking-wide text-muted">Aplicación</p>

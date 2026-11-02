@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { Button } from "./ui/Button";
 import { hrefContratar, planes, precioARS, type Plan } from "@/content/planes";
+import { conDescuento, descuentoTexto, type Promo } from "@/content/promos";
 import { cn } from "@/lib/cn";
+import { usePromoVigente } from "./usePromoVigente";
 
 function Check({ on }: { on: boolean }) {
   return on ? (
@@ -17,10 +19,41 @@ function Check({ on }: { on: boolean }) {
   );
 }
 
-function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
-  const precio = anual && plan.precioAnualPorMes !== null ? plan.precioAnualPorMes : plan.precioMensual;
-  const ars =
-    anual && plan.totalAnualARS ? Math.round(plan.totalAnualARS / 12) : plan.precioARS;
+/**
+ * Qué número va en cada lugar de la tarjeta, con o sin promo.
+ *
+ * Sin promo es lo de siempre: el "por mes" del anual es `precioAnualPorMes`
+ * de planes.ts. Con promo, los TOTALES se rebajan con la misma regla que la
+ * app (`conDescuento`, hacia abajo al entero) —porque el total es lo que se
+ * cobra— y el "por mes" del anual se deriva de ese total. Así el visitante ve
+ * exactamente el monto que después le aparece en Mercado Pago.
+ */
+function preciosDe(plan: Plan, anual: boolean, promo: Promo | null) {
+  const totalAnualUsd = plan.totalAnual;
+  const totalAnualArs = plan.totalAnualARS;
+  const lista = {
+    usd: anual && plan.precioAnualPorMes !== null ? plan.precioAnualPorMes : plan.precioMensual,
+    ars: anual && totalAnualArs ? Math.round(totalAnualArs / 12) : plan.precioARS,
+    totalUsd: totalAnualUsd,
+    totalArs: totalAnualArs,
+  };
+  if (!promo || plan.precioMensual === 0) return { ...lista, lista: null };
+
+  const totalUsd = totalAnualUsd !== null ? conDescuento(totalAnualUsd, promo) : null;
+  const totalArs = totalAnualArs !== null ? conDescuento(totalAnualArs, promo) : null;
+  return {
+    usd: anual && totalUsd !== null ? Math.round(totalUsd / 12) : conDescuento(plan.precioMensual, promo),
+    ars: anual && totalArs !== null ? Math.round(totalArs / 12) : conDescuento(plan.precioARS, promo),
+    totalUsd,
+    totalArs,
+    lista,
+  };
+}
+
+function PlanCard({ plan, anual, promo }: { plan: Plan; anual: boolean; promo: Promo | null }) {
+  const p = preciosDe(plan, anual, promo);
+  const precio = p.usd;
+  const ars = p.ars;
 
   return (
     <div
@@ -33,11 +66,15 @@ function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
     >
       <div className="flex items-center justify-between gap-3">
         <h3 className="t-h3">{plan.nombre}</h3>
-        {plan.destacado && (
+        {p.lista && promo ? (
+          <span className="rounded-full bg-teal px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
+            {promo.nombre} −{descuentoTexto(promo)}
+          </span>
+        ) : plan.destacado ? (
           <span className="rounded-full bg-brand px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
             Más elegido
           </span>
-        )}
+        ) : null}
       </div>
 
       <p className={cn("mt-2 text-sm leading-relaxed", plan.destacado ? "text-white/60" : "text-muted")}>
@@ -50,22 +87,38 @@ function PlanCard({ plan, anual }: { plan: Plan; anual: boolean }) {
         ) : (
           <p className="flex items-baseline gap-1.5">
             <span className="text-base font-medium opacity-60">USD</span>
+            {p.lista && (
+              <s className={cn("tnum text-lg font-medium", plan.destacado ? "text-white/45" : "text-muted/70")}>
+                {p.lista.usd}
+              </s>
+            )}
             <span className="t-stat">{precio}</span>
             <span className={cn("text-sm", plan.destacado ? "text-white/60" : "text-muted")}>/mes</span>
           </p>
         )}
         {plan.precioMensual > 0 && (
           <p className={cn("mt-2 text-[0.9375rem] font-medium", plan.destacado ? "text-white/80" : "text-ink")}>
-            o <span className="tnum">{precioARS(ars)}</span> ARS/mes
+            o{" "}
+            {p.lista && (
+              <>
+                <s className={cn("tnum", plan.destacado ? "text-white/45" : "text-muted/70")}>{precioARS(p.lista.ars)}</s>{" "}
+              </>
+            )}
+            <span className="tnum">{precioARS(ars)}</span> ARS/mes
           </p>
         )}
         <p className={cn("mt-1.5 text-[13px]", plan.destacado ? "text-white/50" : "text-muted")}>
           {plan.precioMensual === 0
             ? "Para siempre, sin tarjeta"
             : anual
-              ? `USD ${plan.totalAnual} o ${precioARS(plan.totalAnualARS ?? 0)} ARS por año`
+              ? `USD ${p.totalUsd} o ${precioARS(p.totalArs ?? 0)} ARS por año`
               : "Facturación mensual · sin permanencia"}
         </p>
+        {p.lista && promo && (
+          <p className={cn("mt-1.5 text-[13px] font-semibold", plan.destacado ? "text-gold" : "text-teal")}>
+            Precio {promo.nombre} si contratás hasta el {promo.hastaTexto}
+          </p>
+        )}
       </div>
 
       <Button
@@ -124,8 +177,14 @@ function NotaFacturacion() {
   );
 }
 
-export function Pricing({ conNota = true }: { conNota?: boolean }) {
+/**
+ * `promo`: la vigente según el server (`promoVigente()` en la página). Se
+ * pasa como prop y no se calcula acá para que el HTML y la hidratación
+ * coincidan; `usePromoVigente` la apaga en el navegador cuando vence.
+ */
+export function Pricing({ conNota = true, promo: promoServer = null }: { conNota?: boolean; promo?: Promo | null }) {
   const [anual, setAnual] = useState(false);
+  const promo = usePromoVigente(promoServer);
 
   return (
     <div>
@@ -157,7 +216,7 @@ export function Pricing({ conNota = true }: { conNota?: boolean }) {
       <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {planes.map((p) => (
           <div key={p.id}>
-            <PlanCard plan={p} anual={anual} />
+            <PlanCard plan={p} anual={anual} promo={promo} />
           </div>
         ))}
       </div>

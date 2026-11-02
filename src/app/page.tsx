@@ -17,6 +17,7 @@ import { Clientes } from "@/components/Clientes";
 import { features, pasos } from "@/content/features";
 import { faqs } from "@/content/faq";
 import { planes } from "@/content/planes";
+import { promoVigente } from "@/content/promos";
 import { cta, site } from "@/lib/site";
 import { faqSchema, pageMeta } from "@/lib/seo";
 
@@ -50,6 +51,7 @@ const softwareSchema = {
 const fidelidad = features.find((f) => f.slug === "fidelidad")!;
 
 export default function Home() {
+  const promo = promoVigente();
   /* Las pantallas se renderizan acá (server) y el tour solo elige cuál mostrar. */
   const screens = Object.fromEntries(
     features.map((f) => [f.slug, <Mock key={f.slug} id={f.mock} />]),
@@ -214,7 +216,7 @@ export default function Home() {
           </p>
         </div>
         <div className="mt-12" data-reveal>
-          <Pricing />
+          <Pricing promo={promo} />
         </div>
         <div className="mt-10 text-center">
           <Link href="/precios" className="text-[0.9375rem] font-semibold underline underline-offset-4">
