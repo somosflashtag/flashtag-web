@@ -12,6 +12,7 @@ import { StickyCTA } from "@/components/StickyCTA";
 import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
+import { promoVigente } from "@/content/promos";
 
 /* Manual de marca: Poppins Bold en titulos, Roboto en cuerpo. */
 const poppins = Poppins({
@@ -26,6 +27,15 @@ const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
   display: "swap",
 });
+
+/**
+ * ISR de una hora para todo el sitio. Las páginas siguen siendo estáticas,
+ * pero se vuelven a renderizar como mucho una hora después de cada visita
+ * que las encuentre vencidas: así una promo con fecha (`content/promos.ts`)
+ * aparece y desaparece sola, sin deploy. La hora de gracia la cubre
+ * `usePromoVigente` en el navegador.
+ */
+export const revalidate = 3600;
 
 /** El fix #1 del brief: viewport real, no width=1440. */
 export const viewport: Viewport = {
@@ -46,6 +56,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const promo = promoVigente();
   return (
     <html
       lang={site.lang}
@@ -62,7 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Saltar al contenido
         </a>
-        <Header />
+        <Header promo={promo} />
         <main id="contenido" className="flex-1">
           {children}
         </main>

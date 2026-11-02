@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { Faq } from "@/components/Faq";
 import { Pricing } from "@/components/Pricing";
 import { faqs } from "@/content/faq";
+import { promoVigente } from "@/content/promos";
 import { cta, site } from "@/lib/site";
 import { faqSchema, pageMeta } from "@/lib/seo";
 
@@ -33,6 +34,7 @@ const productSchema = {
 };
 
 export default function PreciosPage() {
+  const promo = promoVigente();
   return (
     <>
       <JsonLd id="ld-product" data={productSchema} />
@@ -49,7 +51,7 @@ export default function PreciosPage() {
       </Section>
 
       <Section>
-        <Pricing />
+        <Pricing promo={promo} />
       </Section>
 
       {/* Enterprise: bloque aparte, sin precio */}
