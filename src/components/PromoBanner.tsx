@@ -14,20 +14,23 @@ import { usePromoVigente } from "./usePromoVigente";
  * (`--color-teal`), el nombre en un pill violeta profundo y el "50% OFF" en
  * uno dorado. Los tres salen del `@theme`, ningún hex acá.
  *
- * Contraste: el texto chico va en `ink` sobre teal (4.75:1, AA). Blanco sobre
+ * ~~Contraste: el texto chico va en `ink` sobre teal (4.75:1, AA). Blanco sobre
  * teal da 3.6:1 y sólo pasa en texto grande, así que el blanco queda para el
- * pill violeta (14:1).
+ * pill violeta (14:1).~~
+ * @deprecated 2026-11-02: Tomás pidió el texto en blanco, como la pieza de la
+ * campaña. Queda en 3.6:1, por debajo del piso AA de 4.5:1 para texto chico;
+ * se compensa con negrita. Es una excepción de tres días, no el nuevo piso.
  */
 export function PromoBanner({ promo: promoServer }: { promo: Promo | null }) {
   const promo = usePromoVigente(promoServer);
   if (!promo) return null;
 
   return (
-    <div className="bg-teal text-ink">
+    <div className="bg-teal text-paper">
       <Container>
         <Link
           href="/precios"
-          className="flex min-h-[44px] flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-[13px] font-semibold leading-snug sm:text-sm"
+          className="flex min-h-[44px] flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-[13px] font-bold leading-snug sm:text-sm"
         >
           <span className="inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-0.5 font-display text-[12px] font-bold uppercase tracking-wide text-paper">
             <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true" className="text-gold">
