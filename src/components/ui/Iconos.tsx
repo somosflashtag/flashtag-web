@@ -2,6 +2,26 @@
 
 const base = { fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round", strokeLinejoin: "round" } as const;
 
+/** Bolsa de compras: el botón "Comprá tu cartel" del header (pedido de Tomás, 02/11/2026). */
+export function IconoBolsa({ size = 18 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" {...base}>
+      <path d="M5.5 8.5h13l-.9 11a1.5 1.5 0 0 1-1.5 1.4H7.9a1.5 1.5 0 0 1-1.5-1.4z" />
+      <path d="M8.5 8.5V7a3.5 3.5 0 0 1 7 0v1.5" />
+    </svg>
+  );
+}
+
+/** Teléfono: el botón "Probá la app gratis" del header. */
+export function IconoCelular({ size = 18 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" {...base}>
+      <rect x="6.5" y="2.5" width="11" height="19" rx="2.5" />
+      <path d="M10.5 18.5h3" />
+    </svg>
+  );
+}
+
 export function IconoMail({ size = 18 }: { size?: number }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" {...base}>

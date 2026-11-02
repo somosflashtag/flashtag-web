@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { QRMark } from "./ui/QRMark";
+import { IconoBolsa, IconoCelular } from "./ui/Iconos";
 import { cta } from "@/lib/site";
 import { cn } from "@/lib/cn";
 import { Logo } from "./ui/Logo";
@@ -212,9 +213,11 @@ export function Header({ promo = null }: { promo?: Promo | null }) {
 
           <div className="flex items-center gap-2">
             <Button href={cta.secondary.href} variant="secondary" size="sm" className="hidden lg:inline-flex">
+              <IconoBolsa size={16} />
               {cta.secondary.label}
             </Button>
             <Button href={cta.primary.href} variant="primary" size="sm">
+              <IconoCelular size={16} />
               <span className="lg:hidden">Probá gratis</span>
               <span className="hidden lg:inline">{cta.primary.label}</span>
             </Button>
