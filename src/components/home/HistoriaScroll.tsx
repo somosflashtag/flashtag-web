@@ -27,7 +27,7 @@ const BARRAS = [28, 42, 36, 58, 64, 88, 80];
 function Escenario({ paso }: { paso: number }) {
   const t = "transition-all duration-700 ease-[var(--ease-ft)] motion-reduce:transition-none";
   return (
-    <div aria-hidden="true" className="relative mx-auto h-[300px] w-full max-w-[420px] sm:h-[460px]">
+    <div aria-hidden="true" className="relative mx-auto h-[300px] w-full max-w-[420px] [overflow-x:clip] sm:h-[460px]">
       {/* Halo */}
       <div className="glow-brand absolute inset-x-6 inset-y-10" />
 
