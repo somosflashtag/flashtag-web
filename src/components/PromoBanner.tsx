@@ -30,7 +30,7 @@ export function PromoBanner({ promo: promoServer }: { promo: Promo | null }) {
       <Container>
         <Link
           href="/precios"
-          className="flex min-h-[44px] flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-[13px] font-bold leading-snug sm:text-sm"
+          className="flex min-h-[44px] items-center justify-center gap-x-2 py-1.5 text-center text-[12.5px] font-bold leading-snug sm:flex-wrap sm:gap-x-3 sm:gap-y-1 sm:py-2 sm:text-sm"
         >
           <span className="inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-0.5 font-display text-[12px] font-bold uppercase tracking-wide text-paper">
             <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true" className="text-gold">
@@ -38,14 +38,14 @@ export function PromoBanner({ promo: promoServer }: { promo: Promo | null }) {
             </svg>
             {promo.nombre}
           </span>
-          <span className="rounded-full bg-gold px-2.5 py-0.5 font-display text-[12px] font-bold uppercase tracking-wide text-ink">
+          <span className="whitespace-nowrap rounded-full bg-gold px-2.5 py-0.5 font-display text-[12px] font-bold uppercase tracking-wide text-ink">
             {descuentoTexto(promo)} OFF
           </span>
-          <span>
-            en todas las suscripciones
-            <span className="hidden sm:inline">, mensuales y anuales,</span> hasta el {promo.hastaTexto}
+          <span className="whitespace-nowrap">
+            <span className="hidden sm:inline">en todas las suscripciones, mensuales y anuales, </span>hasta el {promo.hastaTexto}
           </span>
-          <span className="underline underline-offset-4">Ver planes</span>
+          <span className="hidden underline underline-offset-4 sm:inline">Ver planes</span>
+          <span aria-hidden="true" className="sm:hidden">›</span>
         </Link>
       </Container>
     </div>

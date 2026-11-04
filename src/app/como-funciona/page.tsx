@@ -34,7 +34,7 @@ export default function ComoFuncionaPage() {
       </div>
 
       <Section>
-        <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="carrusel grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {pasos.map((p, i) => (
             <li
               key={p.titulo}

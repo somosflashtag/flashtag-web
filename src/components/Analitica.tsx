@@ -49,7 +49,7 @@ export function Analitica({
       </div>
 
       {/* Lo que queda registrado en cada escaneo */}
-      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:mt-16">
+      <ul className="carrusel mt-8 grid gap-4 sm:grid-cols-2 md:mt-12 lg:grid-cols-3 lg:mt-16">
         {datosMedidos.map((d, i) => (
           <li
             key={d.titulo}

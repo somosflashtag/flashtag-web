@@ -40,7 +40,7 @@ export function FidelidadDetalle() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-16 xl:grid-cols-4">
+        <ul className="carrusel mt-8 grid gap-5 md:mt-12 md:grid-cols-2 lg:mt-16 xl:grid-cols-4">
           {tiposDeTarjeta.map((t, i) => (
             <li
               key={t.id}
@@ -78,7 +78,7 @@ export function FidelidadDetalle() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="carrusel mt-8 grid gap-5 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
           {herramientas.map((h, i) => (
             <li
               key={h.id}

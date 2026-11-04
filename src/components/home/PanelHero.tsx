@@ -46,7 +46,7 @@ export function PanelHero({
         ))}
       </nav>
 
-      <div className="relative min-h-[380px] rounded-2xl bg-paper p-4 text-[12px]">
+      <div className="relative min-h-[340px] rounded-2xl bg-paper p-3.5 text-[12px] sm:min-h-[380px] sm:p-4">
         {!tocado && (
           <span
             aria-hidden="true"

@@ -31,7 +31,7 @@ export function PixelesDetalle() {
             informes.
           </p>
         </div>
-        <ul className="mt-12 grid gap-5 md:grid-cols-3">
+        <ul className="carrusel mt-8 grid gap-5 md:mt-12 md:grid-cols-3">
           {beneficios.map((b, i) => (
             <li
               key={b.titulo}

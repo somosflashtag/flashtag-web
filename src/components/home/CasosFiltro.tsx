@@ -43,7 +43,7 @@ export function CasosFiltro({
           </button>
         ))}
       </div>
-      <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="carrusel mt-6 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
         {visibles.map((c) => (
           <li key={c.slug} className="ft-fade">
             <CasoCard caso={c} />
