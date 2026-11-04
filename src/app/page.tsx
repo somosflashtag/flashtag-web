@@ -13,6 +13,9 @@ import { Pilares, type Desde } from "@/components/home/Pilares";
 import { FlashyChat } from "@/components/home/FlashyChat";
 import { CasosFiltro } from "@/components/home/CasosFiltro";
 import { SimuladorMaps } from "@/components/home/SimuladorMaps";
+import { Jugar } from "@/components/home/Jugar";
+import { Contador } from "@/components/home/Contador";
+import { HistoriaScroll } from "@/components/home/HistoriaScroll";
 import { menuPanel, pantallasPilares, vistasHero } from "@/components/app/panel";
 import { casosConDetalle, rubros as rubrosCasos } from "@/content/casos";
 import { features } from "@/content/features";
@@ -27,6 +30,7 @@ import {
   datos,
   flashy,
   hero,
+  juego,
   loop,
   pilares,
   pilaresIntro,
@@ -109,6 +113,7 @@ export default function Home() {
 
   return (
     <>
+      <div aria-hidden="true" className="ft-progreso fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-brand" />
       <JsonLd id="ld-software" data={softwareSchema} />
       <JsonLd id="ld-faq-home" data={faqSchema(faqsHome)} />
 
@@ -176,8 +181,26 @@ export default function Home() {
       {/* ── LOGOS ────────────────────────────────────────────── */}
       <Clientes variante="marquesina" titulo="Marcas que ya lo usan todos los días" />
 
+      {/* ── PROBALO VOS: el juego ───────────────────────────── */}
+      <section id="probalo" className="ft-crece blk relative mt-3.5 overflow-hidden bg-ink py-11 text-paper md:py-24">
+        <div aria-hidden="true" className="glow-brand absolute -left-40 top-10 size-[520px] opacity-80" />
+        <div aria-hidden="true" className="bg-dots-dark absolute inset-0 opacity-30 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+        <Container className="relative">
+          <div className="mx-auto max-w-3xl text-center" data-reveal>
+            <span className="eyebrow !bg-white/10 !text-gold">
+              <Glifo id="chispa" size={13} /> {juego.eyebrow}
+            </span>
+            <h2 className="t-h2 mt-3 text-balance md:mt-3.5">{juego.titular}</h2>
+            <p className="t-lead measure mx-auto mt-2.5 text-muted-dark md:mt-3.5">{juego.bajada}</p>
+          </div>
+          <div className="mt-8 md:mt-12">
+            <Jugar />
+          </div>
+        </Container>
+      </section>
+
       {/* ── CASOS ────────────────────────────────────────────── */}
-      <section id="casos" className={cn("blk mt-3.5 bg-surface", pad)}>
+      <section id="casos" className={cn("ft-crece blk mt-3.5 bg-surface", pad)}>
         <Container>
           <Encabezado
             eyebrow="Casos reales"
@@ -206,24 +229,8 @@ export default function Home() {
             }
             bajada={loop.bajada}
           />
-          <ol className="mt-7 grid gap-2.5 sm:grid-cols-2 sm:gap-3.5 md:mt-12 lg:grid-cols-4">
-            {loop.pasos.map((p, i) => (
-              <li
-                key={p.titulo}
-                data-reveal
-                style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
-                className="card-lift group grid grid-cols-[auto_1fr] gap-x-3.5 rounded-[18px] border border-line bg-surface/40 p-4 sm:block sm:rounded-[20px] sm:p-6"
-              >
-                <span className="hidden font-display text-[13px] font-bold text-brand tnum sm:inline">0{i + 1}</span>
-                <span className="row-span-2 flex size-10 items-center sm:my-3 sm:size-11 justify-center rounded-xl bg-brand-soft text-brand transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
-                  <Glifo id={p.glifo} size={22} />
-                </span>
-                <h3 className="font-display text-base font-semibold sm:text-lg">{p.titulo}</h3>
-                <p className="mt-0.5 text-[13px] text-muted sm:mt-1.5 sm:text-sm">{p.texto}</p>
-              </li>
-            ))}
-          </ol>
-          <ul className="carrusel carrusel-angosto mt-4 grid gap-4 md:grid-cols-3">
+          <HistoriaScroll pasos={loop.pasos} />
+          <ul className="carrusel carrusel-angosto mt-6 grid gap-4 md:mt-10 md:grid-cols-3">
             {datos.map((d, i) => (
               <li
                 key={d.valor}
@@ -238,7 +245,7 @@ export default function Home() {
                   <Glifo id={d.glifo} size={24} />
                 </span>
                 <b className="mb-2 mt-3 block font-display text-[2.125rem] font-bold leading-none tracking-tight tnum md:text-[3.25rem]">
-                  {d.valor}
+                  <Contador valor={d.valor} />
                 </b>
                 <span className="relative z-10 text-sm text-white/90 md:text-[15px]">{d.texto}</span>
                 <i
@@ -252,7 +259,7 @@ export default function Home() {
       </section>
 
       {/* ── PILARES: la app por dentro ───────────────────────── */}
-      <section id="producto" className={cn("blk bg-brand-soft", pad)}>
+      <section id="producto" className={cn("ft-crece blk bg-brand-soft", pad)}>
         <Container>
           <Encabezado
             eyebrow={pilaresIntro.eyebrow}
@@ -282,7 +289,7 @@ export default function Home() {
       </section>
 
       {/* ── FLASHY ───────────────────────────────────────────── */}
-      <section className="blk relative mt-3.5 overflow-hidden bg-ink text-paper">
+      <section className="ft-crece blk relative mt-3.5 overflow-hidden bg-ink text-paper">
         <div aria-hidden="true" className="glow-brand absolute -right-32 -top-32 size-[420px]" />
         <Container>
           <div className="relative grid items-center gap-7 py-11 md:gap-10 md:py-[88px] lg:grid-cols-2">
@@ -395,7 +402,7 @@ export default function Home() {
       </section>
 
       {/* ── PRECIOS ──────────────────────────────────────────── */}
-      <section id="precios" className={cn("blk bg-brand-soft", pad)}>
+      <section id="precios" className={cn("ft-crece blk bg-brand-soft", pad)}>
         <Container>
           <Encabezado
             eyebrow="Precios"

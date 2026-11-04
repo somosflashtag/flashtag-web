@@ -253,3 +253,44 @@ export const ctaFinal = {
   titular: "Probalo gratis y mirá qué pasa en una semana",
   bajada: "Sin tarjeta, sin permanencia y sin instalar nada. Si ya tenés tu cartel, lo activás en dos minutos.",
 };
+
+/* ── Juego "Probalo vos" ───────────────────────────────────────── */
+
+export type ModoJuego = "resena" | "sello" | "ruleta" | "whatsapp";
+
+/**
+ * El visitante hace de cliente de Café Rivas (ficticio): apoya el celular en
+ * el cartel y ve qué le llega al dueño. Los puntos y niveles son del juego,
+ * no de la app.
+ */
+export const juego = {
+  eyebrow: "Probalo vos",
+  titular: "Sos el cliente. Apoyá el celular y mirá qué pasa.",
+  bajada:
+    "Elegí qué hace el cartel, tocá el botón y mirá cómo le llega todo al dueño del local. Subí de nivel hasta convertirlo en el ícono del barrio.",
+  boton: "Apoyá el celular",
+  modos: [
+    { id: "resena", label: "Reseña en Google", glifo: "estrella", xp: 20 },
+    { id: "sello", label: "Sello del club", glifo: "corona", xp: 15 },
+    { id: "ruleta", label: "Ruleta de premios", glifo: "ruleta", xp: 15 },
+    { id: "whatsapp", label: "WhatsApp", glifo: "celular", xp: 10 },
+  ] satisfies { id: ModoJuego; label: string; glifo: GlifoId; xp: number }[],
+  niveles: [
+    { nombre: "Recién abierto", desde: 0 },
+    { nombre: "Local conocido", desde: 60 },
+    { nombre: "Local favorito", desde: 140 },
+    { nombre: "Ícono del barrio", desde: 240 },
+  ],
+  /** Lo que puede salir en la ruleta de ejemplo. */
+  premios: ["Café gratis", "2x1 en medialunas", "10% de descuento", "Postre de regalo", "Cookie gratis", "Otra vuelta"],
+  /** Quiénes "visitan" el local, para que cada jugada tenga cara. */
+  clientes: ["Lucía", "Martín", "Sofi", "Juan", "Caro", "Nico", "Agus", "Male"],
+  resenas: [
+    "El mejor flat white de Palermo, y la atención un lujo.",
+    "Volví por las medialunas. Impecables.",
+    "Lindo lugar para trabajar, wifi rápido y buen café.",
+    "Me atendieron súper rápido aunque estaba lleno.",
+  ],
+  mensajes: ["¡Hola! ¿Tienen mesa para 4 a las 20?", "¿Hacen tortas por encargo?", "¿Abren el domingo?", "¿Tienen opciones sin TACC?"],
+  cierre: "Esto, pero en tu local y con tus clientes de verdad.",
+};
