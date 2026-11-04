@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Glifo, type GlifoId } from "@/components/ui/Glifo";
 import { QRMark } from "@/components/ui/QRMark";
 import { cn } from "@/lib/cn";
@@ -20,6 +20,16 @@ export function PanelHero({
   const [activa, setActiva] = useState(menu[0].id);
   const [tocado, setTocado] = useState(false);
 
+  /* Recorrido solo: cada 3,2 s pasa a la sección siguiente, hasta que la
+     persona toca el menú. Con reduced-motion no se mueve. */
+  useEffect(() => {
+    if (tocado || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = window.setInterval(() => {
+      setActiva((a) => menu[(menu.findIndex((m) => m.id === a) + 1) % menu.length].id);
+    }, 3200);
+    return () => window.clearInterval(t);
+  }, [tocado, menu]);
+
   return (
     <div className="grid gap-2 rounded-[22px] bg-ink p-2 shadow-[var(--shadow-device)] transition-transform duration-500 ease-[var(--ease-ft)] sm:grid-cols-[124px_1fr] lg:[transform:perspective(1600px)_rotateY(-6deg)_rotateX(2deg)] lg:group-hover:[transform:none]">
       <nav aria-label="Secciones de la app de ejemplo" className="hidden content-start gap-1 px-1.5 py-2.5 text-[11.5px] text-muted-dark sm:grid">
@@ -36,12 +46,15 @@ export function PanelHero({
               setTocado(true);
             }}
             className={cn(
-              "flex min-h-8 items-center gap-1.5 rounded-lg px-2 py-1.5 text-left transition-colors duration-200",
+              "relative flex min-h-8 items-center gap-1.5 overflow-hidden rounded-lg px-2 py-1.5 text-left transition-colors duration-200",
               activa === m.id ? "bg-paper font-bold text-ink" : "hover:bg-white/10",
             )}
           >
             <Glifo id={m.glifo} size={13} />
             {m.label}
+            {activa === m.id && !tocado && (
+              <i key={activa} aria-hidden="true" className="ft-barra absolute bottom-0 left-0 h-0.5 bg-brand" />
+            )}
           </button>
         ))}
       </nav>

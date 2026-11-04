@@ -646,3 +646,91 @@ html[data-reveal="on"] [data-reveal].is-in {
     max-width: 360px;
   }
 }
+
+/* ============================================================
+   JUEGO "PROBALO VOS" — animaciones del cartel, el teléfono y
+   el confeti. Todas se apagan con prefers-reduced-motion.
+   ============================================================ */
+
+@keyframes ft-ola {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.ft-ola { animation: ft-ola 900ms var(--ease-ft) both; }
+
+@keyframes ft-vibra {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  20% { transform: translateX(-3px) rotate(-1deg); }
+  40% { transform: translateX(3px) rotate(1deg); }
+  60% { transform: translateX(-2px) rotate(-0.5deg); }
+  80% { transform: translateX(2px) rotate(0.5deg); }
+}
+.ft-vibra { animation: ft-vibra 380ms ease-in-out; }
+
+@keyframes ft-pop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.ft-pop { animation: ft-pop 420ms var(--ease-ft) both; }
+
+@keyframes ft-toast {
+  0% { transform: translateY(14px) scale(0.96); opacity: 0; }
+  12%, 85% { transform: none; opacity: 1; }
+  100% { transform: translateY(-8px); opacity: 0; }
+}
+.ft-toast { animation: ft-toast 3.2s var(--ease-ft) both; }
+
+@keyframes ft-confeti {
+  0% { transform: translate3d(0, -10px, 0) rotate(0); opacity: 1; }
+  100% { transform: translate3d(var(--dx, 0), 420px, 0) rotate(var(--rot, 540deg)); opacity: 0; }
+}
+.ft-confeti { animation: ft-confeti var(--dur, 1.6s) cubic-bezier(0.2, 0.6, 0.4, 1) both; }
+
+@keyframes ft-brillo {
+  0%, 100% { box-shadow: 0 0 0 0 var(--color-brand-glow); }
+  50% { box-shadow: 0 0 0 14px transparent; }
+}
+.ft-brillo { animation: ft-brillo 1.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ft-ola, .ft-vibra, .ft-pop, .ft-toast, .ft-confeti, .ft-brillo { animation: none; }
+  .ft-confeti { display: none; }
+}
+
+/* Barrita de progreso del recorrido automático del hero. */
+@keyframes ft-barra { from { width: 0; } to { width: 100%; } }
+.ft-barra { animation: ft-barra 3.2s linear both; }
+@media (prefers-reduced-motion: reduce) { .ft-barra { animation: none; display: none; } }
+
+/* ============================================================
+   SCROLL — animaciones atadas al scroll, con CSS nativo
+   (animation-timeline). Donde el navegador no lo soporta, no
+   pasa nada: los elementos se ven en su estado final.
+   ============================================================ */
+.ft-progreso { transform: scaleX(0); display: none; }
+
+@supports (animation-timeline: scroll()) {
+  @keyframes ft-progreso { to { transform: scaleX(1); } }
+  .ft-progreso {
+    display: block;
+    animation: ft-progreso linear both;
+    animation-timeline: scroll(root);
+  }
+
+  /* Los bloques redondeados crecen y se asientan al entrar. */
+  @keyframes ft-crece {
+    from { transform: scale(0.94) translateY(24px); opacity: 0.4; }
+    to { transform: none; opacity: 1; }
+  }
+  .ft-crece {
+    animation: ft-crece linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ft-progreso, .ft-crece { animation: none !important; transform: none; opacity: 1; }
+  .ft-progreso { display: none; }
+}
