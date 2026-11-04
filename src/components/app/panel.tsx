@@ -426,26 +426,62 @@ const grilla49: (number | "vos")[] = [
   0, 0, 3, 4, 4, 0, 0,
 ];
 
+/** Fondo de mapa dibujado con tokens: calles, una avenida y el río. */
+export function FondoMapa() {
+  return (
+    <svg aria-hidden="true" className="absolute inset-0 size-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <rect width="100" height="100" fill="var(--color-paper)" />
+      <path d="M72 0 Q78 22 100 30 L100 0 Z" fill="var(--color-teal)" opacity="0.12" />
+      <g stroke="var(--color-line)" strokeWidth="0.35">
+        {Array.from({ length: 14 }).map((_, i) => (
+          <line key={`h${i}`} x1="0" y1={i * 7.5 + 3} x2="100" y2={i * 7.5 - 4} />
+        ))}
+        {Array.from({ length: 14 }).map((_, i) => (
+          <line key={`v${i}`} x1={i * 7.5 + 2} y1="0" x2={i * 7.5 - 6} y2="100" />
+        ))}
+      </g>
+      <path d="M0 62 Q40 52 100 70" stroke="var(--color-line)" strokeWidth="1.4" fill="none" />
+      <path d="M30 0 Q38 50 26 100" stroke="var(--color-line)" strokeWidth="1.1" fill="none" />
+    </svg>
+  );
+}
+
 function PantallaMaps() {
+  const tono = (v: number | "vos") =>
+    v === 0 ? "bg-muted text-paper" : v === "vos" ? "bg-muted text-paper" : v <= 3 ? "bg-teal text-ink" : v <= 10 ? "bg-gold text-ink" : "bg-coral text-paper";
   return (
     <>
-      <Titulo titulo="«café de especialidad»" bajada="49 puntos cada 1 km · top 3 en 9 de 49 · puesto promedio 5" />
-      <Kpis items={[{ label: "En el top 3", valor: "9 de 49" }, { label: "Visibilidad", valor: "38" }, { label: "Ranking zona", valor: "2°" }]} />
-      <div className="grid grid-cols-7 gap-1 rounded-2xl bg-surface/60 p-3" aria-hidden="true">
-        {grilla49.map((v, i) => (
-          <b
-            key={i}
-            className={cn(
-              "flex aspect-square items-center justify-center rounded-full text-[10px] font-bold transition-transform duration-200 hover:scale-125",
-              v === "vos" ? "bg-brand text-paper" : v === 0 ? "bg-line text-muted" : v <= 3 ? "bg-teal text-ink" : v <= 10 ? "bg-gold text-ink" : "bg-coral text-paper",
-            )}
-          >
-            {v === "vos" ? <Glifo id="ubicacion" size={11} /> : v === 0 ? "–" : v}
-          </b>
-        ))}
+      <Titulo titulo="Posición en Maps" bajada={<>Búsqueda: <b className="text-ink">«café de especialidad»</b> · un punto por km</>} />
+      <Kpis items={[{ label: "En el top 3", valor: "9 de 49" }, { label: "Visibilidad", valor: "38/100" }, { label: "En tu zona", valor: "2°" }]} />
+      <ul className="mb-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted">
+        <li className="flex items-center gap-1"><i className="size-2 rounded-full bg-teal" />Top 3</li>
+        <li className="flex items-center gap-1"><i className="size-2 rounded-full bg-gold" />4 a 10</li>
+        <li className="flex items-center gap-1"><i className="size-2 rounded-full bg-coral" />11 a 20</li>
+        <li className="flex items-center gap-1"><i className="size-2 rounded-full bg-muted" />No aparecés</li>
+        <li className="flex items-center gap-1"><i className="size-2 rounded-full ring-2 ring-brand" />Tu local</li>
+      </ul>
+      <div className="relative mx-auto max-w-[320px] overflow-hidden rounded-xl border border-line" aria-hidden="true">
+        <FondoMapa />
+        <div className="relative grid grid-cols-7 p-2">
+          {grilla49.map((v, i) => (
+            <span key={i} className="flex aspect-square items-center justify-center">
+              <b
+                className={cn(
+                  "flex size-[26px] items-center justify-center rounded-full border-2 border-paper text-[10px] font-bold shadow-[var(--shadow-rest)] tnum",
+                  tono(v),
+                  v === "vos" && "ring-[3px] ring-brand",
+                )}
+              >
+                {v === 0 || v === "vos" ? "—" : v}
+              </b>
+            </span>
+          ))}
+        </div>
       </div>
-      <Fila className="mt-2"><Etiqueta>Qué hacer para subir</Etiqueta><span>Respondé las reseñas: 15 de 21 en los últimos 90 días</span></Fila>
-      <a href="#simulador" className="mt-2 inline-flex min-h-9 items-center gap-1.5 text-[13px] font-bold text-brand underline-offset-4 hover:underline">
+      <p className="mt-2.5 text-[12px] text-muted">
+        Parado en tu local no aparecés: cada número es tu puesto en ese punto.
+      </p>
+      <a href="#simulador" className="mt-1 inline-flex min-h-9 items-center gap-1.5 text-[13px] font-bold text-brand underline-offset-4 hover:underline">
         Probá el simulador con tu rubro <span aria-hidden="true">↓</span>
       </a>
     </>

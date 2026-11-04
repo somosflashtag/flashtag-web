@@ -16,6 +16,7 @@ import {
   type Negocio,
 } from "@/content/simulador-maps";
 import { cn } from "@/lib/cn";
+import { FondoMapa } from "@/components/app/panel";
 
 /**
  * Simulador de "Posición en Maps": el visitante busca un rubro, ve en qué
@@ -40,26 +41,6 @@ function Estrella({ n }: { n: number }) {
       </svg>
       {n.toLocaleString("es-AR", { minimumFractionDigits: 1 })}
     </span>
-  );
-}
-
-/** Fondo de mapa dibujado con tokens: calles, una avenida y el río. */
-function FondoMapa() {
-  return (
-    <svg aria-hidden="true" className="absolute inset-0 size-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <rect width="100" height="100" fill="var(--color-paper)" />
-      <path d="M72 0 Q78 22 100 30 L100 0 Z" fill="var(--color-teal)" opacity="0.12" />
-      <g stroke="var(--color-line)" strokeWidth="0.35">
-        {Array.from({ length: 14 }).map((_, i) => (
-          <line key={`h${i}`} x1="0" y1={i * 7.5 + 3} x2="100" y2={i * 7.5 - 4} />
-        ))}
-        {Array.from({ length: 14 }).map((_, i) => (
-          <line key={`v${i}`} x1={i * 7.5 + 2} y1="0" x2={i * 7.5 - 6} y2="100" />
-        ))}
-      </g>
-      <path d="M0 62 Q40 52 100 70" stroke="var(--color-line)" strokeWidth="1.4" fill="none" />
-      <path d="M30 0 Q38 50 26 100" stroke="var(--color-line)" strokeWidth="1.1" fill="none" />
-    </svg>
   );
 }
 
