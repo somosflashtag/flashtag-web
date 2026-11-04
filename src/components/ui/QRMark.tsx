@@ -1,38 +1,37 @@
 import { cn } from "@/lib/cn";
 
 /**
- * El marcador de posición del QR: el elemento estructural de la marca.
- * Reemplaza bullets, marca secciones y encuadra datos.
- * No es decoración — es el ADN del producto convertido en sistema.
+ * Marcador de sección y de lista: el isotipo oficial "ft" (FT_Violeta.eps)
+ * sobre su tile arena, tal como vive en `src/app/icon.svg`.
+ *
+ * Antes era un cuadradito dibujado a mano; ahora es el asset de marca sin
+ * tocar (AGENTS.md §1): se carga el mismo archivo, no se repiten ni recolorean
+ * los trazos. El tile arena lo hace legible sobre fondos claros y sobre ink.
+ *
+ * `tone` queda por compatibilidad con los usos existentes: el isotipo tiene
+ * sus colores propios y no se tiñe.
+ *
+ * Por debajo de 16px el "ft" deja de leerse, así que ese es el piso.
  */
 export function QRMark({
   className,
-  size = 14,
-  tone = "brand",
+  size = 16,
 }: {
   className?: string;
   size?: number;
   tone?: "brand" | "ink" | "paper" | "muted";
 }) {
-  const color =
-    tone === "brand"
-      ? "var(--color-brand)"
-      : tone === "paper"
-        ? "var(--color-paper)"
-        : tone === "muted"
-          ? "var(--color-muted)"
-          : "var(--color-ink)";
-
+  const s = Math.max(size, 16);
   return (
-    <span
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/icon.svg"
+      alt=""
       aria-hidden="true"
+      width={s}
+      height={s}
       className={cn("inline-block shrink-0 align-middle", className)}
-      style={{ width: size, height: size }}
-    >
-      <svg viewBox="0 0 14 14" width={size} height={size} fill="none">
-        <rect x="0.75" y="0.75" width="12.5" height="12.5" rx="1.5" stroke={color} strokeWidth="1.5" />
-        <rect x="4.25" y="4.25" width="5.5" height="5.5" rx="0.5" fill={color} />
-      </svg>
-    </span>
+      style={{ width: s, height: s }}
+    />
   );
 }
