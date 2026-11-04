@@ -445,6 +445,9 @@ function PantallaMaps() {
         ))}
       </div>
       <Fila className="mt-2"><Etiqueta>Qué hacer para subir</Etiqueta><span>Respondé las reseñas: 15 de 21 en los últimos 90 días</span></Fila>
+      <a href="#simulador" className="mt-2 inline-flex min-h-9 items-center gap-1.5 text-[13px] font-bold text-brand underline-offset-4 hover:underline">
+        Probá el simulador con tu rubro <span aria-hidden="true">↓</span>
+      </a>
     </>
   );
 }
