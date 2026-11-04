@@ -12,6 +12,7 @@ import { Burbujas } from "@/components/home/Burbujas";
 import { Pilares, type Desde } from "@/components/home/Pilares";
 import { FlashyChat } from "@/components/home/FlashyChat";
 import { CasosFiltro } from "@/components/home/CasosFiltro";
+import { SimuladorMaps } from "@/components/home/SimuladorMaps";
 import { menuPanel, pantallasPilares, vistasHero } from "@/components/app/panel";
 import { casosConDetalle, rubros as rubrosCasos } from "@/content/casos";
 import { features } from "@/content/features";
@@ -259,6 +260,24 @@ export default function Home() {
             bajada={pilaresIntro.bajada}
           />
           <Pilares pilares={pilares} pantallas={pantallas} desde={desde} />
+        </Container>
+      </section>
+
+      {/* ── SIMULADOR DE MAPS ────────────────────────────────── */}
+      <section id="simulador" className={pad}>
+        <Container>
+          <Encabezado
+            eyebrow="Posición en Maps"
+            titulo="Buscá como tu cliente y mirá dónde aparecés"
+            bajada="Elegí tu rubro: te mostramos en qué puesto salís en 49 puntos alrededor de tu local, quién te gana en cada uno y qué hacer para subir."
+          />
+          <SimuladorMaps />
+          <div className="mt-6 flex flex-col items-center gap-2 text-center">
+            <Button href={cta.primary.href} variant="primary" size="lg" arrow>
+              Medí tu local de verdad
+            </Button>
+            <p className="text-[13px] text-muted">En la app, con tu ficha de Google y tus competidores reales.</p>
+          </div>
         </Container>
       </section>
 
