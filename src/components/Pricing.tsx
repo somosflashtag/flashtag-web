@@ -62,7 +62,7 @@ function PlanCard({ plan, anual, promo, moneda }: { plan: Plan; anual: boolean; 
   return (
     <div
       className={cn(
-        "flex flex-col rounded-[var(--radius-card)] p-6 sm:p-7",
+        "flex h-full flex-col rounded-[var(--radius-card)] p-5 sm:p-7",
         plan.destacado
           ? "bg-ink text-paper shadow-[var(--shadow-float)]"
           : "border border-line bg-paper",
@@ -125,12 +125,12 @@ function PlanCard({ plan, anual, promo, moneda }: { plan: Plan; anual: boolean; 
 
       {/* Los features no incluidos se muestran en gris, nunca se omiten:
           comparar es más persuasivo que ocultar. */}
-      <ul className="mt-7 space-y-3">
+      <ul className="mt-6 space-y-2.5 sm:mt-7 sm:space-y-3">
         {plan.features.map((f) => (
           <li
             key={f.label}
             className={cn(
-              "flex gap-2.5 text-[0.9375rem] leading-snug",
+              "flex gap-2.5 text-sm leading-snug sm:text-[0.9375rem]",
               !f.incluido && (plan.destacado ? "text-white/35" : "text-muted/60"),
               f.incluido && plan.destacado && "text-white/90",
             )}
@@ -182,7 +182,7 @@ export function Pricing({ conNota = true, promo: promoServer = null }: { conNota
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
         <div
           role="group"
           aria-label="Ciclo de facturación"
@@ -195,7 +195,7 @@ export function Pricing({ conNota = true, promo: promoServer = null }: { conNota
               onClick={() => setAnual(v)}
               aria-pressed={anual === v}
               className={cn(
-                "min-h-[40px] rounded-full px-5 text-sm font-semibold transition-colors duration-[180ms]",
+                "min-h-[40px] rounded-full px-3.5 text-[13px] font-semibold transition-colors duration-[180ms] sm:px-5 sm:text-sm",
                 anual === v ? "bg-ink text-paper" : "text-muted hover:text-ink",
               )}
             >
@@ -216,18 +216,18 @@ export function Pricing({ conNota = true, promo: promoServer = null }: { conNota
               onClick={() => setMoneda(m)}
               aria-pressed={moneda === m}
               className={cn(
-                "min-h-[40px] rounded-full px-5 text-sm font-semibold transition-colors duration-[180ms]",
+                "min-h-[40px] rounded-full px-3.5 text-[13px] font-semibold transition-colors duration-[180ms] sm:px-5 sm:text-sm",
                 moneda === m ? "bg-ink text-paper" : "text-muted hover:text-ink",
               )}
             >
-              {m === "ars" ? "Pesos (ARS)" : "Dólares (USD)"}
+              {m === "ars" ? "Pesos" : "Dólares"}<span className="hidden sm:inline"> ({m.toUpperCase()})</span>
             </button>
           ))}
         </div>
       </div>
 
       {/* Siempre Free → Starter → Full → Evolution, también en phone. */}
-      <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div className="carrusel carrusel-ancho mt-6 grid gap-5 md:mt-10 md:grid-cols-2 xl:grid-cols-4">
         {planes.map((p) => (
           <div key={p.id}>
             <PlanCard plan={p} anual={anual} promo={promo} moneda={moneda} />

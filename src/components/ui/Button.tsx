@@ -18,7 +18,7 @@ const variants: Record<Variant, string> = {
 
 /** Tap targets: mínimo 44px de alto en phone. */
 const sizes: Record<Size, string> = {
-  lg: "min-h-[52px] px-7 text-[1.0625rem]",
+  lg: "min-h-12 px-6 text-base sm:min-h-[52px] sm:px-7 sm:text-[1.0625rem]",
   md: "min-h-[44px] px-5 text-base",
   sm: "min-h-[38px] px-4 text-sm",
 };

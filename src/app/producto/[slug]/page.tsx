@@ -93,7 +93,7 @@ export default async function ProductoPage({
 
       <Section>
         <h2 className="t-h2 text-balance" data-reveal>Cómo funciona</h2>
-        <ol className="mt-10 grid gap-5 md:grid-cols-3">
+        <ol className="carrusel mt-6 grid gap-5 md:mt-10 md:grid-cols-3">
           {f.pasos.map((p, i) => (
             <li
               key={p.titulo}
@@ -166,7 +166,7 @@ export default async function ProductoPage({
 
       <Section className="border-t border-line">
         <h2 className="t-h2" data-reveal>El resto de la app</h2>
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="carrusel carrusel-angosto mt-6 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
           {otras.map((o, i) => (
             <li key={o.slug} data-reveal style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}>
               <Link

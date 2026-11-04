@@ -31,7 +31,7 @@ export function MetricasDetalle() {
             Eso es lo que hacés distinto la semana que viene.
           </p>
         </div>
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+        <ul className="carrusel mt-8 grid gap-4 sm:grid-cols-2 md:mt-12 lg:mt-16 lg:grid-cols-3">
           {beneficios.map((b, i) => (
             <li
               key={b.titulo}
@@ -100,7 +100,7 @@ export function MetricasDetalle() {
 
         <div className="mt-12 border-t border-line pt-10 lg:mt-16" data-reveal>
           <h3 className="t-h3">{dondeSeVe.titulo}</h3>
-          <ul className="mt-6 grid gap-5 md:grid-cols-3">
+          <ul className="carrusel mt-6 grid gap-5 md:grid-cols-3">
             {dondeSeVe.items.map((d) => (
               <li key={d.titulo} className="flex gap-3">
                 <QRMark size={12} tone="muted" className="mt-1.5" />
@@ -125,7 +125,7 @@ export function MetricasDetalle() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+        <ul className="carrusel mt-8 grid gap-5 md:mt-12 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
           {preguntasDelPanel.map((p, i) => (
             <li
               key={p.pregunta}

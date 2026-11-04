@@ -34,9 +34,9 @@ export function Footer() {
     <footer className="bg-ink text-paper">
       <Container>
         {/* Navegación */}
-        <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-4 lg:grid-cols-5 lg:py-20">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-9 py-11 md:grid-cols-4 md:gap-10 lg:grid-cols-5 lg:py-20">
           <div className="col-span-2 lg:col-span-1">
-            <Logo tone="light" className="text-[3.25rem]" />
+            <Logo tone="light" className="text-[2.75rem] md:text-[3.25rem]" />
             <p className="measure mt-3 text-sm leading-relaxed text-muted-dark">
               Marketing phygital para comercios locales. Hecho en Argentina.
             </p>
@@ -48,7 +48,7 @@ export function Footer() {
                 <QRMark size={10} tone="paper" />
                 {col.titulo}
               </h2>
-              <ul className="mt-4 space-y-2.5">
+              <ul className="mt-3.5 space-y-2 md:mt-4 md:space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     {link.externo ? (
@@ -69,7 +69,7 @@ export function Footer() {
 
         {/* Redes · Data Fiscal · Contacto */}
         <div
-          className={`grid gap-10 border-t border-line-dark py-12 md:items-center ${
+          className={`grid gap-8 border-t border-line-dark py-9 md:items-center md:gap-10 md:py-12 ${
             site.dataFiscal ? "md:grid-cols-3" : "md:grid-cols-2"
           }`}
         >

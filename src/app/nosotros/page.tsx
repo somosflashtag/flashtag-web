@@ -68,7 +68,7 @@ export default function NosotrosPage() {
 
       <Section className="border-y border-line bg-surface">
         <h2 className="t-h2">Lo que nos guía</h2>
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="carrusel mt-6 grid gap-5 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
           {valores.map((v) => (
             <li
               key={v.titulo}

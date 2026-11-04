@@ -25,8 +25,8 @@ function LogoCliente({ c, className }: { c: Cliente; className?: string }) {
       width={c.ancho}
       height={44}
       sizes={`${c.ancho}px`}
-      style={{ width: c.ancho, height: "auto" }}
-      className={cn("opacity-80 transition-opacity duration-200 hover:opacity-100", className)}
+      style={{ "--w": `${c.ancho}px`, height: "auto" } as React.CSSProperties}
+      className={cn("w-[calc(var(--w)*0.72)] opacity-80 transition-opacity duration-200 hover:opacity-100 md:w-[var(--w)]", className)}
     />
   );
 }
@@ -46,14 +46,14 @@ export function Clientes({
         </h2>
         <div className="ft-marquee-wrap ft-marquee-mask mt-7 overflow-hidden motion-reduce:[mask:none] motion-reduce:[-webkit-mask:none]">
           <div className="ft-marquee flex w-max items-center motion-reduce:w-auto motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-x-12 motion-reduce:gap-y-8 motion-reduce:px-6">
-            <ul className="flex shrink-0 items-center gap-12 pr-12 motion-reduce:contents md:gap-16 md:pr-16">
+            <ul className="flex shrink-0 items-center gap-9 pr-9 motion-reduce:contents md:gap-16 md:pr-16">
               {clientes.map((c) => (
                 <li key={c.nombre} className="flex items-center">
                   <LogoCliente c={c} />
                 </li>
               ))}
             </ul>
-            <ul aria-hidden="true" className="flex shrink-0 items-center gap-12 pr-12 motion-reduce:hidden md:gap-16 md:pr-16">
+            <ul aria-hidden="true" className="flex shrink-0 items-center gap-9 pr-9 motion-reduce:hidden md:gap-16 md:pr-16">
               {clientes.map((c) => (
                 <li key={c.nombre} className="flex items-center">
                   <LogoCliente c={{ ...c, nombre: "" }} />

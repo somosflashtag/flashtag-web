@@ -89,7 +89,7 @@ export default function ActivarPage() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 md:grid-cols-3">
+        <ul className="carrusel mt-8 grid gap-5 md:mt-12 md:grid-cols-3">
           {queEs.map((q) => (
             <li
               key={q.titulo}

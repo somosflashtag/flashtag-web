@@ -49,7 +49,7 @@ export default function CasosPage() {
                 ))}
               </ul>
             )}
-            <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <ul className="carrusel mt-6 grid gap-5 md:mt-10 md:grid-cols-2 lg:grid-cols-3">
               {casosPublicables.map((c) => (
                 <li key={c.slug}>
                   <CasoCard caso={c} />

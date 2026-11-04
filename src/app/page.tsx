@@ -86,15 +86,15 @@ function Encabezado({
   return (
     <div className="mx-auto max-w-3xl text-center" data-reveal>
       <span className="eyebrow">{eyebrow}</span>
-      <h2 id={id} className="t-h2 mt-3.5 text-balance">
+      <h2 id={id} className="t-h2 mt-3 text-balance md:mt-3.5">
         {titulo}
       </h2>
-      {bajada && <p className="t-lead measure mx-auto mt-3.5 text-muted">{bajada}</p>}
+      {bajada && <p className="t-lead measure mx-auto mt-2.5 text-muted md:mt-3.5">{bajada}</p>}
     </div>
   );
 }
 
-const pad = "py-16 md:py-24";
+const pad = "py-11 md:py-24";
 
 export default function Home() {
   const promo = promoVigente();
@@ -112,15 +112,15 @@ export default function Home() {
       <JsonLd id="ld-faq-home" data={faqSchema(faqsHome)} />
 
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="hero-halo pb-10 pt-12 md:pt-[72px]">
+      <section className="hero-halo pb-8 pt-7 md:pb-10 md:pt-[72px]">
         <Container>
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
             <div data-reveal>
               <span className="eyebrow">{hero.eyebrow}</span>
-              <h1 className="t-display mt-4 text-balance !text-[clamp(2.375rem,1.4rem+3.6vw,4rem)]">
+              <h1 className="t-display mt-4 text-balance !text-[clamp(1.875rem,1.15rem+3.5vw,4rem)]">
                 {hero.titular} <span className="text-glow-warm">{hero.destacado}</span>
               </h1>
-              <p className="t-lead measure mb-7 mt-5 text-muted">{hero.bajada}</p>
+              <p className="t-lead measure mb-6 mt-4 text-muted md:mb-7 md:mt-5">{hero.bajada}</p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button href={cta.primary.href} variant="primary" size="lg" arrow>
                   {cta.primary.label}
@@ -129,7 +129,7 @@ export default function Home() {
                   {cta.secondary.label}
                 </Button>
               </div>
-              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+              <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-muted sm:mt-6 sm:gap-x-5 sm:text-sm">
                 {hero.checks.map((t) => (
                   <li key={t} className="flex items-center gap-1.5">
                     <Glifo id="check" size={14} className="text-brand" />
@@ -142,7 +142,7 @@ export default function Home() {
               <form
                 action={site.urls.login}
                 method="get"
-                className="mt-7 flex max-w-[480px] flex-wrap items-center gap-2 rounded-[14px] border border-dashed border-brand/40 bg-paper py-2 pl-4 pr-2"
+                className="mt-6 flex max-w-[480px] flex-wrap items-center gap-x-2 gap-y-1 rounded-[14px] border border-dashed border-brand/40 bg-paper py-2 pl-4 pr-2"
               >
                 <label htmlFor="codigo-hero" className="text-[13px] font-bold">
                   {hero.activar}
@@ -153,7 +153,7 @@ export default function Home() {
                   type="text"
                   autoComplete="off"
                   spellCheck={false}
-                  placeholder="ID/código · Ej: FT-A1B2C3"
+                  placeholder="Ej: FT-A1B2C3"
                   pattern="[A-Za-z0-9\-]{4,20}"
                   required
                   className="min-h-11 min-w-0 flex-1 bg-transparent font-mono text-sm tracking-wide outline-none placeholder:font-sans placeholder:tracking-normal placeholder:text-muted"
@@ -205,41 +205,41 @@ export default function Home() {
             }
             bajada={loop.bajada}
           />
-          <ol className="mt-12 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-7 grid gap-2.5 sm:grid-cols-2 sm:gap-3.5 md:mt-12 lg:grid-cols-4">
             {loop.pasos.map((p, i) => (
               <li
                 key={p.titulo}
                 data-reveal
                 style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
-                className="card-lift group rounded-[20px] border border-line bg-surface/40 p-6"
+                className="card-lift group grid grid-cols-[auto_1fr] gap-x-3.5 rounded-[18px] border border-line bg-surface/40 p-4 sm:block sm:rounded-[20px] sm:p-6"
               >
-                <span className="font-display text-[13px] font-bold text-brand tnum">0{i + 1}</span>
-                <span className="my-3 flex size-11 items-center justify-center rounded-xl bg-brand-soft text-brand transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
+                <span className="hidden font-display text-[13px] font-bold text-brand tnum sm:inline">0{i + 1}</span>
+                <span className="row-span-2 flex size-10 items-center sm:my-3 sm:size-11 justify-center rounded-xl bg-brand-soft text-brand transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
                   <Glifo id={p.glifo} size={22} />
                 </span>
-                <h3 className="font-display text-lg font-semibold">{p.titulo}</h3>
-                <p className="mt-1.5 text-sm text-muted">{p.texto}</p>
+                <h3 className="font-display text-base font-semibold sm:text-lg">{p.titulo}</h3>
+                <p className="mt-0.5 text-[13px] text-muted sm:mt-1.5 sm:text-sm">{p.texto}</p>
               </li>
             ))}
           </ol>
-          <ul className="mt-4 grid gap-4 md:grid-cols-3">
+          <ul className="carrusel carrusel-angosto mt-4 grid gap-4 md:grid-cols-3">
             {datos.map((d, i) => (
               <li
                 key={d.valor}
                 data-reveal
                 style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
                 className={cn(
-                  "group relative overflow-hidden rounded-[28px] px-6 pb-7 pt-6 text-paper transition-[transform,box-shadow] duration-300 ease-[var(--ease-ft)] hover:-translate-y-2 hover:-rotate-1 hover:shadow-[var(--shadow-float)]",
+                  "group relative overflow-hidden rounded-[22px] px-5 pb-5 pt-5 text-paper md:rounded-[28px] md:px-6 md:pb-7 md:pt-6 transition-[transform,box-shadow] duration-300 ease-[var(--ease-ft)] hover:-translate-y-2 hover:-rotate-1 hover:shadow-[var(--shadow-float)]",
                   `dato-${d.tono}`,
                 )}
               >
-                <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-white/20 transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110">
+                <span className="inline-flex size-10 items-center justify-center rounded-xl bg-white/20 md:size-12 md:rounded-2xl transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110">
                   <Glifo id={d.glifo} size={24} />
                 </span>
-                <b className="mb-2.5 mt-3.5 block font-display text-[2.625rem] font-bold leading-none tracking-tight tnum md:text-[3.25rem]">
+                <b className="mb-2 mt-3 block font-display text-[2.125rem] font-bold leading-none tracking-tight tnum md:text-[3.25rem]">
                   {d.valor}
                 </b>
-                <span className="relative z-10 text-[15px] text-white/90">{d.texto}</span>
+                <span className="relative z-10 text-sm text-white/90 md:text-[15px]">{d.texto}</span>
                 <i
                   aria-hidden="true"
                   className="absolute -bottom-12 -right-10 size-[170px] rounded-full bg-white/15 transition-transform duration-500 group-hover:-translate-x-5 group-hover:-translate-y-5 group-hover:scale-[1.4]"
@@ -266,7 +266,7 @@ export default function Home() {
       <section className="blk relative mt-3.5 overflow-hidden bg-ink text-paper">
         <div aria-hidden="true" className="glow-brand absolute -right-32 -top-32 size-[420px]" />
         <Container>
-          <div className="relative grid items-center gap-10 py-14 md:py-[88px] lg:grid-cols-2">
+          <div className="relative grid items-center gap-7 py-11 md:gap-10 md:py-[88px] lg:grid-cols-2">
             <div>
               <span className="eyebrow !bg-white/10 !text-muted-dark">
                 <Glifo id="chispa" size={13} /> {flashy.eyebrow}
@@ -298,7 +298,7 @@ export default function Home() {
             }
             bajada={rubrosIntro.bajada}
           />
-          <ul className="mt-10 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="carrusel carrusel-angosto mt-6 grid gap-3.5 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
             {paginasRubro.map((r, i) => (
               <li key={r.slug} data-reveal style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}>
                 <Link
@@ -329,9 +329,9 @@ export default function Home() {
       </section>
 
       {/* ── TIENDA ───────────────────────────────────────────── */}
-      <section id="tienda" className="pb-16 md:pb-24">
+      <section id="tienda" className="pb-11 md:pb-24">
         <Container>
-          <div className="grid items-center gap-6 rounded-[28px] border border-line bg-surface/50 p-6 sm:p-8 lg:grid-cols-[1.1fr_2fr]">
+          <div className="grid grid-cols-1 items-center gap-5 overflow-hidden rounded-[24px] border border-line bg-surface/50 p-5 sm:gap-6 sm:rounded-[28px] sm:p-8 lg:grid-cols-[1.1fr_2fr]">
             <div>
               <span className="eyebrow">{tiendaHome.eyebrow}</span>
               <h2 className="t-h2 mt-3.5 !text-[clamp(1.75rem,1.3rem+1.6vw,2.375rem)]">{tiendaHome.titular}</h2>
@@ -340,7 +340,7 @@ export default function Home() {
                 Ir a la tienda
               </Button>
             </div>
-            <ul className="grid gap-4 sm:grid-cols-3">
+            <ul className="carrusel carrusel-angosto grid gap-4 sm:grid-cols-3">
               {productos.map((p) => (
                 <li key={p.slug}>
                   <a
@@ -399,7 +399,7 @@ export default function Home() {
         <Container>
           <Encabezado eyebrow="Preguntas frecuentes" titulo="Lo que nos preguntan siempre" />
           <div className="mx-auto mt-10 max-w-[820px]" data-reveal>
-            <Faq items={faqsHome} />
+            <Faq items={faqsHome} inicial={6} />
           </div>
           <p className="mt-6 text-center text-muted">
             ¿Otra duda?{" "}
@@ -411,9 +411,9 @@ export default function Home() {
       </section>
 
       {/* ── CTA FINAL ────────────────────────────────────────── */}
-      <section className="pb-16 md:pb-24">
+      <section className="pb-11 md:pb-24">
         <Container>
-          <div className="cta-final rounded-[32px] px-6 py-12 text-center text-paper md:px-10 md:py-16">
+          <div className="cta-final rounded-[24px] px-5 py-10 text-center text-paper md:rounded-[32px] md:px-10 md:py-16">
             <h2 className="t-h2 measure mx-auto text-balance">{ctaFinal.titular}</h2>
             <p className="t-lead measure mx-auto mb-7 mt-3.5 text-white/85">{ctaFinal.bajada}</p>
             <div className="flex flex-col justify-center gap-3 sm:flex-row">

@@ -58,7 +58,7 @@ export function FormatosDescarga() {
         </ul>
       </div>
 
-      <ul className="mt-12 grid gap-5 md:grid-cols-3">
+      <ul className="carrusel mt-8 grid gap-5 md:mt-12 md:grid-cols-3">
         {puntosImprenta.map((p, i) => (
           <li
             key={p.titulo}

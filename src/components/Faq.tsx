@@ -4,12 +4,15 @@ import { useState } from "react";
 import type { FaqItem } from "@/content/faq";
 
 /** Acordeón: 200ms ease-out. Motion solo como respuesta a una acción. */
-export function Faq({ items }: { items: FaqItem[] }) {
+export function Faq({ items, inicial }: { items: FaqItem[]; inicial?: number }) {
   const [abierto, setAbierto] = useState<number | null>(0);
+  /* `inicial`: cuántas se ven de entrada; el resto, con "Ver más preguntas". */
+  const [todas, setTodas] = useState(!inicial);
+  const visibles = todas ? items : items.slice(0, inicial);
 
   return (
     <div className="divide-y divide-line border-y border-line">
-      {items.map((item, i) => {
+      {visibles.map((item, i) => {
         const open = abierto === i;
         return (
           <div key={item.pregunta}>
@@ -19,9 +22,9 @@ export function Faq({ items }: { items: FaqItem[] }) {
                 onClick={() => setAbierto(open ? null : i)}
                 aria-expanded={open}
                 aria-controls={`faq-panel-${i}`}
-                className="flex w-full items-center justify-between gap-6 py-5 text-left"
+                className="flex w-full items-center justify-between gap-4 py-4 text-left sm:gap-6 sm:py-5"
               >
-                <span className="text-[1.0625rem] font-semibold tracking-tight">
+                <span className="text-[0.9375rem] font-semibold tracking-tight sm:text-[1.0625rem]">
                   {item.pregunta}
                 </span>
                 <span
@@ -36,13 +39,24 @@ export function Faq({ items }: { items: FaqItem[] }) {
             <div
               id={`faq-panel-${i}`}
               hidden={!open}
-              className="measure pb-6 text-[1.0625rem] leading-relaxed text-muted"
+              className="measure pb-5 text-[0.9375rem] leading-relaxed text-muted sm:pb-6 sm:text-[1.0625rem]"
             >
               {item.respuesta}
             </div>
           </div>
         );
       })}
+      {!todas && items.length > visibles.length && (
+        <div className="py-4 text-center">
+          <button
+            type="button"
+            onClick={() => setTodas(true)}
+            className="min-h-11 rounded-full border border-line px-5 text-sm font-semibold transition-colors hover:border-ink"
+          >
+            Ver {items.length - visibles.length} preguntas más
+          </button>
+        </div>
+      )}
     </div>
   );
 }

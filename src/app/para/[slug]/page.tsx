@@ -75,7 +75,7 @@ export default async function RubroPage({
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="hero-halo pb-10 pt-10 md:pb-14 md:pt-14">
+      <section className="hero-halo pb-6 pt-7 md:pb-14 md:pt-14">
         <Container>
           <nav aria-label="Migas de pan" className="mb-4 text-sm text-muted">
             <Link href="/" className="font-bold text-brand hover:underline">
@@ -120,7 +120,7 @@ export default async function RubroPage({
               </div>
             </div>
 
-            <div className="group relative grid min-h-[480px] place-items-center">
+            <div className="group relative grid min-h-[450px] place-items-center pt-6 md:min-h-[480px] md:pt-0">
               <span className="absolute left-1/2 top-0 z-20 -translate-x-1/2">
                 <Etiqueta tono="gold">Ejemplo ilustrativo</Etiqueta>
               </span>
@@ -136,10 +136,10 @@ export default async function RubroPage({
       </section>
 
       {/* ── SETUP RECOMENDADO ────────────────────────────────── */}
-      <section className="py-14 md:py-20">
+      <section className="py-11 md:py-20">
         <Container>
           <Encabezado eyebrow="Tu setup recomendado" titulo="Lo que conviene poner en tu local" />
-          <ul className="mt-9 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="carrusel carrusel-angosto mt-6 grid gap-3.5 sm:grid-cols-2 md:mt-9 lg:grid-cols-4">
             {r.setup.map((s, i) => (
               <li
                 key={s.titulo}
@@ -165,10 +165,10 @@ export default async function RubroPage({
       </section>
 
       {/* ── UN DÍA CON FLASHTAG + CASO + PLAN ────────────────── */}
-      <section className="pb-16 md:pb-24">
+      <section className="pb-11 md:pb-24">
         <Container>
           <Encabezado eyebrow="Un día con FlashTag" titulo="Así se ve en la práctica" />
-          <ol className="mt-9 grid gap-3.5 md:grid-cols-3">
+          <ol className="carrusel carrusel-angosto mt-6 grid gap-3.5 md:mt-9 md:grid-cols-3">
             {r.dia.map((d, i) => (
               <li
                 key={d.momento}
