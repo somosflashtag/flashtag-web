@@ -17,36 +17,50 @@ import { site } from "./site";
 
 export type NavItem = { label: string; href: string; externo?: boolean };
 
-/** Menú principal. Cursos, Blog y Contacto viven solo en el footer. */
+/**
+ * Menú principal (rediseño 2026-11): Producto y Rubros abren un panel; el
+ * resto son links. Cursos, Blog, Nosotros y Contacto viven en el footer.
+ * "Activá tu FlashTag" quedó en el hero y en el footer.
+ */
 export const navPrincipal: NavItem[] = [
-  { label: "Aplicación", href: "/como-funciona" },
   { label: "Precios", href: "/precios" },
   { label: "Casos", href: "/casos" },
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Activá tu FlashTag", href: "/activar-tu-flashtag" },
-  { label: "Tienda online", href: site.urls.shop, externo: true },
+  { label: "Tienda", href: site.urls.shop, externo: true },
 ];
 
+/** El link de texto "Ingresar", al lado de los botones del header. */
+export const ingresar: NavItem = { label: "Ingresar", href: site.urls.login, externo: true };
+
+const feature = (slug: string) => {
+  const f = features.find((x) => x.slug === slug);
+  if (!f) throw new Error(`nav.ts: no existe la feature "${slug}"`);
+  return { label: f.nombre, descripcion: f.corto, href: `/producto/${f.slug}`, slug: f.slug };
+};
+
 /**
- * Desplegable de "Aplicación": las siete capacidades de la app y las cuatro
- * puertas de entrada por rubro. Se arma desde el contenido, no a mano.
+ * Desplegable de "Producto": las páginas de producto agrupadas por lo que el
+ * comercio quiere lograr, igual que los pilares de la home. Solo páginas que
+ * existen; si se suma una en `features.ts`, se ubica acá.
  */
 export const menuProducto = {
-  features: features.map((f) => ({
-    label: f.nombre,
-    descripcion: f.corto,
-    href: `/producto/${f.slug}`,
-  })),
-  rubros: paginasRubro.map((r) => ({
-    label: r.nav,
-    href: `/para/${r.slug}`,
-  })),
+  grupos: [
+    { titulo: "Que te encuentren y te elijan", items: [feature("resenas-ia"), feature("link-pages")] },
+    { titulo: "Que te escriban", items: [feature("qr-dinamicos"), feature("ruleta")] },
+    { titulo: "Que vuelvan y vendas más", items: [feature("fidelidad"), feature("metricas"), feature("pixeles")] },
+  ],
   extra: [
     { label: "Cómo funciona", href: "/como-funciona" },
     { label: "Activá tu FlashTag", href: "/activar-tu-flashtag" },
-    { label: "Tienda", href: site.urls.shop, externo: true },
   ] as NavItem[],
 };
+
+/** Desplegable de "Rubros": una entrada por landing de /para. */
+export const menuRubros = paginasRubro.map((r) => ({
+  label: r.nav,
+  descripcion: r.resumen,
+  href: `/para/${r.slug}`,
+  glifo: r.glifo,
+}));
 
 export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
   {
