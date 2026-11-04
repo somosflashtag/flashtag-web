@@ -50,7 +50,11 @@ function preciosDe(plan: Plan, anual: boolean, promo: Promo | null) {
   };
 }
 
-function PlanCard({ plan, anual, promo }: { plan: Plan; anual: boolean; promo: Promo | null }) {
+export type Moneda = "ars" | "usd";
+
+const fmtUSD = (n: number) => `USD ${n}`;
+
+function PlanCard({ plan, anual, promo, moneda }: { plan: Plan; anual: boolean; promo: Promo | null; moneda: Moneda }) {
   const p = preciosDe(plan, anual, promo);
   const precio = p.usd;
   const ars = p.ars;
@@ -85,34 +89,23 @@ function PlanCard({ plan, anual, promo }: { plan: Plan; anual: boolean; promo: P
         {plan.precioMensual === 0 ? (
           <p className="t-stat">Gratis</p>
         ) : (
-          <p className="flex items-baseline gap-1.5">
-            <span className="text-base font-medium opacity-60">USD</span>
+          <p className="flex flex-wrap items-baseline gap-x-1.5">
             {p.lista && (
               <s className={cn("tnum text-lg font-medium", plan.destacado ? "text-white/45" : "text-muted/70")}>
-                {p.lista.usd}
+                {moneda === "ars" ? precioARS(p.lista.ars) : fmtUSD(p.lista.usd)}
               </s>
             )}
-            <span className="t-stat">{precio}</span>
+            <span className="t-stat">{moneda === "ars" ? precioARS(ars) : fmtUSD(precio)}</span>
             <span className={cn("text-sm", plan.destacado ? "text-white/60" : "text-muted")}>/mes</span>
-          </p>
-        )}
-        {plan.precioMensual > 0 && (
-          <p className={cn("mt-2 text-[0.9375rem] font-medium", plan.destacado ? "text-white/80" : "text-ink")}>
-            o{" "}
-            {p.lista && (
-              <>
-                <s className={cn("tnum", plan.destacado ? "text-white/45" : "text-muted/70")}>{precioARS(p.lista.ars)}</s>{" "}
-              </>
-            )}
-            <span className="tnum">{precioARS(ars)}</span> ARS/mes
           </p>
         )}
         <p className={cn("mt-1.5 text-[13px]", plan.destacado ? "text-white/50" : "text-muted")}>
           {plan.precioMensual === 0
             ? "Para siempre, sin tarjeta"
             : anual
-              ? `USD ${p.totalUsd} o ${precioARS(p.totalArs ?? 0)} ARS por año`
+              ? `${moneda === "ars" ? precioARS(p.totalArs ?? 0) : fmtUSD(p.totalUsd ?? 0)} por año`
               : "Facturación mensual · sin permanencia"}
+          {plan.precioMensual > 0 && (moneda === "ars" ? " · Mercado Pago" : " · tarjeta internacional")}
         </p>
         {p.lista && promo && (
           <p className={cn("mt-1.5 text-[13px] font-semibold", plan.destacado ? "text-gold" : "text-teal")}>
@@ -184,11 +177,12 @@ function NotaFacturacion() {
  */
 export function Pricing({ conNota = true, promo: promoServer = null }: { conNota?: boolean; promo?: Promo | null }) {
   const [anual, setAnual] = useState(false);
+  const [moneda, setMoneda] = useState<Moneda>("ars");
   const promo = usePromoVigente(promoServer);
 
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center gap-3">
         <div
           role="group"
           aria-label="Ciclo de facturación"
@@ -210,13 +204,33 @@ export function Pricing({ conNota = true, promo: promoServer = null }: { conNota
             </button>
           ))}
         </div>
+        <div
+          role="group"
+          aria-label="Moneda"
+          className="inline-flex rounded-full border border-line bg-surface p-1"
+        >
+          {(["ars", "usd"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => setMoneda(m)}
+              aria-pressed={moneda === m}
+              className={cn(
+                "min-h-[40px] rounded-full px-5 text-sm font-semibold transition-colors duration-[180ms]",
+                moneda === m ? "bg-ink text-paper" : "text-muted hover:text-ink",
+              )}
+            >
+              {m === "ars" ? "Pesos (ARS)" : "Dólares (USD)"}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Siempre Free → Starter → Full → Evolution, también en phone. */}
       <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {planes.map((p) => (
           <div key={p.id}>
-            <PlanCard plan={p} anual={anual} promo={promo} />
+            <PlanCard plan={p} anual={anual} promo={promo} moneda={moneda} />
           </div>
         ))}
       </div>
