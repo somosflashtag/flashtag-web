@@ -74,7 +74,10 @@ Preferimos no mostrar nada antes que mostrar un número que no podemos sostener.
 **5. La app se muestra en código, no en capturas.** Las pantallas de
 my.flashtag.tech viven en `src/components/app/mocks.tsx` (una por sección:
 inicio, QR, links, reseñas, métricas, fidelidad, ruleta, píxeles) dentro de
-`PhoneFrame`. Se construyen con tokens y sin JS. Si la app cambia una
+`PhoneFrame`. Las del panel de escritorio (mini app del hero, pantallas de
+los pilares de la home y el teléfono de cada `/para/<rubro>`) viven en
+`src/components/app/panel.tsx`. Se construyen con tokens y sin JS: el
+componente cliente que las envuelve solo elige cuál se ve. Si la app cambia una
 pantalla, se cambia la maqueta; nunca se sube un PNG que envejece.
 El comercio de las maquetas ("Café Rivas") es ficticio: es demo, no prueba
 social.
@@ -86,6 +89,10 @@ Los píxeles (`/producto/pixeles`) describen los tres campos que tiene la app
 en "Análisis de seguimiento" (GA4, Meta Pixel, GTM) y los eventos que manda.
 El copy de `content/pixeles.ts` es la promesa pública: si la app no manda un
 evento, no se lista acá.
+
+**Logos de clientes** (`public/logos/*.webp`): son monocromos en arena, hechos
+para fondo violeta. Van siempre sobre `ink`, tal cual vienen: nada de
+grayscale, invert ni opacidad para meterlos sobre blanco.
 
 **7. Marcas de terceros solo con autorización.** En el footer
 (`MediosDePago.tsx`) Mercado Pago y Stripe usan sus logos oficiales en
