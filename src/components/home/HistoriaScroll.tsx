@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Glifo, type GlifoId } from "@/components/ui/Glifo";
 import { cn } from "@/lib/cn";
@@ -38,21 +39,20 @@ function Escenario({ paso }: { paso: number }) {
       <div
         className={cn(
           t,
-          "absolute bottom-12 left-[6%] w-[104px] rounded-2xl bg-paper p-2 shadow-[var(--shadow-float)] sm:bottom-20 sm:w-[140px] sm:p-2.5",
+          "absolute bottom-12 left-[6%] w-[110px] sm:bottom-20 sm:w-[150px]",
           paso >= 0 ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0",
         )}
       >
-        <p className="text-center text-[8px] font-bold uppercase tracking-wide text-muted sm:text-[9px]">Café Rivas</p>
-        <div className="relative mt-1 flex aspect-square items-center justify-center rounded-xl bg-brand-soft text-brand">
-          <Glifo id="qr" size={36} />
+        {/* El cartel real de reseñas de FlashTag */}
+        <div className="relative aspect-square rounded-[9%] shadow-[var(--shadow-float)]">
+          <Image src="/carteles/google.webp" alt="" fill sizes="150px" className="rounded-[9%] object-cover" />
           {paso === 1 && (
             <>
-              <span className="ft-ola absolute inset-0 rounded-xl border-2 border-brand [animation-iteration-count:infinite]" />
-              <span className="ft-ola absolute inset-0 rounded-xl border-2 border-brand [animation-delay:300ms] [animation-iteration-count:infinite]" />
+              <span className="ft-ola absolute inset-0 rounded-[9%] border-2 border-brand [animation-iteration-count:infinite]" />
+              <span className="ft-ola absolute inset-0 rounded-[9%] border-2 border-brand [animation-delay:300ms] [animation-iteration-count:infinite]" />
             </>
           )}
         </div>
-        <p className="mt-1 text-center text-[9px] font-semibold sm:text-[10px]">Dejanos tu reseña</p>
         <span
           className={cn(
             t,
