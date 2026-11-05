@@ -269,12 +269,13 @@ export const juego = {
   bajada:
     "Elegí qué hace el cartel, tocá el botón y mirá cómo le llega todo al dueño del local. Subí de nivel hasta convertirlo en el ícono del barrio.",
   boton: "Apoyá el celular",
+  /** `cartel`: el cartel real de FlashTag de cada modo (public/carteles). */
   modos: [
-    { id: "resena", label: "Reseña en Google", glifo: "estrella", xp: 20 },
-    { id: "sello", label: "Sello del club", glifo: "corona", xp: 15 },
-    { id: "ruleta", label: "Ruleta de premios", glifo: "ruleta", xp: 15 },
-    { id: "whatsapp", label: "WhatsApp", glifo: "celular", xp: 10 },
-  ] satisfies { id: ModoJuego; label: string; glifo: GlifoId; xp: number }[],
+    { id: "resena", label: "Reseña en Google", glifo: "estrella", xp: 20, cartel: "/carteles/google.webp" },
+    { id: "sello", label: "Sello del club", glifo: "corona", xp: 15, cartel: "/carteles/club.webp" },
+    { id: "ruleta", label: "Ruleta de premios", glifo: "ruleta", xp: 15, cartel: "/carteles/ruleta.webp" },
+    { id: "whatsapp", label: "WhatsApp", glifo: "celular", xp: 10, cartel: "/carteles/whatsapp.webp" },
+  ] satisfies { id: ModoJuego; label: string; glifo: GlifoId; xp: number; cartel: string }[],
   niveles: [
     { nombre: "Recién abierto", desde: 0 },
     { nombre: "Local conocido", desde: 60 },
