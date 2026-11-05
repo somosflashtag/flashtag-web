@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Glifo, type GlifoId } from "@/components/ui/Glifo";
@@ -257,20 +258,26 @@ export function Jugar() {
             ))}
           </div>
 
-          {/* El cartel del mostrador */}
-          <div className="relative mb-2 w-[118px] shrink-0 rounded-2xl bg-paper p-2.5 text-ink shadow-[var(--shadow-float)] sm:w-[136px]">
-            <p className="text-center text-[9px] font-bold uppercase tracking-wide text-muted">Café Rivas</p>
-            <div className="relative mt-1.5 flex aspect-square items-center justify-center rounded-xl bg-brand-soft text-brand">
-              <Glifo id={modoActual.glifo} size={34} />
+          {/* El cartel del mostrador: el cartel real de FlashTag de cada modo */}
+          <div className="relative mb-2 w-[118px] shrink-0 sm:w-[150px]">
+            <div className="relative aspect-square rounded-[9%] shadow-[var(--shadow-float)]">
+              <Image
+                key={modoActual.id}
+                src={modoActual.cartel}
+                alt={`Cartel FlashTag: ${modoActual.label}, con NFC y QR`}
+                fill
+                sizes="150px"
+                className="ft-fade rounded-[9%] object-cover"
+              />
               {fase === "toque" && (
                 <>
-                  <span className="ft-ola absolute inset-0 rounded-xl border-2 border-brand" />
-                  <span className="ft-ola absolute inset-0 rounded-xl border-2 border-brand" style={{ animationDelay: "180ms" }} />
+                  <span className="ft-ola absolute inset-0 rounded-[9%] border-2 border-gold" />
+                  <span className="ft-ola absolute inset-0 rounded-[9%] border-2 border-gold" style={{ animationDelay: "180ms" }} />
                 </>
               )}
             </div>
-            <p className="mt-1.5 text-center text-[10px] font-semibold leading-tight">{modoActual.label}</p>
-            <p className="text-center text-[9px] text-muted">QR + NFC</p>
+            <p className="mt-2 text-center text-[11px] font-semibold leading-tight text-paper">{modoActual.label}</p>
+            <p className="text-center text-[10px] text-paper/75">QR + NFC</p>
           </div>
 
           {/* El teléfono del cliente */}
