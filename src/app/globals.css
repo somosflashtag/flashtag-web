@@ -737,19 +737,63 @@ html[data-reveal="on"] [data-reveal-hijos].is-in > * {
     animation-timeline: scroll(root);
   }
 
-  /* Los bloques redondeados crecen y se asientan al entrar. */
-  @keyframes ft-crece {
-    from { transform: scale(0.94) translateY(24px); opacity: 0.4; }
-    to { transform: none; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ft-progreso { animation: none !important; transform: none; }
+  .ft-progreso { display: none; }
+}
+
+/* ============================================================
+   ESCENAS — la home como divisiones que se apilan al bajar.
+   Cada sección sube y tapa a la anterior, que se aleja. Lo maneja
+   components/home/Escenas.tsx (--top, --cubierta, data-pega).
+   En @layer components para que los bg-* de cada sección ganen.
+   ============================================================ */
+@layer components {
+  .escenas > * {
+    position: relative;
+    background-color: var(--color-paper);
   }
-  .ft-crece {
-    animation: ft-crece linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 55%;
+  /* Cada escena nueva entra como una hoja que sube: borde redondeado arriba
+     y sombra hacia la anterior. */
+  .escenas > * + *:not(.blk) {
+    border-top-left-radius: 1.75rem;
+    border-top-right-radius: 1.75rem;
+  }
+  @media (min-width: 700px) {
+    .escenas > * + *:not(.blk) {
+      border-top-left-radius: 3rem;
+      border-top-right-radius: 3rem;
+    }
+  }
+  .escenas > * + * {
+    box-shadow: 0 -28px 60px -32px color-mix(in srgb, var(--color-ink) 45%, transparent);
+  }
+
+  html[data-escenas="on"] .escenas > [data-pega] {
+    position: sticky;
+    top: var(--top, 0px);
+  }
+
+  /* La escena tapada se achica y se oscurece. */
+  html[data-escenas="on"] .escenas > * {
+    scale: calc(1 - var(--cubierta, 0) * 0.06);
+    transform-origin: 50% calc(100% - 50vh);
+  }
+  html[data-escenas="on"] .escenas > *::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    border-radius: inherit;
+    background: var(--color-ink);
+    opacity: calc(var(--cubierta, 0) * 0.55);
+    pointer-events: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ft-progreso, .ft-crece { animation: none !important; transform: none; opacity: 1; }
-  .ft-progreso { display: none; }
+  html[data-escenas="on"] .escenas > * { scale: none; }
+  html[data-escenas="on"] .escenas > *::after { display: none; }
 }

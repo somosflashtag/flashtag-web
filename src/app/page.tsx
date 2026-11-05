@@ -16,6 +16,7 @@ import { SimuladorMaps } from "@/components/home/SimuladorMaps";
 import { Jugar } from "@/components/home/Jugar";
 import { Contador } from "@/components/home/Contador";
 import { HistoriaScroll } from "@/components/home/HistoriaScroll";
+import { Escenas } from "@/components/home/Escenas";
 import { menuPanel, pantallasPilares, vistasHero } from "@/components/app/panel";
 import { casosConDetalle, rubros as rubrosCasos } from "@/content/casos";
 import { features } from "@/content/features";
@@ -117,6 +118,8 @@ export default function Home() {
       <JsonLd id="ld-software" data={softwareSchema} />
       <JsonLd id="ld-faq-home" data={faqSchema(faqsHome)} />
 
+      <Escenas />
+      <div className="escenas">
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section className="hero-halo pb-8 pt-7 md:pb-10 md:pt-[72px]">
         <Container>
@@ -182,7 +185,7 @@ export default function Home() {
       <Clientes variante="marquesina" titulo="Marcas que ya lo usan todos los días" />
 
       {/* ── PROBALO VOS: el juego ───────────────────────────── */}
-      <section id="probalo" className="ft-crece blk relative mt-3.5 overflow-hidden bg-ink py-11 text-paper md:py-24">
+      <section id="probalo" className="blk relative mt-3.5 overflow-hidden bg-ink py-11 text-paper md:py-24">
         <div aria-hidden="true" className="glow-brand absolute -left-40 top-10 size-[520px] opacity-80" />
         <div aria-hidden="true" className="bg-dots-dark absolute inset-0 opacity-30 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
         <Container className="relative">
@@ -242,7 +245,7 @@ export default function Home() {
       </section>
 
       {/* ── PILARES: la app por dentro ───────────────────────── */}
-      <section id="producto" className={cn("ft-crece blk bg-brand-soft", pad)}>
+      <section id="producto" className={cn("blk bg-brand-soft", pad)}>
         <Container>
           <Encabezado
             eyebrow={pilaresIntro.eyebrow}
@@ -276,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* ── FLASHY ───────────────────────────────────────────── */}
-      <section className="ft-crece blk relative mt-3.5 overflow-hidden bg-ink text-paper">
+      <section className="blk relative mt-3.5 overflow-hidden bg-ink text-paper">
         <div aria-hidden="true" className="glow-brand absolute -right-32 -top-32 size-[420px]" />
         <Container>
           <div className="relative grid items-center gap-7 py-11 md:gap-10 md:py-[88px] lg:grid-cols-2">
@@ -344,7 +347,7 @@ export default function Home() {
       </section>
 
       {/* ── CASOS ────────────────────────────────────────────── */}
-      <section id="casos" className={cn("ft-crece blk mt-3.5 bg-surface", pad)}>
+      <section id="casos" className={cn("blk mt-3.5 bg-surface", pad)}>
         <Container>
           <Encabezado
             eyebrow="Casos reales"
@@ -408,7 +411,7 @@ export default function Home() {
       </section>
 
       {/* ── PRECIOS ──────────────────────────────────────────── */}
-      <section id="precios" className={cn("ft-crece blk bg-brand-soft", pad)}>
+      <section id="precios" className={cn("blk bg-brand-soft", pad)}>
         <Container>
           <Encabezado
             eyebrow="Precios"
@@ -459,6 +462,7 @@ export default function Home() {
           </div>
         </Container>
       </section>
+      </div>
     </>
   );
 }
