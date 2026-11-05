@@ -3,9 +3,14 @@
 import { useEffect } from "react";
 
 /**
- * Activa el reveal al scroll para todo elemento con `data-reveal`.
+ * Activa el reveal al scroll para todo elemento con `data-reveal` (y los hijos
+ * de todo elemento con `data-reveal-hijos`, que entran escalonados).
  * Se monta una vez en el layout. Sin JS, nada queda oculto: el CSS solo
  * actúa cuando html[data-reveal="on"] está presente.
+ *
+ * Se repite: cuando un elemento vuelve a quedar por debajo de la pantalla
+ * (el usuario subió), se rearma y vuelve a entrar al bajar de nuevo. Lo que
+ * queda arriba no se toca, así no parpadea al seguir bajando.
  */
 export function Reveal() {
   useEffect(() => {
@@ -18,17 +23,26 @@ export function Reveal() {
         for (const e of entries) {
           if (e.isIntersecting) {
             e.target.classList.add("is-in");
-            io.unobserve(e.target);
+          } else {
+            const alto = e.rootBounds?.height ?? window.innerHeight;
+            if (e.boundingClientRect.top > alto) e.target.classList.remove("is-in");
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.12 },
     );
 
-    const observe = () =>
-      document
-        .querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in)")
-        .forEach((el) => io.observe(el));
+    const vistos = new WeakSet<Element>();
+    const observe = () => {
+      document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-hijos]").forEach((el) => {
+        if (el.hasAttribute("data-reveal-hijos")) {
+          Array.from(el.children).forEach((h, i) => (h as HTMLElement).style.setProperty("--i", String(i)));
+        }
+        if (vistos.has(el)) return;
+        vistos.add(el);
+        io.observe(el);
+      });
+    };
     observe();
 
     /* Navegación client-side: observar lo nuevo que entra al DOM. */

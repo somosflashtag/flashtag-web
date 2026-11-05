@@ -193,26 +193,9 @@ export default function Home() {
             <h2 className="t-h2 mt-3 text-balance md:mt-3.5">{juego.titular}</h2>
             <p className="t-lead measure mx-auto mt-2.5 text-muted-dark md:mt-3.5">{juego.bajada}</p>
           </div>
-          <div className="mt-8 md:mt-12">
+          <div className="mt-8 md:mt-12" data-reveal="zoom">
             <Jugar />
           </div>
-        </Container>
-      </section>
-
-      {/* ── CASOS ────────────────────────────────────────────── */}
-      <section id="casos" className={cn("ft-crece blk mt-3.5 bg-surface", pad)}>
-        <Container>
-          <Encabezado
-            eyebrow="Casos reales"
-            titulo="De pastelerías de barrio a cadenas nacionales"
-            bajada="Los números salen de sus perfiles de Google."
-          />
-          <CasosFiltro casos={casosHome} rubros={rubrosCasos} />
-          <p className="mt-8 text-center">
-            <Link href="/casos" className="t-caption font-semibold text-brand underline underline-offset-4">
-              Ver todos los casos
-            </Link>
-          </p>
         </Container>
       </section>
 
@@ -266,7 +249,9 @@ export default function Home() {
             titulo={pilaresIntro.titular}
             bajada={pilaresIntro.bajada}
           />
-          <Pilares pilares={pilares} pantallas={pantallas} desde={desde} />
+          <div data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
+            <Pilares pilares={pilares} pantallas={pantallas} desde={desde} />
+          </div>
         </Container>
       </section>
 
@@ -278,7 +263,9 @@ export default function Home() {
             titulo="Buscá como tu cliente y mirá dónde aparecés"
             bajada="Elegí tu rubro: te mostramos en qué puesto salís en 49 puntos alrededor de tu local, quién te gana en cada uno y qué hacer para subir."
           />
-          <SimuladorMaps />
+          <div data-reveal="zoom">
+            <SimuladorMaps />
+          </div>
           <div className="mt-6 flex flex-col items-center gap-2 text-center">
             <Button href={cta.primary.href} variant="primary" size="lg" arrow>
               Medí tu local de verdad
@@ -293,7 +280,7 @@ export default function Home() {
         <div aria-hidden="true" className="glow-brand absolute -right-32 -top-32 size-[420px]" />
         <Container>
           <div className="relative grid items-center gap-7 py-11 md:gap-10 md:py-[88px] lg:grid-cols-2">
-            <div>
+            <div data-reveal="izq">
               <span className="eyebrow !bg-white/10 !text-muted-dark">
                 <Glifo id="chispa" size={13} /> {flashy.eyebrow}
               </span>
@@ -306,7 +293,9 @@ export default function Home() {
                 {flashy.cta}
               </Button>
             </div>
-            <FlashyChat charla={flashy.charla} />
+            <div data-reveal="der" style={{ "--reveal-delay": "150ms" } as React.CSSProperties}>
+              <FlashyChat charla={flashy.charla} />
+            </div>
           </div>
         </Container>
       </section>
@@ -354,11 +343,28 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ── TIENDA ───────────────────────────────────────────── */}
-      <section id="tienda" className="pb-11 md:pb-24">
+      {/* ── CASOS ────────────────────────────────────────────── */}
+      <section id="casos" className={cn("ft-crece blk mt-3.5 bg-surface", pad)}>
         <Container>
-          <div className="grid grid-cols-1 items-center gap-5 overflow-hidden rounded-[24px] border border-line bg-surface/50 p-5 sm:gap-6 sm:rounded-[28px] sm:p-8 lg:grid-cols-[1.1fr_2fr]">
-            <div>
+          <Encabezado
+            eyebrow="Casos reales"
+            titulo="De pastelerías de barrio a cadenas nacionales"
+            bajada="Los números salen de sus perfiles de Google."
+          />
+          <CasosFiltro casos={casosHome} rubros={rubrosCasos} />
+          <p className="mt-8 text-center">
+            <Link href="/casos" className="t-caption font-semibold text-brand underline underline-offset-4">
+              Ver todos los casos
+            </Link>
+          </p>
+        </Container>
+      </section>
+
+      {/* ── TIENDA ───────────────────────────────────────────── */}
+      <section id="tienda" className={pad}>
+        <Container>
+          <div data-reveal className="grid grid-cols-1 items-center gap-5 overflow-hidden rounded-[24px] border border-line bg-surface/50 p-5 sm:gap-6 sm:rounded-[28px] sm:p-8 lg:grid-cols-[1.1fr_2fr]">
+            <div data-reveal="izq">
               <span className="eyebrow">{tiendaHome.eyebrow}</span>
               <h2 className="t-h2 mt-3.5 !text-[clamp(1.75rem,1.3rem+1.6vw,2.375rem)]">{tiendaHome.titular}</h2>
               <p className="mb-5 mt-3 text-muted">{tiendaHome.bajada}</p>
@@ -366,7 +372,7 @@ export default function Home() {
                 Ir a la tienda
               </Button>
             </div>
-            <ul className="carrusel carrusel-angosto grid gap-4 sm:grid-cols-3">
+            <ul data-reveal-hijos className="carrusel carrusel-angosto grid gap-4 sm:grid-cols-3">
               {productos.map((p) => (
                 <li key={p.slug}>
                   <a
@@ -409,7 +415,7 @@ export default function Home() {
             titulo="Precios claros, sin letra chica"
             bajada="Sin permanencia. Empezás gratis y subís de plan cuando te empiece a rendir."
           />
-          <div className="mt-10" data-reveal>
+          <div className="mt-10" data-reveal="zoom">
             <Pricing promo={promo} />
           </div>
           <p className="mt-8 text-center">
@@ -439,7 +445,7 @@ export default function Home() {
       {/* ── CTA FINAL ────────────────────────────────────────── */}
       <section className="pb-11 md:pb-24">
         <Container>
-          <div className="cta-final rounded-[24px] px-5 py-10 text-center text-paper md:rounded-[32px] md:px-10 md:py-16">
+          <div data-reveal="zoom" className="cta-final rounded-[24px] px-5 py-10 text-center text-paper md:rounded-[32px] md:px-10 md:py-16">
             <h2 className="t-h2 measure mx-auto text-balance">{ctaFinal.titular}</h2>
             <p className="t-lead measure mx-auto mb-7 mt-3.5 text-white/85">{ctaFinal.bajada}</p>
             <div className="flex flex-col justify-center gap-3 sm:flex-row">
