@@ -3,70 +3,109 @@
 import { useEffect } from "react";
 
 /**
- * La home como una sucesión de escenas: cada sección hija de `.escenas`
- * sube y tapa a la anterior, que queda quieta y se aleja (se achica y se
- * oscurece) mientras la cubren.
+ * La home como una sucesión de escenas, una por pantalla.
  *
- * - Cada escena se pega con `top = alto de pantalla − su alto`: se pega
- *   recién cuando su final toca el borde de abajo, así una sección larga se
- *   lee entera antes de que la tapen. Las muy bajas (menos de media
- *   pantalla) no se pegan.
- * - `--cubierta` (0 → 1) es cuánto la tapa la escena siguiente; el CSS lo
- *   usa para la escala y el velo.
+ * 1. Entrada: cada sección hija de `.escenas` entra como una tarjeta un poco
+ *    más chica, redondeada y con sombra, y se expande a todo el ancho a
+ *    medida que sube (`--entrada`, de 0 a 1, lo usa el CSS). Nada se
+ *    superpone, así que todo se lee.
  *
- * Sin JS, o hasta que monta, la página scrollea normal: el CSS solo pega
- * cuando html[data-escenas="on"] está presente.
+ * 2. Encaje: cuando el scroll se detiene mostrando el corte entre dos
+ *    secciones, y la que viene ya ocupa más de media pantalla, se acomoda
+ *    sola: bajando, al comienzo de la nueva; subiendo, al final de la de
+ *    arriba. Siempre en la dirección en que venías, nunca para atrás.
+ *    Dentro de una sección el scroll es libre, por larga que sea.
+ *
+ * Sin JS, o con reduced-motion, no hay ni animación ni encaje.
  */
 export function Escenas() {
   useEffect(() => {
     const raiz = document.querySelector<HTMLElement>(".escenas");
     if (!raiz) return;
-    const escenas = Array.from(raiz.children) as HTMLElement[];
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const todas = Array.from(raiz.children) as HTMLElement[];
+    /* La primera (el hero) ya está en pantalla: no se anima. */
+    const escenas = todas.slice(1);
     document.documentElement.dataset.escenas = "on";
 
-    const medir = () => {
-      const vh = window.innerHeight;
-      for (const el of escenas) {
-        const alto = el.offsetHeight;
-        el.toggleAttribute("data-pega", alto >= vh * 0.5);
-        el.style.setProperty("--top", `${vh - alto}px`);
-      }
-    };
+    const alturaHeader = () => document.querySelector("header")?.getBoundingClientRect().height ?? 64;
 
+    /* ── Entrada ─────────────────────────────────────────── */
     let pedido = 0;
     const previas = new Map<HTMLElement, number>();
     const pintar = () => {
       pedido = 0;
       const vh = window.innerHeight;
-      escenas.forEach((el, i) => {
-        const sig = escenas[i + 1];
-        const c = sig ? Math.min(1, Math.max(0, (vh - sig.getBoundingClientRect().top) / vh)) : 0;
-        const r = Math.round(c * 100) / 100;
+      for (const el of escenas) {
+        const top = el.getBoundingClientRect().top;
+        const e = Math.min(1, Math.max(0, (vh - top) / (vh * 0.6)));
+        const r = Math.round(e * 100) / 100;
         if (previas.get(el) !== r) {
           previas.set(el, r);
-          el.style.setProperty("--cubierta", String(r));
+          el.style.setProperty("--entrada", String(r));
         }
-      });
+      }
     };
+
+    /* ── Encaje ──────────────────────────────────────────── */
+    let desde = window.scrollY;
+    let encajando = false;
+    let espera = 0;
+
+    const encajar = () => {
+      const y = window.scrollY;
+      const dir = Math.sign(y - desde);
+      desde = y;
+      if (encajando) {
+        encajando = false;
+        return;
+      }
+      if (!dir) return;
+      const vh = window.innerHeight;
+      const arriba = alturaHeader();
+      const util = vh - arriba;
+      /* El corte visible: el borde de arriba de una sección dentro de la pantalla. */
+      for (let i = 1; i < todas.length; i++) {
+        const corte = todas[i].getBoundingClientRect().top; // relativo a la pantalla
+        if (corte <= arriba + 4 || corte >= vh - 4) continue;
+        const nueva = (vh - corte) / util; // cuánto de la pantalla ocupa la de abajo
+        let destino: number | null = null;
+        if (dir > 0 && nueva > 0.5) destino = y + corte - arriba; // al comienzo de la nueva
+        if (dir < 0 && nueva < 0.5) destino = y + corte - vh; // al final de la de arriba
+        if (destino !== null && Math.abs(destino - y) > 2) {
+          encajando = true;
+          window.scrollTo({ top: destino, behavior: "smooth" });
+        }
+        return;
+      }
+    };
+
     const alScroll = () => {
       if (!pedido) pedido = requestAnimationFrame(pintar);
+      /* Sin `scrollend`, esperar a que el scroll quede quieto. */
+      window.clearTimeout(espera);
+      espera = window.setTimeout(encajar, 160);
     };
+    const alTerminar = () => {
+      window.clearTimeout(espera);
+      encajar();
+    };
+    const pedirPintar = () => {
+      if (!pedido) pedido = requestAnimationFrame(pintar);
+    };
+    const tieneScrollend = "onscrollend" in window;
+    const onScroll = tieneScrollend ? pedirPintar : alScroll;
 
-    medir();
     pintar();
-    const ro = new ResizeObserver(() => {
-      medir();
-      alScroll();
-    });
-    escenas.forEach((el) => ro.observe(el));
-    window.addEventListener("resize", medir);
-    if (!reduced) window.addEventListener("scroll", alScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    if (tieneScrollend) window.addEventListener("scrollend", alTerminar);
+    window.addEventListener("resize", pedirPintar);
 
     return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", medir);
-      window.removeEventListener("scroll", alScroll);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scrollend", alTerminar);
+      window.removeEventListener("resize", pedirPintar);
+      window.clearTimeout(espera);
       cancelAnimationFrame(pedido);
       delete document.documentElement.dataset.escenas;
     };
