@@ -182,7 +182,7 @@ export const features: Feature[] = [
     nombre: "Programa de fidelidad",
     corto: "Una comunidad que te elige y vuelve",
     seoDescription:
-      "Sellos, puntos, cashback o membresías en Apple Wallet y Google Wallet. Tu cliente no descarga ninguna app: escanea y la guarda. Desde el plan Full.",
+      "Sellos, puntos, cashback o membresías en Apple Wallet y Google Wallet. Tu cliente no descarga ninguna app: escanea y la guarda. Desde el plan Starter.",
     titular: "Tu programa de fidelidad, en la billetera del celular de tu cliente",
     bajada:
       "Sellos, puntos, cashback, descuentos, cupones, membresías, gift cards o packs de sesiones: elegís la modalidad, le ponés tu logo y tu esquema de premios. Tu cliente no descarga ninguna app: escanea y la guarda en Apple Wallet o Google Wallet. Y desde ahí le mandás push gratis, lo saludás en su cumpleaños y lo premiás por traer amigos.",
@@ -209,7 +209,7 @@ export const features: Feature[] = [
       },
     ],
     mock: "fidelidad",
-    desde: "Full",
+    desde: "Starter",
   },
   {
     slug: "ruleta",
