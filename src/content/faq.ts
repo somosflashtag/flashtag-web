@@ -116,7 +116,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Cómo funciona el programa de fidelidad?",
     respuesta:
-      "Tu cliente no descarga ninguna app. Escanea el cartel y guarda tu tarjeta de fidelidad, con tu logo y el esquema de puntos que elegiste, en Apple Wallet o en la billetera de Android. Suma visitas o puntos con el mismo cartel de siempre y canjea los premios que configurás vos. Sin imprimir nada, siempre a mano. Está incluido en el plan Full.",
+      "Tu cliente no descarga ninguna app. Escanea el cartel y guarda tu tarjeta de fidelidad, con tu logo y el esquema de puntos que elegiste, en Apple Wallet o en la billetera de Android. Suma visitas o puntos con el mismo cartel de siempre y canjea los premios que configurás vos. Sin imprimir nada, siempre a mano. Está incluido desde el plan Starter, con hasta 250 miembros activos; Full llega a 2.500 y Evolution a 10.000.",
     mostrarEn: ["home", "precios"],
   },
   {

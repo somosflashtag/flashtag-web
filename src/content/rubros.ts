@@ -130,7 +130,7 @@ export const paginasRubro: PaginaRubro[] = [
     caso: "derentas",
     plan: {
       ids: ["starter", "full"],
-      texto: "Starter para un local que quiere reseñas y medición; Full si sumás el club y más de una sede.",
+      texto: "Starter para un local que quiere reseñas, medición y un club de hasta 250 clientes; Full si sumás más de una sede.",
       claves: ["Multipases y membresías", "Cumpleaños por WhatsApp", "Filtro de reseñas negativas", "Respuestas con IA"],
     },
   },
