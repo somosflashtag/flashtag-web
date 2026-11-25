@@ -67,7 +67,7 @@ export const planes: Plan[] = [
     precioAnualPorMes: 42,
     totalAnual: 499,
     totalAnualARS: 750000,
-    destacado: true,
+    destacado: false,
     cta: { label: "Empezar con Starter", href: "https://my.flashtag.tech/login" },
     features: [
       { label: "Productos asociados ilimitados", incluido: true },
@@ -94,7 +94,8 @@ export const planes: Plan[] = [
     precioAnualPorMes: 83,
     totalAnual: 999,
     totalAnualARS: 1500000,
-    destacado: false,
+    // Desde el 25/11/2026 el "Más elegido" es Full (antes era Starter).
+    destacado: true,
     cta: { label: "Empezar con Full", href: "https://my.flashtag.tech/login" },
     features: [
       { label: "Productos asociados ilimitados", incluido: true },
