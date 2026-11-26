@@ -52,3 +52,10 @@ export const cta = {
   secondary: { label: "Comprá tu cartel", href: site.urls.shop },
   demo: { label: "Reservá una demo", href: "/contacto?motivo=demo" },
 } as const;
+
+/** El cierre general del sitio (components/ui/Cierre.tsx). Cada página puede pasar el suyo. */
+export const cierre = {
+  titular: "Probalo",
+  destacado: "gratis.",
+  bajada: "Sin tarjeta, sin permanencia y sin instalar nada. Si ya tenés tu cartel, lo activás en dos minutos.",
+} as const;

@@ -16,8 +16,10 @@ import { site } from "@/lib/site";
 import { columnasFooter, linksLegales } from "@/lib/nav";
 
 /**
- * Footer sobre violeta profundo. La sección que lo precede en cada página
- * nunca es violeta, para que el corte se note.
+ * Footer sobre violeta profundo. Cada página termina con `Cierre`
+ * (components/ui/Cierre.tsx), que abajo llega a `ink` liso: cierre y footer
+ * se leen como una sola pieza, separados apenas por una línea.
+ * `data-tono="noche"` le avisa al header flotante que está sobre oscuro.
  */
 const redes = [
   { nombre: "Instagram", href: site.social.instagram, Icono: IconoInstagram },
@@ -27,28 +29,29 @@ const redes = [
 ].filter((r) => r.href);
 
 const linkClass =
-  "text-sm text-muted-dark transition-colors duration-[120ms] hover:text-paper";
+  "inline-flex min-h-9 items-center text-[0.9375rem] text-paper/70 underline-offset-4 transition-colors duration-200 hover:text-paper hover:underline md:min-h-0";
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-paper">
+    <footer data-tono="noche" className="bg-ink text-paper">
       <Container>
         {/* Navegación */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-9 py-11 md:grid-cols-4 md:gap-10 lg:grid-cols-5 lg:py-20">
-          <div className="col-span-2 lg:col-span-1">
-            <Logo tone="light" className="text-[2.75rem] md:text-[3.25rem]" />
-            <p className="measure mt-3 text-sm leading-relaxed text-muted-dark">
-              Marketing phygital para comercios locales. Hecho en Argentina.
+        <div className="grid grid-cols-2 gap-x-6 gap-y-9 border-t border-paper/10 py-12 md:grid-cols-4 md:gap-10 lg:grid-cols-[1.3fr_repeat(4,1fr)] lg:py-20">
+          <div className="col-span-2 md:col-span-4 lg:col-span-1">
+            <Logo tone="light" className="text-[3rem] md:text-[3.5rem]" />
+            <p className="mt-4 max-w-[26ch] font-display text-[1.25rem] font-semibold leading-snug tracking-[-0.02em] text-paper/90">
+              Marketing phygital para comercios locales.
             </p>
+            <p className="mt-2 text-sm text-paper/60">Hecho en Argentina.</p>
           </div>
 
           {columnasFooter.map((col) => (
             <div key={col.titulo}>
-              <h2 className="flex items-center gap-2 text-sm font-semibold">
-                <QRMark size={10} tone="paper" />
+              <h2 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.08em] text-gold">
+                <QRMark size={16} tone="paper" />
                 {col.titulo}
               </h2>
-              <ul className="mt-3.5 space-y-2 md:mt-4 md:space-y-2.5">
+              <ul className="mt-3 space-y-0.5 md:mt-4 md:space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     {link.externo ? (
@@ -69,15 +72,13 @@ export function Footer() {
 
         {/* Redes · Data Fiscal · Contacto */}
         <div
-          className={`grid gap-8 border-t border-line-dark py-9 md:items-center md:gap-10 md:py-12 ${
+          className={`grid gap-8 border-t border-paper/10 py-9 md:items-center md:gap-10 md:py-12 ${
             site.dataFiscal ? "md:grid-cols-3" : "md:grid-cols-2"
           }`}
         >
           <div>
-            <p className="t-h3">Seguinos</p>
-            <p className="mt-1 text-sm font-medium text-muted-dark">
-              en nuestras redes sociales
-            </p>
+            <p className="font-display text-[1.5rem] font-bold tracking-[-0.03em]">Seguinos</p>
+            <p className="mt-1 text-sm text-paper/60">en nuestras redes sociales</p>
             <ul className="mt-4 flex gap-3">
               {redes.map(({ nombre, href, Icono }) => (
                 <li key={nombre}>
@@ -86,7 +87,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={nombre}
-                    className="flex size-11 items-center justify-center rounded-full border border-line-dark text-paper transition-colors duration-[120ms] hover:border-paper hover:bg-white/10"
+                    className="vidrio-claro flex size-12 items-center justify-center rounded-full text-paper transition-[translate,background-color,color] duration-500 ease-fluida hover:-translate-y-1 hover:bg-gold hover:text-ink"
                   >
                     <Icono />
                   </a>
@@ -108,11 +109,11 @@ export function Footer() {
             </div>
           )}
 
-          <ul className="space-y-3 md:justify-self-end">
+          <ul className="space-y-1 md:justify-self-end">
             <li>
               <a
                 href={`mailto:${site.contacto.email}`}
-                className="flex items-center gap-3 text-[0.9375rem] text-muted-dark transition-colors hover:text-paper"
+                className="flex min-h-11 items-center gap-3 text-[0.9375rem] text-paper/75 transition-colors hover:text-paper"
               >
                 <IconoMail />
                 {site.contacto.email}
@@ -123,7 +124,7 @@ export function Footer() {
                 href={site.urls.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-[0.9375rem] text-muted-dark transition-colors hover:text-paper"
+                className="flex min-h-11 items-center gap-3 text-[0.9375rem] text-paper/75 transition-colors hover:text-paper"
               >
                 <IconoWhatsApp />
                 <span className="tnum">{site.contacto.telefono}</span>
@@ -133,14 +134,14 @@ export function Footer() {
         </div>
 
         {/* Pagos · legales */}
-        <div className="border-t border-line-dark py-8">
+        <div className="border-t border-paper/10 py-8">
           <MediosDePago />
-          <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[13px] text-muted-dark">
+          <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[13px] text-paper/60">
             <li>© {new Date().getFullYear()} FlashTag. Todos los derechos reservados.</li>
             {linksLegales.map((l) => (
               <li key={l.href} className="flex items-center gap-2">
                 <span aria-hidden="true">·</span>
-                <Link href={l.href} className="transition-colors hover:text-paper">
+                <Link href={l.href} className="inline-flex min-h-11 items-center underline-offset-4 transition-colors hover:text-paper hover:underline md:min-h-0">
                   {l.label}
                 </Link>
               </li>
@@ -149,7 +150,7 @@ export function Footer() {
         </div>
       </Container>
       {/* Espacio para que la barra CTA fija no tape el footer en phone */}
-      <div className="h-16 lg:hidden" aria-hidden="true" />
+      <div className="h-20 lg:hidden" aria-hidden="true" />
     </footer>
   );
 }

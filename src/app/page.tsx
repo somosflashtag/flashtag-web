@@ -14,7 +14,10 @@ import { SimuladorMaps } from "@/components/home/SimuladorMaps";
 import { Jugar } from "@/components/home/Jugar";
 import { Contador } from "@/components/home/Contador";
 import { FraseRota } from "@/components/home/FraseRota";
-import { Confeti, type Pieza } from "@/components/home/Confeti";
+import { Confeti, type Pieza } from "@/components/ui/Confeti";
+import { Cierre } from "@/components/ui/Cierre";
+import { Pagina } from "@/components/ui/Pagina";
+import { Titulo } from "@/components/ui/Titulo";
 import { RubrosTabs } from "@/components/home/RubrosTabs";
 import { PhoneFrame } from "@/components/app/PhoneFrame";
 import { Mock, type MockId } from "@/components/app/mocks";
@@ -28,7 +31,6 @@ import { promoVigente } from "@/content/promos";
 import { paginasRubro } from "@/content/rubros";
 import {
   actividad,
-  ctaFinal,
   datos,
   faqHome,
   flashy,
@@ -80,36 +82,6 @@ const desde: Desde = Object.fromEntries(
 /** Casos de la home: autorizados, con página propia y cifras verificadas. */
 const casosHome = casosConDetalle.filter((c) => c.metricaVerificada);
 
-/** Titular de sección: enorme, apretado, y entra desenfocado. */
-function Titulo({
-  titulo,
-  bajada,
-  id,
-  claro = false,
-}: {
-  titulo: React.ReactNode;
-  bajada?: React.ReactNode;
-  id?: string;
-  claro?: boolean;
-}) {
-  return (
-    <div className="mx-auto max-w-4xl text-center">
-      <h2 id={id} data-reveal="blur" className="t-mega text-balance">
-        {titulo}
-      </h2>
-      {bajada && (
-        <p
-          data-reveal="blur"
-          style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
-          className={cn("t-lead measure mx-auto mt-4 md:mt-6", claro ? "text-paper/80" : "text-muted")}
-        >
-          {bajada}
-        </p>
-      )}
-    </div>
-  );
-}
-
 const pad = "py-16 md:py-28";
 
 /** Aviso de vidrio pegado a una foto del hero. Demo, no prueba social. */
@@ -139,17 +111,6 @@ const confetiHero: Pieza[] = [
   { pos: "left-[8%] top-[5%]", lado: 12, tono: "paper", giro: 30 },
 ];
 
-const confetiCierre: Pieza[] = [
-  { pos: "left-[4%] top-[6%]", lado: 64, tono: "gold", giro: -14, soloMd: true },
-  { pos: "left-[2%] top-[38%]", lado: 110, tono: "gold", giro: 12, soloMd: true },
-  { pos: "left-[9%] top-[78%]", lado: 44, tono: "coral", giro: -8 },
-  { pos: "right-[5%] top-[10%]", lado: 46, tono: "coral", giro: 10 },
-  { pos: "right-[3%] top-[42%]", lado: 86, tono: "coral", giro: 8, soloMd: true },
-  { pos: "right-[11%] top-[74%]", lado: 40, tono: "gold", giro: 22, soloMd: true },
-  { pos: "left-[48%] top-[5%]", lado: 16, tono: "paper", giro: 16 },
-  { pos: "right-[24%] top-[88%]", lado: 18, tono: "teal", giro: 30 },
-];
-
 /** Qué se ve arriba de cada tarjeta de "cómo funciona", en orden. */
 const mocksPasos: (MockId | null)[] = [null, "links", "resenas", "metricas"];
 
@@ -173,47 +134,42 @@ export default function Home() {
   }));
 
   return (
-    <>
+    <Pagina>
       <div aria-hidden="true" className="ft-progreso fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-gold" />
       <JsonLd id="ld-software" data={softwareSchema} />
       <JsonLd id="ld-faq-home" data={faqSchema(faqsHome)} />
 
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="noche-hero grano relative overflow-hidden rounded-b-[2rem] md:rounded-b-[3rem]">
+      <section data-hero data-tono="noche" className="noche-hero grano relative overflow-hidden rounded-b-[2rem] md:rounded-b-[3rem]">
         <Confeti piezas={confetiHero} />
         <Container className="relative z-10">
-          <div className="mx-auto max-w-[760px] pt-9 text-center md:pt-16 xl:pt-20">
+          <div className="mx-auto max-w-[760px] pt-[104px] text-center md:pt-[136px] xl:pt-[148px]">
             <h1 className="font-display text-[clamp(1.75rem,0.75rem+4.6vw,4.5rem)] font-bold leading-[1.04] tracking-[-0.045em]">
               <span className="sr-only">{hero.accesible}</span>
-              <span aria-hidden="true" className="ft-rise block">
+              <span aria-hidden="true" className="ft-llega block">
                 {hero.titular}
               </span>
               <FraseRota frases={hero.frases} />
             </h1>
             <p
-              className="ft-rise t-lead mx-auto mt-5 max-w-[46ch] text-paper/80 md:mt-7"
+              className="ft-llega t-lead mx-auto mt-5 max-w-[46ch] text-paper/80 md:mt-7"
               style={{ animationDelay: "120ms" }}
             >
               {hero.bajada}
             </p>
             <div
-              className="ft-rise mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row md:mt-9"
+              className="ft-llega mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row md:mt-9"
               style={{ animationDelay: "220ms" }}
             >
-              <Button href={cta.primary.href} variant="primary" size="lg" arrow className="pildora pildora-oro w-full sm:w-auto">
+              <Button href={cta.primary.href} variant="oro" size="lg" arrow className="w-full sm:w-auto">
                 {cta.primary.label}
               </Button>
-              <Button
-                href={cta.secondary.href}
-                variant="secondary"
-                size="lg"
-                className="pildora w-full border-paper/35 text-paper hover:border-paper hover:bg-paper/10 sm:w-auto"
-              >
+              <Button href={cta.secondary.href} variant="claro" size="lg" className="w-full sm:w-auto">
                 {cta.secondary.label}
               </Button>
             </div>
             <ul
-              className="ft-rise mt-5 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-[13px] text-paper/75 sm:gap-x-5 sm:text-sm"
+              className="ft-llega mt-5 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-[13px] text-paper/75 sm:gap-x-5 sm:text-sm"
               style={{ animationDelay: "300ms" }}
             >
               {hero.checks.map((t) => (
@@ -228,7 +184,7 @@ export default function Home() {
             <form
               action={site.urls.login}
               method="get"
-              className="ft-rise vidrio-claro mx-auto mt-7 flex max-w-[460px] flex-wrap items-center gap-x-2 gap-y-1 rounded-[1.75rem] py-1.5 pl-5 pr-1.5 text-left"
+              className="ft-llega vidrio-claro mx-auto mt-7 flex max-w-[460px] flex-wrap items-center gap-x-2 gap-y-1 rounded-[1.75rem] py-1.5 pl-5 pr-1.5 text-left"
               style={{ animationDelay: "380ms" }}
             >
               <label htmlFor="codigo-hero" className="text-[13px] font-bold">
@@ -245,7 +201,7 @@ export default function Home() {
                 required
                 className="min-h-11 min-w-0 flex-1 bg-transparent font-mono text-sm tracking-wide text-paper outline-none placeholder:font-sans placeholder:tracking-normal placeholder:text-paper/65"
               />
-              <Button type="submit" variant="primary" size="sm" className="pildora min-h-11 bg-paper text-ink hover:bg-gold">
+              <Button type="submit" variant="blanco" size="md">
                 Activar
               </Button>
             </form>
@@ -295,7 +251,7 @@ export default function Home() {
       </section>
 
       {/* ── CÓMO FUNCIONA: cuatro tarjetas que se ensanchan ──── */}
-      <section id="como" className={cn("scroll-mt-20", pad)}>
+      <section id="como" className={cn("scroll-mt-24", pad)}>
         <Container>
           <Titulo titulo={loop.titular} bajada={loop.bajada} />
           <ol className="pasos carrusel carrusel-ancho mt-9 gap-4 md:mt-14 md:grid md:grid-cols-2" data-reveal>
@@ -377,7 +333,7 @@ export default function Home() {
       </section>
 
       {/* ── ES PARA VOS SI…: los dolores, con foto ───────────── */}
-      <section id="para-vos" className="blk noche grano overflow-hidden py-14 md:py-24">
+      <section id="para-vos" data-tono="noche" className="blk noche grano scroll-mt-24 overflow-hidden py-14 md:py-24">
         <Container>
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-10">
             <h2 data-reveal="blur" className="t-mega">
@@ -426,7 +382,7 @@ export default function Home() {
       </section>
 
       {/* ── PILARES: la app por dentro ───────────────────────── */}
-      <section id="producto" className={cn("blk mt-3.5 bg-brand-soft", pad)}>
+      <section id="producto" className={cn("blk scroll-mt-24 bg-brand-soft", pad)}>
         <Container>
           <Titulo titulo={pilaresIntro.titular} bajada={pilaresIntro.bajada} />
           <div data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
@@ -436,7 +392,7 @@ export default function Home() {
       </section>
 
       {/* ── PROBALO VOS: el juego ───────────────────────────── */}
-      <section id="probalo" className="blk noche grano relative mt-3.5 overflow-hidden py-14 md:py-24">
+      <section id="probalo" data-tono="noche" className="blk noche grano relative scroll-mt-24 overflow-hidden py-14 md:py-24">
         <Container className="relative">
           <div className="mx-auto max-w-4xl text-center">
             <span data-reveal className="eyebrow !bg-white/10 !text-gold">
@@ -456,7 +412,7 @@ export default function Home() {
       </section>
 
       {/* ── RUBROS: pestañas con foto y teléfono ─────────────── */}
-      <section id="rubros" className={cn("blk mt-3.5 bg-surface", pad)}>
+      <section id="rubros" className={cn("blk scroll-mt-24 bg-surface", pad)}>
         <Container>
           <h2 data-reveal="blur" className="t-mega max-w-[19ch] text-balance">
             {rubrosIntro.titular} <span className="text-brand">{rubrosIntro.titular2}</span>
@@ -478,7 +434,7 @@ export default function Home() {
             <SimuladorMaps />
           </div>
           <div className="mt-6 flex flex-col items-center gap-2 text-center">
-            <Button href={cta.primary.href} variant="primary" size="lg" arrow className="pildora pildora-marca">
+            <Button href={cta.primary.href} variant="primary" size="lg" arrow>
               Medí tu local de verdad
             </Button>
             <p className="text-[13px] text-muted">En la app, con tu ficha de Google y tus competidores reales.</p>
@@ -487,7 +443,7 @@ export default function Home() {
       </section>
 
       {/* ── FLASHY ───────────────────────────────────────────── */}
-      <section className="blk noche grano relative overflow-hidden">
+      <section data-tono="noche" className="blk noche grano relative overflow-hidden">
         <Container>
           <div className="relative grid items-center gap-8 py-14 md:gap-12 md:py-24 lg:grid-cols-2">
             <div>
@@ -501,7 +457,7 @@ export default function Home() {
               <p data-reveal="blur" className="t-lead mb-7 mt-4 text-paper/80">
                 {flashy.bajada}
               </p>
-              <Button href={cta.primary.href} variant="primary" size="lg" arrow className="pildora pildora-oro">
+              <Button href={cta.primary.href} variant="oro" size="lg" arrow>
                 {flashy.cta}
               </Button>
             </div>
@@ -513,7 +469,7 @@ export default function Home() {
       </section>
 
       {/* ── CASOS ────────────────────────────────────────────── */}
-      <section id="casos" className={cn("blk mt-3.5 bg-surface", pad)}>
+      <section id="casos" className={cn("blk scroll-mt-24 bg-surface", pad)}>
         <Container>
           <Titulo
             titulo="De pastelerías de barrio a cadenas nacionales"
@@ -540,7 +496,7 @@ export default function Home() {
               <p data-reveal="blur" className="t-lead mb-6 mt-4 text-muted">
                 {tiendaHome.bajada}
               </p>
-              <Button href={tienda.href} variant="primary" size="lg" arrow className="pildora pildora-marca">
+              <Button href={tienda.href} variant="primary" size="lg" arrow>
                 Ir a la tienda
               </Button>
             </div>
@@ -618,7 +574,7 @@ export default function Home() {
                 <span aria-hidden="true" className="velo absolute inset-0" />
                 <h3 className="relative font-display text-[1.625rem] font-bold leading-tight tracking-[-0.035em]">{faqHome.otra}</h3>
                 <p className="relative mt-1.5 max-w-[30ch] text-[15px] text-paper/85">{faqHome.otraBajada}</p>
-                <Button href={site.urls.whatsapp} variant="primary" size="md" arrow className="pildora pildora-oro relative mt-4 self-start">
+                <Button href={site.urls.whatsapp} variant="oro" size="md" arrow className="relative mt-4 self-start">
                   {faqHome.otraCta}
                 </Button>
               </div>
@@ -637,36 +593,7 @@ export default function Home() {
       </section>
 
       {/* ── CIERRE ───────────────────────────────────────────── */}
-      <section className="px-1.5 pb-3 md:px-3.5 md:pb-4">
-        <div className="noche grano relative overflow-hidden rounded-[2rem] px-5 py-20 text-center md:rounded-[3.5rem] md:px-10 md:py-32">
-          <Confeti piezas={confetiCierre} />
-          <div className="relative">
-            <h2 data-reveal="blur" className="t-giga">
-              {ctaFinal.titular} <span className="text-gold">{ctaFinal.destacado}</span>
-            </h2>
-            <p
-              data-reveal="blur"
-              style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
-              className="t-lead mx-auto mb-8 mt-5 max-w-[44ch] text-paper/85 md:mt-7"
-            >
-              {ctaFinal.bajada}
-            </p>
-            <div data-reveal className="flex flex-col justify-center gap-3 sm:flex-row">
-              <Button href={cta.primary.href} variant="primary" size="lg" arrow className="pildora pildora-oro">
-                {cta.primary.label}
-              </Button>
-              <Button
-                href={cta.secondary.href}
-                variant="secondary"
-                size="lg"
-                className="pildora border-paper/35 text-paper hover:border-paper hover:bg-paper/10"
-              >
-                {cta.secondary.label}
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      <Cierre />
+    </Pagina>
   );
 }

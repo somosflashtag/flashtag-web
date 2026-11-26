@@ -352,12 +352,6 @@ export const tiendaHome = {
   bajada: "Cada pieza trae QR y chip NFC activados. La activás gratis desde la app con el código impreso.",
 };
 
-export const ctaFinal = {
-  titular: "Probalo",
-  destacado: "gratis.",
-  bajada: "Sin tarjeta, sin permanencia y sin instalar nada. Si ya tenés tu cartel, lo activás en dos minutos.",
-};
-
 /* ── Juego "Probalo vos" ───────────────────────────────────────── */
 
 export type ModoJuego = "resena" | "sello" | "ruleta" | "whatsapp";
