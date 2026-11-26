@@ -34,13 +34,16 @@ function LogoCliente({ c, className }: { c: Cliente; className?: string }) {
 export function Clientes({
   titulo = "Marcas que ya lo usan",
   variante = "grilla",
+  className,
 }: {
   titulo?: string;
   variante?: "grilla" | "marquesina";
+  /** Solo marquesina: para apoyarla sobre un bloque que ya es `ink` (el hero de la home). */
+  className?: string;
 }) {
   if (variante === "marquesina") {
     return (
-      <section className="blk bg-ink py-9 text-paper md:py-11" aria-labelledby="clientes-titulo">
+      <section className={cn("blk bg-ink py-9 text-paper md:py-11", className)} aria-labelledby="clientes-titulo">
         <h2 id="clientes-titulo" className="t-caption px-6 text-center uppercase tracking-[0.12em] text-muted-dark">
           {titulo}
         </h2>

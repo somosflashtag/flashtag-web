@@ -9,44 +9,132 @@
 
 import type { GlifoId } from "@/components/ui/Glifo";
 
+export type Foto = { src: string; alt: string };
+
+/**
+ * Fotos de la home. Son ilustrativas, generadas para el sitio: escenas de
+ * rubro, sin marcas ni carteles a la vista. No retratan a ningún cliente y
+ * nunca se usan como testimonio (AGENTS.md §4).
+ */
+export const fotos = {
+  cafe: { src: "/fotos/cafe.webp", alt: "Una barista sonríe y entrega un café para llevar en el mostrador de un café de barrio" },
+  restaurante: { src: "/fotos/restaurante.webp", alt: "Dos amigas se ríen en la mesa de un restaurante, una con el celular en la mano" },
+  tienda: { src: "/fotos/tienda.webp", alt: "Una vendedora entrega una bolsa a una clienta en el mostrador de una tienda de ropa" },
+  barberia: { src: "/fotos/barberia.webp", alt: "Un barbero le corta el pelo a un cliente que sonríe en una barbería" },
+  gimnasio: { src: "/fotos/gimnasio.webp", alt: "La recepcionista de un estudio de bienestar recibe a una socia que llega con su bolso" },
+  heladeria: { src: "/fotos/heladeria.webp", alt: "Una pareja se ríe con sus helados frente al mostrador de una heladería" },
+  panaderia: { src: "/fotos/panaderia.webp", alt: "La mano de un cliente con el celular sobre el mostrador de una panadería, junto a un café y medialunas" },
+  agencia: { src: "/fotos/agencia.webp", alt: "Tres personas de una agencia trabajan juntas frente a una notebook" },
+  dueno: { src: "/fotos/dueno.webp", alt: "El dueño de un café, con delantal y los brazos cruzados, sonríe en la puerta de su local" },
+} satisfies Record<string, Foto>;
+
 export const hero = {
-  eyebrow: "Marketing phygital para locales",
-  titular: "Carteles con QR y NFC que llenan tu local de",
-  destacado: "reseñas, contactos y clientes que vuelven.",
+  titular: "El cartel que",
+  /** Se van turnando en el titular. La primera es la que ve quien no tiene animaciones. */
+  frases: [
+    { texto: "junta reseñas", glifo: "estrella" },
+    { texto: "suma seguidores", glifo: "persona" },
+    { texto: "abre tu WhatsApp", glifo: "celular" },
+    { texto: "arma tu club", glifo: "corona" },
+    { texto: "reparte premios", glifo: "ruleta" },
+    { texto: "mide cada escaneo", glifo: "barras" },
+  ] satisfies { texto: string; glifo: GlifoId }[],
+  /** El h1 completo, para lectores de pantalla y buscadores. */
+  accesible:
+    "El cartel con QR y NFC que junta reseñas, suma seguidores, abre tu WhatsApp, arma tu club de fidelidad y mide cada escaneo.",
   bajada:
-    "Ponés el cartel en el mostrador y la app hace el resto: responde tus reseñas de Google con IA, guarda el contacto de cada cliente, le suma sellos en su club y te muestra qué está funcionando.",
+    "Tu cliente apoya el celular o escanea el QR. La app responde tus reseñas de Google con IA, guarda su contacto y lo trae de vuelta con un club en su Wallet.",
   checks: ["Sin tarjeta de crédito", "Lo activás en minutos", "Soporte por WhatsApp"],
   activar: "¿Ya tenés tu FlashTag?",
+  seguir: "Mirá cómo funciona",
+  fotos: [fotos.restaurante, fotos.cafe],
 };
 
 /** El loop: los cuatro pasos que se repiten solos. */
 export const loop = {
-  eyebrow: "Cómo funciona",
-  titular: "Por tu local pasa gente todos los días.",
-  titular2: "Con FlashTag, esa gente vuelve.",
-  bajada: "Un objeto en el mostrador y una app detrás. Cuatro pasos que se repiten solos.",
+  titular: "Cómo funciona FlashTag",
+  bajada:
+    "Por tu local pasa gente todos los días. Ponés un cartel en el mostrador y, desde ahí, esa gente te deja su reseña, su contacto y vuelve. No hay que instalar nada ni cambiar cómo trabaja tu equipo.",
   pasos: [
     {
       glifo: "cartel",
+      tono: "brand",
       titulo: "Poné el cartel",
       texto: "Cartel, sticker o tarjeta NFC. Llega con el QR y el chip listos y lo activás con el código impreso.",
     },
     {
       glifo: "celular",
+      tono: "coral",
       titulo: "El cliente escanea",
       texto: "Deja una reseña, te sigue, te escribe por WhatsApp, se suma al club o gira la ruleta. Sin bajar ninguna app.",
     },
     {
       glifo: "chispa",
+      tono: "teal",
       titulo: "FlashTag hace el resto",
       texto: "Responde reseñas con IA, guarda el contacto, le suma sellos y le manda el saludo de cumple.",
     },
     {
       glifo: "repetir",
+      tono: "gold",
       titulo: "Medís todo lo que pasa",
       texto: "Escaneos por cartel, local y vendedor, reseñas, sellos, canjes y clientes en riesgo. Y se lo mandás a tus anuncios.",
     },
-  ] satisfies { glifo: GlifoId; titulo: string; texto: string }[],
+  ] satisfies { glifo: GlifoId; tono: "brand" | "coral" | "teal" | "gold"; titulo: string; texto: string }[],
+};
+
+/**
+ * "FlashTag es para vos si…": el dolor en la voz del dueño y, al pasar por
+ * encima, cómo lo resuelve la app. Cada solución es una función que existe
+ * (pilares, más abajo): si la app deja de hacerlo, se borra de acá.
+ */
+export const paraVos = {
+  titular: "FlashTag es para vos si…",
+  bajada: "Si te pasa alguna de estas cosas en el local, FlashTag se hizo pensando en vos.",
+  dolores: [
+    {
+      etiqueta: "Reseñas",
+      dolor: "Tus clientes se van contentos",
+      remate: "y nadie lo cuenta en Google.",
+      solucion: "Apoyan el celular en el cartel y dejan la reseña antes de irse, sin buscar tu local ni bajar nada.",
+      foto: fotos.restaurante,
+    },
+    {
+      etiqueta: "Respuestas",
+      dolor: "Tenés reseñas sin responder",
+      remate: "desde hace meses.",
+      solucion: "La IA las responde sola con la voz de tu marca, o todas juntas con un clic.",
+      foto: fotos.dueno,
+    },
+    {
+      etiqueta: "Contactos",
+      dolor: "Atendés gente todos los días",
+      remate: "y no te queda ni un contacto.",
+      solucion: "Con la ruleta de premios o el WiFi, cada escaneo te deja un mail, un teléfono y un cumpleaños.",
+      foto: fotos.tienda,
+    },
+    {
+      etiqueta: "Fidelidad",
+      dolor: "La tarjetita de sellos de cartón",
+      remate: "se pierde en la billetera.",
+      solucion: "El club vive en Apple y Google Wallet: tu cliente suma sellos sin bajar ninguna app.",
+      foto: fotos.heladeria,
+    },
+    {
+      etiqueta: "Google Maps",
+      dolor: "Te buscan cerca",
+      remate: "y aparece primero tu competencia.",
+      solucion: "Ves en qué cuadras salís en el top 3 y en cuáles no, con 49 puntos alrededor de tu local.",
+      foto: fotos.barberia,
+    },
+    {
+      etiqueta: "Clientes",
+      dolor: "Hay clientes que dejaron de venir",
+      remate: "y te enterás tarde.",
+      solucion: "La app te avisa quién está en riesgo, para invitarlo a volver a tiempo.",
+      foto: fotos.gimnasio,
+    },
+  ] satisfies { etiqueta: string; dolor: string; remate: string; solucion: string; foto: Foto }[],
 };
 
 /** Las tres tarjetas de datos. Son datos de contexto, no prueba social. */
@@ -235,12 +323,27 @@ export const actividad: { glifo: GlifoId; tono: "teal" | "brand" | "coral" | "go
 ];
 
 export const rubrosIntro = {
-  eyebrow: "Para tu rubro",
-  titular: "Una solución para",
-  destacado: "tu",
-  titular2: "negocio",
+  titular: "Hecho para los negocios",
+  titular2: "que viven de que la gente vuelva.",
   bajada:
     "Cada rubro tiene su propia solución armada: qué carteles poner, qué club conviene y cómo se ve un día con FlashTag.",
+  /** La foto de cada rubro, por slug de `rubros.ts`. */
+  fotos: {
+    gastronomia: fotos.cafe,
+    retail: fotos.tienda,
+    servicios: fotos.barberia,
+    agencias: fotos.agencia,
+  } as Record<string, Foto>,
+};
+
+export const faqHome = {
+  titular: "Preguntas",
+  titular2: "frecuentes",
+  bajada: "Lo que más nos preguntan los dueños antes de poner el cartel.",
+  otra: "¿Te quedó otra duda?",
+  otraBajada: "Escribinos por WhatsApp. Te responde una persona del equipo.",
+  otraCta: "Escribinos",
+  foto: fotos.panaderia,
 };
 
 export const tiendaHome = {
@@ -250,7 +353,8 @@ export const tiendaHome = {
 };
 
 export const ctaFinal = {
-  titular: "Probalo gratis y mirá qué pasa en una semana",
+  titular: "Probalo",
+  destacado: "gratis.",
   bajada: "Sin tarjeta, sin permanencia y sin instalar nada. Si ya tenés tu cartel, lo activás en dos minutos.",
 };
 
