@@ -34,8 +34,18 @@ export type Feature = {
   casos: string[];
   /** Cómo funciona, en tres pasos. */
   pasos: { titulo: string; texto: string }[];
-  /** Pantalla de la app que lo muestra. */
-  mock: MockId;
+  /**
+   * Pantalla de la app que lo muestra, en teléfono (components/app/mocks.tsx).
+   * Las features sin maqueta de teléfono llevan `pantalla` en su lugar.
+   */
+  mock?: MockId;
+  /**
+   * Pantalla del panel de escritorio que lo muestra: clave de
+   * `pantallasPilares` en components/app/panel.tsx ("maps", "ficha",
+   * "proteccion", "flashcard"…). La página de producto usa `mock` si existe y,
+   * si no, `pantalla`. Toda feature tiene al menos una de las dos.
+   */
+  pantalla?: string;
   /** En qué plan entra. */
   desde: "Free" | "Starter" | "Full";
 };
@@ -281,6 +291,11 @@ export const features: Feature[] = [
     desde: "Starter",
   },
 ];
+
+/** Las que tienen maqueta de teléfono: las que recorre el tour de /como-funciona. */
+export const featuresConMaqueta = features.filter(
+  (f): f is Feature & { mock: MockId } => Boolean(f.mock),
+);
 
 export const featurePorSlug = (slug: string) =>
   features.find((f) => f.slug === slug);

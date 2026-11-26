@@ -84,7 +84,7 @@ export default async function ProductoPage({
             </div>
             <div data-reveal style={{ "--reveal-delay": "120ms" } as React.CSSProperties}>
               <PhoneFrame className="ft-float">
-                <Mock id={f.mock} />
+                {f.mock && <Mock id={f.mock} />}
               </PhoneFrame>
             </div>
           </div>

@@ -17,7 +17,7 @@ export const metadata = pageMeta({
 
 export default function ComoFuncionaPage() {
   const screens = Object.fromEntries(
-    features.map((f) => [f.slug, <Mock key={f.slug} id={f.mock} />]),
+    featuresConMaqueta.map((f) => [f.slug, <Mock key={f.slug} id={f.mock} />]),
   );
 
   return (

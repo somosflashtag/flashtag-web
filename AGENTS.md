@@ -70,9 +70,9 @@ escrito a mano en un componente, es un bug esperando a desincronizarse.
 **4. Nada de prueba social inventada.** `site.proof.locales` es `null` hasta
 tener el número real, y mientras sea `null` ningún componente lo muestra.
 Preferimos no mostrar nada antes que mostrar un número que no podemos sostener.
-Las fotos de `public/fotos/` (home) son **ilustrativas**: escenas de rubro
+Las fotos de `public/fotos/` son **ilustrativas**: escenas de rubro
 generadas para el sitio, sin marcas ni carteles a la vista. Se listan en
-`content/home.ts` (`fotos`). No retratan clientes y nunca acompañan un
+`content/fotos.ts`. No retratan clientes y nunca acompañan un
 testimonio, un nombre de comercio ni una cifra. La foto de un cliente real
 va en `public/locales/` y solo con su autorización (`casos.ts`).
 
@@ -106,6 +106,68 @@ blanco (`public/pagos/*.svg`, de los kits que nos pasaron); las tarjetas son
 badges tipográficos hasta tener sus kits. No se listan logos ni nombres
 de empresas (clientes, integraciones, medios) sin permiso escrito y sin que la
 integración exista de verdad en producción.
+
+## Sistema visual — cómo se arma una página
+
+Desde diciembre de 2026 todo el sitio comparte un sistema: titulares enormes
+y apretados, bloques que alternan de tono, fotos y maquetas, y cosas que
+llegan desenfocadas y se aclaran. Las páginas se arman con las piezas de
+`src/components/ui/`; no se inventan variantes por página. El modelo de
+terminación es la home (`src/app/page.tsx`).
+
+**Esqueleto de toda `page.tsx`:**
+
+```tsx
+<Pagina>                 {/* transición entre páginas */}
+  <HeroPagina … />       {/* siempre primero: bloque ink con el único h1 */}
+  <Seccion tono="papel">…</Seccion>
+  <Seccion tono="lila">…</Seccion>
+  <Cierre … />           {/* siempre último: se funde con el footer */}
+</Pagina>
+```
+
+| Pieza | Para qué |
+|---|---|
+| `Pagina` | Envuelve el contenido de cada `page.tsx`: lo que se va se desenfoca, lo que llega sube y se aclara (`<ViewTransition>` de React). |
+| `Viaja` | Un elemento que viaja entre dos páginas (la foto de un rubro, el logo de un caso). Mismo `nombre` en los dos extremos, único por página. |
+| `HeroPagina` | Hero oscuro: `titulo` + `destacado` (gold), `bajada`, botones (`children`), `visual`, `migas` (emite el JSON-LD de migas), `etiqueta`, `compacto`. |
+| `Seccion` | Bloque de página. `tono`: `papel` (blanco, ancho completo), `noche` (ink con halos y grano), `arena`, `lila`. Lo que no es papel va redondeado y despegado de los bordes. |
+| `Titulo` | Encabezado de sección: h2 `t-mega` que entra desenfocado, con bajada. `claro` sobre `noche`; `alineado="izq"` cuando hay otra columna. |
+| `Button` | Siempre píldora. Sobre claro: `primary` (el CTA), `secondary`, `ghost`. Sobre oscuro: `oro` (el CTA), `claro`, `blanco`. Un solo CTA principal por bloque. |
+| `Cierre` | Último bloque: titular gigante (`titular` + `destacado`), bajada y los dos CTAs del sitio. Cada página puede pasar su texto. |
+| `Confeti` | Cuadraditos de marca que flotan. Solo en hero y cierre. |
+
+**Cómo se compone:**
+
+- **Ritmo.** Alternar tonos. Nunca dos `noche` seguidos ni dos bloques del
+  mismo tono seguidos. Una idea por sección; entre 4 y 7 secciones por página.
+- **Titulares.** `t-hero` (el h1, lo pone `HeroPagina`), `t-mega` (h2),
+  `t-giga` (cierre). Cortos. Como mucho una parte resaltada: `text-gold` sobre
+  oscuro, `text-brand` sobre claro.
+- **Movimiento.** Lo que entra al scrollear lleva `data-reveal`: `"blur"` en
+  titulares y párrafos, sin valor en tarjetas, `"zoom"` en piezas grandes;
+  se escalona con `--reveal-delay`. Curva `ease-fluida`, 500 a 900 ms. Las
+  clases del kit ya contemplan `prefers-reduced-motion`.
+- **Tarjetas.** Radio `rounded-[2rem]` (las chicas, `1.5rem`), sin bordes
+  finos grises. Tres recetas: de color (`paso-brand|coral|teal|gold`,
+  `dato-brand|coral|teal`, texto blanco); de foto (imagen `fill object-cover`
+  + `<span className="velo absolute inset-0" />` + texto blanco abajo); clara
+  (`bg-paper` sobre un bloque lila o arena, `bg-brand-soft/70` sobre papel).
+- **Chips.** `eyebrow` sobre claro, `eyebrow-noche` sobre oscuro, `vidrio` y
+  `vidrio-claro` sobre foto o sobre oscuro.
+- **Fotos.** Solo las de `content/fotos.ts` (§4), con `foto-a`, `foto-b` o
+  `foto-c` para la esquina orgánica.
+- **La app.** Maquetas de `components/app/` (§5). Sobre un bloque oscuro, el
+  contenedor de la maqueta lleva `text-ink`.
+- **Mobile.** Las listas de tarjetas se deslizan (`carrusel`), los CTAs van
+  a todo el ancho y nada baja de 44px de alto.
+- **Header.** Es una píldora flotante que mide cero de alto y lee `data-tono`
+  del bloque que tiene debajo (lo ponen las piezas del kit). Un bloque oscuro
+  armado a mano lleva `data-tono="noche"`.
+- **Estilos.** Utilidades de Tailwind y clases del kit (`globals.css`, desde
+  «HOME FLUIDA»). No se agrega CSS por página.
+- **Fuera de uso:** `ui/Section`, `.t-display`, `.t-h2`, `.hero-halo`,
+  `.cta-final`, `.text-glow`, `.text-glow-warm`. No usarlos en código nuevo.
 
 ## Accesibilidad — piso, no aspiración
 
