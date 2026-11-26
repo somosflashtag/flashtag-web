@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
@@ -25,6 +26,11 @@ import type { Promo } from "@/content/promos";
  * del sticky. Por eso el menú mobile se posiciona contra el header (`top-full`
  * y alto `100dvh - 100%`) y no contra el viewport con un `top-16` fijo: la
  * altura del header ya no es constante.
+ *
+ * En la home, mientras no se scrolleó, el header va en `ink` y con el logo
+ * blanco: así se funde con el hero oscuro y la página arranca como una sola
+ * pieza. Apenas se baja (o se abre un menú) vuelve al header claro de
+ * siempre. Los colores de ese estado cuelgan de `data-oscuro` en el header.
  */
 type Panel = "producto" | "rubros";
 
@@ -44,13 +50,16 @@ function Chevron({ abierto }: { abierto: boolean }) {
 }
 
 const linkNav =
-  "rounded-lg px-3 py-2 text-[0.9375rem] font-medium text-muted transition-colors duration-[120ms] hover:bg-surface/60 hover:text-ink";
+  "rounded-lg px-3 py-2 text-[0.9375rem] font-medium text-muted transition-colors duration-[120ms] hover:bg-surface/60 hover:text-ink " +
+  "group-data-[oscuro=true]/hd:text-paper/85 group-data-[oscuro=true]/hd:hover:bg-paper/10 group-data-[oscuro=true]/hd:hover:text-paper";
 
 export function Header({ promo = null }: { promo?: Promo | null }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [panel, setPanel] = useState<Panel | null>(null);
   const closeTimer = useRef<number | null>(null);
+  const enHome = usePathname() === "/";
+  const oscuro = enHome && !scrolled && !panel && !open;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -120,17 +129,20 @@ export function Header({ promo = null }: { promo?: Promo | null }) {
 
   return (
     <header
+      data-oscuro={oscuro}
       className={cn(
-        "sticky top-0 z-50 w-full border-b transition-[background-color,border-color] duration-200",
-        scrolled || panel
-          ? "border-line bg-paper/85 backdrop-blur-xl"
-          : "border-transparent bg-paper",
+        "group/hd sticky top-0 z-50 w-full border-b transition-[background-color,border-color,color] duration-300",
+        oscuro
+          ? "border-transparent bg-ink text-paper"
+          : scrolled || panel
+            ? "border-line bg-paper/85 backdrop-blur-xl"
+            : "border-transparent bg-paper",
       )}
     >
       <PromoBanner promo={promo} />
       <Container>
         <div className="flex h-16 items-center gap-4 lg:h-[72px] lg:gap-7">
-          <Logo className="text-[2.125rem] lg:text-[2.375rem]" onClick={() => setOpen(false)} />
+          <Logo tone={oscuro ? "light" : "dark"} className="text-[2.125rem] lg:text-[2.375rem]" onClick={() => setOpen(false)} />
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Principal">
             {desplegable(
@@ -209,15 +221,25 @@ export function Header({ promo = null }: { promo?: Promo | null }) {
           <div className="ml-auto flex items-center gap-2">
             <a
               href={ingresar.href}
-              className="hidden px-2 py-2 text-[0.9375rem] font-semibold text-ink transition-colors hover:text-brand xl:block"
+              className="hidden px-2 py-2 text-[0.9375rem] font-semibold text-ink transition-colors hover:text-brand group-data-[oscuro=true]/hd:text-paper group-data-[oscuro=true]/hd:hover:text-gold xl:block"
             >
               {ingresar.label}
             </a>
-            <Button href={cta.secondary.href} variant="secondary" size="sm" className="hidden lg:inline-flex">
+            <Button
+              href={cta.secondary.href}
+              variant="secondary"
+              size="sm"
+              className="hidden lg:inline-flex group-data-[oscuro=true]/hd:border-paper/30 group-data-[oscuro=true]/hd:text-paper group-data-[oscuro=true]/hd:hover:border-paper group-data-[oscuro=true]/hd:hover:bg-paper/10"
+            >
               <IconoBolsa size={16} />
               {cta.secondary.label}
             </Button>
-            <Button href={cta.primary.href} variant="primary" size="sm">
+            <Button
+              href={cta.primary.href}
+              variant="primary"
+              size="sm"
+              className="group-data-[oscuro=true]/hd:bg-gold group-data-[oscuro=true]/hd:text-ink group-data-[oscuro=true]/hd:hover:bg-paper"
+            >
               <IconoCelular size={16} />
               Probá gratis
             </Button>

@@ -70,12 +70,18 @@ escrito a mano en un componente, es un bug esperando a desincronizarse.
 **4. Nada de prueba social inventada.** `site.proof.locales` es `null` hasta
 tener el número real, y mientras sea `null` ningún componente lo muestra.
 Preferimos no mostrar nada antes que mostrar un número que no podemos sostener.
+Las fotos de `public/fotos/` (home) son **ilustrativas**: escenas de rubro
+generadas para el sitio, sin marcas ni carteles a la vista. Se listan en
+`content/home.ts` (`fotos`). No retratan clientes y nunca acompañan un
+testimonio, un nombre de comercio ni una cifra. La foto de un cliente real
+va en `public/locales/` y solo con su autorización (`casos.ts`).
 
 **5. La app se muestra en código, no en capturas.** Las pantallas de
 my.flashtag.tech viven en `src/components/app/mocks.tsx` (una por sección:
 inicio, QR, links, reseñas, métricas, fidelidad, ruleta, píxeles) dentro de
-`PhoneFrame`. Las del panel de escritorio (mini app del hero, pantallas de
-los pilares de la home y el teléfono de cada `/para/<rubro>`) viven en
+`PhoneFrame`. Las del panel de escritorio (pantallas de los pilares de la
+home y el teléfono de cada rubro, en `/para/<rubro>` y en las pestañas de
+rubros de la home) viven en
 `src/components/app/panel.tsx`. Se construyen con tokens y sin JS: el
 componente cliente que las envuelve solo elige cuál se ve. Si la app cambia una
 pantalla, se cambia la maqueta; nunca se sube un PNG que envejece.
