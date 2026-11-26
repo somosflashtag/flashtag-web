@@ -481,7 +481,7 @@ function PantallaMaps() {
       <p className="mt-2.5 text-[12px] text-muted">
         Parado en tu local no aparecés: cada número es tu puesto en ese punto.
       </p>
-      <a href="#simulador" className="mt-1 inline-flex min-h-9 items-center gap-1.5 text-[13px] font-bold text-brand underline-offset-4 hover:underline">
+      <a href="#simulador" className="mt-1 inline-flex min-h-11 items-center gap-1.5 text-[13px] font-bold text-brand underline-offset-4 hover:underline">
         Probá el simulador con tu rubro <span aria-hidden="true">↓</span>
       </a>
     </>
@@ -630,10 +630,10 @@ function PantallaRuleta() {
 function PantallaFlashCard() {
   return (
     <>
-      <Titulo titulo="FlashCard, WiFi y cobros" bajada="Tu tarjeta de presentación digital: la compartís por QR o link y se actualiza sola." />
+      <Titulo titulo="FlashCard y WiFi" bajada="Tu tarjeta de presentación digital: la compartís por QR o link y se actualiza sola." />
       <Fila><Etiqueta>FlashCard</Etiqueta><span>El QR y el link quedan listos en el acto</span></Fila>
       <Fila><Etiqueta>WiFi dinámico</Etiqueta><span>Pedí teléfono y cumpleaños antes de conectarse</span></Fila>
-      <Fila><Etiqueta tono="teal">Mercado Pago</Etiqueta><span>Quien escanea escribe el monto y te paga</span></Fila>
+      <Fila><Etiqueta tono="teal">Un toque</Etiqueta><span>Quien la abre te llama, te escribe o guarda tu contacto</span></Fila>
       <Fila><Etiqueta>Contactos</Etiqueta><span>Quién jugó, qué ganó y si vino a canjearlo</span></Fila>
     </>
   );

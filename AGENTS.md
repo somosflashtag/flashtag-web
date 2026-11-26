@@ -95,6 +95,17 @@ Los píxeles (`/producto/pixeles`) describen los tres campos que tiene la app
 en "Análisis de seguimiento" (GA4, Meta Pixel, GTM) y los eventos que manda.
 El copy de `content/pixeles.ts` es la promesa pública: si la app no manda un
 evento, no se lista acá.
+**Antes de vender una funcionalidad, se verifica que esté abierta a
+clientes.** En la app, un módulo puede existir en el código y estar detrás de
+un feature flag (tabla `feature_flags`: `admins`, `planes` con plan mínimo, o
+`todos`). Solo se publica lo que está en `todos` o en `planes`, y con el plan
+mínimo real. Estado al 26/11/2026: Posición en Maps (`seo_local`, desde
+Starter), Ficha de Google (`ficha_completa`, todos) y FlashCard
+(`flashcard_enabled`, todos) tienen página propia. **No se venden** hasta que
+se abran: los cobros con Mercado Pago (`mercadopago_integracion`, solo
+administradores) y «eliminar reseñas» (en la app es una pantalla de
+demostración). La carta digital se abrió solo para Evolution y todavía no
+tiene página.
 
 **Logos de clientes** (`public/logos/*.webp`): son monocromos en arena, hechos
 para fondo violeta. Van siempre sobre `ink`, tal cual vienen: nada de
@@ -181,6 +192,9 @@ terminación es la home (`src/app/page.tsx`).
 ## Pendientes
 
 - [ ] `site.proof.locales` — número real de comercios
+- [ ] Cobros con Mercado Pago: volver a sumarlos al sitio (pilar de FlashCard
+      en `home.ts`, setup de retail en `rubros.ts`, `fidelidad.ts`) cuando el
+      flag `mercadopago_integracion` se abra a clientes
 - [ ] Imagen del QR de Data Fiscal → `site.dataFiscal`
 - [ ] Autorización escrita de los comercios → `casos.ts` (`autorizado`)
 - [ ] URLs de las notas de prensa → `prensa.ts` (`verificada`)

@@ -229,7 +229,11 @@ export function Header({ promo = null }: { promo?: Promo | null }) {
               noche ? "border-paper/15 bg-ink/55 text-paper" : "border-ink/[0.08] bg-paper/85 text-ink shadow-pildora",
             )}
           >
-            <Logo tone={noche ? "light" : "dark"} className="text-[2rem] lg:text-[2.25rem]" onClick={() => setOpen(false)} />
+            <Logo
+              tone={noche ? "light" : "dark"}
+              className="inline-flex min-h-11 items-center text-[2rem] lg:text-[2.25rem]"
+              onClick={() => setOpen(false)}
+            />
 
             <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Principal">
               {disparador("producto", "Producto")}

@@ -4,7 +4,7 @@ import type { fotos } from "./fotos";
 import { pasos as pasosBase } from "./pasos";
 
 /**
- * FEATURES — las siete capacidades de la app, en el orden en que se venden.
+ * FEATURES — las capacidades de la app con página propia, en el orden en que se venden.
  *
  * Cada una tiene su pantalla (`mock`) construida en código en
  * components/app/mocks.tsx, su página en /producto/[slug] y su lugar en el
@@ -370,6 +370,133 @@ const base: Omit<Feature, "bajada">[] = [
     foto: "agencia",
     planes: ["píxeles"],
     desde: "Starter",
+  },
+  /* ── Sumadas en diciembre de 2026 ────────────────────────────────────
+     Tres funcionalidades que la app ya tiene abiertas a sus clientes y que el
+     sitio solo nombraba en los pilares de la home. El copy sale del código y
+     de la documentación de la app (docs/google-tu-negocio.md, lib/seo-local,
+     docs/producto/flashcard-v1.md) y del estado de sus feature flags en
+     producción al 26/11/2026: seo_local desde Starter, ficha_completa y
+     flashcard_enabled para todos. Si la app cambia, se corrige acá. */
+  {
+    slug: "posicion-en-maps",
+    nombre: "Posición en Maps",
+    corto: "En qué puesto salís, cuadra por cuadra",
+    seoTitle: "Posición en Google Maps: medí en qué puesto aparece tu local",
+    seoDescription:
+      "Elegí una búsqueda y mirá en qué puesto aparece tu local en Google Maps desde cada punto del barrio, y quién te gana. Desde el plan Starter.",
+    titular: "Mirá en qué puesto aparece tu local en Maps, cuadra por cuadra",
+    destacado: "cuadra por cuadra",
+    entrada:
+      "Elegís una búsqueda, como «café de especialidad» o «peluquería», y FlashTag te muestra en qué puesto aparece tu local en Google Maps desde distintos puntos del barrio, y quién aparece antes que vos en cada uno.",
+    ampliacion:
+      "La posición en Maps cambia según dónde está parado el que busca: a dos cuadras podés salir primero y a diez no aparecer. Por eso se mide con una grilla de puntos alrededor de tu local. Con cada medición ves el mapa, qué competidores te ganan y dónde, y recomendaciones para mejorar; a partir de la segunda, también si vas subiendo o bajando. Cada empresa tiene un cupo mensual de mediciones, que se renueva solo.",
+    analogia:
+      "Es como pararte en cada esquina del barrio, buscar tu rubro en el celular y anotar en qué puesto salís.",
+    casos: [
+      "Saber en qué cuadras ganás y en cuáles no aparecés",
+      "Ver qué competidor te gana en cada punto",
+      "Medir si lo que hacés con tu ficha y tus reseñas te hace subir",
+      "Seguir una búsqueda todas las semanas, sin acordarte",
+    ],
+    pasos: [
+      {
+        titulo: "Elegís la búsqueda",
+        texto: "Una palabra clave por búsqueda, como la escribiría tu cliente, y la sucursal que querés medir.",
+      },
+      {
+        titulo: "Armás la grilla",
+        texto:
+          "Cuántos puntos, a qué distancia entre sí y con qué forma: cuadrada, rombo o círculo. Podés sacar los puntos que no te interesan.",
+      },
+      {
+        titulo: "Medís y comparás",
+        texto:
+          "La medición tarda entre 5 y 45 minutos. La repetís cuando quieras o la dejás programada: semanal o diaria.",
+      },
+    ],
+    pantalla: "maps",
+    glifo: "ubicacion",
+    planes: ["seo local"],
+    desde: "Starter",
+  },
+  {
+    slug: "ficha-de-google",
+    nombre: "Ficha de Google",
+    corto: "Tu ficha al día y protegida, sin entrar a Google",
+    seoTitle: "Ficha de Google Business: gestionala y protegela desde FlashTag",
+    seoDescription:
+      "Editá horarios, feriados, fotos y publicaciones de tu ficha de Google desde FlashTag. Con auditoría sobre 100 y protección ante cambios de terceros.",
+    titular: "Tu ficha de Google al día y protegida, sin entrar a Google",
+    destacado: "sin entrar a Google",
+    entrada:
+      "Conectás tu ficha de Google Business y la manejás desde FlashTag: descripción, teléfono, sitio web, horarios, feriados, fotos y publicaciones. Los cambios se publican en Google al guardar.",
+    ampliacion:
+      "Además la cuida: cada 15 minutos revisa si alguien cambió tu horario, tu teléfono, tu web, tu descripción o el estado del local, y lo vuelve a como lo dejaste. Si lo que cambió es el nombre, la dirección o la categoría, te avisa. La auditoría le pone una nota sobre 100 a tu ficha, con la lista de qué falta y dónde se arregla. El nombre, la dirección y la categoría principal se siguen cambiando en Google: son cambios sensibles y la app no los toca.",
+    analogia: "Es tener a alguien mirando tu vidriera de Google todo el día, que además te dice qué le falta.",
+    casos: [
+      "Cargar el horario de un feriado sin entrar a Google",
+      "Que nadie te cambie el teléfono o el horario sin que te enteres",
+      "Saber qué le falta a tu ficha, con una nota sobre 100",
+      "Publicar novedades en Google, o dejarlas programadas",
+    ],
+    pasos: [
+      {
+        titulo: "Conectás Google",
+        texto: "Entrás con la cuenta de Google que administra tu ficha y elegís qué sucursales sumar.",
+      },
+      {
+        titulo: "La completás",
+        texto: "La auditoría te dice qué falta: descripción, horarios, fotos, publicaciones. Lo cargás desde la app.",
+      },
+      {
+        titulo: "Queda protegida",
+        texto: "FlashTag revisa tu ficha cada 15 minutos y revierte los cambios que no hiciste vos.",
+      },
+    ],
+    pantalla: "ficha",
+    glifo: "escudo",
+    planes: ["cuenta"],
+    desde: "Starter",
+  },
+  {
+    slug: "flashcard",
+    nombre: "FlashCard",
+    corto: "Tu tarjeta de presentación, en un QR",
+    seoTitle: "FlashCard: tarjeta de presentación digital con QR",
+    seoDescription:
+      "Tu tarjeta de presentación digital: foto, cargo, WhatsApp y redes en un QR. El que la abre guarda tu contacto en un toque. Una gratis por cuenta.",
+    titular: "Tu tarjeta de presentación, siempre al día y en un QR",
+    destacado: "en un QR",
+    entrada:
+      "Cargás tus datos una vez (foto, nombre, cargo, teléfono, WhatsApp, mail, redes y web), elegís una plantilla y un color, y compartís tu tarjeta con un QR o un link. El que la abre guarda tu contacto en un toque.",
+    ampliacion:
+      "Si cambiás de teléfono o de cargo, la editás desde la app y el mismo QR muestra los datos nuevos: no hay que reimprimir nada. También la podés llevar en la Wallet del celular. Cada cuenta tiene una FlashCard gratis; desde el plan Starter podés sumar más, una por vendedor.",
+    analogia: "Es la tarjeta personal de siempre, pero que no se termina, no se pierde y se actualiza sola.",
+    casos: [
+      "Que cada vendedor tenga su tarjeta, con su WhatsApp",
+      "Pasarle tu contacto a un cliente sin dictar el número",
+      "Cambiar un dato sin reimprimir tarjetas",
+      "Llevarla en la Wallet del celular",
+    ],
+    pasos: [
+      {
+        titulo: "Cargás tus datos",
+        texto: "Foto, nombre, cargo, empresa, teléfono, mail, WhatsApp, redes, web y dirección.",
+      },
+      {
+        titulo: "Elegís el diseño",
+        texto: "Una plantilla y un color. Arranca con los colores y el logo de tu marca.",
+      },
+      {
+        titulo: "La compartís",
+        texto: "Por QR o por link. Quien la abre te llama, te escribe o guarda tu contacto en un toque.",
+      },
+    ],
+    pantalla: "flashcard",
+    glifo: "tarjeta",
+    foto: "tienda",
+    desde: "Free",
   },
 ];
 

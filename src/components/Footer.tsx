@@ -29,7 +29,7 @@ const redes = [
 ].filter((r) => r.href);
 
 const linkClass =
-  "inline-flex min-h-9 items-center text-[0.9375rem] text-paper/70 underline-offset-4 transition-colors duration-200 hover:text-paper hover:underline md:min-h-0";
+  "inline-flex min-h-11 items-center text-[0.9375rem] text-paper/70 underline-offset-4 transition-colors duration-200 hover:text-paper hover:underline md:min-h-0";
 
 export function Footer() {
   return (
@@ -51,7 +51,7 @@ export function Footer() {
                 <QRMark size={16} tone="paper" />
                 {col.titulo}
               </h2>
-              <ul className="mt-3 space-y-0.5 md:mt-4 md:space-y-2.5">
+              <ul className="mt-2 md:mt-4 md:space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     {link.externo ? (

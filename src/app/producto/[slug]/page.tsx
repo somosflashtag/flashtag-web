@@ -4,6 +4,9 @@ import { FidelidadDetalle } from "@/components/FidelidadDetalle";
 import { FormatosDescarga } from "@/components/FormatosDescarga";
 import { MetricasDetalle } from "@/components/MetricasDetalle";
 import { PixelesDetalle } from "@/components/PixelesDetalle";
+import { SimuladorMaps } from "@/components/home/SimuladorMaps";
+import { Seccion } from "@/components/ui/Seccion";
+import { Titulo } from "@/components/ui/Titulo";
 import { Button } from "@/components/ui/Button";
 import { Cierre } from "@/components/ui/Cierre";
 import { HeroPagina } from "@/components/ui/HeroPagina";
@@ -102,6 +105,17 @@ export default async function ProductoPage({
       {f.slug === "qr-dinamicos" && <FormatosDescarga />}
       {f.slug === "fidelidad" && <FidelidadDetalle />}
       {f.slug === "pixeles" && <PixelesDetalle />}
+      {f.slug === "posicion-en-maps" && (
+        <Seccion tono="arena" id="simulador">
+          <Titulo
+            titulo="Probalo: buscá como tu cliente"
+            bajada="Elegí un rubro y mirá cómo se lee una medición: en qué puesto sale el local en cada punto y quién le gana. Es un ejemplo; en la app se mide con tu ficha y tus competidores reales."
+          />
+          <div data-reveal="zoom">
+            <SimuladorMaps />
+          </div>
+        </Seccion>
+      )}
 
       {/* En métricas, los casos de uso SON las preguntas que contesta el panel:
           van adentro de su detalle, no en una sección aparte. */}

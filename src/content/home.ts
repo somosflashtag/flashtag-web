@@ -184,9 +184,9 @@ export const pilares: Pilar[] = [
     bajada:
       "Tu ficha de Google completa, protegida y activa, y un mapa que te muestra en qué cuadras ganás y en cuáles no.",
     funciones: [
-      { pantalla: "ficha", glifo: "google", titulo: "Gestión de tu ficha", texto: "Descripción, horarios, feriados, fotos y publicaciones, sin entrar a Google" },
-      { pantalla: "maps", glifo: "objetivo", titulo: "Posición en Maps", texto: "49 puntos alrededor de tu local: dónde salís en el top 3" },
-      { pantalla: "proteccion", glifo: "escudo", titulo: "Protección y auditoría", texto: "Revertimos cambios de terceros y puntuamos tu ficha sobre 100" },
+      { pantalla: "ficha", glifo: "google", titulo: "Gestión de tu ficha", texto: "Descripción, horarios, feriados, fotos y publicaciones, sin entrar a Google", feature: "ficha-de-google" },
+      { pantalla: "maps", glifo: "objetivo", titulo: "Posición en Maps", texto: "49 puntos alrededor de tu local: dónde salís en el top 3", feature: "posicion-en-maps" },
+      { pantalla: "proteccion", glifo: "escudo", titulo: "Protección y auditoría", texto: "Revertimos cambios de terceros y puntuamos tu ficha sobre 100", feature: "ficha-de-google" },
       { pantalla: "competidores", glifo: "espadas", titulo: "Competidores", texto: "Tu valoración y tus reseñas al lado de las de tu zona" },
     ],
   },
@@ -218,7 +218,7 @@ export const pilares: Pilar[] = [
       { pantalla: "qr", glifo: "qr", titulo: "QR dinámicos", texto: "PNG, SVG, EPS o PDF en CMYK. Cambiás el destino y medís cada escaneo", feature: "qr-dinamicos" },
       { pantalla: "linkpage", glifo: "link", titulo: "Link Pages", texto: "Tu minisitio con WhatsApp, redes, reseñas y club, con métricas por botón", feature: "link-pages" },
       { pantalla: "ruleta", glifo: "ruleta", titulo: "Ruleta de premios y WiFi", texto: "Juntá mails, teléfonos y cumpleaños a cambio de un premio o de internet", feature: "ruleta" },
-      { pantalla: "flashcard", glifo: "tarjeta", titulo: "FlashCard", texto: "La tarjeta de presentación digital de cada vendedor, con su WhatsApp y sus redes" },
+      { pantalla: "flashcard", glifo: "tarjeta", titulo: "FlashCard", texto: "La tarjeta de presentación digital de cada vendedor, con su WhatsApp y sus redes", feature: "flashcard" },
     ],
   },
   {
