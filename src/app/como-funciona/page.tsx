@@ -3,7 +3,7 @@ import { QRMark } from "@/components/ui/QRMark";
 import { Section } from "@/components/ui/Section";
 import { AppTour } from "@/components/AppTour";
 import { Mock } from "@/components/app/mocks";
-import { features } from "@/content/features";
+import { featuresConMaqueta } from "@/content/features";
 import { pasos, pasosIntro } from "@/content/pasos";
 import { pageMeta } from "@/lib/seo";
 import { cta } from "@/lib/site";
@@ -63,7 +63,7 @@ export default function ComoFuncionaPage() {
           <h2 className="t-h2 mt-4 text-balance">Con o sin cartel. Todo desde el mismo lugar.</h2>
         </div>
         <div className="mt-12 lg:mt-16" data-reveal>
-          <AppTour features={features} screens={screens} />
+          <AppTour features={featuresConMaqueta} screens={screens} />
         </div>
       </Section>
 
