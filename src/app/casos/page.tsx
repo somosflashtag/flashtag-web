@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/Button";
-import { QRMark } from "@/components/ui/QRMark";
-import { Section } from "@/components/ui/Section";
-import { CasoCard } from "@/components/CasoCard";
+import { Cierre } from "@/components/ui/Cierre";
+import { HeroPagina } from "@/components/ui/HeroPagina";
+import { Pagina } from "@/components/ui/Pagina";
+import { Seccion } from "@/components/ui/Seccion";
+import { Titulo } from "@/components/ui/Titulo";
+import { CasosFiltro } from "@/components/home/CasosFiltro";
 import { casosPublicables, rubros } from "@/content/casos";
 import { pageMeta } from "@/lib/seo";
 import { cta } from "@/lib/site";
@@ -15,98 +18,54 @@ export const metadata = pageMeta({
 
 export default function CasosPage() {
   const hay = casosPublicables.length > 0;
-  const rubrosConCasos = rubros.filter((r) =>
-    casosPublicables.some((c) => c.rubro === r.id),
-  );
 
   return (
-    <>
-      <Section className="bg-surface">
-        <p className="flex items-center gap-2 text-sm font-semibold text-brand">
-          <QRMark /> Casos reales
-        </p>
-        <h1 className="t-display measure mt-4">
-          Locales que crecen con FlashTag.
-        </h1>
-        <p className="t-lead measure mt-6 text-muted">
-          De almacenes de barrio a marcas reconocidas. Casos reales de comercios
-          argentinos.
-        </p>
-      </Section>
+    <Pagina>
+      <HeroPagina
+        migas={[{ label: "Inicio", href: "/" }, { label: "Casos" }]}
+        etiqueta="Casos reales"
+        glifo="trofeo"
+        titulo="Locales que crecen"
+        destacado="con FlashTag."
+        bajada="De almacenes de barrio a marcas reconocidas. Casos reales de comercios argentinos."
+        pie="Publicamos un caso solo con permiso del comercio. Las cifras salen de sus perfiles de Google."
+      >
+        <Button href={cta.primary.href} variant="oro" size="lg" arrow>
+          {cta.primary.label}
+        </Button>
+        <Button href={cta.secondary.href} variant="claro" size="lg">
+          {cta.secondary.label}
+        </Button>
+      </HeroPagina>
 
-      <Section>
+      <Seccion>
         {hay ? (
           <>
-            {rubrosConCasos.length > 1 && (
-              <ul className="flex flex-wrap gap-2">
-                {rubrosConCasos.map((r) => (
-                  <li
-                    key={r.id}
-                    className="t-caption rounded-full border border-line px-4 py-2"
-                  >
-                    {r.label}
-                  </li>
-                ))}
-              </ul>
-            )}
-            <ul className="carrusel mt-6 grid gap-5 md:mt-10 md:grid-cols-2 lg:grid-cols-3">
-              {casosPublicables.map((c) => (
-                <li key={c.slug}>
-                  <CasoCard caso={c} />
-                </li>
-              ))}
-            </ul>
+            <Titulo titulo="Qué hicieron y qué les dio" bajada="Elegí un rubro y mirá los casos más cercanos al tuyo." />
+            <CasosFiltro casos={casosPublicables} rubros={rubros} limite={casosPublicables.length} columnas={3} />
           </>
         ) : (
           /* Sin casos autorizados no inventamos una grilla: se ofrece serlo.
-             Ver AGENTS.md §5 y el flag `autorizado` en content/casos.ts. */
-          <div className="mx-auto max-w-2xl rounded-[var(--radius-surface)] border border-line bg-surface p-8 text-center sm:p-12">
-            <QRMark className="mx-auto" size={20} />
-            <h2 className="t-h2 mt-5">Estamos preparando esta sección.</h2>
+             Ver AGENTS.md §4 y el flag `autorizado` en content/casos.ts. */
+          <div className="mx-auto max-w-2xl rounded-[2rem] bg-brand-soft/70 p-8 text-center sm:p-12">
+            <Titulo tamano="chico" titulo="Estamos preparando esta sección." />
             <p className="t-lead mt-4 text-muted">
-              Publicamos un caso solo cuando el comercio nos autoriza a usar su
-              nombre y los números están verificados contra el dashboard. Las
-              historias están; los permisos, en camino.
+              Publicamos un caso solo cuando el comercio nos autoriza a usar su nombre y los números están verificados
+              contra el dashboard. Las historias están; los permisos, en camino.
             </p>
-            <p className="t-body mt-6 text-muted">
-              ¿Tenés un local y querés que contemos el tuyo? Escribinos y lo
-              armamos juntos.
+            <p className="mt-6 text-muted">
+              ¿Tenés un local y querés que contemos el tuyo? Escribinos y lo armamos juntos.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button href={cta.primary.href} variant="primary" size="lg" arrow>
-                {cta.primary.label}
-              </Button>
-              <Button href={cta.secondary.href} variant="secondary" size="lg">
-                {cta.secondary.label}
-              </Button>
-            </div>
           </div>
         )}
-      </Section>
+      </Seccion>
 
-      {hay && (
-        <Section className="border-t border-line bg-surface">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="t-h2">¿Querés sumarte a estos casos?</h2>
-            <p className="t-lead mt-4 text-muted">
-              Empezá gratis, sin tarjeta de crédito.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button href={cta.primary.href} variant="primary" size="lg" arrow>
-                {cta.primary.label}
-              </Button>
-              <Button
-                href={cta.secondary.href}
-                variant="secondary"
-                size="lg"
-               
-              >
-                {cta.secondary.label}
-              </Button>
-            </div>
-          </div>
-        </Section>
-      )}
-    </>
+      <Cierre
+        tamano="mega"
+        titular={hay ? "¿Querés ser" : "Empezá hoy,"}
+        destacado={hay ? "el próximo caso?" : "contalo mañana."}
+        bajada="Empezá gratis, sin tarjeta de crédito."
+      />
+    </Pagina>
   );
 }

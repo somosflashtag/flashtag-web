@@ -23,7 +23,7 @@ import { Glifo, type GlifoId } from "./Glifo";
  * - `migas`: migas de pan. Emite también el JSON-LD `BreadcrumbList`; la
  *   página no tiene que agregarlo.
  * - `compacto`: para páginas de texto (legales, artículo) donde el hero es
- *   solo el encabezado.
+ *   solo el encabezado. `largo`: cuando el titular es una oración entera.
  */
 export type Miga = { label: string; href?: string };
 
@@ -81,6 +81,7 @@ export function HeroPagina({
   pie,
   centrado = false,
   compacto = false,
+  largo = false,
   confeti = true,
   className,
 }: {
@@ -100,6 +101,8 @@ export function HeroPagina({
   pie?: React.ReactNode;
   centrado?: boolean;
   compacto?: boolean;
+  /** El titular es una oración larga (un caso, un artículo): baja un escalón de tamaño. */
+  largo?: boolean;
   confeti?: boolean;
   className?: string;
 }) {
@@ -128,7 +131,10 @@ export function HeroPagina({
                 {etiqueta}
               </span>
             )}
-            <h1 className="t-hero ft-llega text-balance" style={{ animationDelay: "60ms" }}>
+            <h1
+              className={cn("t-hero ft-llega text-balance", largo && "!text-[clamp(1.75rem,1.15rem+2.3vw,3rem)] !leading-[1.08]")}
+              style={{ animationDelay: "60ms" }}
+            >
               {titulo}
               {destacado && (
                 <>

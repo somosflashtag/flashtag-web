@@ -1,13 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
 import Image from "next/image";
-import { Section } from "@/components/ui/Section";
-import { casosConDetalle, rubros } from "@/content/casos";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { CasoCard } from "@/components/CasoCard";
+import { Button } from "@/components/ui/Button";
+import { Cierre } from "@/components/ui/Cierre";
+import { Container } from "@/components/ui/Container";
+import { HeroPagina } from "@/components/ui/HeroPagina";
+import { Pagina, Viaja } from "@/components/ui/Pagina";
+import { Seccion } from "@/components/ui/Seccion";
+import { Titulo } from "@/components/ui/Titulo";
+import { casosConDetalle, casosPublicables, rubros } from "@/content/casos";
+import { cn } from "@/lib/cn";
 import { pageMeta } from "@/lib/seo";
 import { cta, site } from "@/lib/site";
 
@@ -37,6 +43,8 @@ export async function generateMetadata({
   });
 }
 
+const tonosCifra = ["dato-brand", "dato-coral", "dato-teal", "dato-brand"];
+
 export default async function CasoPage({
   params,
 }: {
@@ -55,124 +63,141 @@ export default async function CasoPage({
   );
 
   const rubro = rubros.find((r) => r.id === c.rubro)?.label;
+  /* Otros casos: primero los del mismo rubro. Nunca el que se está leyendo
+     (su logo ya viaja en el hero con el mismo nombre de transición). */
+  const otros = casosPublicables
+    .filter((x) => x.slug !== c.slug)
+    .sort((a, b) => Number(b.rubro === c.rubro) - Number(a.rubro === c.rubro))
+    .slice(0, 3);
 
   return (
-    <>
-      <div className="border-b border-line bg-surface py-14 md:py-20">
-        <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
-            <div>
-              <nav className="t-caption text-muted" aria-label="Migas de pan">
-                <Link href="/" className="hover:text-ink">
-                  Inicio
-                </Link>
-                {" / "}
-                <Link href="/casos" className="hover:text-ink">
-                  Casos
-                </Link>
-                {" / "}
-                <span>{c.negocio}</span>
-              </nav>
-              <p className="t-caption mt-5 inline-block rounded-full bg-brand-soft px-3 py-1 font-semibold uppercase tracking-wide text-brand">
-                {rubro}
-              </p>
-              <h1 className="t-h2 mt-5">{c.portada.titular}</h1>
-              <p className="t-lead measure mt-5 text-muted">{c.portada.bajada}</p>
-              <ul className="t-caption mt-6 flex flex-wrap gap-2 text-muted">
-                {c.portada.datos.map((d) => (
-                  <li
-                    key={d}
-                    className="rounded-full border border-line bg-paper px-3 py-1.5"
-                  >
-                    {d}
-                  </li>
-                ))}
-              </ul>
+    <Pagina>
+      <HeroPagina
+        largo
+        migas={[{ label: "Inicio", href: "/" }, { label: "Casos", href: "/casos" }, { label: c.negocio }]}
+        etiqueta={rubro}
+        titulo={c.portada.titular}
+        bajada={c.portada.bajada}
+        pie={
+          <ul className="flex flex-wrap gap-2">
+            {c.portada.datos.map((d) => (
+              <li key={d} className="vidrio-claro rounded-full px-3 py-1.5 text-[13px] font-medium text-paper">
+                {d}
+              </li>
+            ))}
+          </ul>
+        }
+        visual={
+          <figure className="relative mx-auto w-full max-w-[460px]">
+            <div className="foto-b relative aspect-square overflow-hidden shadow-[var(--shadow-device)]">
+              <Image
+                src={c.foto?.src ?? "/productos/cartel-google.webp"}
+                alt={c.foto?.alt ?? `Cartel de FlashTag con QR y NFC en ${c.negocio}`}
+                fill
+                priority
+                sizes="(min-width: 1024px) 460px, 90vw"
+                className="object-cover"
+              />
             </div>
-            <Image
-              src={c.foto?.src ?? "/productos/cartel-google.webp"}
-              alt={
-                c.foto?.alt ??
-                `Cartel de FlashTag con QR y NFC en ${c.negocio}`
-              }
-              width={700}
-              height={700}
-              sizes="(min-width: 1024px) 35vw, 100vw"
-              priority
-              className="w-full rounded-[var(--radius-surface)] object-cover shadow-[var(--shadow-float)]"
-            />
-          </div>
-        </Container>
-      </div>
+            {/* El logo viaja desde la tarjeta del caso. Siempre sobre ink. */}
+            <figcaption className="absolute -bottom-5 left-4 flex h-[76px] items-center rounded-[1.5rem] border border-paper/15 bg-ink px-5 shadow-[var(--shadow-device)] md:-left-6">
+              <Viaja nombre={`caso-${c.slug}`}>
+                <div className="flex h-14 items-center">
+                  {c.logo ? (
+                    <Image
+                      src={c.logo}
+                      alt={c.negocio}
+                      width={160}
+                      height={56}
+                      sizes="150px"
+                      className="h-auto max-h-14 w-auto max-w-[140px] object-contain"
+                    />
+                  ) : (
+                    <span className="font-display text-xl font-bold tracking-[-0.03em] text-paper">{c.negocio}</span>
+                  )}
+                </div>
+              </Viaja>
+            </figcaption>
+          </figure>
+        }
+      >
+        <Button href={site.urls.shop} variant="oro" size="lg" arrow>
+          Comprá tu cartel
+        </Button>
+        <Button href={cta.primary.href} variant="claro" size="lg">
+          {cta.primary.label}
+        </Button>
+      </HeroPagina>
 
       {/* Las cifras solo salen cuando están cruzadas con el dashboard. */}
       {c.metricaVerificada && (
-        <Container>
-          <dl className="grid grid-cols-2 gap-4 py-12 lg:grid-cols-4">
-            {c.portada.cifras.map((f) => (
+        <Seccion aire="chico" className="pb-0 md:pb-0">
+          <dl className="carrusel carrusel-angosto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {c.portada.cifras.map((f, i) => (
               <div
                 key={f.label}
-                className="rounded-[var(--radius-card)] border border-line p-6 text-center"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
+                className={cn("flex min-h-[150px] flex-col justify-end rounded-[1.75rem] p-6 text-paper", tonosCifra[i % tonosCifra.length])}
               >
-                <dt className="sr-only">{f.label}</dt>
-                <dd>
-                  <span className="t-stat block text-brand">{f.valor}</span>
-                  <span className="t-caption mt-2 block text-muted">
-                    {f.label}
-                  </span>
-                </dd>
+                <dd className="order-1 font-display text-[2.5rem] font-bold leading-none tracking-[-0.045em] tnum md:text-[3rem]">{f.valor}</dd>
+                <dt className="order-2 mt-2 text-[15px] leading-snug text-paper/90">{f.label}</dt>
               </div>
             ))}
           </dl>
-        </Container>
+        </Seccion>
       )}
 
-      <Container>
-        <article
-          className="legal max-w-3xl py-14 md:py-20"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+      {/* ── EL RELATO ────────────────────────────────────────── */}
+      <section className="py-14 md:py-24">
+        <Container>
+          <article className="legal mx-auto max-w-[720px]" dangerouslySetInnerHTML={{ __html: html }} />
 
-        {c.testimonio && (
-          <blockquote className="mb-14 max-w-3xl rounded-[var(--radius-surface)] border border-line bg-surface p-8">
-            <p className="t-lead italic">
-              &ldquo;{c.testimonio.texto}&rdquo;
-            </p>
-            <footer className="t-caption mt-5 text-muted">
-              <strong className="text-ink">{c.testimonio.autor}</strong> ·{" "}
-              {c.testimonio.cargo}
-            </footer>
-          </blockquote>
-        )}
+          {c.testimonio && (
+            <blockquote data-reveal className="mx-auto mt-12 max-w-[720px] rounded-[2rem] bg-brand-soft/70 p-7 md:p-10">
+              <p className="font-display text-[1.375rem] font-semibold leading-snug tracking-[-0.02em] md:text-[1.625rem]">
+                &ldquo;{c.testimonio.texto}&rdquo;
+              </p>
+              <footer className="mt-5 text-sm text-muted">
+                <strong className="text-ink">{c.testimonio.autor}</strong> · {c.testimonio.cargo}
+              </footer>
+            </blockquote>
+          )}
+        </Container>
+      </section>
 
-        <Link
-          href="/casos"
-          className="t-caption mb-14 inline-block font-semibold text-brand underline underline-offset-4"
-        >
-          Ver todos los casos
-        </Link>
-      </Container>
-
-      <Section className="border-t border-line bg-surface">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">¿Querés resultados como estos?</h2>
-          <p className="t-lead mt-4 text-muted">
-            Empezá con un cartel y escalá cuando quieras.
+      {/* ── MÁS CASOS ────────────────────────────────────────── */}
+      {otros.length > 0 && (
+        <Seccion tono="arena">
+          <Titulo titulo="Más casos" />
+          <ul className="carrusel mt-9 grid gap-4 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
+            {otros.map((o, i) => (
+              <li key={o.slug} data-reveal style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}>
+                <CasoCard caso={o} />
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-center">
+            <Link href="/casos" className="inline-flex min-h-11 items-center text-[15px] font-bold text-brand underline underline-offset-4">
+              Ver todos los casos
+            </Link>
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href={site.urls.shop} variant="primary" size="lg" arrow>
-              Comprá tu cartel
-            </Button>
-            <Button
-              href={cta.primary.href}
-              variant="secondary"
-              size="lg"
-            >
-              {cta.primary.label}
-            </Button>
-          </div>
-        </div>
-      </Section>
-    </>
+        </Seccion>
+      )}
+
+      <Cierre
+        tamano="mega"
+        titular="¿Querés resultados"
+        destacado="como estos?"
+        bajada="Empezá con un cartel y escalá cuando quieras."
+      >
+        <Button href={site.urls.shop} variant="oro" size="lg" arrow>
+          Comprá tu cartel
+        </Button>
+        <Button href={cta.primary.href} variant="claro" size="lg">
+          {cta.primary.label}
+        </Button>
+      </Cierre>
+    </Pagina>
   );
 }
