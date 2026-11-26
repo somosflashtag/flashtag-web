@@ -80,7 +80,7 @@ export function Faq({
             <button
               type="button"
               onClick={() => setTodas(true)}
-              className="pildora min-h-11 border border-ink/15 px-5 text-sm font-semibold hover:border-ink"
+              className="min-h-11 rounded-full border border-ink/20 px-5 text-sm font-semibold transition-[translate,border-color,background-color] duration-500 ease-fluida hover:-translate-y-0.5 hover:border-ink hover:bg-ink/[0.04]"
             >
               Ver {items.length - visibles.length} preguntas más
             </button>

@@ -1,46 +1,48 @@
-import Link from "next/link";
+import { Button } from "./ui/Button";
+import { Cierre } from "./ui/Cierre";
 import { Container } from "./ui/Container";
-import { QRMark } from "./ui/QRMark";
+import { HeroPagina } from "./ui/HeroPagina";
+import { Pagina } from "./ui/Pagina";
 import type { DocLegal } from "@/lib/legal";
 
-/** Encabezado + cuerpo compartido por /terminos y /privacidad. */
+/**
+ * Encabezado + cuerpo compartido por /terminos y /privacidad.
+ *
+ * Solo cambia el envoltorio: el texto sale tal cual de `src/content/legal/*.md`
+ * (un export de la app; ver «Documentos legales» en AGENTS.md).
+ */
 export function LegalLayout({ doc }: { doc: DocLegal }) {
   return (
-    <>
-      <div className="border-b border-line bg-surface py-14 md:py-20">
-        <Container>
-          <p className="flex items-center gap-2 text-sm font-semibold text-brand">
-            <QRMark /> Legal
-          </p>
-          <h1 className="t-h2 mt-4">{doc.titulo}</h1>
-          {doc.vigencia && (
-            <p className="t-caption mt-3 text-muted">{doc.vigencia}</p>
-          )}
-          <nav className="mt-7 flex flex-wrap gap-2" aria-label="Documentos legales">
-            <Link
-              href="/terminos"
-              className="t-caption rounded-full border border-line bg-paper px-4 py-2 transition-colors duration-[120ms] hover:border-ink"
-            >
-              Términos y Condiciones
-            </Link>
-            <Link
-              href="/privacidad"
-              className="t-caption rounded-full border border-line bg-paper px-4 py-2 transition-colors duration-[120ms] hover:border-ink"
-            >
-              Política de Privacidad
-            </Link>
-          </nav>
-        </Container>
-      </div>
+    <Pagina>
+      <HeroPagina
+        compacto
+        confeti={false}
+        migas={[{ label: "Inicio", href: "/" }, { label: "Legal" }]}
+        etiqueta="Legal"
+        glifo="escudo"
+        titulo={doc.titulo}
+        bajada={doc.vigencia}
+      >
+        <Button href="/terminos" variant="claro" size="md">
+          Términos y Condiciones
+        </Button>
+        <Button href="/privacidad" variant="claro" size="md">
+          Política de Privacidad
+        </Button>
+      </HeroPagina>
 
-      <Container>
-        <article
-          className="legal max-w-3xl py-14 md:py-20"
-          /* HTML generado en build time desde Markdown del repositorio.
-             No hay contenido de usuario en esta ruta. Ver lib/legal.ts */
-          dangerouslySetInnerHTML={{ __html: doc.html }}
-        />
-      </Container>
-    </>
+      <section className="py-12 md:py-20">
+        <Container>
+          <article
+            className="legal mx-auto max-w-[760px]"
+            /* HTML generado en build time desde Markdown del repositorio.
+               No hay contenido de usuario en esta ruta. Ver lib/legal.ts */
+            dangerouslySetInnerHTML={{ __html: doc.html }}
+          />
+        </Container>
+      </section>
+
+      <Cierre />
+    </Pagina>
   );
 }

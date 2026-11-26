@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui/Button";
-import { QRMark } from "@/components/ui/QRMark";
-import { Section } from "@/components/ui/Section";
-import { cursos } from "@/content/cursos";
+import { Cierre } from "@/components/ui/Cierre";
+import { Glifo } from "@/components/ui/Glifo";
+import { HeroPagina } from "@/components/ui/HeroPagina";
+import { Pagina } from "@/components/ui/Pagina";
+import { Seccion } from "@/components/ui/Seccion";
+import { Titulo } from "@/components/ui/Titulo";
+import { cursos, type Curso } from "@/content/cursos";
+import { cn } from "@/lib/cn";
 import { pageMeta } from "@/lib/seo";
 import { cta } from "@/lib/site";
 
@@ -21,96 +26,106 @@ function Duracion({ modulos, horas }: { modulos: number; horas: number }) {
   );
 }
 
+/** El nombre de la institución solo aparece con aval confirmado. */
+const institucionDe = (c: Curso) => (c.institucion && !c.institucion.avalPendiente ? c.institucion.nombre : null);
+
+const tonos = ["paso-brand", "paso-teal", "paso-coral", "paso-gold"];
+
 export default function CursosPage() {
+  const disponibles = cursos.filter((c) => c.disponible);
+  const proximos = cursos.filter((c) => !c.disponible);
+
   return (
-    <>
-      <Section className="bg-surface">
-        <p className="flex items-center gap-2 text-sm font-semibold text-brand">
-          <QRMark /> Cursos
-        </p>
-        <h1 className="t-display measure mt-4">
-          Aprendé a hacer crecer tu negocio.
-        </h1>
-        <p className="t-lead measure mt-6 text-muted">
-          Cursos prácticos para dueños de comercios argentinos. Sin tecnicismos.
-          Con resultados concretos.
-        </p>
-      </Section>
+    <Pagina>
+      <HeroPagina
+        migas={[{ label: "Inicio", href: "/" }, { label: "Cursos" }]}
+        etiqueta="Cursos"
+        glifo="capas"
+        titulo="Aprendé a hacer crecer"
+        destacado="tu negocio."
+        bajada="Cursos prácticos para dueños de comercios argentinos. Sin tecnicismos. Con resultados concretos."
+      >
+        <Button href={cta.primary.href} variant="oro" size="lg" arrow>
+          Empezar gratis
+        </Button>
+        <Button href="#cursos" variant="claro" size="lg">
+          Ver los cursos
+        </Button>
+      </HeroPagina>
 
-      <Section>
-        <ul className="grid gap-4">
-          {cursos.map((c) => {
-            /* El nombre de la institución solo aparece con aval confirmado. */
-            const institucion =
-              c.institucion && !c.institucion.avalPendiente
-                ? c.institucion.nombre
-                : null;
-
+      {/* ── DISPONIBLES ──────────────────────────────────────── */}
+      <Seccion id="cursos">
+        <Titulo titulo="Para empezar hoy" bajada="Cortos y al grano: los hacés entre un cliente y otro." />
+        <ul className="carrusel mt-9 grid gap-4 md:mt-14 md:grid-cols-3">
+          {disponibles.map((c, i) => {
+            const institucion = institucionDe(c);
             return (
               <li
                 key={c.slug}
-                className="flex flex-col gap-4 rounded-[var(--radius-card)] border border-line p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+                className={cn("flex min-h-[360px] flex-col rounded-[2rem] p-6 text-paper md:p-8", tonos[i % tonos.length])}
               >
-                <div className="min-w-0">
-                  <p className="t-caption flex flex-wrap items-center gap-x-2 gap-y-1 text-muted">
-                    <span className="rounded-full bg-surface px-2.5 py-1 text-ink">
-                      {c.nivel}
-                    </span>
+                <div className="flex flex-wrap items-center gap-2 text-[13px] font-semibold">
+                  <span className="vidrio-claro rounded-full px-3 py-1">{c.nivel}</span>
+                  <span className="text-paper/85">
                     <Duracion modulos={c.modulos} horas={c.horas} />
-                    {!c.disponible && (
-                      <span className="rounded-full bg-brand-soft px-2.5 py-1 font-semibold text-brand">
-                        Próximamente
-                      </span>
-                    )}
-                  </p>
-                  <h2 className="t-h3 mt-3">
-                    {c.titulo}
-                    {institucion && (
-                      <span className="text-muted"> · {institucion}</span>
-                    )}
-                  </h2>
-                </div>
-
-                {c.disponible ? (
-                  <Button
-                    href={cta.primary.href}
-                    variant="primary"
-                    size="md"
-                    className="shrink-0"
-                  >
-                    Empezar gratis
-                  </Button>
-                ) : (
-                  <span className="t-caption shrink-0 rounded-[var(--radius-btn)] border border-line px-5 py-3 text-muted">
-                    Pronto
                   </span>
-                )}
+                </div>
+                <h3 className="mt-auto pt-10 font-display text-[1.5rem] font-bold leading-[1.1] tracking-[-0.035em] md:text-[1.625rem]">
+                  {c.titulo}
+                  {institucion && <span className="text-paper/75"> · {institucion}</span>}
+                </h3>
+                <Button href={cta.primary.href} variant="blanco" size="md" arrow className="mt-6 self-start">
+                  Empezar gratis
+                </Button>
               </li>
             );
           })}
         </ul>
-      </Section>
+      </Seccion>
 
-      <Section className="border-t border-line bg-surface">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">¿Listo para aplicarlo en tu local?</h2>
-          <p className="t-lead mt-4 text-muted">
-            Empezá gratis, sin tarjeta de crédito. Setup en minutos.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href={cta.primary.href} variant="primary" size="lg" arrow>
-              {cta.primary.label}
-            </Button>
-            <Button
-              href={cta.secondary.href}
-              variant="secondary"
-              size="lg"
-            >
-              {cta.secondary.label}
-            </Button>
-          </div>
-        </div>
-      </Section>
-    </>
+      {/* ── PRÓXIMAMENTE ─────────────────────────────────────── */}
+      {proximos.length > 0 && (
+        <Seccion tono="lila">
+          <Titulo titulo="Lo que viene" bajada="Todavía no están abiertos. Cuando salgan, aparecen acá." />
+          <ul className="mt-9 grid gap-4 md:mt-14 md:grid-cols-2">
+            {proximos.map((c, i) => {
+              const institucion = institucionDe(c);
+              return (
+                <li
+                  key={c.slug}
+                  data-reveal
+                  style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+                  className="flex flex-col rounded-[2rem] bg-paper p-6 md:p-8"
+                >
+                  <div className="flex flex-wrap items-center gap-2 text-[13px] font-semibold text-muted">
+                    <span className="eyebrow">Próximamente</span>
+                    <span>{c.nivel}</span>
+                    <span aria-hidden="true">·</span>
+                    <Duracion modulos={c.modulos} horas={c.horas} />
+                  </div>
+                  <h3 className="mt-5 font-display text-[1.375rem] font-bold leading-snug tracking-[-0.03em] md:text-[1.5rem]">
+                    {c.titulo}
+                    {institucion && <span className="text-muted"> · {institucion}</span>}
+                  </h3>
+                  <p className="mt-auto flex items-center gap-2 pt-6 text-sm font-semibold text-muted">
+                    <Glifo id="repetir" size={16} />
+                    Pronto
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </Seccion>
+      )}
+
+      <Cierre
+        tamano="mega"
+        titular="¿Listo para aplicarlo"
+        destacado="en tu local?"
+        bajada="Empezá gratis, sin tarjeta de crédito. Setup en minutos."
+      />
+    </Pagina>
   );
 }

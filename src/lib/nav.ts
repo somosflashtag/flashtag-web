@@ -44,8 +44,14 @@ const feature = (slug: string) => {
  */
 export const menuProducto = {
   grupos: [
-    { titulo: "Que te encuentren y te elijan", items: [feature("resenas-ia"), feature("link-pages")] },
-    { titulo: "Que te escriban", items: [feature("qr-dinamicos"), feature("ruleta")] },
+    {
+      titulo: "Que te encuentren y te elijan",
+      items: [feature("resenas-ia"), feature("ficha-de-google"), feature("posicion-en-maps")],
+    },
+    {
+      titulo: "Que te escriban",
+      items: [feature("qr-dinamicos"), feature("link-pages"), feature("ruleta"), feature("flashcard")],
+    },
     { titulo: "Que vuelvan y vendas más", items: [feature("fidelidad"), feature("metricas"), feature("pixeles")] },
   ],
   extra: [

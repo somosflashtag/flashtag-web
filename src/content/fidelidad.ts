@@ -4,7 +4,25 @@
  * Ocho tipos de tarjeta (una por modelo de negocio) y cuatro herramientas de
  * retención que funcionan sobre cualquiera de ellas. Cada tarjeta se dibuja
  * en código en components/app/WalletCard.tsx con un comercio ficticio.
+ *
+ * Lo consume components/FidelidadDetalle.tsx (/producto/fidelidad).
  */
+
+/** Encabezado de la sección de modalidades. */
+export const modalidadesIntro = {
+  etiqueta: "Ocho modalidades",
+  titular: "Un programa para cada tipo de negocio",
+  bajada:
+    "Sellos para el café, membresía para el gimnasio, gift card para la estética, cashback para la tienda. Elegís la modalidad, le ponés tu logo y tu esquema de puntos, y el cliente la guarda en Apple Wallet o Google Wallet.",
+};
+
+/** Encabezado de la sección de herramientas. */
+export const herramientasIntro = {
+  etiqueta: "Sobre cualquier tarjeta",
+  titular: "Herramientas para que vuelvan",
+  bajada:
+    "Una vez que la tarjeta está en su billetera, tenés un canal directo con cada cliente. Sin app, sin SMS pagos, sin mails que nadie abre.",
+};
 
 export type ColorTarjeta = "ink" | "brand" | "teal" | "coral" | "gold" | "surface";
 
@@ -131,10 +149,23 @@ export const tiposDeTarjeta: TipoTarjeta[] = [
   {
     id: "membresia",
     nombre: "Membresía",
-    para: "Vendé suscripciones y cobralas todos los meses.",
+    /*
+     * 26/11/2026 — acá decía "Vendé suscripciones y cobralas todos los meses."
+     * y, en los bullets, "Cobro con Stripe o Mercado Pago". Eso prometía que
+     * el comercio le cobra a su cliente DESDE FlashTag, y hoy no es así:
+     *  - la membresía de la app es "en el mostrador": el comercio cobra como
+     *    quiera y la tarjeta lleva la vigencia y los usos (flashtag-app,
+     *    migración 20261022190248);
+     *  - el débito automático con el Mercado Pago del comercio no está
+     *    construido, y la conexión de Mercado Pago del comercio está detrás del
+     *    flag `mercadopago_integracion`, abierto solo a administradores;
+     *  - Stripe del comercio quedó fuera del plan (necesita Stripe Connect).
+     * Cuando el cobro desde la app esté abierto a clientes, vuelve acá.
+     */
+    para: "Planes mensuales con cupo de uso: vos cobrás, la tarjeta lleva la cuenta.",
     bullets: [
       "Suscripciones a productos o servicios",
-      "Cobro con Stripe o Mercado Pago",
+      "La cobrás con el medio que ya usás; la tarjeta muestra la vigencia",
       "Límite de uso semanal o mensual",
       "Niveles de tarifa con beneficios extra",
     ],

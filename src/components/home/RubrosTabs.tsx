@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Glifo, type GlifoId } from "@/components/ui/Glifo";
+import { Viaja } from "@/components/ui/Pagina";
 import { cn } from "@/lib/cn";
 
 /**
@@ -89,13 +90,16 @@ export function RubrosTabs({
           href={`/para/${r.slug}`}
           className="ft-entra group relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-[2rem] bg-ink p-6 text-paper sm:min-h-[520px] md:p-8"
         >
-          <Image
-            src={r.foto.src}
-            alt={r.foto.alt}
-            fill
-            sizes="(min-width: 1024px) 460px, (min-width: 640px) 55vw, 100vw"
-            className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-          />
+          {/* La foto viaja al hero de /para/<rubro> al navegar. */}
+          <Viaja nombre={`rubro-${r.slug}`}>
+            <Image
+              src={r.foto.src}
+              alt={r.foto.alt}
+              fill
+              sizes="(min-width: 1024px) 460px, (min-width: 640px) 55vw, 100vw"
+              className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+            />
+          </Viaja>
           <span aria-hidden="true" className="velo absolute inset-0" />
           <span className="vidrio absolute left-5 top-5 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[13px] font-semibold">
             <Glifo id={r.glifo} size={15} />

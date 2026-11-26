@@ -11,6 +11,14 @@
 
 export type Beneficio = { titulo: string; texto: string };
 
+/** Encabezado de la sección de beneficios. */
+export const beneficiosIntro = {
+  etiqueta: "Beneficios",
+  titular: "Lo que pasa en el local, medido como una campaña",
+  bajada:
+    "Hasta ahora el cartel y el flyer eran la parte del marketing que no se podía medir. Con el píxel conectado, un escaneo vale lo mismo que un clic en un anuncio: entra a tus públicos, a tus embudos y a tus informes.",
+};
+
 export const beneficios: Beneficio[] = [
   {
     titulo: "Públicos de remarketing reales",
@@ -30,7 +38,8 @@ export const beneficios: Beneficio[] = [
 ];
 
 /**
- * La tira de "estas tres, listas" que abre la sección de campos.
+ * Las tres herramientas, con su badge. Cada campo de abajo apunta a la suya
+ * por `sigla`: la tarjeta del campo muestra el badge y el `que`.
  *
  * ⚠️ Badges TIPOGRÁFICOS, no logos (AGENTS.md §7): los kits de marca de Google
  * y Meta no están autorizados por escrito todavía. Mismo criterio que las
@@ -43,7 +52,17 @@ export const herramientas = [
   { sigla: "Meta", nombre: "Meta Pixel", que: "Públicos y conversiones en Instagram y Facebook" },
 ];
 
+/** Encabezado de la sección de campos. */
+export const camposIntro = {
+  etiqueta: "Tres campos",
+  titular: "Pegás el ID y listo",
+  bajada:
+    "Usás uno, dos o los tres. Si ya tenés un contenedor de Tag Manager, con ese alcanza: todo lo que tengas adentro se dispara también desde tus QR.",
+};
+
 export type CampoPixel = {
+  /** La herramienta a la que pertenece: `sigla` de `herramientas`. */
+  sigla: string;
   /** Como se llama el campo en la app. */
   label: string;
   /** Qué forma tiene el ID, para que lo reconozcan. */
@@ -56,24 +75,35 @@ export type CampoPixel = {
 
 export const campos: CampoPixel[] = [
   {
+    sigla: "GA4",
     label: "Google Analytics 4",
     formato: "G-XXXXXXXXXX",
     donde: "Google Analytics → Admin → Data Streams.",
     para: "Escaneos y clics como sesiones de tu propiedad. Los ves en informes, embudos y audiencias.",
   },
   {
+    sigla: "Meta",
     label: "Meta Pixel",
     formato: "1234567890",
     donde: "Meta Business Suite → Events Manager.",
     para: "Un público de remarketing con quien escaneó y conversiones para optimizar tus campañas de Instagram y Facebook.",
   },
   {
+    sigla: "GTM",
     label: "Google Tag Manager",
     formato: "GTM-XXXXXXX",
     donde: "tagmanager.google.com → tu cuenta y contenedor.",
     para: "Todo lo que ya tengas en el contenedor: Google Ads, TikTok, LinkedIn o lo que agregues después, sin volver a tocar la app.",
   },
 ];
+
+/** Encabezado de la sección de eventos. */
+export const eventosIntro = {
+  etiqueta: "Qué llega",
+  titular: "Cada escaneo, cada visita, cada clic",
+  bajada:
+    "Los mismos eventos que ves en las métricas de FlashTag, ahora también en tus herramientas. Y desde ahí, armás lo que quieras.",
+};
 
 /** Qué se manda a cada herramienta. Solo lo que la app hace de verdad. */
 export const eventos = [

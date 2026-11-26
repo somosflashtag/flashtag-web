@@ -1,12 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArticuloCard } from "@/components/ArticuloCard";
+import { JsonLd } from "@/components/JsonLd";
 import { Button } from "@/components/ui/Button";
+import { Cierre } from "@/components/ui/Cierre";
 import { Container } from "@/components/ui/Container";
-import { QRMark } from "@/components/ui/QRMark";
-import { Section } from "@/components/ui/Section";
+import { HeroPagina } from "@/components/ui/HeroPagina";
+import { Pagina } from "@/components/ui/Pagina";
+import { Seccion } from "@/components/ui/Seccion";
+import { Titulo } from "@/components/ui/Titulo";
 import { articulos, articulosPublicables } from "@/content/blog";
 import { pageMeta } from "@/lib/seo";
 import { cta, site } from "@/lib/site";
@@ -53,6 +58,11 @@ export default async function ArticuloPage({
   if (!a?.cuerpo) notFound();
 
   const html = leerCuerpo(a.cuerpo);
+  /* Para seguir leyendo: primero los de la misma categoría. */
+  const otros = articulosPublicables
+    .filter((x) => x.slug !== a.slug)
+    .sort((x, y) => Number(y.categoria === a.categoria) - Number(x.categoria === a.categoria))
+    .slice(0, 3);
 
   const schema = {
     "@context": "https://schema.org",
@@ -67,53 +77,41 @@ export default async function ArticuloPage({
   };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    <Pagina>
+      <JsonLd id="ld-articulo" data={schema} />
+
+      <HeroPagina
+        compacto
+        largo
+        confeti={false}
+        migas={[{ label: "Inicio", href: "/" }, { label: "Blog", href: "/blog" }, { label: a.categoria }]}
+        etiqueta={a.categoria}
+        titulo={a.titulo}
+        bajada={a.bajada}
+        pie={
+          <p>
+            <time dateTime={a.fecha}>{fmt.format(new Date(a.fecha))}</time>
+            {" · "}
+            <span className="tnum">{a.minutos} min de lectura</span>
+            {" · "}
+            Por el equipo de FlashTag
+          </p>
+        }
       />
 
-      <div className="border-b border-line bg-surface py-14 md:py-20">
+      <section className="py-12 md:py-20">
         <Container>
-          <div className="max-w-3xl">
-            <nav className="t-caption text-muted" aria-label="Migas de pan">
-              <Link href="/" className="hover:text-ink">
-                Inicio
-              </Link>
-              {" / "}
-              <Link href="/blog" className="hover:text-ink">
-                Blog
-              </Link>
-              {" / "}
-              <span>{a.categoria}</span>
-            </nav>
-            <p className="t-caption mt-5 inline-block rounded-full bg-brand-soft px-3 py-1 font-semibold uppercase tracking-wide text-brand">
-              {a.categoria}
-            </p>
-            <h1 className="t-h2 mt-5">{a.titulo}</h1>
-            <p className="t-caption mt-5 text-muted">
-              <time dateTime={a.fecha}>{fmt.format(new Date(a.fecha))}</time>
-              {" · "}
-              {a.minutos} min de lectura
-              {" · "}
-              Por el equipo de FlashTag
-            </p>
-          </div>
-        </Container>
-      </div>
-
-      <Container>
-        <div className="max-w-3xl py-14 md:py-20">
-          <p className="t-lead measure text-muted">{a.bajada}</p>
           <article
-            className="legal mt-10"
+            className="legal mx-auto max-w-[720px]"
             /* Markdown del repositorio, renderizado en build. Sin input de usuario. */
             dangerouslySetInnerHTML={{ __html: html }}
           />
 
-          <div className="mt-14 border-t border-line pt-10">
-            <p className="t-h3">¿Querés empezar con un QR dinámico en tu local?</p>
-            <div className="mt-6 flex flex-wrap gap-3">
+          <aside data-reveal className="mx-auto mt-12 max-w-[720px] rounded-[2rem] bg-brand-soft/70 p-7 md:p-10">
+            <p className="font-display text-[1.5rem] font-bold leading-tight tracking-[-0.035em] md:text-[1.75rem]">
+              ¿Querés empezar con un QR dinámico en tu local?
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href={site.urls.shop} variant="primary" size="lg" arrow>
                 Comprá tu cartel
               </Button>
@@ -121,34 +119,30 @@ export default async function ArticuloPage({
                 {cta.primary.label}
               </Button>
             </div>
-          </div>
+          </aside>
 
-          <Link
-            href="/blog"
-            className="t-caption mt-10 inline-flex items-center gap-2 font-semibold text-brand"
-          >
-            <QRMark size={11} /> Volver al blog
-          </Link>
-        </div>
-      </Container>
-
-      <Section className="border-t border-line bg-surface">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="t-h2">Empezá hoy. Es gratis.</h2>
-          <p className="t-lead mt-4 text-muted">
-            Sin tarjeta de crédito. Setup en minutos.
+          <p className="mx-auto mt-8 max-w-[720px]">
+            <Link href="/blog" className="inline-flex min-h-11 items-center gap-2 text-[15px] font-bold text-brand underline-offset-4 hover:underline">
+              <span aria-hidden="true">←</span> Volver al blog
+            </Link>
           </p>
-          <Button
-            href={cta.primary.href}
-            variant="primary"
-            size="lg"
-            arrow
-            className="mt-8"
-          >
-            Crear cuenta gratis
-          </Button>
-        </div>
-      </Section>
-    </>
+        </Container>
+      </section>
+
+      {otros.length > 0 && (
+        <Seccion tono="arena">
+          <Titulo titulo="Seguí leyendo" />
+          <ul className="carrusel mt-9 grid gap-4 md:mt-12 md:grid-cols-3">
+            {otros.map((o, i) => (
+              <li key={o.slug} data-reveal style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}>
+                <ArticuloCard articulo={o} />
+              </li>
+            ))}
+          </ul>
+        </Seccion>
+      )}
+
+      <Cierre titular="Empezá hoy." destacado="Es gratis." bajada="Sin tarjeta de crédito. Setup en minutos." />
+    </Pagina>
   );
 }

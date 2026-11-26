@@ -59,8 +59,15 @@
   --shadow-float: 0 12px 32px rgb(45 1 75 / 0.16);
   --shadow-device: 0 30px 60px -20px rgb(45 1 75 / 0.45), 0 0 0 1px rgb(45 1 75 / 0.06);
 
+  /* Brillo de los botones: el color del botón, difuminado debajo. */
+  --shadow-marca: 0 14px 36px -14px var(--color-brand);
+  --shadow-oro: 0 14px 40px -12px color-mix(in srgb, var(--color-gold) 75%, transparent);
+  --shadow-pildora: 0 12px 44px -18px rgb(45 1 75 / 0.38), 0 0 0 1px rgb(45 1 75 / 0.05);
+
   /* --- Motion ------------------------------------------------ */
   --ease-ft: cubic-bezier(0.32, 0.72, 0, 1);
+  /* La curva del sistema nuevo: arranca rápido y frena largo. */
+  --ease-fluida: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ============================================================
@@ -231,9 +238,10 @@
 
 @layer components {
   .legal {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--color-muted);
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+    line-height: 1.75;
+    /* Texto de lectura larga: ink suavizado, 9:1 sobre blanco. */
+    color: color-mix(in srgb, var(--color-ink) 78%, var(--color-paper));
   }
 
   .legal > * + * {
@@ -242,10 +250,10 @@
 
   .legal h2 {
     font-family: var(--font-display);
-    font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.125rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.12;
     color: var(--color-ink);
     margin-top: 3rem;
     padding-top: 2rem;
@@ -260,9 +268,10 @@
 
   .legal h3 {
     font-family: var(--font-display);
-    font-size: 1.0625rem;
-    font-weight: 600;
-    line-height: 1.35;
+    font-size: 1.1875rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
     color: var(--color-ink);
     margin-top: 2rem;
   }
@@ -290,6 +299,17 @@
 
   .legal li + li {
     margin-top: 0.5rem;
+  }
+
+  .legal blockquote {
+    border-radius: 1.5rem;
+    background: color-mix(in srgb, var(--color-brand-soft) 70%, transparent);
+    padding: 1.25rem 1.5rem;
+    color: var(--color-ink);
+  }
+
+  .legal img {
+    border-radius: 1.5rem;
   }
 
   /* Las tablas son más anchas que un teléfono: scrollean solas,
@@ -772,11 +792,48 @@ html[data-reveal="on"] [data-reveal-hijos].is-in > * {
     line-height: 0.95;
   }
 
+  /* Titular del hero de una página interna: frases más largas que las de
+     la home, así que un escalón menos. */
+  .t-hero {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.125rem, 1.3rem + 3.5vw, 4.125rem);
+    letter-spacing: -0.045em;
+    line-height: 1.03;
+  }
+
+  /* Etiqueta sobre fondo oscuro (la de fondo claro es .eyebrow). */
+  .eyebrow-noche {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-paper) 22%, transparent);
+    background: color-mix(in srgb, var(--color-paper) 10%, transparent);
+    padding: 0.3125rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
   /* Superficie oscura: ink con dos halos de marca. */
   .noche {
     background:
       radial-gradient(60% 55% at 12% 0%, color-mix(in srgb, var(--color-brand) 55%, transparent), transparent 70%),
       radial-gradient(55% 60% at 100% 100%, color-mix(in srgb, var(--color-brand) 38%, transparent), transparent 72%),
+      var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* Cierre de página: los halos quedan arriba y abajo termina en ink liso,
+     para que se funda con el footer. */
+  .noche-cierre {
+    background:
+      linear-gradient(to top, var(--color-ink) 0, transparent 220px),
+      radial-gradient(60% 60% at 10% 0%, color-mix(in srgb, var(--color-brand) 55%, transparent), transparent 70%),
+      radial-gradient(50% 55% at 92% 18%, color-mix(in srgb, var(--color-brand) 40%, transparent), transparent 72%),
       var(--color-ink);
     color: var(--color-paper);
   }
@@ -849,37 +906,6 @@ html[data-reveal="on"] [data-reveal-hijos].is-in > * {
     background: linear-gradient(160deg, var(--color-gold) 0%, color-mix(in srgb, var(--color-gold) 40%, var(--color-ink)) 50%, var(--color-ink) 100%);
   }
 }
-
-/* ── Botón píldora. Va fuera de @layer a propósito: tiene que ganarle a
-   las utilidades de <Button> (radio, fondo, transición). ── */
-/* `oro` es el CTA sobre fondo oscuro: ink sobre gold, 9:1. */
-.pildora {
-  border-radius: 999px;
-  transition:
-    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 200ms var(--ease-ft),
-    border-color 200ms var(--ease-ft);
-}
-.pildora:hover {
-  transform: translateY(-2px) scale(1.02);
-}
-.pildora:active {
-  transform: scale(0.98);
-}
-.pildora-oro {
-  background: var(--color-gold);
-  color: var(--color-ink);
-  box-shadow: 0 14px 40px -12px color-mix(in srgb, var(--color-gold) 75%, transparent);
-}
-.pildora-oro:hover {
-  background: var(--color-paper);
-  box-shadow: 0 20px 50px -12px color-mix(in srgb, var(--color-gold) 90%, transparent);
-}
-.pildora-marca {
-  box-shadow: 0 14px 40px -14px var(--color-brand);
-}
-
 
 /* ── Reveal con desenfoque: el texto llega borroso y se aclara. ── */
 html[data-reveal="on"] [data-reveal="blur"] {
@@ -1129,4 +1155,124 @@ html[data-reveal="on"] [data-reveal="blur"].is-in {
 .noche-hero.grano::before {
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 200px);
   mask-image: linear-gradient(to bottom, transparent 0, #000 200px);
+}
+
+/* Dos bloques redondeados seguidos no se tocan. */
+.blk + .blk {
+  margin-top: 0.875rem;
+}
+
+/* ============================================================
+   TRANSICIONES ENTRE PÁGINAS — <ViewTransition> de React
+   (components/ui/Pagina.tsx). Lo que se va, se va rápido y se
+   desenfoca; lo que llega sube y se aclara. El header no se mueve.
+   Donde el navegador no lo soporta, la página cambia como siempre.
+   ============================================================ */
+@keyframes ft-vt-sale {
+  to {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(-10px);
+  }
+}
+@keyframes ft-vt-entra {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(18px);
+  }
+}
+::view-transition-old(.pagina-sale) {
+  animation: 190ms ease-in both ft-vt-sale;
+}
+::view-transition-new(.pagina-entra) {
+  animation: 560ms var(--ease-fluida) 140ms both ft-vt-entra;
+}
+/* Lo que viaja de una página a otra (una foto, un logo). */
+::view-transition-group(.viaja) {
+  animation-duration: 520ms;
+  animation-timing-function: var(--ease-fluida);
+}
+::view-transition-image-pair(.viaja) {
+  animation-name: ft-vt-viaja;
+}
+@keyframes ft-vt-viaja {
+  35% {
+    filter: blur(3px);
+  }
+}
+/* El header es el ancla: queda quieto y arriba de todo. */
+::view-transition-group(cabecera) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(cabecera) {
+  display: none;
+}
+::view-transition-new(cabecera) {
+  animation: none;
+}
+::view-transition {
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* ── Menú a pantalla completa (mobile): los links entran escalonados. ── */
+@keyframes ft-menu-entra {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(18px);
+  }
+}
+.ft-menu-item {
+  animation: ft-menu-entra 600ms var(--ease-fluida) both;
+  animation-delay: calc(var(--i, 0) * 55ms + 80ms);
+}
+@keyframes ft-menu-fondo {
+  from {
+    opacity: 0;
+  }
+}
+.ft-menu-fondo {
+  animation: ft-menu-fondo 300ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ft-menu-item,
+  .ft-menu-fondo {
+    animation: none;
+  }
+}
+
+/* ── Lo que llega al cargar un hero: sube y se aclara. ── */
+@keyframes ft-llega {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(18px);
+  }
+}
+.ft-llega {
+  animation: ft-llega 900ms var(--ease-fluida) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ft-llega {
+    animation: none;
+  }
+}
+
+/* El header flota y mide cero: una página sin hero oscuro (no debería haber
+   ninguna) recibe el aire acá, para que la píldora no tape el contenido. */
+main:not(:has([data-hero])) {
+  padding-top: 5.75rem;
+}
+html {
+  scroll-padding-top: 5.5rem;
 }

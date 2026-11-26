@@ -8,25 +8,7 @@
  */
 
 import type { GlifoId } from "@/components/ui/Glifo";
-
-export type Foto = { src: string; alt: string };
-
-/**
- * Fotos de la home. Son ilustrativas, generadas para el sitio: escenas de
- * rubro, sin marcas ni carteles a la vista. No retratan a ningún cliente y
- * nunca se usan como testimonio (AGENTS.md §4).
- */
-export const fotos = {
-  cafe: { src: "/fotos/cafe.webp", alt: "Una barista sonríe y entrega un café para llevar en el mostrador de un café de barrio" },
-  restaurante: { src: "/fotos/restaurante.webp", alt: "Dos amigas se ríen en la mesa de un restaurante, una con el celular en la mano" },
-  tienda: { src: "/fotos/tienda.webp", alt: "Una vendedora entrega una bolsa a una clienta en el mostrador de una tienda de ropa" },
-  barberia: { src: "/fotos/barberia.webp", alt: "Un barbero le corta el pelo a un cliente que sonríe en una barbería" },
-  gimnasio: { src: "/fotos/gimnasio.webp", alt: "La recepcionista de un estudio de bienestar recibe a una socia que llega con su bolso" },
-  heladeria: { src: "/fotos/heladeria.webp", alt: "Una pareja se ríe con sus helados frente al mostrador de una heladería" },
-  panaderia: { src: "/fotos/panaderia.webp", alt: "La mano de un cliente con el celular sobre el mostrador de una panadería, junto a un café y medialunas" },
-  agencia: { src: "/fotos/agencia.webp", alt: "Tres personas de una agencia trabajan juntas frente a una notebook" },
-  dueno: { src: "/fotos/dueno.webp", alt: "El dueño de un café, con delantal y los brazos cruzados, sonríe en la puerta de su local" },
-} satisfies Record<string, Foto>;
+import { fotos, type Foto } from "./fotos";
 
 export const hero = {
   titular: "El cartel que",
@@ -202,9 +184,9 @@ export const pilares: Pilar[] = [
     bajada:
       "Tu ficha de Google completa, protegida y activa, y un mapa que te muestra en qué cuadras ganás y en cuáles no.",
     funciones: [
-      { pantalla: "ficha", glifo: "google", titulo: "Gestión de tu ficha", texto: "Descripción, horarios, feriados, fotos y publicaciones, sin entrar a Google" },
-      { pantalla: "maps", glifo: "objetivo", titulo: "Posición en Maps", texto: "49 puntos alrededor de tu local: dónde salís en el top 3" },
-      { pantalla: "proteccion", glifo: "escudo", titulo: "Protección y auditoría", texto: "Revertimos cambios de terceros y puntuamos tu ficha sobre 100" },
+      { pantalla: "ficha", glifo: "google", titulo: "Gestión de tu ficha", texto: "Descripción, horarios, feriados, fotos y publicaciones, sin entrar a Google", feature: "ficha-de-google" },
+      { pantalla: "maps", glifo: "objetivo", titulo: "Posición en Maps", texto: "49 puntos alrededor de tu local: dónde salís en el top 3", feature: "posicion-en-maps" },
+      { pantalla: "proteccion", glifo: "escudo", titulo: "Protección y auditoría", texto: "Revertimos cambios de terceros y puntuamos tu ficha sobre 100", feature: "ficha-de-google" },
       { pantalla: "competidores", glifo: "espadas", titulo: "Competidores", texto: "Tu valoración y tus reseñas al lado de las de tu zona" },
     ],
   },
@@ -236,7 +218,7 @@ export const pilares: Pilar[] = [
       { pantalla: "qr", glifo: "qr", titulo: "QR dinámicos", texto: "PNG, SVG, EPS o PDF en CMYK. Cambiás el destino y medís cada escaneo", feature: "qr-dinamicos" },
       { pantalla: "linkpage", glifo: "link", titulo: "Link Pages", texto: "Tu minisitio con WhatsApp, redes, reseñas y club, con métricas por botón", feature: "link-pages" },
       { pantalla: "ruleta", glifo: "ruleta", titulo: "Ruleta de premios y WiFi", texto: "Juntá mails, teléfonos y cumpleaños a cambio de un premio o de internet", feature: "ruleta" },
-      { pantalla: "flashcard", glifo: "tarjeta", titulo: "FlashCard y cobros", texto: "Tarjeta digital para cada vendedor, y cobros con Mercado Pago desde el cartel" },
+      { pantalla: "flashcard", glifo: "tarjeta", titulo: "FlashCard", texto: "La tarjeta de presentación digital de cada vendedor, con su WhatsApp y sus redes", feature: "flashcard" },
     ],
   },
   {
@@ -350,12 +332,6 @@ export const tiendaHome = {
   eyebrow: "Tienda",
   titular: "Top 3 más vendidos",
   bajada: "Cada pieza trae QR y chip NFC activados. La activás gratis desde la app con el código impreso.",
-};
-
-export const ctaFinal = {
-  titular: "Probalo",
-  destacado: "gratis.",
-  bajada: "Sin tarjeta, sin permanencia y sin instalar nada. Si ya tenés tu cartel, lo activás en dos minutos.",
 };
 
 /* ── Juego "Probalo vos" ───────────────────────────────────────── */

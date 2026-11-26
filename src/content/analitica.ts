@@ -62,6 +62,12 @@ export type CapacidadPanel = {
   desde?: "Starter" | "Full";
 };
 
+/** Título de la franja de capacidades, en el bloque <Analitica />. */
+export const capacidadesTitulo = "Y lo leés como te sirve";
+
+/** Título de la tarjeta de `foco`, cuando el bloque está en un producto. */
+export const focoTitulo = "Qué decidís con eso";
+
 export const capacidadesPanel: CapacidadPanel[] = [
   {
     titulo: "Por día, por mes o por año",
@@ -122,6 +128,12 @@ export const integraciones = {
  * POR QUÉ MEDIR — el argumento que va antes de la lista de features.
  * Nadie paga por "analítica": pagan por dejar de decidir a ciegas.
  */
+export const beneficiosIntro = {
+  titular: "Qué cambia en tu negocio cuando medís",
+  bajada:
+    "Un cartel sin métricas es un volante: lo ponés y esperás. Con métricas sabés si funciona, cuándo funciona y qué conviene cambiar. Eso es lo que hacés distinto la semana que viene.",
+};
+
 export const beneficios = [
   {
     titulo: "Sabés a quién le estás hablando",
@@ -245,10 +257,13 @@ export const capacidadesPublicadas = capacidadesPanel.filter((c) => c.confirmado
  * locales o varios clientes: no entrar uno por uno.
  */
 export const consolidado = {
+  etiqueta: "Vista general",
   titular: "Todo junto, en un solo panel",
   bajada:
     "No tenés que entrar producto por producto. Elegís el período y ves el total de tu cuenta: cuántos productos tenés activos, cuántos escaneos sumaron entre todos, cuántas personas distintas fueron y cuántas terminaron entrando. Después filtrás por lo que te interese mirar.",
   /** Los números son de un comercio ficticio: es una demo, no prueba social. */
+  aviso: "Datos de ejemplo",
+  periodoLabel: "Período analizado",
   periodo: "1 al 30 de septiembre",
   resumen: [
     { label: "Productos activos", valor: "12" },
@@ -268,6 +283,13 @@ export const consolidado = {
  * LAS PREGUNTAS QUE CONTESTA — el panel traducido al idioma del comerciante.
  * Nadie entra al dashboard a "ver métricas": entra a resolver una duda.
  */
+export const preguntasIntro = {
+  etiqueta: "Para qué lo usan",
+  titular: "Nadie entra al panel a mirar números. Entra a resolver una duda.",
+  bajada:
+    "Estas son las preguntas que un comercio se hace todas las semanas, y dónde está la respuesta.",
+};
+
 export const preguntasDelPanel = [
   {
     pregunta: "¿Me conviene abrir los domingos?",

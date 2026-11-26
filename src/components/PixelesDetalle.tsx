@@ -1,153 +1,175 @@
 import Link from "next/link";
-import { Section } from "./ui/Section";
-import { QRMark } from "./ui/QRMark";
+import { pantallasPilares } from "./app/panel";
+import { Glifo, type GlifoId } from "./ui/Glifo";
+import { Seccion } from "./ui/Seccion";
+import { Titulo } from "./ui/Titulo";
 import {
   beneficios,
+  beneficiosIntro,
   campos,
+  camposIntro,
   eventos,
+  eventosIntro,
   herramientas,
   privacidad,
   puenteMetricas,
 } from "@/content/pixeles";
+import { cn } from "@/lib/cn";
+
+/** Una tarjeta de color y un ícono por beneficio, en el orden de `beneficios`. */
+const tarjetas: { tono: string; glifo: GlifoId }[] = [
+  { tono: "dato-brand", glifo: "persona" },
+  { tono: "dato-coral", glifo: "cartel" },
+  { tono: "dato-teal", glifo: "barras" },
+];
+
+/** Un ícono por evento, en el orden de `eventos`. */
+const glifosEventos: GlifoId[] = ["link", "qr", "objetivo"];
+
+const retraso = (ms: number) => ({ "--reveal-delay": `${ms}ms` }) as React.CSSProperties;
+
+/** La pantalla "Seguimiento" del panel: la misma que muestra la home. */
+const PantallaSeguimiento = pantallasPilares.pixeles;
 
 /**
  * Secciones propias de /producto/pixeles: los beneficios, los tres campos
  * de ID tal cual están en la app y qué evento llega a cada herramienta.
- * Sin logos de Google ni de Meta: solo nombres de producto (AGENTS.md §7).
+ * Sin logos de Google ni de Meta: solo nombres de producto y badges
+ * tipográficos (AGENTS.md §7).
  */
 export function PixelesDetalle() {
   return (
     <>
-      <Section id="beneficios" className="border-t border-line bg-surface">
-        <div className="mx-auto max-w-3xl text-center" data-reveal>
-          <p className="flex items-center justify-center gap-2 text-sm font-semibold text-brand">
-            <QRMark size={12} /> Beneficios
-          </p>
-          <h2 className="t-h2 mt-4 text-balance">Lo que pasa en el local, medido como una campaña</h2>
-          <p className="t-lead mx-auto mt-4 text-muted">
-            Hasta ahora el cartel y el flyer eran la parte del marketing que no
-            se podía medir. Con el píxel conectado, un escaneo vale lo mismo que
-            un clic en un anuncio: entra a tus públicos, a tus embudos y a tus
-            informes.
-          </p>
-        </div>
-        <ul className="carrusel mt-8 grid gap-5 md:mt-12 md:grid-cols-3">
-          {beneficios.map((b, i) => (
-            <li
-              key={b.titulo}
-              data-reveal
-              style={{ "--reveal-delay": `${i * 90}ms` } as React.CSSProperties}
-              className="rounded-[var(--radius-surface)] border border-line bg-paper p-6 lg:p-8"
-            >
-              <QRMark size={16} />
-              <h3 className="t-h3 mt-5">{b.titulo}</h3>
-              <p className="t-body mt-2 text-muted">{b.texto}</p>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section id="campos">
-        {/* Badges tipográficos, no logos: los kits de Google y Meta no están
-            autorizados por escrito (AGENTS.md §7). */}
-        <ul className="grid gap-4 sm:grid-cols-3" data-reveal>
-          {herramientas.map((h, i) => (
-            <li
-              key={h.sigla}
-              style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
-              className="relative rounded-[var(--radius-surface)] border border-line bg-paper p-6"
-            >
-              <span
-                aria-hidden="true"
-                className="absolute right-5 top-5 flex size-5 items-center justify-center rounded-full bg-brand"
+      <Seccion id="beneficios" tono="arena" ariaLabelledby="beneficios-titulo">
+        <Titulo
+          id="beneficios-titulo"
+          etiqueta={beneficiosIntro.etiqueta}
+          titulo={beneficiosIntro.titular}
+          bajada={beneficiosIntro.bajada}
+        />
+        <ul className="carrusel mt-9 grid gap-4 md:mt-14 md:grid-cols-3">
+          {beneficios.map((b, i) => {
+            const { tono, glifo } = tarjetas[i % tarjetas.length];
+            return (
+              <li
+                key={b.titulo}
+                data-reveal
+                style={retraso(i * 90)}
+                className={cn("group relative overflow-hidden rounded-[2rem] p-6 text-paper lg:p-8", tono)}
               >
-                <svg viewBox="0 0 12 12" width="9" height="9" fill="none">
-                  <path d="M2.5 6.2l2.2 2.2 4.8-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span className="flex h-11 w-fit items-center rounded-[var(--radius-btn)] bg-ink px-3 text-[15px] font-bold tracking-tight text-paper">
-                {h.sigla}
-              </span>
-              <p className="mt-4 font-semibold">{h.nombre}</p>
-              <p className="t-body mt-1 text-muted">{h.que}</p>
-            </li>
-          ))}
+                <i
+                  aria-hidden="true"
+                  className="absolute -bottom-14 -right-12 size-[180px] rounded-full bg-white/10 transition-transform duration-700 ease-fluida group-hover:scale-125"
+                />
+                <span className="relative flex size-12 items-center justify-center rounded-2xl bg-white/20">
+                  <Glifo id={glifo} size={22} />
+                </span>
+                <h3 className="relative mt-5 font-display text-[1.375rem] font-bold leading-tight tracking-[-0.03em]">{b.titulo}</h3>
+                <p className="relative mt-2 text-[15px] leading-relaxed text-white/90">{b.texto}</p>
+              </li>
+            );
+          })}
         </ul>
+      </Seccion>
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:mt-16">
-          <div data-reveal>
-            <p className="flex items-center gap-2 text-sm font-semibold text-brand">
-              <QRMark size={12} /> Tres campos
-            </p>
-            <h2 className="t-h2 mt-4 text-balance">Pegás el ID y listo</h2>
-            <p className="t-lead mt-4 text-muted">
-              Usás uno, dos o los tres. Si ya tenés un contenedor de Tag
-              Manager, con ese alcanza: todo lo que tengas adentro se dispara
-              también desde tus QR.
-            </p>
-            <p className="t-body mt-6 rounded-[var(--radius-card)] border border-line bg-surface p-5 text-muted">
+      <Seccion id="campos" ariaLabelledby="campos-titulo">
+        <div className="grid gap-9 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-14">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Titulo
+              alineado="izq"
+              id="campos-titulo"
+              etiqueta={camposIntro.etiqueta}
+              titulo={camposIntro.titular}
+              bajada={camposIntro.bajada}
+            />
+            <p data-reveal className="mt-6 flex gap-3.5 rounded-[1.5rem] bg-brand-soft/70 p-5 text-[15px] leading-relaxed">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand text-paper">
+                <Glifo id="escudo" size={18} />
+              </span>
               {privacidad}
             </p>
-            <p className="t-body mt-6 text-muted">
+            <p data-reveal className="mt-5 text-[15px] leading-relaxed text-muted">
               {puenteMetricas.texto}{" "}
-              <Link
-                href={puenteMetricas.href}
-                className="font-semibold text-ink underline underline-offset-4"
-              >
+              <Link href={puenteMetricas.href} className="font-bold text-brand underline underline-offset-4">
                 {puenteMetricas.cta}
               </Link>
               .
             </p>
           </div>
 
-          <ol className="space-y-4" data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
-            {campos.map((c) => (
-              <li
-                key={c.label}
-                className="rounded-[var(--radius-surface)] border border-line bg-paper p-6"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <h3 className="t-h3">{c.label}</h3>
-                  <code className="rounded-md bg-surface px-2 py-1 font-mono text-[13px] text-ink tnum">
+          {/* Badges tipográficos, no logos: los kits de Google y Meta no están
+              autorizados por escrito (AGENTS.md §7). */}
+          <ol className="grid gap-4">
+            {campos.map((c, i) => {
+              const h = herramientas.find((x) => x.sigla === c.sigla);
+              return (
+                <li key={c.label} data-reveal style={retraso(i * 90)} className="rounded-[2rem] bg-brand-soft/70 p-6 lg:p-7">
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-12 min-w-12 shrink-0 items-center justify-center rounded-2xl bg-ink px-3 font-display text-[15px] font-bold tracking-tight text-paper">
+                      {c.sigla}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-display text-[1.25rem] font-bold leading-tight tracking-[-0.025em]">{c.label}</h3>
+                      {h && <p className="mt-0.5 text-[14px] leading-snug text-muted">{h.que}</p>}
+                    </div>
+                  </div>
+                  <code className="mt-5 flex min-h-11 items-center rounded-xl bg-paper px-4 font-mono text-[14px] tracking-wide tnum">
                     {c.formato}
                   </code>
-                </div>
-                <p className="t-body mt-3 text-muted">{c.para}</p>
-                <p className="t-caption mt-3 text-muted">Dónde está: {c.donde}</p>
-              </li>
-            ))}
+                  <p className="mt-4 text-[15px] leading-relaxed">{c.para}</p>
+                  <p className="mt-2 text-[13px] leading-relaxed text-muted">
+                    <b className="font-semibold text-ink">Dónde está:</b> {c.donde}
+                  </p>
+                </li>
+              );
+            })}
           </ol>
         </div>
-      </Section>
+      </Seccion>
 
-      <Section id="eventos" className="border-t border-line bg-surface">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-          <div data-reveal>
-            <p className="flex items-center gap-2 text-sm font-semibold text-brand">
-              <QRMark size={12} /> Qué llega
-            </p>
-            <h2 className="t-h2 mt-4 text-balance">Cada escaneo, cada visita, cada clic</h2>
-            <p className="t-lead mt-4 text-muted">
-              Los mismos eventos que ves en las métricas de FlashTag, ahora
-              también en tus herramientas. Y desde ahí, armás lo que quieras.
-            </p>
+      <Seccion id="eventos" tono="noche" ariaLabelledby="eventos-titulo">
+        <div className="grid items-center gap-9 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
+          <div>
+            <Titulo
+              claro
+              alineado="izq"
+              id="eventos-titulo"
+              etiqueta={eventosIntro.etiqueta}
+              titulo={eventosIntro.titular}
+              bajada={eventosIntro.bajada}
+            />
+            <ul className="mt-7 grid gap-3 md:mt-9">
+              {eventos.map((e, i) => (
+                <li key={e.nombre} data-reveal style={retraso(i * 80)} className="vidrio-claro flex gap-4 rounded-[1.5rem] p-5">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold text-ink">
+                    <Glifo id={glifosEventos[i] ?? "check"} size={19} />
+                  </span>
+                  <div>
+                    <p className="font-display text-[1.0625rem] font-bold leading-tight tracking-[-0.015em]">{e.nombre}</p>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-paper/85">{e.texto}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="space-y-3" data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
-            {eventos.map((e) => (
-              <li
-                key={e.nombre}
-                className="flex gap-4 rounded-[var(--radius-card)] border border-line bg-paper p-5"
-              >
-                <span className="mt-2 size-2.5 shrink-0 rounded-full bg-teal" aria-hidden="true" />
-                <div>
-                  <p className="text-[1.0625rem] font-semibold leading-tight">{e.nombre}</p>
-                  <p className="t-body mt-1.5 text-muted">{e.texto}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+
+          {/* La app en código (AGENTS.md §5): la matriz de qué se manda a dónde. */}
+          {PantallaSeguimiento && (
+            <figure
+              data-reveal="zoom"
+              aria-label="Pantalla de ejemplo: qué evento se manda a cada herramienta"
+              className="rounded-[2rem] bg-paper p-5 text-ink shadow-[var(--shadow-device)] sm:p-7 lg:rotate-1"
+            >
+              <div aria-hidden="true" className="mb-4 flex gap-1.5">
+                <i className="size-2.5 rounded-full bg-line" />
+                <i className="size-2.5 rounded-full bg-line" />
+                <i className="size-2.5 rounded-full bg-line" />
+              </div>
+              <PantallaSeguimiento />
+            </figure>
+          )}
         </div>
-      </Section>
+      </Seccion>
     </>
   );
 }
