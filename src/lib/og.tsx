@@ -13,6 +13,16 @@ const INK = "#2d014b";
 const BRAND = "#613ec4";
 const SAND = "#efe7d6";
 const TEAL = "#0094a5";
+const GOLD = "#ffc64a";
+const CORAL = "#db4f45";
+
+/** El confeti del sistema visual: cuadraditos redondeados en los acentos del manual. */
+const CONFETI = [
+  { left: 742, top: 64, lado: 56, color: GOLD, giro: 14 },
+  { left: 1086, top: 474, lado: 84, color: CORAL, giro: -10 },
+  { left: 690, top: 528, lado: 34, color: TEAL, giro: 22 },
+  { left: 1104, top: 84, lado: 32, color: GOLD, giro: -18 },
+];
 
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
@@ -53,6 +63,21 @@ export function ogImage({
             filter: "blur(80px)",
           }}
         />
+        {CONFETI.map((c) => (
+          <div
+            key={`${c.left}-${c.top}`}
+            style={{
+              position: "absolute",
+              left: c.left,
+              top: c.top,
+              width: c.lado,
+              height: c.lado,
+              borderRadius: c.lado * 0.28,
+              background: c.color,
+              transform: `rotate(${c.giro}deg)`,
+            }}
+          />
+        ))}
         <div
           style={{
             display: "flex",
