@@ -7,6 +7,17 @@
  * genere de verdad — es la misma regla que en píxeles: el copy es la promesa.
  */
 
+/** Encabezado de la sección. */
+export const formatosIntro = {
+  etiqueta: "Para imprenta",
+  titular: "El archivo que te pide el diseñador, sin tener que pedirlo",
+  bajada:
+    "Bajás el mismo QR en siete formatos. Para el posteo, PNG. Para la gráfica que imprime la vidriera, el vectorial en CMYK. Si trabajás con una agencia o con un diseñador, le pasás el EPS y no vuelve con el clásico “mandámelo en vector”.",
+  /** La aclaración que va en la tarjeta de al lado. */
+  nota:
+    "Sirve para lo grande y para lo chico: una gigantografía, el menú, un packaging, el uniforme, un cartel de obra. El QR es siempre el mismo y el destino lo seguís cambiando desde el celular, aunque ya esté impreso.",
+};
+
 export type FormatoDescarga = {
   nombre: string;
   /** Familia, para el chip. */
