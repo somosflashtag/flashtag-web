@@ -175,6 +175,10 @@ terminación es la home (`src/app/page.tsx`).
 - **Header.** Es una píldora flotante que mide cero de alto y lee `data-tono`
   del bloque que tiene debajo (lo ponen las piezas del kit). Un bloque oscuro
   armado a mano lleva `data-tono="noche"`.
+- **Lienzo.** El fondo de `html` es `ink` y el blanco lo pone el `body`. Es lo
+  que aparece cuando el celular o el trackpad estiran la página más allá del
+  principio o del final: así el rebote continúa el hero y el footer, que son
+  oscuros. Por eso toda página arranca con un hero oscuro y termina en `Cierre`.
 - **Estilos.** Utilidades de Tailwind y clases del kit (`globals.css`, desde
   «HOME FLUIDA»). No se agrega CSS por página.
 - **Fuera de uso:** `ui/Section`, `.t-display`, `.t-h2`, `.hero-halo`,
