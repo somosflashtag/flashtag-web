@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Button } from "./ui/Button";
 import { Glifo, type GlifoId } from "./ui/Glifo";
-import { DESCUENTO_ANUAL, hrefContratar, planes, precioARS, type Feature, type Plan } from "@/content/planes";
+import { BENEFICIO_ANUAL, hrefContratar, planes, precioARS, type Feature, type Plan } from "@/content/planes";
 import { conDescuento, descuentoTexto, type Promo } from "@/content/promos";
 import { cn } from "@/lib/cn";
 import { usePromoVigente } from "./usePromoVigente";
@@ -433,7 +433,7 @@ export function Pricing({ conNota = true, promo: promoServer = null }: { conNota
                 <>
                   Anual
                   <span className="ml-1.5 text-brand group-aria-pressed:text-gold">
-                    −{Math.round(DESCUENTO_ANUAL * 100)}%
+                    {BENEFICIO_ANUAL}
                   </span>
                 </>
               ),

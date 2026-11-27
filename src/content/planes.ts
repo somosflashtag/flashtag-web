@@ -27,6 +27,14 @@ export type Plan = {
 
 export const DESCUENTO_ANUAL = 0.15;
 
+/**
+ * Cómo se comunica el plan anual (pedido de Tomás, 27/11/2026): "2 meses
+ * gratis" en vez de "−15%". Es el mismo texto que usa la app en Ajustes → Plan.
+ * El total anual de Starter y Evolution es exactamente 10 meses; el de Full es
+ * $1.500.000 contra $1.490.000 (10 × $149.000).
+ */
+export const BENEFICIO_ANUAL = "2 meses gratis";
+
 export const planes: Plan[] = [
   {
     id: "free",
@@ -52,6 +60,10 @@ export const planes: Plan[] = [
       // cartel ya pagó por usar la app con él. La app lo aplica igual
       // (puedeCrearConProducto en flashtag-app).
       { label: "Ruleta de premios", incluido: true, nota: "1 ruleta con la compra de tu producto FlashTag" },
+      // FlashCards y carta digital (27/11/2026): los mismos topes que aplica la
+      // app (PLAN_LIMITS.flashcards y el flag carta_digital, abierto desde Starter).
+      { label: "1 FlashCard", incluido: true, nota: "tu tarjeta de presentación digital" },
+      { label: "Menú o carta digital", incluido: false },
       { label: "Filtro de reseñas negativas", incluido: false },
       { label: "Programa de fidelidad", incluido: false },
       { label: "Asesoramiento en SEO local", incluido: false },
@@ -79,6 +91,8 @@ export const planes: Plan[] = [
       { label: "1 cuenta de Google Business", incluido: true },
       { label: "100 reseñas con IA por mes", incluido: true },
       { label: "Hasta 3 ruletas de premios", incluido: true },
+      { label: "Hasta 10 FlashCards", incluido: true, nota: "una por vendedor" },
+      { label: "Menú o carta digital", incluido: true },
       { label: "Filtro de reseñas negativas", incluido: true, nota: "se activa en los carteles de tus sucursales" },
       { label: "Programa de fidelidad", incluido: true, nota: "hasta 250 miembros activos" },
       { label: "Asesoramiento en SEO local", incluido: true },
@@ -107,6 +121,8 @@ export const planes: Plan[] = [
       { label: "3 cuentas de Google Business", incluido: true },
       { label: "2.000 reseñas con IA por mes", incluido: true },
       { label: "Hasta 10 ruletas de premios", incluido: true },
+      { label: "Hasta 20 FlashCards", incluido: true, nota: "una por vendedor" },
+      { label: "Menú o carta digital", incluido: true },
       { label: "Filtro de reseñas negativas", incluido: true, nota: "se activa en los carteles de tus sucursales" },
       { label: "Programa de fidelidad", incluido: true, nota: "hasta 2.500 miembros activos" },
       { label: "Asesoramiento en SEO local", incluido: true },
@@ -132,9 +148,12 @@ export const planes: Plan[] = [
       { label: "Métricas avanzadas de Google Business", incluido: true },
       { label: "Píxeles de Google y Meta", incluido: true },
       { label: "Exportación de métricas a CSV", incluido: true },
-      { label: "Hasta 20 cuentas de Google Business", incluido: true },
+      // 15 desde el 26/11/2026: es el tope que aplica la app (antes decía 20).
+      { label: "Hasta 15 cuentas de Google Business", incluido: true },
       { label: "5.000 reseñas con IA por mes", incluido: true },
       { label: "Hasta 50 ruletas de premios", incluido: true },
+      { label: "Hasta 50 FlashCards", incluido: true, nota: "una por vendedor" },
+      { label: "Menú o carta digital", incluido: true },
       { label: "Filtro de reseñas negativas", incluido: true, nota: "se activa en los carteles de tus sucursales" },
       { label: "Programa de fidelidad", incluido: true, nota: "hasta 10.000 miembros activos" },
       { label: "Asesoramiento en SEO local", incluido: true },

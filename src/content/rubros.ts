@@ -81,7 +81,7 @@ const minuscula = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
 /** "hasta 250 miembros activos": el cupo del club en Starter. */
 const cupoClubStarter = plan("starter").features.find((f) => f.incluido && f.label === "Programa de fidelidad")?.nota;
 
-/** "Hasta 20 cuentas de Google Business": las fichas que entran en Evolution. */
+/** "Hasta 15 cuentas de Google Business": las fichas que entran en Evolution. */
 const cuentasEvolution =
   plan("evolution").features.find((f) => f.incluido && /cuentas? de Google Business/i.test(f.label))?.label ??
   "Varias cuentas de Google Business";
