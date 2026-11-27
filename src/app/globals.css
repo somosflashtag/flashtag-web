@@ -78,6 +78,13 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* El lienzo: lo que se ve cuando la página se estira más allá del
+       principio o del final (el rebote de iOS y de los trackpads). Va en ink
+       porque toda página arranca con un hero oscuro y termina en el footer
+       oscuro: el rebote los continúa. Con el lienzo blanco, al llegar al final
+       en el celular aparecía un bloque blanco enorme debajo del footer. El
+       blanco de las secciones lo pone el body, que cubre todo el contenido. */
+    background-color: var(--color-ink);
   }
 
   body {
