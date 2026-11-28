@@ -33,9 +33,9 @@ function tonoPuesto(p: number | null) {
   return "bg-coral text-paper";
 }
 
-function Estrella({ n }: { n: number }) {
+function Estrella({ n, claro = false }: { n: number; claro?: boolean }) {
   return (
-    <span className="inline-flex items-center gap-0.5 text-[12px] text-muted tnum">
+    <span className={cn("inline-flex items-center gap-0.5 text-[12px] tnum", claro ? "text-paper/80" : "text-muted")}>
       <svg viewBox="0 0 12 12" width="11" height="11" fill="var(--color-gold)" aria-hidden="true">
         <path d="M6 0.8l1.6 3.3 3.6.5-2.6 2.5.6 3.6L6 9l-3.2 1.7.6-3.6L0.8 4.6l3.6-.5z" />
       </svg>
@@ -47,7 +47,7 @@ function Estrella({ n }: { n: number }) {
 export function SimuladorMaps() {
   const [texto, setTexto] = useState("");
   const [busqueda, setBusqueda] = useState(busquedasSugeridas[0]);
-  const [punto, setPunto] = useState<number | null>(null);
+  const [punto, setPunto] = useState<number | null>(CENTRO);
   const [mapaDe, setMapaDe] = useState<number>(0); // id del negocio cuyo mapa se ve; 0 = vos
   const [seguidos, setSeguidos] = useState<string[]>([]);
   const [verDiez, setVerDiez] = useState(false);
@@ -55,13 +55,13 @@ export function SimuladorMaps() {
   const sim = useMemo(() => simular(busqueda), [busqueda]);
   const pasos = useMemo(() => siguientesPasos(sim), [sim]);
   const mostrado: Negocio = sim.negocios[mapaDe] ?? sim.vos;
-  const ranking = sim.ranking.slice(0, verDiez ? 10 : 5);
+  const ranking = sim.ranking.slice(0, verDiez ? 10 : 6);
 
   const buscar = (b: string) => {
     const n = normalizar(b);
     if (!n) return;
     setBusqueda(n);
-    setPunto(null);
+    setPunto(CENTRO);
     setMapaDe(0);
   };
 
@@ -78,7 +78,7 @@ export function SimuladorMaps() {
           e.preventDefault();
           buscar(texto);
         }}
-        className="mx-auto flex max-w-[560px] items-center gap-2 rounded-full border border-line bg-paper py-1.5 pl-4 pr-1.5 shadow-[var(--shadow-rest)]"
+        className="mx-auto flex max-w-[560px] items-center gap-2 rounded-full bg-paper py-1.5 pl-5 pr-1.5 shadow-pildora transition-shadow duration-300 focus-within:shadow-[0_0_0_2px_var(--color-brand)]"
         role="search"
       >
         <Glifo id="objetivo" size={18} className="shrink-0 text-brand" />
@@ -91,9 +91,9 @@ export function SimuladorMaps() {
           onChange={(e) => setTexto(e.target.value)}
           placeholder="Escribí tu rubro: cafetería, hotel…"
           maxLength={40}
-          className="min-h-10 min-w-0 flex-1 bg-transparent text-[15px] outline-none placeholder:text-muted"
+          className="min-h-11 min-w-0 flex-1 bg-transparent text-[15px] outline-none placeholder:text-muted"
         />
-        <Button type="submit" variant="primary" size="sm" className="rounded-full">
+        <Button type="submit" variant="primary" size="md">
           Buscar
         </Button>
       </form>
@@ -108,8 +108,8 @@ export function SimuladorMaps() {
               buscar(b);
             }}
             className={cn(
-              "min-h-9 shrink-0 rounded-full border px-3.5 text-[13px] font-semibold transition-colors duration-150",
-              busqueda === b ? "border-brand bg-brand text-paper" : "border-line bg-paper hover:border-brand/50",
+              "min-h-10 shrink-0 rounded-full px-4 text-[13.5px] font-semibold transition-colors duration-300",
+              busqueda === b ? "bg-ink text-paper" : "bg-brand-soft/70 text-ink hover:bg-brand-soft",
             )}
           >
             {b}
@@ -118,33 +118,40 @@ export function SimuladorMaps() {
       </div>
 
       {/* ── Resumen ────────────────────────────────────────── */}
-      <div className="mt-6 overflow-hidden rounded-[22px] border border-line bg-paper shadow-[var(--shadow-rest)]">
-        <div className="px-5 pb-4 pt-5 md:px-6">
-          <p className="flex flex-wrap items-center gap-2 text-[12px] font-semibold text-muted">
-            <span className="rounded-full bg-gold/30 px-2 py-0.5 font-bold text-ink">Ejemplo ilustrativo</span>
+      <div className="dato-brand mt-6 grid grid-cols-1 gap-5 rounded-[1.5rem] p-5 text-paper md:mt-8 md:rounded-[2rem] md:p-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-10">
+        <div>
+          <p className="flex flex-wrap items-center gap-2 text-[12.5px] font-semibold text-paper/80">
+            <span className="rounded-full bg-gold px-2.5 py-0.5 font-bold text-ink">Ejemplo ilustrativo</span>
             Búsqueda: «{sim.busqueda.toLowerCase()}»
           </p>
-          <h3 className="mt-2 font-display text-[1.25rem] font-semibold leading-tight md:text-[1.5rem]" aria-live="polite">
-            {sim.vos.top3En > 0
-              ? `Aparecés en el top 3 en ${sim.vos.top3En} de los ${PUNTOS} puntos.`
-              : `No aparecés en el top 3 en ninguno de los ${PUNTOS} puntos.`}
+          <h3 className="mt-3 text-balance font-display text-[1.5rem] font-semibold leading-[1.1] tracking-tight md:text-[2.125rem]" aria-live="polite">
+            {sim.vos.top3En > 0 ? (
+              <>
+                Aparecés en el top 3 en <span className="text-gold">{sim.vos.top3En} de los {PUNTOS}</span> puntos.
+              </>
+            ) : (
+              `No aparecés en el top 3 en ninguno de los ${PUNTOS} puntos.`
+            )}
           </h3>
-          <p className="mt-1 text-sm text-muted">
+          <p className="mt-2 text-[15px] text-paper/80">
             {sim.vos.puestos[CENTRO] === null
               ? "Parado en tu local, no aparecés."
               : `Parado en tu local, salís ${sim.vos.puestos[CENTRO]}°.`}{" "}
             {sim.ranking[0] && `${sim.ranking[0].nombre} sale en el top 3 en ${sim.ranking[0].top3En}.`}
           </p>
         </div>
-        <dl className="grid grid-cols-3 border-t border-line bg-surface/30">
+        <dl className="grid grid-cols-3 gap-2 md:gap-3">
           {[
-            ["En el top 3", `${sim.vos.top3En} de ${PUNTOS}`],
-            ["Visibilidad", `${sim.vos.visibilidad}/100`],
-            ["Puesto promedio", sim.vos.puestoPromedio === null ? "—" : sim.vos.puestoPromedio.toLocaleString("es-AR")],
-          ].map(([l, v], i) => (
-            <div key={l} className={cn("px-4 py-3 md:px-6", i > 0 && "border-l border-line")}>
-              <dt className="text-[11.5px] text-muted md:text-[13px]">{l}</dt>
-              <dd className="font-display text-[1.0625rem] font-semibold tnum md:text-[1.25rem]">{v}</dd>
+            ["En el top 3", `${sim.vos.top3En}`, `de ${PUNTOS}`],
+            ["Visibilidad", `${sim.vos.visibilidad}`, "/100"],
+            ["Puesto promedio", sim.vos.puestoPromedio === null ? "—" : sim.vos.puestoPromedio.toLocaleString("es-AR"), ""],
+          ].map(([l, v, u]) => (
+            <div key={l} className="vidrio-claro flex flex-col-reverse justify-end rounded-2xl px-3 py-3 md:px-4 md:py-4">
+              <dt className="mt-1 text-[11.5px] leading-tight text-paper/80 md:text-[13px]">{l}</dt>
+              <dd className="font-display text-[1.5rem] font-semibold leading-none tnum md:text-[2.25rem]">
+                {v}
+                {u && <span className="ml-0.5 text-[0.5em] font-medium text-paper/75">{u}</span>}
+              </dd>
             </div>
           ))}
         </dl>
@@ -152,10 +159,10 @@ export function SimuladorMaps() {
 
       {/* ── Mapa + punto ───────────────────────────────────── */}
       <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[1.35fr_1fr]">
-        <div className="rounded-[22px] border border-line bg-paper p-4 md:p-5">
+        <div className="rounded-[1.5rem] bg-brand-soft/70 p-4 md:rounded-[2rem] md:p-6">
           <div className="flex flex-wrap items-start justify-between gap-2">
             <div>
-              <h3 className="font-display text-[1.0625rem] font-semibold">
+              <h3 className="font-display text-[1.125rem] font-semibold tracking-tight md:text-[1.25rem]">
                 {mostrado.vos ? "Dónde aparecés" : `Dónde aparece ${mostrado.nombre}`}
               </h3>
               <p className="text-[13px] text-muted">Tocá un punto para ver quién sale ahí.</p>
@@ -164,13 +171,13 @@ export function SimuladorMaps() {
               <button
                 type="button"
                 onClick={() => setMapaDe(0)}
-                className="min-h-9 rounded-full border border-line px-3 text-[13px] font-semibold hover:border-brand/50"
+                className="min-h-10 rounded-full bg-paper px-4 text-[13px] font-semibold transition-colors duration-300 hover:bg-ink hover:text-paper"
               >
                 Volver a tu mapa
               </button>
             )}
           </div>
-          <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-muted" aria-label="Referencias">
+          <ul className="mt-3 flex flex-wrap gap-x-3.5 gap-y-1 text-[12.5px] text-muted" aria-label="Referencias">
             <li className="flex items-center gap-1.5"><i className="size-2.5 rounded-full bg-teal" />Top 3</li>
             <li className="flex items-center gap-1.5"><i className="size-2.5 rounded-full bg-gold" />4 a 10</li>
             <li className="flex items-center gap-1.5"><i className="size-2.5 rounded-full bg-coral" />11 a 20</li>
@@ -178,7 +185,7 @@ export function SimuladorMaps() {
             <li className="flex items-center gap-1.5"><i className="size-2.5 rounded-full ring-2 ring-brand" />Tu local</li>
           </ul>
 
-          <div className="relative mt-3 overflow-hidden rounded-2xl border border-line">
+          <div className="relative mt-3 overflow-hidden rounded-[1.25rem] shadow-[var(--shadow-rest)]">
             <FondoMapa />
             <div className="relative grid p-1.5 sm:p-3" style={{ gridTemplateColumns: `repeat(${LADO}, minmax(0, 1fr))` }}>
               {mostrado.puestos.map((p, i) => {
@@ -196,10 +203,10 @@ export function SimuladorMaps() {
                   >
                     <span
                       className={cn(
-                        "flex size-[30px] items-center justify-center rounded-full border-2 border-paper text-[11.5px] font-bold shadow-[var(--shadow-rest)] transition-transform duration-150 tnum hover:scale-110 sm:size-9 sm:text-[13px]",
+                        "flex size-[30px] items-center justify-center rounded-full border-2 border-paper text-[11.5px] font-bold shadow-[var(--shadow-rest)] transition-transform duration-150 tnum hover:scale-110 sm:size-9 sm:text-[13px] lg:size-10 lg:text-[14px]",
                         tonoPuesto(p),
                         local && "ring-[3px] ring-brand",
-                        sel && "scale-110 ring-[3px] ring-ink",
+                        sel && "scale-[1.18] ring-[3px] ring-ink",
                       )}
                     >
                       {p === null ? "—" : p}
@@ -211,10 +218,11 @@ export function SimuladorMaps() {
           </div>
         </div>
 
-        <div className="rounded-[22px] border border-line bg-paper p-4 md:p-5" aria-live="polite">
+        <div className="flex flex-col gap-4">
+        <div className="flex-1 rounded-[1.5rem] bg-brand-soft/70 p-4 md:rounded-[2rem] md:p-6" aria-live="polite">
           {punto === null || !enPunto ? (
-            <div className="flex h-full flex-col items-center justify-center gap-2 py-6 text-center text-muted">
-              <span className="flex size-12 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+            <div className="flex h-full flex-col items-center justify-center gap-3 py-8 text-center text-muted">
+              <span className="flex size-12 items-center justify-center rounded-2xl bg-paper text-brand">
                 <Glifo id="ubicacion" size={24} />
               </span>
               <p className="max-w-[260px] text-sm">
@@ -228,7 +236,7 @@ export function SimuladorMaps() {
                   type="button"
                   aria-label="Punto anterior"
                   onClick={() => setPunto((punto - 1 + PUNTOS) % PUNTOS)}
-                  className="flex size-9 items-center justify-center rounded-full hover:bg-surface/60"
+                  className="flex size-11 items-center justify-center rounded-full bg-paper text-lg transition-colors duration-300 hover:bg-ink hover:text-paper"
                 >
                   ‹
                 </button>
@@ -240,30 +248,30 @@ export function SimuladorMaps() {
                   type="button"
                   aria-label="Punto siguiente"
                   onClick={() => setPunto((punto + 1) % PUNTOS)}
-                  className="flex size-9 items-center justify-center rounded-full hover:bg-surface/60"
+                  className="flex size-11 items-center justify-center rounded-full bg-paper text-lg transition-colors duration-300 hover:bg-ink hover:text-paper"
                 >
                   ›
                 </button>
               </div>
-              <p className="mt-4 font-display text-[1.0625rem] font-semibold">
+              <p className="mt-4 font-display text-[1.25rem] font-semibold tracking-tight md:text-[1.5rem]">
                 {enPunto.vos === null ? "Acá no aparecés" : `Acá salís ${enPunto.vos}°`}
               </p>
-              <ol className="mt-2 divide-y divide-line">
+              <ol className="mt-3 grid gap-1.5">
                 {enPunto.top.map((n) => (
-                  <li key={n.id} className={cn("flex items-center gap-2.5 py-2.5 text-sm", n.vos && "-mx-2 rounded-lg bg-brand-soft px-2")}>
-                    <b className="w-4 text-muted tnum">{n.puestos[punto]}</b>
+                  <li key={n.id} className={cn("flex min-h-12 items-center gap-2.5 rounded-2xl px-2.5 py-1.5 text-sm", n.vos ? "bg-ink text-paper" : "bg-paper")}>
+                    <b className={cn("flex size-7 shrink-0 items-center justify-center rounded-full text-[12.5px] tnum", tonoPuesto(n.puestos[punto]))}>{n.puestos[punto]}</b>
                     <span className="min-w-0 flex-1 truncate font-medium">
-                      {n.nombre} {n.vos && <span className="font-bold text-brand">vos</span>}
+                      {n.nombre} {n.vos && <span className="ml-1 rounded-full bg-gold px-2 py-0.5 text-[11px] font-bold text-ink">Vos</span>}
                     </span>
-                    <Estrella n={n.estrellas} />
+                    <Estrella n={n.estrellas} claro={n.vos} />
                     {!n.vos && (
                       <button
                         type="button"
                         onClick={() => seguir(n.nombre)}
                         aria-pressed={seguidos.includes(n.nombre)}
                         className={cn(
-                          "min-h-8 shrink-0 rounded-full border px-2.5 text-[12px] font-semibold",
-                          seguidos.includes(n.nombre) ? "border-brand bg-brand-soft text-brand" : "border-line hover:border-brand/50",
+                          "min-h-9 shrink-0 rounded-full px-3 text-[12px] font-semibold transition-colors duration-300",
+                          seguidos.includes(n.nombre) ? "bg-brand text-paper" : "bg-brand-soft text-ink hover:bg-brand hover:text-paper",
                         )}
                       >
                         {seguidos.includes(n.nombre) ? "Siguiendo" : "Seguir"}
@@ -273,7 +281,7 @@ export function SimuladorMaps() {
                 ))}
               </ol>
               {enPunto.vos !== null && enPunto.vos > 3 && (
-                <p className="mt-2 rounded-lg bg-surface/50 px-3 py-2 text-[13px]">
+                <p className="mt-2 rounded-2xl bg-gold/30 px-3.5 py-2.5 text-[13px] font-medium">
                   Vos estás {enPunto.vos}°: te {enPunto.vos - 3 === 1 ? "falta un puesto" : `faltan ${enPunto.vos - 3} puestos`} para entrar al top 3.
                 </p>
               )}
@@ -281,84 +289,15 @@ export function SimuladorMaps() {
             </>
           )}
         </div>
-      </div>
-
-      {/* ── Competidores + qué hacer ──────────────────────── */}
-      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[1.35fr_1fr]">
-        <div className="rounded-[22px] border border-line bg-paper p-4 md:p-5">
-          <h3 className="font-display text-[1.0625rem] font-semibold">Quién aparece más en esta búsqueda</h3>
-          <p className="text-[13px] text-muted">Sos el {sim.tuPuestoZona}° negocio más visible de la zona.</p>
-          <ol className="mt-3 divide-y divide-line">
-            {ranking.map((n, i) => {
-              const sigo = seguidos.includes(n.nombre);
-              return (
-                <li key={n.id} className="grid grid-cols-[18px_1fr_auto] items-center gap-x-2.5 gap-y-1 py-2.5 text-sm">
-                  <b className="text-muted tnum">{i + 1}</b>
-                  <span className="min-w-0">
-                    <span className="block truncate font-medium">{n.nombre}</span>
-                    <span className="flex flex-wrap items-center gap-x-2.5 text-[12px] text-muted">
-                      <Estrella n={n.estrellas} />
-                      <span className="tnum">Visibilidad {n.visibilidad}</span>
-                      <span className="tnum">Top 3 en {n.top3En}</span>
-                    </span>
-                  </span>
-                  <span className="flex gap-1.5">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setMapaDe(n.id);
-                        setPunto(null);
-                      }}
-                      aria-pressed={mapaDe === n.id}
-                      className={cn(
-                        "min-h-8 rounded-full border px-2.5 text-[12px] font-semibold",
-                        mapaDe === n.id ? "border-ink bg-ink text-paper" : "border-line hover:border-brand/50",
-                      )}
-                    >
-                      Su mapa
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => seguir(n.nombre)}
-                      aria-pressed={sigo}
-                      className={cn(
-                        "min-h-8 rounded-full border px-2.5 text-[12px] font-semibold",
-                        sigo ? "border-brand bg-brand-soft text-brand" : "border-line hover:border-brand/50",
-                      )}
-                    >
-                      {sigo ? "Siguiendo" : "Seguir"}
-                    </button>
-                  </span>
-                </li>
-              );
-            })}
-          </ol>
-          <button
-            type="button"
-            onClick={() => setVerDiez((v) => !v)}
-            className="mt-1 min-h-9 text-[13px] font-semibold text-brand underline-offset-4 hover:underline"
-          >
-            {verDiez ? "Ver solo los 5 primeros" : "Ver los 10 más visibles"}
-          </button>
-          {seguidos.length > 0 && (
-            <p className="mt-3 rounded-xl bg-brand-soft px-3.5 py-3 text-[13px]">
-              <b>
-                Seguís a {seguidos.length} {seguidos.length === 1 ? "competidor" : "competidores"}.
-              </b>{" "}
-              En la app ves su valoración y sus reseñas al lado de las tuyas, todos los días, y cómo se mueven en el mapa.
-            </p>
-          )}
-        </div>
-
-        <div className="rounded-[22px] border border-line bg-paper p-4 md:p-5">
-          <h3 className="font-display text-[1.0625rem] font-semibold">Qué hacer para subir</h3>
-          <ol className="mt-3 grid gap-3.5">
+        <div className="rounded-[1.5rem] bg-brand-soft/70 p-4 md:rounded-[2rem] md:p-6">
+          <h3 className="font-display text-[1.125rem] font-semibold tracking-tight md:text-[1.25rem]">Qué hacer para subir</h3>
+          <ol className="mt-3 grid gap-2">
             {pasos.map((p, i) => (
-              <li key={p.titulo} className="flex gap-3">
+              <li key={p.titulo} className="flex gap-3 rounded-2xl bg-paper p-3.5">
                 <span
                   className={cn(
                     "flex size-7 shrink-0 items-center justify-center rounded-full text-[13px] font-bold",
-                    i === 0 ? "bg-brand text-paper" : "bg-surface text-ink",
+                    i === 0 ? "bg-brand text-paper" : "bg-brand-soft text-ink",
                   )}
                 >
                   {i + 1}
@@ -371,6 +310,79 @@ export function SimuladorMaps() {
             ))}
           </ol>
         </div>
+        </div>
+      </div>
+
+      {/* ── Competidores ──────────────────────────────────── */}
+      <div className="mt-4">
+        <div className="rounded-[1.5rem] bg-brand-soft/70 p-4 md:rounded-[2rem] md:p-6">
+          <h3 className="font-display text-[1.125rem] font-semibold tracking-tight md:text-[1.25rem]">Quién aparece más en esta búsqueda</h3>
+          <p className="text-[13px] text-muted">Sos el {sim.tuPuestoZona}° negocio más visible de la zona.</p>
+          <ol className="mt-3 grid gap-1.5 lg:grid-cols-2">
+            {ranking.map((n, i) => {
+              const sigo = seguidos.includes(n.nombre);
+              return (
+                <li key={n.id} className="grid grid-cols-[28px_1fr_auto] items-center gap-x-2.5 rounded-2xl bg-paper px-2.5 py-2.5 text-sm">
+                  <b className={cn("flex size-7 items-center justify-center rounded-full text-[12.5px] tnum", i === 0 ? "bg-gold text-ink" : "bg-brand-soft text-ink")}>{i + 1}</b>
+                  <span className="min-w-0">
+                    <span className="block truncate font-medium">{n.nombre}</span>
+                    <span className="flex flex-wrap items-center gap-x-2.5 text-[12px] text-muted">
+                      <Estrella n={n.estrellas} />
+                      <span className="tnum">Visibilidad {n.visibilidad}</span>
+                      <span className="tnum">Top 3 en {n.top3En}</span>
+                    </span>
+                    <span aria-hidden="true" className="mt-1.5 block h-1 max-w-[220px] overflow-hidden rounded-full bg-brand-soft">
+                      <i className="block h-full rounded-full bg-brand" style={{ width: `${n.visibilidad}%` }} />
+                    </span>
+                  </span>
+                  <span className="flex gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMapaDe(n.id);
+                        setPunto(null);
+                      }}
+                      aria-pressed={mapaDe === n.id}
+                      className={cn(
+                        "min-h-9 rounded-full px-3 text-[12px] font-semibold transition-colors duration-300",
+                        mapaDe === n.id ? "bg-ink text-paper" : "bg-brand-soft text-ink hover:bg-ink hover:text-paper",
+                      )}
+                    >
+                      Su mapa
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => seguir(n.nombre)}
+                      aria-pressed={sigo}
+                      className={cn(
+                        "min-h-9 rounded-full px-3 text-[12px] font-semibold transition-colors duration-300",
+                        sigo ? "bg-brand text-paper" : "bg-brand-soft text-ink hover:bg-brand hover:text-paper",
+                      )}
+                    >
+                      {sigo ? "Siguiendo" : "Seguir"}
+                    </button>
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+          <button
+            type="button"
+            onClick={() => setVerDiez((v) => !v)}
+            className="mt-2 min-h-11 text-[13.5px] font-semibold text-brand underline underline-offset-4"
+          >
+            {verDiez ? "Ver solo los 6 primeros" : "Ver los 10 más visibles"}
+          </button>
+          {seguidos.length > 0 && (
+            <p className="mt-2 rounded-2xl bg-paper px-3.5 py-3 text-[13px]">
+              <b>
+                Seguís a {seguidos.length} {seguidos.length === 1 ? "competidor" : "competidores"}.
+              </b>{" "}
+              En la app ves su valoración y sus reseñas al lado de las tuyas, todos los días, y cómo se mueven en el mapa.
+            </p>
+          )}
+        </div>
+
       </div>
     </div>
   );

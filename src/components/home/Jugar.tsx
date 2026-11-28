@@ -235,7 +235,10 @@ export function Jugar() {
     <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
       {/* ── Escenario: cartel + teléfono ─────────────────────── */}
       <div className="relative">
-        <div className="relative mx-auto flex max-w-[460px] items-end justify-center gap-4 overflow-hidden rounded-[28px] bg-white/[0.06] px-4 pb-6 pt-8 sm:gap-8">
+        <div className="relative mx-auto flex max-w-[460px] items-end justify-center gap-4 overflow-hidden rounded-[2rem] bg-white/[0.06] px-4 pb-7 pt-9 ring-1 ring-inset ring-white/10 sm:gap-8">
+          {/* Foco de luz detrás del teléfono y el mostrador donde apoya todo */}
+          <span aria-hidden="true" className="pointer-events-none absolute left-[62%] top-[42%] size-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/45 blur-3xl" />
+          <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[72px] border-t border-white/10 bg-white/[0.05]" />
           {/* Avisos (phone/tablet: arriba del escenario, donde se están mirando) */}
           <div aria-live="polite" className="pointer-events-none absolute inset-x-3 top-3 z-20 flex flex-col gap-2 lg:hidden">{pintarAvisos(avisos.slice(-1))}</div>
 
@@ -276,8 +279,8 @@ export function Jugar() {
                 </>
               )}
             </div>
-            <p className="mt-2 text-center text-[11px] font-semibold leading-tight text-paper">{modoActual.label}</p>
-            <p className="text-center text-[10px] text-paper/75">QR + NFC</p>
+            <p className="mt-2.5 text-center text-[12px] font-semibold leading-tight text-paper">{modoActual.label}</p>
+            <p className="text-center text-[11px] text-paper/75">QR + NFC</p>
           </div>
 
           {/* El teléfono del cliente */}
@@ -374,7 +377,7 @@ export function Jugar() {
 
         {/* Elegí qué hace el cartel + el botón */}
         <div className="mx-auto mt-4 max-w-[460px]">
-          <div className="flex flex-wrap justify-center gap-1.5" role="group" aria-label="Qué hace el cartel">
+          <div className="grid grid-cols-2 gap-2" role="group" aria-label="Qué hace el cartel">
             {juego.modos.map((m) => (
               <button
                 key={m.id}
@@ -385,8 +388,8 @@ export function Jugar() {
                   setFase("espera");
                 }}
                 className={cn(
-                  "flex min-h-10 items-center gap-1.5 rounded-full border px-3 text-[13px] font-semibold transition-colors",
-                  modo === m.id ? "border-paper bg-paper text-ink" : "border-white/25 text-paper hover:border-white/60",
+                  "flex min-h-11 items-center justify-center gap-1.5 rounded-full px-3 text-[13px] font-semibold transition-colors duration-300",
+                  modo === m.id ? "bg-paper text-ink" : "bg-white/10 text-paper hover:bg-white/20",
                 )}
               >
                 <Glifo id={m.glifo} size={14} />
@@ -398,7 +401,7 @@ export function Jugar() {
             type="button"
             onClick={apoyar}
             disabled={fase === "toque"}
-            className="ft-brillo mt-4 flex min-h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-brand text-[17px] font-bold text-paper transition-[transform,background-color] duration-150 hover:bg-brand-press active:scale-[0.98] disabled:opacity-70"
+            className="mt-3 flex min-h-14 w-full items-center justify-center gap-2.5 rounded-full bg-gold text-[17px] font-bold text-ink shadow-oro transition-[translate,scale,background-color] duration-500 ease-fluida hover:-translate-y-0.5 hover:bg-paper active:translate-y-0 active:scale-[0.98] disabled:opacity-70"
           >
             <svg viewBox="0 0 20 20" width="22" height="22" fill="none" aria-hidden="true">
               <path d="M6 14a6 6 0 0 1 0-8M14 6a6 6 0 0 1 0 8M8.5 11.5a2 2 0 0 1 0-3M11.5 8.5a2 2 0 0 1 0 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
@@ -410,16 +413,24 @@ export function Jugar() {
 
       {/* ── El panel del dueño ───────────────────────────────── */}
       <div>
-        <div className="relative rounded-[24px] bg-paper p-4 text-ink shadow-[var(--shadow-device)] sm:p-6">
+        <div className="relative rounded-[1.5rem] bg-paper p-5 text-ink shadow-[var(--shadow-device)] sm:rounded-[2rem] sm:p-7">
           {/* Avisos que entran (desktop: arriba del panel) */}
           <div aria-live="polite" className="pointer-events-none absolute -right-4 -top-4 z-20 hidden w-[290px] flex-col items-end gap-2 lg:flex">
             {pintarAvisos(avisos)}
           </div>
 
-          <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">Panel del dueño · hoy</p>
+          <p className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.08em] text-muted">
+            <span className="relative flex size-2">
+              <span className="absolute inset-0 rounded-full bg-teal motion-safe:animate-ping" />
+              <span className="relative size-2 rounded-full bg-teal" />
+            </span>
+            Panel del dueño · en vivo
+          </p>
           <div className="mt-1 flex items-end justify-between gap-3">
-            <b className="font-display text-[1.25rem] leading-tight sm:text-[1.5rem]">Café Rivas</b>
-            <span className="rounded-full bg-gold/30 px-2.5 py-1 text-[12px] font-bold">{nivel.nombre}</span>
+            <b className="font-display text-[1.375rem] leading-tight tracking-tight sm:text-[1.75rem]">Café Rivas</b>
+            <span className="flex items-center gap-1.5 rounded-full bg-gold px-3 py-1 text-[12px] font-bold">
+              <Glifo id="trofeo" size={13} /> {nivel.nombre}
+            </span>
           </div>
 
           <div className="mt-3">
@@ -429,8 +440,8 @@ export function Jugar() {
               </span>
               <span>{siguiente ? `Próximo: ${siguiente.nombre}` : "¡Nivel máximo!"}</span>
             </div>
-            <div className="mt-1.5 h-2.5 overflow-hidden rounded-full bg-line">
-              <i className="block h-full rounded-full bg-brand transition-[width] duration-700 ease-[var(--ease-ft)]" style={{ width: `${progreso}%` }} />
+            <div className="mt-1.5 h-2.5 overflow-hidden rounded-full bg-brand-soft">
+              <i className="block h-full min-w-2.5 rounded-full bg-brand transition-[width] duration-700 ease-[var(--ease-ft)]" style={{ width: `${progreso}%` }} />
             </div>
           </div>
 
@@ -443,9 +454,9 @@ export function Jugar() {
                 ["Mensajes", stats.mensajes, "celular"],
               ] as const
             ).map(([l, v, g]) => (
-              <div key={l} className="rounded-xl bg-surface/60 px-2 py-2.5 text-center">
-                <Glifo id={g} size={15} className="mx-auto text-brand" />
-                <dd className="mt-1 font-display text-[1.375rem] font-semibold leading-none">
+              <div key={l} className={cn("rounded-2xl px-2 py-3 text-center transition-colors duration-500", v > 0 ? "bg-brand-soft" : "bg-brand-soft/50")}>
+                <Glifo id={g} size={16} className="mx-auto text-brand" />
+                <dd className="mt-1.5 font-display text-[1.5rem] font-semibold leading-none sm:text-[1.75rem]">
                   <Numero valor={v} />
                 </dd>
                 <dt className="mt-1 text-[10.5px] text-muted sm:text-[11.5px]">{l}</dt>
@@ -454,7 +465,7 @@ export function Jugar() {
           </dl>
 
           {respuestaIA && (
-            <div className="mt-3 rounded-xl border border-teal/30 bg-teal/5 px-3 py-2 text-[12.5px]">
+            <div className="mt-3 rounded-2xl bg-teal/10 px-3.5 py-2.5 text-[13px]">
               <small className="mb-0.5 flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide">
                 <Glifo id="chispa" size={11} className="text-brand" /> La IA respondió la reseña
               </small>
@@ -463,13 +474,20 @@ export function Jugar() {
             </div>
           )}
 
-          <ul className="mt-3 min-h-[120px] divide-y divide-line">
+          <ul className="mt-3 min-h-[132px] divide-y divide-brand-soft">
             {eventos.length === 0 ? (
-              <li className="py-6 text-center text-[13px] text-muted">Todavía no pasó nada. Apoyá el celular en el cartel 👉</li>
+              <li className="flex min-h-[132px] flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-brand-soft px-4 text-center text-[13.5px] text-muted">
+                <span className="flex size-10 items-center justify-center rounded-full bg-brand-soft text-brand">
+                  <Glifo id="cartel" size={18} />
+                </span>
+                Todavía no pasó nada. Apoyá el celular en el cartel y mirá cómo llega acá.
+              </li>
             ) : (
               eventos.map((e) => (
-                <li key={e.id} className="ft-fade flex items-center gap-2.5 py-2 text-[13px]">
-                  <Glifo id={e.glifo} size={15} className="shrink-0 text-brand" />
+                <li key={e.id} className="ft-fade flex items-center gap-3 py-2.5 text-[13.5px]">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">
+                    <Glifo id={e.glifo} size={14} />
+                  </span>
                   <span className="min-w-0 flex-1 truncate">{e.texto}</span>
                   <span className="text-[11px] text-muted">recién</span>
                 </li>

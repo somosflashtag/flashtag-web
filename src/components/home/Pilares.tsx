@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Glifo } from "@/components/ui/Glifo";
 import type { Pilar, PilarId } from "@/content/home";
 import { cn } from "@/lib/cn";
+import { site } from "@/lib/site";
 
 const tonosIcono = {
   brand: "bg-brand text-paper",
@@ -41,6 +42,14 @@ export function Pilares({
   );
   const pilar = pilares.find((p) => p.id === activo)!;
   const pantalla = funcion[activo];
+  const funcionActiva = pilar.funciones.find((f) => f.pantalla === pantalla);
+  // Dos funciones pueden compartir página (ficha y protección van a la misma):
+  // el link sale una sola vez.
+  const links = [
+    ...new Map(
+      pilar.funciones.filter((f) => f.feature && desde[f.feature]).map((f) => [desde[f.feature!].href, desde[f.feature!]]),
+    ).values(),
+  ];
 
   return (
     <>
@@ -58,20 +67,22 @@ export function Pilares({
                 e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
               }}
               className={cn(
-                "group flex min-h-11 shrink-0 items-center gap-2 rounded-full border-2 bg-paper py-1 pl-1 pr-4 text-left shadow-[var(--shadow-rest)] transition-[transform,box-shadow,border-color] duration-200 ease-[var(--ease-ft)] md:flex-col md:items-start md:gap-1.5 md:rounded-[22px] md:p-5 md:hover:-translate-y-1 md:hover:shadow-[var(--shadow-float)]",
-                on ? "border-brand md:-translate-y-1 md:shadow-[var(--shadow-float)]" : "border-transparent",
+                "group flex min-h-11 shrink-0 items-center gap-2 rounded-full py-1 pl-1 pr-4 text-left transition-[translate,box-shadow,background-color,color] duration-500 ease-fluida md:flex-col md:items-start md:gap-1.5 md:rounded-[1.5rem] md:p-5 md:hover:-translate-y-1",
+                on
+                  ? "bg-ink text-paper shadow-[var(--shadow-float)] md:-translate-y-1"
+                  : "bg-paper text-ink shadow-[var(--shadow-rest)] md:hover:shadow-[var(--shadow-float)]",
               )}
             >
               <span
                 className={cn(
                   "flex size-8 shrink-0 items-center justify-center rounded-full transition-transform md:mb-1.5 md:size-11 md:rounded-[14px] duration-300 group-hover:-rotate-6 group-hover:scale-105",
-                  tonosIcono[p.tono],
+                  on && p.tono === "ink" ? "bg-paper text-ink" : tonosIcono[p.tono],
                 )}
               >
                 <Glifo id={p.glifo} size={18} />
               </span>
-              <b className={cn("whitespace-nowrap font-display text-[14px] leading-tight md:whitespace-normal md:text-[17px]", on ? "text-brand" : "text-ink")}>{p.tab}</b>
-              <span className="hidden text-[12.5px] leading-snug text-muted md:block">{p.tabBajada}</span>
+              <b className="whitespace-nowrap font-display text-[14px] leading-tight md:whitespace-normal md:text-[17px]">{p.tab}</b>
+              <span className={cn("hidden text-[12.5px] leading-snug md:block", on ? "text-paper/75" : "text-muted")}>{p.tabBajada}</span>
             </button>
           );
         })}
@@ -81,7 +92,7 @@ export function Pilares({
         <div>
           <h3 className="t-h3 !text-[1.375rem] sm:!text-[1.875rem]">{pilar.titular}</h3>
           <p className="mb-4 mt-2 text-[15px] leading-relaxed text-muted md:mb-5 md:mt-2.5 md:text-base">{pilar.bajada}</p>
-          <ul className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] lg:mx-0 lg:grid lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+          <ul className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] lg:mx-0 lg:grid lg:gap-2.5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
             {pilar.funciones.map((f) => {
               const on = f.pantalla === pantalla;
               const extra = f.feature ? desde[f.feature] : undefined;
@@ -93,13 +104,13 @@ export function Pilares({
                     onClick={() => setFuncion((s) => ({ ...s, [activo]: f.pantalla }))}
                     onMouseEnter={() => setFuncion((s) => ({ ...s, [activo]: f.pantalla }))}
                     className={cn(
-                      "group flex w-full items-center gap-2.5 rounded-full border bg-paper py-1.5 pl-1.5 pr-3.5 text-left lg:items-start lg:gap-3 lg:rounded-[14px] lg:p-3.5 transition-[border-color,box-shadow] duration-150",
-                      on ? "border-brand shadow-[0_0_0_3px_var(--color-brand-soft)]" : "border-line hover:border-brand/50",
+                      "group flex min-h-11 w-full items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-3.5 text-left transition-[background-color,box-shadow] duration-300 ease-fluida lg:items-start lg:gap-3.5 lg:rounded-[1.25rem] lg:p-4",
+                      on ? "bg-paper shadow-[var(--shadow-float)]" : "bg-paper/55 hover:bg-paper",
                     )}
                   >
                     <span
                       className={cn(
-                        "flex size-8 shrink-0 items-center justify-center rounded-full lg:size-[38px] lg:rounded-[11px] transition-[transform,background-color,color] duration-200",
+                        "flex size-8 shrink-0 items-center justify-center rounded-full lg:size-11 lg:rounded-[14px] transition-[transform,background-color,color] duration-300",
                         on ? "-rotate-6 scale-105 bg-brand text-paper" : "bg-brand-soft text-brand group-hover:-rotate-6 group-hover:bg-brand group-hover:text-paper",
                       )}
                     >
@@ -114,42 +125,56 @@ export function Pilares({
                           </span>
                         )}
                       </b>
-                      <span className="mt-0.5 hidden text-[13px] text-muted lg:block">{f.texto}</span>
+                      <span className="mt-0.5 hidden text-[13.5px] leading-snug text-muted lg:block">{f.texto}</span>
                     </span>
                   </button>
                 </li>
               );
             })}
           </ul>
-          {pilar.funciones.some((f) => f.feature) && (
-            <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-              {pilar.funciones
-                .filter((f) => f.feature && desde[f.feature])
-                .map((f) => (
-                  <Link key={f.pantalla} href={desde[f.feature!].href} className="font-semibold text-brand underline underline-offset-4">
-                    Más sobre {desde[f.feature!].nombre}
-                  </Link>
-                ))}
+          {links.length > 0 && (
+            <p className="mt-4 flex flex-wrap gap-2">
+              {links.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="group inline-flex min-h-11 items-center gap-1.5 rounded-full bg-brand/10 px-4 text-sm font-semibold text-brand transition-colors duration-300 hover:bg-brand hover:text-paper"
+                >
+                  Más sobre {l.nombre}
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true" className="transition-transform duration-500 ease-fluida group-hover:translate-x-0.5">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              ))}
             </p>
           )}
         </div>
 
-        <div className="rounded-[20px] border border-line bg-paper p-4 shadow-[var(--shadow-float)] sm:p-6 lg:sticky lg:top-28 lg:min-h-[440px]">
-          <div className="mb-3 hidden gap-1.5 sm:flex md:mb-4" aria-hidden="true">
-            <i className="size-2.5 rounded-full bg-line" />
-            <i className="size-2.5 rounded-full bg-line" />
-            <i className="size-2.5 rounded-full bg-line" />
+        <div className="overflow-hidden rounded-[1.5rem] bg-paper shadow-[var(--shadow-device)] sm:rounded-[2rem] lg:sticky lg:top-28">
+          <div className="hidden items-center gap-3 bg-brand-soft/60 px-5 py-3 sm:flex" aria-hidden="true">
+            <span className="flex gap-1.5">
+              <i className="size-2.5 rounded-full bg-coral" />
+              <i className="size-2.5 rounded-full bg-gold" />
+              <i className="size-2.5 rounded-full bg-teal" />
+            </span>
+            <span className="flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full bg-paper px-3 py-1 text-[12px] text-muted">
+              <svg viewBox="0 0 12 12" width="10" height="10" fill="none">
+                <rect x="2.5" y="5.5" width="7" height="5" rx="1.2" fill="currentColor" />
+                <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" strokeWidth="1.2" />
+              </svg>
+              <span className="truncate">{site.urls.app.replace(/^https?:\/\//, "")}</span>
+            </span>
+            <span className="w-[42px]" />
           </div>
-          {(() => {
-            const f = pilar.funciones.find((x) => x.pantalla === pantalla);
-            return f ? (
-              <p className="mb-3 border-b border-line pb-3 text-[13px] text-muted lg:hidden">
-                <b className="text-ink">{f.titulo}:</b> {f.texto}
-              </p>
-            ) : null;
-          })()}
+          <div className="p-4 sm:p-6 lg:min-h-[420px]">
+          {funcionActiva && (
+            <p className="mb-3 border-b border-brand-soft pb-3 text-[13px] text-muted lg:hidden">
+              <b className="text-ink">{funcionActiva.titulo}:</b> {funcionActiva.texto}
+            </p>
+          )}
           <div key={pantalla} className="ft-fade" aria-live="polite">
             {pantallas[pantalla]}
+          </div>
           </div>
         </div>
       </div>
