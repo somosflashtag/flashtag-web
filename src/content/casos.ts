@@ -345,6 +345,199 @@ export const casos: Caso[] = [
     medicion:
       "Contamos las reseñas del perfil de Google de Aliens Coffee, conectado al panel de FlashTag, antes y después del primer escaneo de sus carteles.",
   },
+  /*
+   * Tanda 2 (28/11/2026), con permiso de cada comercio. Ninguno tiene su
+   * Google conectado al panel, así que las cifras son escaneos (personas que
+   * abrieron la pantalla para dejar su reseña), no reseñas.
+   */
+  {
+    slug: "milena-pastas",
+    negocio: "Milena Pastas Artesanales",
+    ciudad: "CABA",
+    rubro: "gastronomia",
+    uso: "Un cartel FlashTag en cada uno de sus 3 locales",
+    metrica: "×2,6 escaneos por mes en un año",
+    metricaVerificada: true,
+    autorizado: true,
+    detalle: "milena-pastas",
+    portada: {
+      titular: "Tres carteles, más de 6.000 escaneos, y cada mes más",
+      bajada:
+        "Milena Pastas Artesanales tiene tres locales en la Ciudad de Buenos Aires y un cartel FlashTag en cada mostrador. Arrancó con 346 escaneos por mes; hoy pasa los 900.",
+      datos: ["CABA", "Pastas artesanales", "3 locales"],
+      cifras: [
+        { valor: "6.247", label: "Escaneos desde septiembre de 2025" },
+        { valor: "+1.000", label: "Escaneos en los últimos 30 días" },
+        { valor: "×2,6", label: "Escaneos por mes, contra el primer mes" },
+        { valor: "Domingo", label: "El día que más se escanea, al mediodía" },
+      ],
+    },
+    evolucion: {
+      titulo: "Escaneos por mes, sumando los tres locales",
+      antes: { etiqueta: "Octubre de 2025, primer mes completo", valor: 346 },
+      despues: { etiqueta: "Noviembre de 2026", valor: 912 },
+      nota: "Noviembre de 2026 cuenta hasta el día 28. Datos del panel de FlashTag.",
+    },
+    medicion:
+      "Contamos los escaneos de los tres carteles de Milena en el panel de FlashTag. Cada escaneo es una persona que abrió la pantalla para dejar su reseña en Google. Los toques NFC van directo a Google y no los contamos.",
+  },
+  {
+    slug: "ohmyshop",
+    negocio: "OhMyShop!",
+    ciudad: "CABA",
+    rubro: "retail",
+    uso: "Dos carteles FlashTag, funcionando desde 2024",
+    metrica: "2 años de escaneos, todos los meses",
+    metricaVerificada: true,
+    autorizado: true,
+    detalle: "ohmyshop",
+    portada: {
+      titular: "Dos carteles, dos años, y todavía rinden más que el primer año",
+      bajada:
+        "OhMyShop! es una tienda de regalos de la Ciudad de Buenos Aires. Puso dos carteles de FlashTag en octubre de 2024 y desde entonces no hubo un solo mes sin clientes que llegaran a dejar su reseña.",
+      datos: ["CABA", "Tienda de regalos", "Desde octubre de 2024"],
+      cifras: [
+        { valor: "4.423", label: "Escaneos desde octubre de 2024" },
+        { valor: "26", label: "Meses seguidos con escaneos" },
+        { valor: "+53%", label: "Escaneos por mes contra el año anterior" },
+        { valor: "2", label: "Carteles en el local" },
+      ],
+    },
+    evolucion: {
+      titulo: "Escaneos por mes, de agosto a noviembre",
+      antes: { etiqueta: "2025", valor: 170 },
+      despues: { etiqueta: "2026", valor: 260 },
+      nota: "Promedio mensual de agosto a noviembre de cada año. Noviembre de 2026 cuenta hasta el día 28. Datos del panel de FlashTag.",
+    },
+    medicion:
+      "Contamos los escaneos de los dos carteles de OhMyShop! en el panel de FlashTag. Cada escaneo es una persona que abrió la pantalla para dejar su reseña en Google. Los toques NFC van directo a Google y no los contamos.",
+  },
+  {
+    slug: "parque-cerveceria-quilmes",
+    negocio: "Parque de la Cervecería Quilmes",
+    ciudad: "Buenos Aires",
+    rubro: "gastronomia",
+    uso: "36 carteles y tarjetas FlashTag en el bar",
+    metrica: "+6.700 escaneos en 36 piezas",
+    metricaVerificada: true,
+    autorizado: true,
+    detalle: "parque-cerveceria-quilmes",
+    portada: {
+      titular: "36 carteles y tarjetas para un bar a escala de parque",
+      bajada:
+        "El Parque de la Cervecería Quilmes tiene 36 piezas de FlashTag repartidas en el bar. Desde marzo de 2025 suman más de 6.700 escaneos, con el pico a las once de la noche y los sábados.",
+      datos: ["Buenos Aires", "Bar", "Desde marzo de 2025"],
+      cifras: [
+        { valor: "6.715", label: "Escaneos desde marzo de 2025" },
+        { valor: "36", label: "Carteles y tarjetas en el bar" },
+        { valor: "904", label: "Escaneos en su mejor mes (febrero de 2026)" },
+        { valor: "23 h", label: "La hora en que más se escanea" },
+      ],
+    },
+    medicion:
+      "Contamos los escaneos de las 36 piezas del bar en el panel de FlashTag. Cada escaneo es una persona que abrió la pantalla para dejar su reseña en Google. Los toques NFC van directo a Google y no los contamos.",
+  },
+  {
+    slug: "padre",
+    negocio: "PADRE",
+    ciudad: "CABA",
+    rubro: "gastronomia",
+    uso: "12 carteles y tarjetas FlashTag en la panadería",
+    metrica: "+3.000 escaneos en su primer año",
+    metricaVerificada: true,
+    autorizado: true,
+    detalle: "padre",
+    portada: {
+      titular: "Un año, doce piezas y unos 250 escaneos por mes",
+      bajada:
+        "PADRE es una panadería de la Ciudad de Buenos Aires. Sumó carteles y tarjetas de FlashTag en noviembre de 2025 y en su primer año pasó los 3.000 escaneos, con un ritmo que no se cae.",
+      datos: ["CABA", "Panadería", "Desde noviembre de 2025"],
+      cifras: [
+        { valor: "3.072", label: "Escaneos desde noviembre de 2025" },
+        { valor: "~250", label: "Escaneos por mes, en promedio" },
+        { valor: "12", label: "Carteles y tarjetas" },
+        { valor: "Sábado", label: "El día de más escaneos: uno de cada cuatro" },
+      ],
+    },
+    medicion:
+      "Contamos los escaneos de las 12 piezas de PADRE en el panel de FlashTag. Cada escaneo es una persona que abrió la pantalla para dejar su reseña en Google. Los toques NFC van directo a Google y no los contamos.",
+  },
+  {
+    slug: "cerveza-patagonia-puerto-madero",
+    negocio: "Cerveza Patagonia · Refugio Puerto Madero",
+    ciudad: "Puerto Madero, CABA",
+    rubro: "gastronomia",
+    uso: "Carteles y tarjetas FlashTag en el refugio",
+    metrica: "1.195 escaneos en el primer mes",
+    metricaVerificada: true,
+    autorizado: true,
+    detalle: "cerveza-patagonia-puerto-madero",
+    portada: {
+      titular: "1.195 escaneos en el primer mes, en pleno Puerto Madero",
+      bajada:
+        "El Refugio de Cerveza Patagonia está en Puerto Madero, una de las zonas más turísticas de la ciudad. Con carteles y tarjetas de FlashTag, en su primer mes completo registró 1.195 escaneos.",
+      datos: ["Puerto Madero, CABA", "Cervecería", "Desde junio de 2025"],
+      cifras: [
+        { valor: "3.234", label: "Escaneos desde junio de 2025" },
+        { valor: "1.195", label: "Escaneos en julio de 2025, su primer mes completo" },
+        { valor: "4", label: "Carteles y tarjetas" },
+        { valor: "Sábado", label: "El día de más escaneos, a las 21 h" },
+      ],
+    },
+    medicion:
+      "Contamos los escaneos de las cuatro piezas del refugio en el panel de FlashTag. Cada escaneo es una persona que abrió la pantalla para dejar su reseña en Google. Los toques NFC van directo a Google y no los contamos.",
+  },
+  {
+    slug: "accademia-della-pizza",
+    negocio: "Accademia Della Pizza",
+    ciudad: "Boedo, CABA",
+    rubro: "gastronomia",
+    uso: "Tres carteles FlashTag en el salón",
+    metrica: "+4.100 escaneos con 3 carteles",
+    metricaVerificada: true,
+    autorizado: true,
+    detalle: "accademia-della-pizza",
+    portada: {
+      titular: "Tres carteles en una pizzería de barrio: más de 4.100 escaneos",
+      bajada:
+        "Accademia Della Pizza, en Boedo, tiene tres carteles de FlashTag desde febrero de 2025. Se usan sobre todo de noche, y los sábados más que nunca.",
+      datos: ["Boedo, CABA", "Pizzería", "Desde febrero de 2025"],
+      cifras: [
+        { valor: "4.186", label: "Escaneos desde febrero de 2025" },
+        { valor: "~190", label: "Escaneos por mes, en promedio" },
+        { valor: "486", label: "Escaneos en su mejor mes (julio de 2025)" },
+        { valor: "23 h", label: "La hora en que más se escanea" },
+      ],
+    },
+    medicion:
+      "Contamos los escaneos de los tres carteles de la pizzería en el panel de FlashTag. Cada escaneo es una persona que abrió la pantalla para dejar su reseña en Google. Los toques NFC van directo a Google y no los contamos.",
+  },
+  {
+    slug: "ypf-boulevard-72",
+    logo: "/logos/ypf.webp",
+    negocio: "YPF Boulevard 72",
+    ciudad: "La Plata",
+    rubro: "servicios",
+    uso: "Carteles y tarjetas FlashTag en la estación de servicio",
+    metrica: "+2.400 escaneos en 7 meses",
+    metricaVerificada: true,
+    autorizado: true,
+    detalle: "ypf-boulevard-72",
+    portada: {
+      titular: "Una estación de servicio donde nadie se queda mucho tiempo, y igual dejan su reseña",
+      bajada:
+        "La estación YPF de Combustibles Boulevard 72, en La Plata, sumó carteles y tarjetas de FlashTag en abril de 2026. En siete meses registró más de 2.400 escaneos, entre carga y carga.",
+      datos: ["La Plata", "Estación de servicio", "Desde abril de 2026"],
+      cifras: [
+        { valor: "2.435", label: "Escaneos desde abril de 2026" },
+        { valor: "1.019", label: "Escaneos en su mejor mes (agosto de 2026)" },
+        { valor: "4", label: "Carteles y tarjetas" },
+        { valor: "9 h", label: "La hora en que más se escanea" },
+      ],
+    },
+    medicion:
+      "Contamos los escaneos de las cuatro piezas de la estación en el panel de FlashTag. Cada escaneo es una persona que abrió la pantalla para dejar su reseña en Google. Los toques NFC van directo a Google y no los contamos.",
+  },
   {
     slug: "betular-patisserie",
     logo: "/logos/betular.webp",
