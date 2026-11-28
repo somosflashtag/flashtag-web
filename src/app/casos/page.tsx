@@ -31,7 +31,7 @@ export default async function CasosPage() {
         titulo="Locales que crecen"
         destacado="con FlashTag."
         bajada="De almacenes de barrio a marcas reconocidas. Casos reales de comercios argentinos."
-        pie="Publicamos un caso solo con permiso del comercio. Las cifras salen de sus perfiles de Google."
+        pie="Publicamos un caso solo con permiso del comercio. Las cifras salen de sus perfiles de Google y del panel de FlashTag."
       >
         <Button href={cta.primary.href} variant="oro" size="lg" arrow>
           {cta.primary.label}

@@ -58,7 +58,7 @@ De nada sirve el mejor sistema de respuestas si tenés cinco reseñas. El cuello
 
 La fricción es el problema. Pedirle a alguien que busque tu negocio, entre al perfil y escriba es pedirle tres pasos. La mayoría no los da.
 
-Un cartel con QR y NFC sobre la mesa reduce eso a un gesto: escanear o apoyar el teléfono. El Ateneo Grand Splendid sostiene más de 600 activaciones por mes con ese mecanismo, sin que el personal tenga que pedir nada.
+Un cartel con QR y NFC sobre la mesa reduce eso a un gesto: escanear o apoyar el teléfono. Con ese mecanismo, Treu, un restaurante de San Francisco (Córdoba), pasó de 5 a 61 reseñas por mes en menos de dos meses.
 
 ## En resumen
 

@@ -21,3 +21,5 @@ El momento de activación coincide con la experiencia de compra, cuando el produ
 La cadena acumula más de 3.786 reseñas en Google distribuidas en sus locales, con una puntuación promedio de 4,7 sobre 5.
 
 Locales como el del Mercado de San Telmo destacan con 4,9 estrellas y 736 reseñas, mientras que el local más concurrido supera las 2.300 opiniones. Un perfil activo y consistente en toda la cadena que refuerza la decisión de visita tanto en porteños como en turistas que descubren la marca por primera vez en Google Maps.
+
+La Casa del Dulce de Leche fue de los primeros clientes de FlashTag: sus carteles funcionan desde mayo de 2024 en cinco locales y suman **más de 3.400 escaneos**.

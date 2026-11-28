@@ -20,4 +20,4 @@ Los carteles fueron ubicados en los puntos de mayor permanencia del local, donde
 
 Hoy El Ateneo Grand Splendid, la sede más emblemática de la cadena, acumula más de 98.500 reseñas en Google con una puntuación de 4,8 sobre 5 — uno de los perfiles más robustos del retail cultural en toda América Latina.
 
-Con más de 600 activaciones mensuales sostenidas, el flujo de nuevas reseñas es constante y orgánico. Un cartel que respeta la majestuosidad del espacio y, al mismo tiempo, trabaja en silencio para construir la reputación online más sólida del rubro.
+El Grand Splendid es parte de una red más grande: entre Yenny y El Ateneo, hay carteles de FlashTag en **62 locales** de todo el país, que suman más de 5.000 escaneos de QR desde octubre de 2025, sin contar los toques NFC. Un cartel que respeta la majestuosidad del espacio y, al mismo tiempo, trabaja en silencio para sostener una de las reputaciones online más sólidas del rubro.

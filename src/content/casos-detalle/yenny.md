@@ -16,6 +16,8 @@ El momento de activación coincide con el final de la visita, cuando la experien
 
 ## Resultados
 
-Cada sucursal de Yenny construye su propio perfil de reputación en Google de forma constante y orgánica. El local de Paraná acumula más de 1.000 reseñas con una puntuación de 4,4 sobre 5, y ese mismo patrón se replica en toda la cadena.
+Cada sucursal de Yenny construye su propio perfil de reputación en Google. El local de Paraná acumula más de 1.000 reseñas con una puntuación de 4,4 sobre 5.
 
-Con más de 400 activaciones mensuales por local, los carteles generan un flujo sostenido de reseñas sin intervención del equipo, fortaleciendo la visibilidad de cada sucursal frente a nuevos clientes que buscan en Google antes de decidir dónde ir.
+Desde octubre de 2025, los carteles de la red Yenny–El Ateneo suman **más de 5.000 escaneos de QR en 62 locales**, de Ushuaia a Jujuy. Los que más se usan están en Mendoza Centro (más de 500 escaneos), San Miguel (400) y el Alto Comahue de Neuquén (casi 350). Y eso sin contar los toques NFC, que van directo a Google.
+
+Un flujo sostenido de reseñas sin intervención del equipo, que fortalece la visibilidad de cada sucursal frente a quienes buscan en Google antes de decidir dónde ir.

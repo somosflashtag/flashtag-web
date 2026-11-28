@@ -20,4 +20,4 @@ El momento de activación coincide con las instancias de mayor satisfacción del
 
 deRentas acumula 4.098 reseñas en Google con una puntuación de 4,8 sobre 5: uno de los perfiles más sólidos del sector automotriz en el área norte del Gran Buenos Aires.
 
-Las reseñas destacan la amabilidad del personal, la resolución de dudas y la buena onda del equipo, construyendo una imagen de confianza que es el argumento más poderoso para nuevos clientes que evalúan sumarse a la propuesta de Rent to Own. Los carteles trabajan solos, convirtiendo cada experiencia positiva en evidencia pública.
+Las reseñas destacan la amabilidad del personal, la resolución de dudas y la buena onda del equipo, construyendo una imagen de confianza que es el argumento más poderoso para nuevos clientes que evalúan sumarse a la propuesta de Rent to Own. Los carteles y tarjetas trabajan solos, convirtiendo cada experiencia positiva en evidencia pública: desde octubre de 2025 suman **más de 1.200 escaneos**, y más de 1.000 en el último año.
