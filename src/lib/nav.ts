@@ -2,6 +2,7 @@ import { articulosPublicables } from "@/content/blog";
 import { casosConDetalle } from "@/content/casos";
 import { features } from "@/content/features";
 import { paginasRubro } from "@/content/rubros";
+import type { GlifoId } from "@/components/ui/Glifo";
 import { site } from "./site";
 
 /**
@@ -70,10 +71,14 @@ export const menuRubros = paginasRubro.map((r) => ({
   glifo: r.glifo,
 }));
 
-/** `conMapa`: debajo de la columna va el botón al mapa de comercios (si está abierto). */
-export const columnasFooter: { titulo: string; links: NavItem[]; conMapa?: boolean }[] = [
+/**
+ * `glifo`: el ícono que acompaña el título de la columna.
+ * `conMapa`: debajo de la columna va el botón al mapa de comercios (si está abierto).
+ */
+export const columnasFooter: { titulo: string; glifo: GlifoId; links: NavItem[]; conMapa?: boolean }[] = [
   {
     titulo: "Aplicación",
+    glifo: "celular",
     links: [
       ...features.map((f) => ({ label: f.nombre, href: `/producto/${f.slug}` })),
       { label: "Precios", href: "/precios" },
@@ -82,6 +87,7 @@ export const columnasFooter: { titulo: string; links: NavItem[]; conMapa?: boole
   },
   {
     titulo: "Para tu rubro",
+    glifo: "bolsa",
     conMapa: true,
     links: paginasRubro.map((r) => ({
       label: r.nav,
@@ -90,6 +96,7 @@ export const columnasFooter: { titulo: string; links: NavItem[]; conMapa?: boole
   },
   {
     titulo: "Recursos",
+    glifo: "libro",
     links: [
       { label: "Cursos", href: "/cursos" },
       { label: "Blog", href: "/blog" },
@@ -98,6 +105,7 @@ export const columnasFooter: { titulo: string; links: NavItem[]; conMapa?: boole
   },
   {
     titulo: "Empresa",
+    glifo: "edificio",
     links: [
       { label: "Nosotros", href: "/nosotros" },
       { label: "Contacto", href: "/contacto" },

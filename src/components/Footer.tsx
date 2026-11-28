@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "./ui/Container";
 import { Logo } from "./ui/Logo";
-import { QRMark } from "./ui/QRMark";
 import { Glifo } from "./ui/Glifo";
+import { Bandera } from "./ui/Bandera";
 import {
   IconoInstagram,
   IconoLinkedIn,
@@ -46,13 +46,16 @@ export async function Footer() {
             <p className="mt-4 max-w-[26ch] font-display text-[1.25rem] font-semibold leading-snug tracking-[-0.02em] text-paper/90">
               Marketing phygital para comercios locales.
             </p>
-            <p className="mt-2 text-sm text-paper/60">Hecho en Argentina.</p>
+            <p className="mt-2 flex items-center gap-2 text-sm text-paper/60">
+              <Bandera pais="ar" size={14} decorativa />
+              Hecho en Argentina.
+            </p>
           </div>
 
           {columnasFooter.map((col) => (
             <div key={col.titulo}>
               <h2 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.08em] text-gold">
-                <QRMark size={16} tone="paper" />
+                <Glifo id={col.glifo} size={18} className="shrink-0" />
                 {col.titulo}
               </h2>
               <ul className="mt-2 md:mt-4 md:space-y-2.5">
