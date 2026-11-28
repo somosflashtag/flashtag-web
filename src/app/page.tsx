@@ -476,7 +476,7 @@ export default async function Home() {
         <Container>
           <Titulo
             titulo="De pastelerías de barrio a cadenas nacionales"
-            bajada="Casos reales. Los números salen de sus perfiles de Google."
+            bajada="Casos reales. Los números salen de sus perfiles de Google y del panel de FlashTag."
           />
           <CasosFiltro casos={casosHome} rubros={rubrosCasos} />
           <p className="mt-8 text-center">

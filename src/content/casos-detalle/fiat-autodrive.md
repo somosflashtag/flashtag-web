@@ -18,4 +18,4 @@ El cartel está presente en el momento en que la relación con el cliente ya fue
 
 Fiat AutoDrive acumula 946 reseñas en Google con una puntuación de 4,3 sobre 5. Un perfil activo y en crecimiento que fortalece la visibilidad del concesionario frente a clientes que buscan en Google antes de decidir qué marca y qué punto de venta visitar.
 
-Los carteles trabajan solos, todos los días, sin carga operativa para el equipo.
+Los carteles trabajan solos, todos los días, sin carga operativa para el equipo. El grupo los extendió: hoy hay carteles de FlashTag en **11 puntos de AutoDrive**, entre ventas de Fiat, Jeep y Kia, usados, taller y entregas, que suman casi 500 escaneos.

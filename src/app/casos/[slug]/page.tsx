@@ -12,7 +12,7 @@ import { HeroPagina } from "@/components/ui/HeroPagina";
 import { Pagina, Viaja } from "@/components/ui/Pagina";
 import { Seccion } from "@/components/ui/Seccion";
 import { Titulo } from "@/components/ui/Titulo";
-import { casosConDetalle, casosPublicables, rubros } from "@/content/casos";
+import { type Caso, casosConDetalle, casosPublicables, rubros } from "@/content/casos";
 import { cn } from "@/lib/cn";
 import { pageMeta } from "@/lib/seo";
 import { cta, site } from "@/lib/site";
@@ -44,6 +44,41 @@ export async function generateMetadata({
 }
 
 const tonosCifra = ["dato-brand", "dato-coral", "dato-teal", "dato-brand"];
+
+/**
+ * Antes y con FlashTag, en dos barras. La barra larga es siempre la mayor de
+ * las dos: el ancho es proporcional, así que un ×12 se ve como un ×12.
+ */
+function Evolucion({ e }: { e: NonNullable<Caso["evolucion"]> }) {
+  const max = Math.max(e.antes.valor, e.despues.valor, 1);
+  const filas = [
+    { ...e.antes, barra: "bg-ink/25", cifra: "text-ink/70" },
+    { ...e.despues, barra: "bg-brand", cifra: "text-brand" },
+  ];
+  return (
+    <figure data-reveal className="mx-auto mt-4 rounded-[1.75rem] bg-brand-soft/70 p-6 md:p-9">
+      <figcaption className="font-display text-[1.25rem] font-bold leading-tight tracking-[-0.03em] text-ink md:text-[1.5rem]">
+        {e.titulo}
+      </figcaption>
+      <dl className="mt-6 space-y-5">
+        {filas.map((f) => (
+          <div key={f.etiqueta}>
+            <div className="flex items-baseline justify-between gap-4">
+              <dt className="text-[15px] font-medium text-ink">{f.etiqueta}</dt>
+              <dd className={cn("font-display text-[2rem] font-bold leading-none tracking-[-0.04em] tnum", f.cifra)}>
+                {f.valor.toLocaleString("es-AR")}
+              </dd>
+            </div>
+            <div className="mt-2 h-3 overflow-hidden rounded-full bg-paper" aria-hidden="true">
+              <div className={cn("h-full rounded-full", f.barra)} style={{ width: `${Math.max((f.valor / max) * 100, 2)}%` }} />
+            </div>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-6 text-sm leading-relaxed text-muted">{e.nota}</p>
+    </figure>
+  );
+}
 
 export default async function CasoPage({
   params,
@@ -145,6 +180,9 @@ export default async function CasoPage({
               </div>
             ))}
           </dl>
+
+          {/* Antes y después: el número que cuenta la historia, con su fuente. */}
+          {c.evolucion && <Evolucion e={c.evolucion} />}
         </Seccion>
       )}
 
@@ -152,6 +190,12 @@ export default async function CasoPage({
       <section className="py-14 md:py-24">
         <Container>
           <article className="legal mx-auto max-w-[720px]" dangerouslySetInnerHTML={{ __html: html }} />
+
+          {c.medicion && (
+            <p className="mx-auto mt-10 max-w-[720px] border-t border-ink/10 pt-6 text-sm leading-relaxed text-muted">
+              <strong className="text-ink">Cómo lo medimos.</strong> {c.medicion}
+            </p>
+          )}
 
           {c.testimonio && (
             <blockquote data-reveal className="mx-auto mt-12 max-w-[720px] rounded-[2rem] bg-brand-soft/70 p-7 md:p-10">

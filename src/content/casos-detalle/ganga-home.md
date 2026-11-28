@@ -20,4 +20,4 @@ El momento de activación coincide con la visita al local, cuando la experiencia
 
 Ganga Home acumula casi 5.000 reseñas en Google con una puntuación de 4,3 sobre 5: un perfil robusto y en crecimiento que fortalece la visibilidad de la tienda en búsquedas locales.
 
-Para una marca que construyó su reputación en redes sociales, tener un perfil de Google igual de activo consolida la confianza de nuevos clientes que llegan por primera vez al Dot Baires. Los carteles trabajan solos, en cada visita, todos los días, sin carga operativa para el equipo.
+Para una marca que construyó su reputación en redes sociales, tener un perfil de Google igual de activo consolida la confianza de nuevos clientes que llegan por primera vez al Dot Baires. Los 13 carteles del local trabajan solos, en cada visita, todos los días, sin carga operativa para el equipo: desde enero de 2025 suman **casi 1.500 escaneos**.
