@@ -15,6 +15,7 @@ import { featurePorSlug } from "@/content/features";
 import { rubrosIntro } from "@/content/home";
 import { planes } from "@/content/planes";
 import { paginasRubro, type Momento, type PaginaRubro, type PiezaSetup } from "@/content/rubros";
+import { mapaAbierto } from "@/lib/mapa";
 import { pageMeta } from "@/lib/seo";
 import { cta, site } from "@/lib/site";
 import { cn } from "@/lib/cn";
@@ -243,6 +244,7 @@ export default async function RubroPage({
   if (!r) notFound();
 
   const otros = paginasRubro.filter((x) => x.slug !== r.slug);
+  const mapa = await mapaAbierto();
 
   /* El caso solo se muestra si está autorizado y con cifras verificadas (AGENTS.md §4). */
   const caso = casosPublicables.find((c) => c.slug === r.caso && c.metricaVerificada && c.portada);
@@ -465,6 +467,14 @@ export default async function RubroPage({
             );
           })}
         </ul>
+        {mapa && (
+          <div data-reveal className="mt-10 flex flex-col items-center gap-3 text-center md:mt-14">
+            <Button href="/casos#mapa" variant="secondary" size="lg" arrow className="w-full sm:w-auto">
+              Descubrí algunos de los locales que ya usan FlashTag
+            </Button>
+            <p className="text-[13px] text-muted">Están en un mapa: buscá los que tenés cerca.</p>
+          </div>
+        )}
       </Seccion>
 
       {/* ── CIERRE ───────────────────────────────────────────── */}

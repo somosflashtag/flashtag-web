@@ -4,8 +4,10 @@ import { HeroPagina } from "@/components/ui/HeroPagina";
 import { Pagina } from "@/components/ui/Pagina";
 import { Seccion } from "@/components/ui/Seccion";
 import { Titulo } from "@/components/ui/Titulo";
+import { MapaComercios } from "@/components/MapaComercios";
 import { CasosFiltro } from "@/components/home/CasosFiltro";
 import { casosPublicables, rubros } from "@/content/casos";
+import { mapaAbierto } from "@/lib/mapa";
 import { pageMeta } from "@/lib/seo";
 import { cta } from "@/lib/site";
 
@@ -16,8 +18,9 @@ export const metadata = pageMeta({
   path: "/casos",
 });
 
-export default function CasosPage() {
+export default async function CasosPage() {
   const hay = casosPublicables.length > 0;
+  const mapa = await mapaAbierto();
 
   return (
     <Pagina>
@@ -59,6 +62,13 @@ export default function CasosPage() {
           </div>
         )}
       </Seccion>
+
+      {/* Los locales que ya lo usan, sobre el mapa. Los rubros enlazan a #mapa. */}
+      {mapa && (
+        <Seccion tono="arena" id="mapa">
+          <MapaComercios />
+        </Seccion>
+      )}
 
       <Cierre
         tamano="mega"

@@ -107,6 +107,15 @@ administradores) y «eliminar reseñas» (en la app es una pantalla de
 demostración). La carta digital se abrió solo para Evolution y todavía no
 tiene página.
 
+**El mapa de comercios** (`components/MapaComercios.tsx`) es un iframe de la
+app (`my.flashtag.tech/mapa?embed=1`): los puntos y las cifras salen de allá y
+se actualizan solos, así que acá no se escribe ningún número. Está en la home
+(dentro de casos), en `/casos#mapa` y como botón al pie de cada rubro. Va solo
+sobre papel o arena (no tiene versión oscura) y se carga recién al acercarse
+(`MapaMarco`). La app lo tiene detrás del flag `mapa_comercios`: mientras
+esté cerrado, `mapaAbierto()` (`lib/mapa.ts`) da `false` y el sitio no dibuja
+ni la sección ni el botón; al abrirlo aparece solo en ≤15 minutos, sin deploy.
+
 **Logos de clientes** (`public/logos/*.webp`): son monocromos en arena, hechos
 para fondo violeta. Van siempre sobre `ink`, tal cual vienen: nada de
 grayscale, invert ni opacidad para meterlos sobre blanco.

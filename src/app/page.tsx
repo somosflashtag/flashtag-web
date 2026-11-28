@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Glifo } from "@/components/ui/Glifo";
 import { Faq } from "@/components/Faq";
 import { Pricing } from "@/components/Pricing";
+import { MapaComercios } from "@/components/MapaComercios";
 import { Clientes } from "@/components/Clientes";
 import { Pilares, type Desde } from "@/components/home/Pilares";
 import { FlashyChat } from "@/components/home/FlashyChat";
@@ -44,6 +45,7 @@ import {
   tiendaHome,
 } from "@/content/home";
 import { cta, site } from "@/lib/site";
+import { mapaAbierto } from "@/lib/mapa";
 import { faqSchema, pageMeta } from "@/lib/seo";
 import { cn } from "@/lib/cn";
 
@@ -114,7 +116,8 @@ const confetiHero: Pieza[] = [
 /** Qué se ve arriba de cada tarjeta de "cómo funciona", en orden. */
 const mocksPasos: (MockId | null)[] = [null, "links", "resenas", "metricas"];
 
-export default function Home() {
+export default async function Home() {
+  const mapa = await mapaAbierto();
   const promo = promoVigente();
 
   const pantallas = Object.fromEntries(
@@ -481,6 +484,11 @@ export default function Home() {
               Ver todos los casos
             </Link>
           </p>
+          {mapa && (
+            <div id="mapa" className="mt-16 scroll-mt-24 md:mt-24">
+              <MapaComercios tamano="chico" />
+            </div>
+          )}
         </Container>
       </section>
 

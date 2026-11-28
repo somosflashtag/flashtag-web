@@ -17,6 +17,8 @@ export const site = {
     login: "https://my.flashtag.tech/login",
     shop: "https://shop.flashtag.tech",
     whatsapp: "https://wa.me/541132132506",
+    /** Mapa público de comercios, servido por la app. Ver lib/mapa.ts. */
+    mapa: "https://my.flashtag.tech/mapa",
   },
 
   /** Redes públicas. YouTube y TikTok PENDIENTES de confirmar. */
