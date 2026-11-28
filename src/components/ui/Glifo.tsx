@@ -40,7 +40,9 @@ export type GlifoId =
   | "sticker"
   | "google"
   | "alerta"
-  | "check";
+  | "check"
+  | "libro"
+  | "edificio";
 
 const p = {
   fill: "none",
@@ -155,6 +157,8 @@ const trazos: Record<GlifoId, React.ReactNode> = {
   google: <path d="M19.5 12.2c0-.6-.1-1.1-.2-1.7H12v3.3h4.2a3.7 3.7 0 0 1-1.6 2.4M19.5 12.2A7.5 7.5 0 1 1 17 6.6l-2.3 2.2A4.3 4.3 0 1 0 14.6 16" />,
   alerta: <path d="M12 4 2.8 19.5h18.4zM12 10v4.5M12 17h.01" />,
   check: <path d="m5 12.5 4.5 4.5L19 7.5" />,
+  libro: <path d="M12 6.5c-2-1.5-4.8-2-8-1.5v13.5c3.2-.5 6 0 8 1.5 2-1.5 4.8-2 8-1.5V5c-3.2-.5-6 0-8 1.5zM12 6.5V20" />,
+  edificio: <path d="M5 20.5V4.5h9v16M14 9.5h5v11M3 20.5h18M8 8h3M8 11.5h3M8 15h3M16.5 13h.01M16.5 16.5h.01" />,
 };
 
 export function Glifo({ id, size = 18, className }: { id: GlifoId; size?: number; className?: string }) {
