@@ -11,7 +11,8 @@ import { site } from "@/lib/site";
  * La app lo tiene detrás del flag `mapa_comercios`. Con el flag cerrado la
  * ruta responde 404 y el iframe quedaría como un hueco, así que antes de
  * dibujar la sección se pregunta si el mapa responde. La respuesta se guarda
- * 15 minutos: cuando Tomás abre (o cierra) el flag, el sitio lo refleja solo,
+ * 15 minutos: cuando Tomás abre (o cierra) el flag, el sitio lo refleja solo
+ * (entre 15 y 30 minutos, porque después cada página se regenera),
  * sin deploy. Ante cualquier duda (timeout, error) la sección no se muestra.
  */
 export const mapaEmbed = `${process.env.MAPA_URL ?? site.urls.mapa}?embed=1`;

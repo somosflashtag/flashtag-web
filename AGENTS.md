@@ -114,7 +114,8 @@ se actualizan solos, así que acá no se escribe ningún número. Está en la ho
 sobre papel o arena (no tiene versión oscura) y se carga recién al acercarse
 (`MapaMarco`). La app lo tiene detrás del flag `mapa_comercios`: mientras
 esté cerrado, `mapaAbierto()` (`lib/mapa.ts`) da `false` y el sitio no dibuja
-ni la sección ni el botón; al abrirlo aparece solo en ≤15 minutos, sin deploy.
+ni la sección ni el botón; al abrirlo aparece solo, sin deploy, en 15 a 30 minutos (vence la respuesta
+guardada y después se regenera cada página).
 
 **Logos de clientes** (`public/logos/*.webp`): son monocromos en arena, hechos
 para fondo violeta. Van siempre sobre `ink`, tal cual vienen: nada de
