@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Button } from "./ui/Button";
 import { Glifo, type GlifoId } from "./ui/Glifo";
+import { Bandera } from "./ui/Bandera";
 import { BENEFICIO_ANUAL, hrefContratar, planes, precioARS, type Feature, type Plan } from "@/content/planes";
 import { conDescuento, descuentoTexto, type Promo } from "@/content/promos";
 import { cn } from "@/lib/cn";
@@ -447,10 +448,13 @@ export function Pricing({ conNota = true, promo: promoServer = null }: { conNota
           opciones={(["ars", "usd"] as const).map((m) => ({
             valor: m,
             texto: (
-              <>
-                {m === "ars" ? "Pesos" : "Dólares"}
-                <span className="hidden sm:inline"> ({m.toUpperCase()})</span>
-              </>
+              <span className="inline-flex items-center gap-2">
+                <Bandera pais={m === "ars" ? "ar" : "us"} size={14} decorativa />
+                <span>
+                  {m === "ars" ? "Pesos" : "Dólares"}
+                  <span className="hidden sm:inline"> ({m.toUpperCase()})</span>
+                </span>
+              </span>
             ),
           }))}
         />

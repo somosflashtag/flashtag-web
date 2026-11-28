@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/Button";
 import { Glifo } from "./ui/Glifo";
-import { QRMark } from "./ui/QRMark";
 import { IconoBolsa, IconoCelular } from "./ui/Iconos";
 import { cta } from "@/lib/site";
 import { cn } from "@/lib/cn";
@@ -163,8 +162,8 @@ export function Header({ promo = null }: { promo?: Promo | null }) {
                   {g.items.map((f) => (
                     <li key={f.href}>
                       <Link href={f.href} onClick={() => setPanel(null)} className={itemMenu}>
-                        <span className="mt-0.5 flex size-[34px] shrink-0 items-center justify-center rounded-[10px] bg-brand-soft transition-transform duration-300 ease-fluida group-hover:-rotate-6 group-hover:scale-110">
-                          <QRMark size={16} />
+                        <span className={`mt-0.5 flex size-[34px] shrink-0 items-center justify-center rounded-[10px] text-paper transition-transform duration-300 ease-fluida group-hover:-rotate-6 group-hover:scale-110 ${g.color}`}>
+                          <Glifo id={f.glifo} size={18} />
                         </span>
                         <span>
                           <span className="block text-sm font-semibold text-ink">{f.label}</span>
@@ -360,8 +359,9 @@ export function Header({ promo = null }: { promo?: Promo | null }) {
                       <Link
                         href={f.href}
                         onClick={() => setOpen(false)}
-                        className="vidrio-claro flex min-h-[52px] items-center rounded-2xl px-4 py-2.5 text-[0.9375rem] font-semibold leading-tight"
+                        className="vidrio-claro flex min-h-[52px] items-center gap-2.5 rounded-2xl px-3.5 py-2.5 text-[0.9375rem] font-semibold leading-tight"
                       >
+                        <Glifo id={f.glifo} size={18} className="shrink-0 text-gold" />
                         {f.label}
                       </Link>
                     </li>

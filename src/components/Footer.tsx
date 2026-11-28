@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "./ui/Container";
 import { Logo } from "./ui/Logo";
 import { QRMark } from "./ui/QRMark";
+import { Glifo } from "./ui/Glifo";
 import {
   IconoInstagram,
   IconoLinkedIn,
@@ -14,6 +15,7 @@ import {
 import { MediosDePago } from "./MediosDePago";
 import { site } from "@/lib/site";
 import { columnasFooter, linksLegales } from "@/lib/nav";
+import { mapaAbierto } from "@/lib/mapa";
 
 /**
  * Footer sobre violeta profundo. Cada página termina con `Cierre`
@@ -31,7 +33,9 @@ const redes = [
 const linkClass =
   "inline-flex min-h-11 items-center text-[0.9375rem] text-paper/70 underline-offset-4 transition-colors duration-200 hover:text-paper hover:underline md:min-h-0";
 
-export function Footer() {
+export async function Footer() {
+  // El botón al mapa solo existe si la app lo tiene abierto (AGENTS.md, «El mapa de comercios»).
+  const mapa = await mapaAbierto();
   return (
     <footer data-tono="noche" className="bg-ink text-paper">
       <Container>
@@ -66,6 +70,15 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
+              {col.conMapa && mapa && (
+                <Link
+                  href="/casos#mapa"
+                  className="vidrio-claro mt-4 inline-flex min-h-11 items-center gap-2 rounded-2xl px-3.5 py-2.5 text-sm font-semibold leading-tight text-paper transition-[translate,background-color,color] duration-500 ease-fluida hover:-translate-y-0.5 hover:bg-gold hover:text-ink"
+                >
+                  <Glifo id="ubicacion" size={18} className="shrink-0" />
+                  Locales que ya usan FlashTag
+                </Link>
+              )}
             </div>
           ))}
         </div>

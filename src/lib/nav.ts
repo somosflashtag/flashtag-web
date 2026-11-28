@@ -34,7 +34,7 @@ export const ingresar: NavItem = { label: "Ingresar", href: site.urls.login, ext
 const feature = (slug: string) => {
   const f = features.find((x) => x.slug === slug);
   if (!f) throw new Error(`nav.ts: no existe la feature "${slug}"`);
-  return { label: f.nombre, descripcion: f.corto, href: `/producto/${f.slug}`, slug: f.slug };
+  return { label: f.nombre, descripcion: f.corto, href: `/producto/${f.slug}`, slug: f.slug, glifo: f.glifo ?? ("qr" as const) };
 };
 
 /**
@@ -46,13 +46,15 @@ export const menuProducto = {
   grupos: [
     {
       titulo: "Que te encuentren y te elijan",
+      color: "bg-brand",
       items: [feature("resenas-ia"), feature("ficha-de-google"), feature("posicion-en-maps")],
     },
     {
       titulo: "Que te escriban",
+      color: "bg-coral",
       items: [feature("qr-dinamicos"), feature("link-pages"), feature("ruleta"), feature("flashcard")],
     },
-    { titulo: "Que vuelvan y vendas más", items: [feature("fidelidad"), feature("metricas"), feature("pixeles")] },
+    { titulo: "Que vuelvan y vendas más", color: "bg-teal", items: [feature("fidelidad"), feature("metricas"), feature("pixeles")] },
   ],
   extra: [
     { label: "Cómo funciona", href: "/como-funciona" },
@@ -68,7 +70,8 @@ export const menuRubros = paginasRubro.map((r) => ({
   glifo: r.glifo,
 }));
 
-export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
+/** `conMapa`: debajo de la columna va el botón al mapa de comercios (si está abierto). */
+export const columnasFooter: { titulo: string; links: NavItem[]; conMapa?: boolean }[] = [
   {
     titulo: "Aplicación",
     links: [
@@ -79,6 +82,7 @@ export const columnasFooter: { titulo: string; links: NavItem[] }[] = [
   },
   {
     titulo: "Para tu rubro",
+    conMapa: true,
     links: paginasRubro.map((r) => ({
       label: r.nav,
       href: `/para/${r.slug}`,
